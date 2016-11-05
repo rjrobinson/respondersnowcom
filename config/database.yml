@@ -1,0 +1,21 @@
+---
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: frn_dev
+
+test:
+  <<: *default
+  database: frn_test
+
+production:
+  <<: *default
+  database: frn_production
+  username: frn
+  password: <%= ENV['SAMPLE_5_DATABASE_PASSWORD'] %>
