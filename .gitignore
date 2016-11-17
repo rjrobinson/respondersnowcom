@@ -2,5 +2,5 @@
 tmp/sockets/
 /tmp/**
 log/
-.idea/
+.idea/**
 .env
