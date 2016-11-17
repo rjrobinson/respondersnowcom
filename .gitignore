@@ -1,3 +1,5 @@
 /.idea/**
 tmp/sockets/
 /tmp/**
+log/
+.idea/
