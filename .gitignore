@@ -3,3 +3,4 @@ tmp/sockets/
 /tmp/**
 log/
 .idea/
+.env
