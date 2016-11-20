@@ -1,6 +1,6 @@
 /.idea/**
 tmp/sockets/
-/tmp/**
+tmp/**
 log/
 .idea/**
 .env
