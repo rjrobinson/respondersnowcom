@@ -13,16 +13,13 @@
         <!---->
         <% if responder_signed_in? %>
           <li>
-            <%= link_to('Logout', destroy_responder_session_path, :method => :delete) %>
+            <%= button_to 'Logout', destroy_responder_session_path, :method => :delete, class: 'm-r-sm text-muted welcome-message' %>
           </li>
       <% else %>
           <li>
             <%= link_to('Login', new_responder_session_path) %>
           </li>
       <% end %>
-      <!---->
-      <%= link_to 'sign out', destroy_responder_session_path, data: {method: :delete}, class: 'm-r-sm text-muted welcome-message' if current_responder %>
-      <!--<span class="m-r-sm text-muted welcome-message" data-i18n="topnav.welcometext">Welcome to INSPINIA+ Admin Theme.</span>-->
       </li>
       <li class="dropdown">
         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

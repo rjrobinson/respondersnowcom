@@ -2,7 +2,6 @@ class DashboardsController < ApplicationController
   before_action :authenticate_responder!
 
   def dashboard_1
-    flash[:error] = 'YOU ARE A PUNK'
   end
 
   def dashboard_2
