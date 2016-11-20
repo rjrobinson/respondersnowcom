@@ -28,10 +28,14 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'guard'
   gem 'guard-rails'
+  gem 'guard-rspec', require: false
+  gem 'terminal-notifier'
   gem 'better_errors'
   gem 'binding_of_caller'
-
+  gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :development do
@@ -42,6 +46,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'meta_request'
+  # gem 'quiet_assets'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

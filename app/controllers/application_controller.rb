@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   private
 
 
-  # def responder_root_path
-  #   dashboards_dashboard_2_path
-  # end
+  def responder_root_path
+    dashboards_dashboard_2_path
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
