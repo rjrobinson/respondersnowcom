@@ -1,0 +1,30 @@
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+  <div>
+    <h3>Welcome Responder</h3>
+    <p>Create account to see it in action.</p>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <div class="form-group">
+            <%= f.input :first_name, required: true, autofocus: true, class: 'form-control', placeholder: 'first', label: false %>
+            <%= f.input :last_name, required: true, autofocus: true, class: 'form-control', placeholder: 'last', label: false %>
+          </div>
+          <div class="form-group">
+            <%= f.input :email, required: true, autofocus: true, class: 'form-control', placeholder: 'email', label: false %>
+          </div>
+          <div class="form-group">
+            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        class: 'form-control', placeholder: 'password', label: false %>
+          </div>
+          <div class="form-group">
+            <%= f.input :password_confirmation, required: true, class: 'form-control', placeholder: 'password conformation', label: false %>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class: 'btn btn-primary block full-width m-b' %>
+        </div>
+    <% end %>
+  </div>
+</div>

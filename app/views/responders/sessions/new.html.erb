@@ -1,0 +1,58 @@
+<div class="loginColumns animated fadeInDown">
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2 class="font-bold">Welcome Responder!</h2>
+      <p>You're about to start your jorurney to excel at your career as an First Responder!</p>
+      <p>This is the start. Responders are only allowed one account. The way that we match you with new careers depends
+        on the pool..</p>
+      <p>When an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+      <p>
+        <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+          essentially unchanged.
+        </small>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <div class="ibox-content">
+        <%= simple_form_for(@responder, as: @responder, url: session_path(@responder), class: 'm-t') do |f| %>
+            <div class="form-inputs">
+              <div class="form-group">
+                <%= f.input :email, required: false, autofocus: true %>
+              </div>
+              <div class="form-group">
+                <%= f.input :password, required: false %>
+              </div>
+              <%= link_to "Log in", new_session_path(resource_name), class: 'btn btn-primary block full-width m-b' %>
+              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                  <small><%= link_to 'Forgot your password?', new_password_path(resource_name) %></small>
+              <% end -%>
+              <p class="text-muted text-center">
+                <small>Do not have an account?</small>
+              </p>
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                  <%= link_to 'Create an account', new_registration_path(resource_name), class: 'btn btn-sm btn-white btn-block' %>
+                  <br/>
+              <% end -%>
+        <% end %>
+
+        <p class="m-t">
+          <small>RespondersNow built in the United States</small>
+        </p>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6">
+        Copyright RespondersNow
+      </div>
+      <div class="col-md-6 text-right">
+        <small>© 2016-2017</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
