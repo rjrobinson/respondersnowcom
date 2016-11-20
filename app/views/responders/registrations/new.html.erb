@@ -23,7 +23,15 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: 'btn btn-primary block full-width m-b' %>
+          <%= f.button :submit, 'Sign up', class: 'btn btn-primary block full-width m-b' %>
+        </div>
+        <p class="text-muted text-center">
+          <small>Already have an account?</small>
+        </p>
+        <div class="form-actions">
+          <%= link_to new_responder_session_path, class: 'btn btn-primary block full-width m-b' do %>
+              Sign in
+          <% end %>
         </div>
     <% end %>
   </div>

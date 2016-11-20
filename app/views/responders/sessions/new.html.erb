@@ -1,6 +1,6 @@
 <div class="loginColumns animated fadeInDown">
   <div class="row">
-
+    <%= flash_messages %>
     <div class="col-md-6">
       <h2 class="font-bold">Welcome Responder!</h2>
       <p>You're about to start your jorurney to excel at your career as an First Responder!</p>
@@ -25,9 +25,9 @@
               </div>
               <%= link_to "Log in", new_session_path(resource_name), class: 'btn btn-primary block full-width m-b' %>
               <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
                   <small><%= link_to 'Forgot your password?', new_password_path(resource_name) %></small>
-              <% end -%>
+              <% end %>
               <p class="text-muted text-center">
                 <small>Do not have an account?</small>
               </p>
