@@ -36,6 +36,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'factory_girl'
 end
 
 group :development do

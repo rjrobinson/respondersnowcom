@@ -24,6 +24,12 @@ feature 'Responder can log in to application', %(
     fill_in :responder_password, with: 'IronManRox'
     fill_in :responder_password_confirmation, with: 'IronManRox'
 
+    click_on 'Sign up'
+
+    user = User.first
+    user.confirm!
+
+
     expect(page).to have_content 'Congrate'
 
   end
