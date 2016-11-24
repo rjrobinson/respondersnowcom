@@ -26,9 +26,10 @@ feature 'Responder can log in to application', %(
 
     click_on 'Sign up'
 
-    user = User.first
-    user.confirm!
+    responder = Responder.first
+    responder.confirm
 
+    sign_in_as(responder)
 
     expect(page).to have_content 'Congrate'
 
