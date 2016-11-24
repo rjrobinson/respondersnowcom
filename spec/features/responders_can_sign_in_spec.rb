@@ -36,8 +36,6 @@ feature 'Responder can log in to application', %(
 
     click_on 'Sign in'
 
-    save_and_open_page
-
     expect(page).to have_content 'Welcome Tony'
 
   end
