@@ -36,7 +36,7 @@ feature 'Responder can log in to application', %(
 
     click_on 'Sign in'
 
-    expect(page).to have_content 'Welcome Tony'
+    expect(page).to have_content 'Tony Stark'
 
   end
 end
