@@ -17,7 +17,6 @@ feature 'Responder can log in to application', %(
 
     click_on 'Responder Login'
 
-
     click_on 'Create Account'
 
     fill_in :responder_first_name, with: 'Tony'
@@ -34,7 +33,7 @@ feature 'Responder can log in to application', %(
     responder.confirm
 
     click_on 'Responder Login'
-    
+
     fill_in :responder_email, with: 'tstark@avengers.org'
     fill_in :responder_password, with: 'IronManRox'
 
