@@ -11,10 +11,12 @@ feature 'Responder can log in to application', %(
 
   scenario 'user goes through domain view' do
 
-    visit 'landing/index'
+    visit root_path
+
     expect(page).to have_content 'Responder Login'
 
     click_on 'Responder Login'
+
 
     click_on 'Create Account'
 
@@ -31,6 +33,8 @@ feature 'Responder can log in to application', %(
     responder = Responder.first
     responder.confirm
 
+    click_on 'Responder Login'
+    
     fill_in :responder_email, with: 'tstark@avengers.org'
     fill_in :responder_password, with: 'IronManRox'
 
