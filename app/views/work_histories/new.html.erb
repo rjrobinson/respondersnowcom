@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-lg-6">
+    <!---->
+    <div class="ibox-title">
+      <h5>Work History</h5>
+      <% current_responder.work_histories.each do |history| %>
+          <%= render partial: 'work_histories/agency_history', locals: {history: history, agency: history.agency} %>
+      <% end %>
+    </div>
+    <!---->
+  </div>
+  <div class="col-lg-6">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Add Work History</h5>
+        <div class="ibox-content">
+          <%= simple_form_for @wh, class: 'col-sm-6' do |f| %>
+              <div class="form-group">
+                <%= f.association :agency, class: 'col-sm-8' %>
+                <small>Dont see your agency? <a>Request it</a></small>
+              </div>
+              <div class="form-group form-inline">
+                <%= f.input :start_date, as: :date, start_year: Date.today.year - 50,
+                            end_year: Date.today.year, discard_day: true,
+                            order: [:month, :year], label: 'Start Date' %>
+
+                <%= f.input :end_date, as: :date, start_year: Date.today.year - 50,
+                            end_year: Date.today.year, discard_day: true,
+                            order: [:month, :year], label: 'End Date', id: 'wh-end-date' %>
+                <%= f.input :current, as: :boolean, inline_label: 'Current', class: 'check-box' %>
+              </div>
+              <div>
+                <%= f.input :status, collection: ['Full Time', 'Part Time', 'Per-Diem', 'Volunteer'], class: 'form-inline' %>
+                <%= f.input :title,
+                            collection: ['EMT', 'Paramedic', 'EMT/Fire Fighter', 'EMT/Rescue Tech', 'Paramedic/Fire Fighter', 'Paramedic/Rescue Tech'].sort,
+                            class: 'form-inline'
+                %>
+              </div>
+              <%= f.submit 'Save', class: 'btn btn-success' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
