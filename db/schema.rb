@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20161126171917) do
     t.datetime "end_date"
     t.string   "status"
     t.string   "title"
+    t.boolean  "current"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

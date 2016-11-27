@@ -9,10 +9,18 @@ Rails.application.routes.draw do
 
   authenticated :responder do
     root to: 'dashboards#dashboard_2'
+    # TODO
+    # change this to 'dashboards#responder' to avoid confusion in the future
   end
 
   root to: 'landing#index'
-  # get 'responder_root' => 'dashboards#dashboard_2', as: :responder_root
+
+
+  resources :responders, only: [] do
+    get :work_histories
+  end
+
+  resources :work_histories, only: [:new, :create]
 
   # All routes
   get 'dashboards/dashboard_1'
