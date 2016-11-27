@@ -33,6 +33,6 @@ feature 'Responder can log in to application', %(
 
     click_on 'Save'
 
-    expect(page).to have_content 'Work History Added'
+    expect(page).to have_content agency.name
   end
 end
