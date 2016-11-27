@@ -1,0 +1,2 @@
+class ResponderProfile < ApplicationRecord
+end
