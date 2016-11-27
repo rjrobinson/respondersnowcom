@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161127231733) do
   end
 
   create_table "responder_profiles", force: :cascade do |t|
+    t.integer  "responder_id"
     t.integer  "zipcode"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
