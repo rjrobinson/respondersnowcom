@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get :work_histories
   end
 
-  resources :work_histories, only: [:new, :create]
+  resources :work_histories, only: [:new, :create, :destroy]
 
   # All routes
   get 'dashboards/dashboard_1'

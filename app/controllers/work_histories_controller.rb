@@ -20,8 +20,10 @@ class WorkHistoriesController < ApplicationController
 
   end
 
-  def destory
-
+  def destroy
+    WorkHistory.find(params[:id]).destroy
+    flash[:error] = 'Work History Deleted'
+    redirect_to new_work_history_path
   end
 
   def work_history_params
