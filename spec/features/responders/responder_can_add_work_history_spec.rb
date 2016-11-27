@@ -7,26 +7,31 @@ feature 'Responder can log in to application', %(
 
 ) do
 
+  let(:agency) { FactoryGirl.create(:agency) }
+
 
   scenario 'Responder adds Work History' do
     @responder = FactoryGirl.create(:responder)
-    
+    agency = FactoryGirl.create(:agency)
     responder_sign_in
 
     click_on 'Work History'
 
     click_on 'Add New'
 
-    select 'FDNY', from: 'agencies'
+    select agency.name, from: 'work_history_agency_id'
 
-    select '2010/01/01', from: 'start_date'
-    select '2011/01/01', from: 'end_date'
+    select 'January', from: 'work_history_start_date_2i' # The manner in which we populate teh date time for the field requires the suffix
+    select '2001', from: 'work_history_start_date_1i'
 
-    select 'FF/EMT', from: 'title'
+    select 'January', from: 'work_history_start_date_2i'
+    select '2006', from: 'work_history_start_date_1i'
 
-    select 'Full-Time', from: 'status'
+    select 'EMT' # , from: 'work_history_title'
 
-    click_on 'Add Work History'
+    select 'Full Time' #, from: 'work_history_status'
+
+    click_on 'Save'
 
     expect(page).to have_content 'Work History Added'
   end
