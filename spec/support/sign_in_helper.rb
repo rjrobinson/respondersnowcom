@@ -1,5 +1,5 @@
 def responder_sign_in
-  visit 'responders/sign_in'
+  visit 'responders/auth'
 
   fill_in :responder_email, with: @responder.email
   fill_in :responder_password, with: @responder.password
