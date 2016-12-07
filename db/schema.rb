@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127233015) do
+ActiveRecord::Schema.define(version: 20161207023345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,26 @@ ActiveRecord::Schema.define(version: 20161127233015) do
     t.index ["email"], name: "index_agencies_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_agencies_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_agencies_on_unlock_token", unique: true, using: :btree
+  end
+
+  create_table "aquired_certifications", force: :cascade do |t|
+    t.integer  "responder_id"
+    t.integer  "certification_id"
+    t.string   "number"
+    t.date     "aquired"
+    t.date     "expires"
+    t.boolean  "primary"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["certification_id"], name: "index_aquired_certifications_on_certification_id", using: :btree
+    t.index ["responder_id"], name: "index_aquired_certifications_on_responder_id", using: :btree
+  end
+
+  create_table "certifications", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "default_ceus"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "responder_profiles", force: :cascade do |t|

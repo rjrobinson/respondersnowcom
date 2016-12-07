@@ -1,0 +1,2 @@
+class AquiredCertification < ApplicationRecord
+end

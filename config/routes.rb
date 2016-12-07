@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :responders, only: [] do
     get :work_histories
+    resource :responder_profile, only: [:show]
   end
 
   resources :work_histories, only: [:create, :destroy]
