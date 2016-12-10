@@ -23,6 +23,11 @@ gem 'devise'
 gem 'omniauth-facebook'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'sentry-raven'
+
+
+gem 'coveralls', require: false
+
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -19,7 +19,18 @@ require 'support/factory_girl'
 require 'support/sign_in_helper'
 require 'support/omniauth'
 
+if ENV['CIRCLE_ARTIFACTS']
+  dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")
+  SimpleCov.coverage_dir(dir)
+
+  Coveralls.wear! 'rails'
+else
+  SimpleCov.coverage_dir('coverage')
+end
+
+
 ActiveRecord::Migration.maintain_test_schema!
+
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
