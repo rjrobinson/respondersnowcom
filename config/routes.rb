@@ -22,10 +22,13 @@ Rails.application.routes.draw do
 
   resources :responders, only: [] do
     get :work_histories
+    get :certifications
     resource :responder_profile, only: [:show]
   end
 
   resources :work_histories, only: [:create, :destroy]
+  resources :certifications, only: [:create, :destroy, :update, :edit]
+  resources :aquired_certifications, only: [:create, :destroy, :update, :edit]
 
   # All routes
   get 'dashboards/dashboard_1'

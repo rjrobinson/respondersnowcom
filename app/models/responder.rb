@@ -21,6 +21,9 @@ class Responder < ApplicationRecord
 
   has_many :work_histories, dependent: :destroy
 
+  has_many :aquired_certifications
+  has_many :certifications, through: :aquired_certifications
+
   private
 
   def init_profile

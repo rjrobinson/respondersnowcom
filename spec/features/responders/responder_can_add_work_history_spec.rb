@@ -9,15 +9,12 @@ feature 'Responder can log in to application', %(
 
   let(:agency) { FactoryGirl.create(:agency) }
 
+  responder_log_in
 
   scenario 'Responder adds Work History' do
-    @responder = FactoryGirl.create(:responder)
     agency = FactoryGirl.create(:agency)
-    responder_sign_in
 
     click_on 'Work History'
-
-    click_on 'Add New'
 
     select agency.name, from: 'work_history_agency_id'
 
