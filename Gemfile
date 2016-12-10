@@ -45,6 +45,8 @@ group :development, :test do
   gem 'factory_girl'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'rspec_junit_formatter', '0.2.2'
+  gem 'brakeman', require: false
 end
 
 group :development do
