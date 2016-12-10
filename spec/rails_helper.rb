@@ -1,5 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
+require 'coveralls'
+
 SimpleCov.start 'rails' do
   add_filter '/controllers/*'
   add_filter 'app/mailers/application_mailer.rb'
