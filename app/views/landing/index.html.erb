@@ -1,3 +1,6 @@
+<head>
+  <title>RespondersNOW</title>
+</head>
 <div class="navbar-wrapper">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -17,17 +20,17 @@
           <li><a class="page-scroll" href="#team">Team</a></li>
           <li><a class="page-scroll" href="#team">Features</a></li>
           <li><a class="page-scroll" href="#pricing">Agency<br>Login</a></li>
-          <li><%= link_to new_responder_session_path, class: 'page-scroll' do %>
+
+          <li><%= link_to auth_responders_path, class: 'page-scroll' do %>
                 Responder<br> Login
             <% end %>
           </li>
-          <!--<li><a class="page-scroll" href="#contact">Responder<br>Login</a></li>-->
         </ul>
       </div>
     </div>
   </nav>
 </div>
-<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+<div id="inSlider" class="carousel carousel-fade blur" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#inSlider" data-slide-to="0" class="active"></li>
     <li data-target="#inSlider" data-slide-to="1"></li>

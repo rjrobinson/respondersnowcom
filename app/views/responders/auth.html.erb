@@ -1,0 +1,116 @@
+<style>
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+  }
+
+  .bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("http://media.gettyimages.com/photos/ambulance-abstract-picture-id157310949") no-repeat center center fixed;
+    background-size: cover;
+    background-color: #000;
+    opacity: .2;
+    filter: alpha(opacity=50);
+  }
+
+  .content {
+    font-family: 'Avenir-Next', Avenir, Helvetica, sans-serif;
+    color: #fff;
+    background-color: none;
+    margin-left: 100px;
+    z-index: 2;
+    position: absolute;
+    top: 25%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  h2 {
+    color: black;
+    /*font-size: 160px;*/
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  /*h2 {*/
+  /*margin-top: 0;*/
+  /*max-width: 700px;*/
+  /*!*font-size: 30px;*!*/
+  /*width: 90%;*/
+  /*}*/
+
+  p {
+    color: black;
+    text-align: left;
+  }
+
+  /*.btn {*/
+  /*display: inline-block;*/
+  /*border: 1px solid #aaa;*/
+  /*border-radius: 40px;*/
+  /*padding: 15px 30px;*/
+  /*margin-right: 15px;*/
+  /*margin-bottom: 10px;*/
+  /*}*/
+
+  /*.btn:hover {*/
+  /*color: #e2e2e2;*/
+  /*background: rgba(255, 255, 255, 0.1);*/
+  /*}*/
+
+  /*@media only screen and (max-width: 480px) {*/
+  /*.btn {*/
+  /*background-color: white;*/
+  /*color: #444444;*/
+  /*width: 100%;*/
+  /*}*/
+
+  /*h1 {*/
+  /*font-size: 120px;*/
+  /*}*/
+
+  /*;*/
+  /*}*/
+
+  /*a {*/
+  /*text-decoration: none;*/
+  /*color: white;*/
+  /*}*/
+</style>
+<body>
+<div class='container'>
+  <div class='row content'>
+    <div class='col-lg-12'>
+      <div class="loginColumns animated fadeInDown">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="font-bold">Welcome Responder!</h2>
+            <p>You're about to start your jorurney to excel at your career as an First Responder!</p>
+            <p>This is the start. Responders are only allowed one account. The way that we match you with new careers
+              depends
+              on the pool..</p>
+            <p>When an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p>
+              <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                essentially unchanged.
+              </small>
+            </p>
+            <hr>
+            <%= link_to responder_facebook_omniauth_authorize_path, class: 'btn btn-success btn-facebook' do %>
+                <i class="fa fa-facebook"> </i> Sign in with Facebook
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='bg-img'></div>
+</body>
+</html>

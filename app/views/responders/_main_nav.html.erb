@@ -4,18 +4,15 @@
     <i class="fa fa-star"></i> <span class="nav-label">FAQ </span>
   </a>
 </li>
-<li class="">
-  <a href=""><i class="fa fa-th-large"></i>
-    <span class="nav-label" data-i18n="nav.dashboard">Work History</span>
-    <span class="fa arrow"></span></a>
-  <ul class="nav nav-second-level collapse <%= is_active_controller('dashboards') %>">
-    <li class="<%= is_active_action('dashboard_1') %>"><%= link_to "Add New", new_work_history_path %></li>
-  </ul>
+<li>
+  <%= link_to responder_work_histories_path(current_responder) do %>
+      <i class="fa fa-star"></i> <span class="nav-label">Work History</span>
+  <% end %>
 </li>
 <li class="">
-  <a href="#">
-    <i class="fa fa-star"></i> <span class="nav-label">Certifications </span>
-  </a>
+  <%= link_to responder_certifications_path(current_responder) do %>
+      <i class="fa fa-star"></i> <span class="nav-label">Certifications</span>
+  <% end %>
 </li>
 <li class="">
   <a href="#">

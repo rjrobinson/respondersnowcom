@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+
   devise_for :agencies
-  devise_for :responders
+  devise_for :responders, controllers: {omniauth_callbacks: 'responders/omniauth_callbacks'}
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  # You can have the root of your site routed with 'root'
-
+  # devise_scope :responder do
+  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_responder_session
+  # end
 
   authenticated :responder do
     root to: 'dashboards#dashboard_2'
@@ -16,11 +16,19 @@ Rails.application.routes.draw do
   root to: 'landing#index'
 
 
-  resources :responders, only: [] do
-    get :work_histories
+  resource :responders, only: [] do
+    get :auth
   end
 
-  resources :work_histories, only: [:new, :create, :destroy]
+  resources :responders, only: [] do
+    get :work_histories
+    get :certifications
+    resource :responder_profile, only: [:show]
+  end
+
+  resources :work_histories, only: [:create, :destroy]
+  resources :certifications, only: [:create, :destroy, :update, :edit]
+  resources :aquired_certifications, only: [:create, :destroy, :update, :edit]
 
   # All routes
   get 'dashboards/dashboard_1'

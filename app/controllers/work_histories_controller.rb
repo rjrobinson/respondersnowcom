@@ -1,29 +1,16 @@
 class WorkHistoriesController < ApplicationController
 
-
-  def new
-    @wh = WorkHistory.new
-  end
-
   def create
     @wh = WorkHistory.new(work_history_params)
     if @wh.save
-      redirect_to new_work_history_path, notice: 'Work History Added'
+      redirect_to :back, notice: 'Work History Added'
     end
-  end
-
-  def update
-
-  end
-
-  def edit
-
   end
 
   def destroy
     WorkHistory.find(params[:id]).destroy
     flash[:error] = 'Work History Deleted'
-    redirect_to new_work_history_path
+    redirect_to :back
   end
 
   def work_history_params
