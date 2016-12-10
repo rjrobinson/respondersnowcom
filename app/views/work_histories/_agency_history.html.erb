@@ -33,12 +33,11 @@
           </p>
           <h5>Agency Score: <span class="text-">58</span></h5>
           <div class="row">
-            <%= button_to 'Delete',
-                          work_history_path(history),
-                          class: 'btn btn-danger btn-xs pull-right',
+            <%= button_to work_history_path(history), class: 'btn btn-danger btn-xs pull-right ',
                           method: :delete,
-                          confirm: 'Are you sure you want to delete this?'
-            %>
+                          confirm: 'Are you sure you want to delete this?' do %>
+                <i class="fa fa-trash"></i> Delete
+            <% end %>
           </div>
           <!--<div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>-->
         </div>

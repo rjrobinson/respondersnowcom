@@ -14,7 +14,7 @@ class WorkHistoriesController < ApplicationController
   end
 
   def work_history_params
-    new = params.permit!(:responder_id, :work_history, :status)
+    new = params.require(:work_history).permit!
     new.merge({
                   start_date: DateTime.new(
                       params[:work_history]['start_date(1i)'].to_i,

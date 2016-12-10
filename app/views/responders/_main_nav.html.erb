@@ -10,9 +10,9 @@
   <% end %>
 </li>
 <li class="">
-  <a href="#">
-    <i class="fa fa-star"></i> <span class="nav-label">Certifications </span>
-  </a>
+  <%= link_to responder_certifications_path(current_responder) do %>
+      <i class="fa fa-star"></i> <span class="nav-label">Certifications</span>
+  <% end %>
 </li>
 <li class="">
   <a href="#">

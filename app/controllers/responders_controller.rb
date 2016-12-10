@@ -6,4 +6,8 @@ class RespondersController < ApplicationController
   def work_histories
     @wh = WorkHistory.new
   end
+
+  def certifications
+    @certification = AquiredCertification.new
+  end
 end
