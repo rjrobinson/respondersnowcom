@@ -1,5 +1,10 @@
-# require 'rails_helper'
-#
-# RSpec.describe Agency, type: :model do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
+require 'rails_helper'
+
+describe Agency do
+
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+  end
+  
+end

@@ -1,5 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe AquiredCertification, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe AquiredCertification do
+
+  describe 'validations' do
+    it { should belong_to(:responder) }
+    it { should belong_to(:certification) }
+    it { should validate_uniqueness_of(:number) }
+  end
 end

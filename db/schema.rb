@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(version: 20161207023345) do
     t.date     "aquired"
     t.date     "expires"
     t.boolean  "primary"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.boolean  "valid",            default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["certification_id"], name: "index_aquired_certifications_on_certification_id", using: :btree
     t.index ["responder_id"], name: "index_aquired_certifications_on_responder_id", using: :btree
   end

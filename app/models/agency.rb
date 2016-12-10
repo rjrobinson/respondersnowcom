@@ -4,4 +4,8 @@ class Agency < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  
 end
