@@ -1,5 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Certification, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Certification do
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+  end
 end
