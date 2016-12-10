@@ -12,7 +12,7 @@ class CreateAquiredCertifications < ActiveRecord::Migration[5.0]
 
       t.boolean :primary
 
-      t.boolean :valid, default: false
+      t.boolean :legit, default: false
       # Add training site later
 
       t.timestamps
