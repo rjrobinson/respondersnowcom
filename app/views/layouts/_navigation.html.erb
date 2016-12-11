@@ -245,18 +245,18 @@
                 <a href="#">Second Level Item</a></li>
             </ul>
           </li>
+          <li class="<%= is_active_controller('cssanimations') %>">
+            <%= link_to cssanimations_index_path do %>
+                <i class="fa fa-magic"></i>
+                <span class="nav-label" data-i18n="nav.animations">CSS Animations </span><span class="label label-info pull-right">62</span>
+            <% end %>
+          </li>
+          <li class="landing_link">
+            <%= link_to landing_index_path do %>
+                <i class="fa fa-star"></i> <span class="nav-label" data-i18n="nav.landing">Landing page </span>
+            <% end %>
+          </li>
       <% end %>
-      <li class="<%= is_active_controller('cssanimations') %>">
-        <%= link_to cssanimations_index_path do %>
-            <i class="fa fa-magic"></i>
-            <span class="nav-label" data-i18n="nav.animations">CSS Animations </span><span class="label label-info pull-right">62</span>
-        <% end %>
-      </li>
-      <li class="landing_link">
-        <%= link_to landing_index_path do %>
-            <i class="fa fa-star"></i> <span class="nav-label" data-i18n="nav.landing">Landing page </span>
-        <% end %>
-      </li>
     </ul>
 
   </div>
