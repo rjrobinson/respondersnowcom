@@ -27,7 +27,6 @@ gem 'aws-sdk', '~> 2.3.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'sentry-raven'
 
 
 gem 'coveralls', require: false

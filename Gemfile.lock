@@ -278,8 +278,6 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sentry-raven (2.2.0)
-      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
@@ -367,7 +365,6 @@ DEPENDENCIES
   rspec_junit_formatter (= 0.2.2)
   sass-rails (~> 5.0)
   selenium-webdriver
-  sentry-raven
   shoulda-matchers (~> 3.1)
   simple_form
   simplecov
