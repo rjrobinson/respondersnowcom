@@ -18,4 +18,4 @@ production:
   <<: *default
   database: frn_production
   username: frn
-  password: <%= ENV['SAMPLE_5_DATABASE_PASSWORD'] %>
+  password: <%= ENV['FRN_DATABASE_PASSWORD'] %>
