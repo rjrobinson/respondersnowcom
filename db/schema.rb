@@ -46,12 +46,17 @@ ActiveRecord::Schema.define(version: 20161207023345) do
     t.integer  "responder_id"
     t.integer  "certification_id"
     t.string   "number"
-    t.date     "aquired"
-    t.date     "expires"
+    t.date     "aquired_on"
+    t.boolean  "expires"
+    t.date     "expires_on"
     t.boolean  "primary"
-    t.boolean  "legit",            default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "legit",                 default: false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["certification_id"], name: "index_aquired_certifications_on_certification_id", using: :btree
     t.index ["responder_id"], name: "index_aquired_certifications_on_responder_id", using: :btree
   end

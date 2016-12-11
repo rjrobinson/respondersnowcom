@@ -11,7 +11,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
-gem 'paperclip', '~> 5.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -21,6 +20,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'simple_form'
 gem 'devise'
 gem 'omniauth-facebook'
+
+# Paperclip
+gem 'paperclip', '~> 5.0.0'
+gem 'aws-sdk', '~> 2.3.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'sentry-raven'

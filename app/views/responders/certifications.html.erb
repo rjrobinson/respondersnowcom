@@ -29,15 +29,15 @@
           <% current_responder.aquired_certifications.each do |cert| %>
               <tr class="gradeX">
                 <td><%= cert.certification.name %></td>
-                <td><%= cert.aquired %></td>
+                <td><%= cert.aquired_on %></td>
                 <td class="center"><i class="center fa fa-check"></i></td>
                 <td class="center">
-                  <%= link_to '/', class: 'btn btn-info btn-xs btn-block btn-outline' do %>
+                  <%= link_to cert.document.url, class: 'btn btn-info btn-xs btn-block btn-outline' do %>
                       <i class="fa fa-file-pdf-o"></i> PDF
                   <% end %>
                 </td>
                 <td class="center">
-                  <%= button_to '/', class: 'btn btn-danger btn-xs btn-block btn-outline',
+                  <%= button_to aquired_certification_path(cert.id), class: 'btn btn-danger btn-xs btn-block btn-outline',
                                 method: :delete,
                                 confirm: 'Are you sure you want to delete this?' do %>
                       <i class="fa fa-trash"></i> Delete
@@ -64,19 +64,23 @@
               <div class="form-group form-inline">
                 <label>Certification / License ID Number</label><br>
                 <%= f.input :number, label: false %> <br>
-                <%= f.input :aquired, as: :date, start_year: Date.today.year - 50,
+                <%= f.input :aquired_on, as: :date, start_year: Date.today.year - 50,
                             end_year: Date.today.year, discard_day: true,
-                            order: [:month, :year], label: 'Date Aquired', id: 'wh-end-date' %>
-                <%= f.input :expires, as: :date, start_year: Date.today.year + 10,
+                            order: [:month, :year], label: 'Aquired On', id: 'wh-end-date' %>
+                <%= f.input :expires_on, as: :date, start_year: Date.today.year + 10,
                             end_year: Date.today.year, discard_day: true,
                             order: [:month, :year], label: 'Expires ?', id: 'wh-end-date' %> <br>
-                <small>If no expiration, please set to max date</small>
-              </div>
-              <div>
-                <%= f.input :primary, label: 'Primary', class: 'form-inline' %>
-              </div>
-              <%= f.submit 'Save', class: 'btn btn-success' %>
+                <div>
+                  <%= f.input :expires, label: 'Does Not Expire', class: 'form-inline' %>
+                </div>
+                <div>
+                  <%= f.input :primary, label: 'Primary', class: 'form-inline' %>
+                  <br>
+                  <%= f.input :document, label: 'Upload PDF', as: :file %>
+                </div>
+                <%= f.submit 'Save', class: 'btn btn-success' %>
           <% end %>
+          </div>
         </div>
       </div>
     </div>
