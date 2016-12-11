@@ -28,7 +28,7 @@ gem 'aws-sdk', '~> 2.3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'rails_12factor', group: :production
+# gem 'rails_12factor', group: :production
 
 gem 'coveralls', require: false
 
