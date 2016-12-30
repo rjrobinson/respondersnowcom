@@ -16,7 +16,9 @@
         <div class="ibox-content">
           <%= simple_form_for @wh, class: 'col-sm-6' do |f| %>
               <div class="form-group">
-                <%= f.association :agency, class: 'col-sm-8' %>
+                <!---->
+                <%= f.autocomplete_field :agency_id, autocomplete_agency_name_agencies_path, input_html: {class: 'col-sm-8 a-select2'} %>
+                <!---->
                 <small>Dont see your agency? <a>Request it</a></small>
               </div>
               <div class="form-group form-inline">

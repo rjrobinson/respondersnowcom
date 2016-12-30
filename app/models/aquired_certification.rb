@@ -10,7 +10,7 @@ class AquiredCertification < ApplicationRecord
                     storage: :s3,
                     s3_credentials: Proc.new { |a| a.instance.s3_credentials },
                     s3_region: ENV['AWS_REGION'],
-                    :thumb => ["100x100#", :png],
+                    :thumb => ['100x100#', :png],
                     :s3_permissions => 'public-read',
                     dependent: :destroy
 
@@ -18,6 +18,10 @@ class AquiredCertification < ApplicationRecord
 
 
   def s3_credentials
-    {:bucket => 'rnow-certifications', access_key_id: ENV['AWS_SECRET_KEY_ID'], secret_access_key: ENV['AWS_SECRET_KEY']}
+    {
+        bucket: 'rnow-certifications',
+        access_key_id: ENV['AWS_SECRET_KEY_ID'],
+        secret_access_key: ENV['AWS_SECRET_KEY']
+    }
   end
 end

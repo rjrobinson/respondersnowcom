@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   root to: 'landing#index'
 
+  resource :agencies, only: [] do
+    # get :autocomplete_name
+    get :autocomplete_agency_name, :on => :collection
+  end
 
   resource :responders, only: [] do
     get :auth

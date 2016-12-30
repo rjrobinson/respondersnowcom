@@ -1,4 +1,8 @@
-<li class="<%= is_active_action('dashboard_2') %>"><%= link_to 'Dashboard', root_path %></li>
+<li class="<%= is_active_action('dashboard_2') %>">
+  <%= link_to root_path do %>
+      <i class="fa fa-ambulance"></i><span class="nav-label">Dashboard</span>
+  <% end %>
+</li>
 <li class="">
   <a href="#">
     <i class="fa fa-star"></i> <span class="nav-label">FAQ </span>

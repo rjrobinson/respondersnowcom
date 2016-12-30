@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
@@ -32,6 +33,10 @@ gem 'aws-sdk', '~> 2.3.0'
 
 gem 'coveralls', require: false
 
+gem 'rails4-autocomplete'
+
+gem 'select2-rails'
+
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -51,6 +56,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec_junit_formatter', '0.2.2'
   gem 'brakeman', require: false
+
 end
 
 group :development do
