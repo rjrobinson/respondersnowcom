@@ -31,7 +31,7 @@
                   <%= f.input :end_date, as: :date, start_year: Date.today.year - 50,
                               end_year: Date.today.year, discard_day: true,
                               order: [:month, :year], label: 'End Date', id: 'wh-end-date' %>
-                  <%= f.input :current, as: :boolean, inline_label: 'Current', class: 'check-box' %>
+                  <%= f.input_field :current, as: :boolean, class: 'check_box', inline_label: 'Current', as: :boolean, checked_value: true, unchecked_value: false %>
                 </div>
                 <div>
                   <%= f.input :status, collection: ['Full Time', 'Part Time', 'Per-Diem', 'Volunteer'], class: 'form-inline' %>
