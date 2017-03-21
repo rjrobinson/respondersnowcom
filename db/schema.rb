@@ -77,17 +77,6 @@ ActiveRecord::Schema.define(version: 20170321143850) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "responder_profiles", force: :cascade do |t|
-    t.integer  "responder_id"
-    t.integer  "zipcode"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-  end
-
   create_table "responders", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -108,8 +97,15 @@ ActiveRecord::Schema.define(version: 20170321143850) do
     t.datetime "locked_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "zipcode"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "provider"
     t.string   "uid"
     t.index ["confirmation_token"], name: "index_responders_on_confirmation_token", unique: true, using: :btree

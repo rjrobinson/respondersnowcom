@@ -31,10 +31,15 @@ class DeviseCreateResponders < ActiveRecord::Migration[5.0]
       t.datetime :locked_at
 
       # RESPONDER INFORMATION << Note Profile will come later
-      
+
       t.string :first_name
       t.string :last_name
 
+      # LOCATION
+
+      t.integer :zipcode
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps null: false
     end
