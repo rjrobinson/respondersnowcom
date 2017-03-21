@@ -15,6 +15,6 @@
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
 //= require toastr/toastr.min.js
-//= require autocomplete-rails
 //= require google
+//= require autocomplete-rails
 

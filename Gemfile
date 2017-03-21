@@ -33,7 +33,7 @@ gem 'aws-sdk', '~> 2.3.0'
 gem 'geocoder'
 gem 'coveralls', require: false
 
-gem 'rails4-autocomplete'
+gem 'rails-jquery-autocomplete'
 
 gem 'select2-rails'
 

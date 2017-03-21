@@ -35,7 +35,7 @@ class Responder < ApplicationRecord
       name = auth.info.name.split(' ')
       responder.first_name = name[0] # assuming the responder model has a name
       responder.last_name = name[1]
-      responder.avatar = auth.info.image # assuming the responder model has an image
+      # responder.avatar = auth.info.image # assuming the responder model has an image
     end
   end
 end
