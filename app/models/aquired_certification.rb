@@ -3,23 +3,27 @@ class AquiredCertification < ApplicationRecord
   belongs_to :responder
   belongs_to :certification
 
-  validates :number, uniqueness: true
+  # validates :number, uniqueness: true
 
   has_attached_file :document,
-                    styles: {thumbnail: '60x60#'},
                     storage: :s3,
                     s3_credentials: Proc.new { |a| a.instance.s3_credentials },
                     s3_region: ENV['AWS_REGION'],
-                    :thumb => ['100x100#', :png],
+                    :thumb => ['120x120#', :png],
                     :s3_permissions => 'public-read',
                     dependent: :destroy
+  # :styles => {
+  #     :thumb => '100x100#',
+  #     :small => '150x150>',
+  #     :medium => '200x200'
+  # }
 
-  validates_attachment :document, content_type: {content_type: 'application/pdf'}
+  validates_attachment :document, content_type: {content_type: ['application/pdf', 'image/jpeg', 'image/gif', 'image/png']}
 
 
   def s3_credentials
     {
-        bucket: 'rnow-certifications',
+        bucket: "rnow-certifications-#{Rails.env}",
         access_key_id: ENV['AWS_SECRET_KEY_ID'],
         secret_access_key: ENV['AWS_SECRET_KEY']
     }

@@ -1,19 +1,19 @@
 class AquiredCertificationsController < ApplicationController
 
-
   before_action :only_responder_can_modify, only: [:destroy, :update]
 
   def create
     @certification = AquiredCertification.new(cert_params)
     if @certification.save
       redirect_to :back, notice: "#{@certification.certification.name} Added to your profile!"
+    else
+      redirect_back(fallback_location: root_path, flash: {error: 'Looks like there was an error'})
     end
   end
 
   def destroy
     AquiredCertification.find(params[:id]).destroy
-    flash[:error] = 'Removed'
-    redirect_to :back
+    redirect_back(fallback_location: root_path, flash: {error: 'Removed'})
   end
 
   def update
