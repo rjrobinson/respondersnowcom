@@ -9,5 +9,7 @@
 require 'csv'
 
 CSV.foreach('data/nj_agencies.csv', headers: true) do |row|
-  Agency.new(name: row['Name'])
+  p row
+  a = Agency.create(name: row['Name'])
+  a.save
 end
