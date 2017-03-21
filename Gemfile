@@ -30,7 +30,7 @@ gem 'aws-sdk', '~> 2.3.0'
 # gem 'capistrano-rails', group: :development
 
 # gem 'rails_12factor', group: :production
-
+gem 'geocoder'
 gem 'coveralls', require: false
 
 gem 'rails4-autocomplete'
