@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-Agency.create! name: 'North Brunswick First Aid & Rescue Squad', email: 'nbfars@nbfars.org', password: '1234password', confirmed_at: 1.day.ago
-
+require 'csv'
 Responder.create! first_name: 'Tony', last_name: 'Stark', email: 'ironman@avengers.org', password: 'password', confirmed_at: 1.day.ago
+
+
+CSV.foreach('data/nj_agencies.csv', headers: true) do |row|
+
+end
