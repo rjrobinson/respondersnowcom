@@ -13,7 +13,8 @@
           <!--STAR AND END DATES-->
           <p><%= history.pretty_start %> to <%= history.pretty_end %></p>
           <p><%= history.status %> - <%= history.title %></p>
-          <p><i class="fa fa-ambulance"></i> 911 - Heavy Rescue</p>
+          <p><i class="fa fa-ambulance"></i> <%= agency.level.present? ? agency.level : 'EMS' %></p>
+          <p>Location <%= agency.location.present? ? agency.location.address : 'No address listed' %></p>
           <address>
             <i class="fa fa-map-marker"></i>
             880 Ridgewood Ave<br>
