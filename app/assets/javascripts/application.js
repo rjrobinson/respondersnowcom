@@ -17,4 +17,6 @@
 //= require toastr/toastr.min.js
 //= require google
 //= require autocomplete-rails
+//= require mapbox.js
+//= require vue
 

@@ -159,6 +159,7 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mapbox-rails (1.6.1.1)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -320,6 +321,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
+    vuejs-rails (2.2.1)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (3.4.0)
@@ -362,6 +364,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   listen (~> 3.0.5)
+  mapbox-rails
   meta_request
   omniauth-facebook
   paperclip (~> 5.0.0)
@@ -384,6 +387,7 @@ DEPENDENCIES
   terminal-notifier
   tzinfo-data
   uglifier (>= 1.3.0)
+  vuejs-rails
   web-console
 
 RUBY VERSION

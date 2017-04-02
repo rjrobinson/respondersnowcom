@@ -11,16 +11,21 @@
     <th>Latitude</th>
     <th>Longitude</th>
   </tr>
-  <% for location in @locations %>
+  <% for location in [@locations.first] %>
       <tr>
         <td><%= location.address %></td>
         <td><%= location.latitude %></td>
         <td><%= location.longitude %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= link_to 'Show', location, class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_location_path(location), class: 'btn btn-info btn-xs' %></td>
+        <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger btn-xs' %></td>
       </tr>
   <% end %>
 </table>
 
 <p><%= link_to 'New Location', new_location_path %></p>
+<h1>MAP</h1>
+<div id='map' class='dark'></div>
+<script type='text/javascript'>
+    var map = L.mapbox.map('map', 'pk.eyJ1Ijoicmpyb2JpbnNvbiIsImEiOiJsNWRQaEdNIn0._gORQA0lUllbz3wS6xKQRA').setView([37.9, -77], 5);
+</script>

@@ -36,7 +36,8 @@ gem 'coveralls', require: false
 gem 'rails-jquery-autocomplete'
 
 gem 'select2-rails'
-
+gem 'mapbox-rails'
+gem 'vuejs-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

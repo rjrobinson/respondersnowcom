@@ -2,7 +2,7 @@
   <div class="col-lg-6">
     <!---->
     <div class="ibox-title">
-      <h5>Documents</h5>
+      <h5>My Documents</h5>
       <div class="ibox-content">
 
         <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -54,7 +54,7 @@
   <div class="col-lg-6">
     <div class="ibox float-e-margins">
       <div class="ibox-title">
-        <h5>Add Document</h5>
+        <h5>Add New Document</h5>
         <div class="ibox-content">
           <%= simple_form_for @certification, class: 'col-sm-6' do |f| %>
               <%= error_messages_for @certification %>
@@ -77,13 +77,15 @@
                 <div>
                   <%= f.input_field :primary, as: :boolean, class: 'check_box', inline_label: 'Primary', as: :boolean, checked_value: true, unchecked_value: false %>
                   <br>
-                  <%= f.input :document, label: 'Upload PDF', as: :file %>
                 </div>
-                <%= f.submit 'Save', class: 'btn btn-success' %>
+                <%= f.input :document, label: 'Upload PDF', as: :file, class: 'input-group-addon btn btn-default btn-file' %>
+              </div>
+              <br>
+              <%= f.submit 'Save', class: 'btn btn-success' %>
           <% end %>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
