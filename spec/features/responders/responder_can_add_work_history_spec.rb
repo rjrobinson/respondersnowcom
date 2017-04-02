@@ -11,7 +11,7 @@ feature 'Responder can log in to application', %(
 
   responder_log_in
 
-  scenario 'Responder adds Work History' do
+  scenario 'Responder adds Work History', js: true do
     agency = FactoryGirl.create(:agency)
 
     click_on 'Work History'
