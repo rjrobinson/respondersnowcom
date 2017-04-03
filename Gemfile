@@ -53,6 +53,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'factory_girl'
   gem 'launchy'
   gem 'selenium-webdriver'
