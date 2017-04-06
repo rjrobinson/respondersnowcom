@@ -19,4 +19,4 @@
 //= require autocomplete-rails
 //= require mapbox.js
 //= require vue
-
+//= require app

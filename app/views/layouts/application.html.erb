@@ -14,9 +14,12 @@
 <body>
 <!--<%= render 'layouts/skinconfig' %>-->
 <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
-
   <%= render 'layouts/navigation' %>
   <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
+
+    <div id="app">
+      <h1>{{ message }}</h1>
+    </div>
     <%= render 'layouts/topnavbar' %>
     <%= flash_messages %>
     <%= yield %>
@@ -26,5 +29,6 @@
 </div>
 <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
 <%= yield :javascript %>
+<%= javascript_include_tag 'app' %>
 </body>
 </html>
