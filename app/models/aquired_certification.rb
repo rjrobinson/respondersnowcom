@@ -12,14 +12,9 @@ class AquiredCertification < ApplicationRecord
                     :thumb => ['120x120#', :png],
                     :s3_permissions => 'public-read',
                     dependent: :destroy
-  # :styles => {
-  #     :thumb => '100x100#',
-  #     :small => '150x150>',
-  #     :medium => '200x200'
-  # }
-
   validates_attachment :document, content_type: {content_type: ['application/pdf', 'image/jpeg', 'image/gif', 'image/png']}
 
+  validates_presence_of :document
 
   def s3_credentials
     {
