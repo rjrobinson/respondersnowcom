@@ -17,6 +17,11 @@ class Responder < ApplicationRecord
   has_attached_file :avatar, styles: {medium: '300x300>', thumb: '100x100>'}, default_url: '/images/:style/no-avatar.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
+
+def location_url
+  "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"
+end
+
   private
 
   def self.from_omniauth(auth)

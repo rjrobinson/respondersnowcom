@@ -1,0 +1,17 @@
+<div class="ibox-content col-lg-6 form-inline">
+  <%= simple_form_for current_responder, class: 'form-inline' do |f| %>
+      <div class="form-group">
+        <%= f.input :zipcode, label: false, class: 'form-control sr-only', class: 'col-lg-6', input_html: {class: 'col-lg-6', pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode.to_s || '' %>
+        <%= f.submit 'Update Zipcode', class: 'btn btn-white' %>
+      </div>
+  <% end %>
+</div>
+
+
+<div class="ibox-content col-lg-6 form-inline">
+  <h5>Work History</h5>
+</div>
+
+<div class="ibox-content col-lg-6">
+  <h5>Certifications</h5>
+</div>

@@ -26,10 +26,9 @@ Rails.application.routes.draw do
     get :auth
   end
 
-  resources :responders, only: [] do
+  resources :responders, only: [:update, :edit] do
     get :work_histories
     get :certifications
-    resource :responder_profile, only: [:show]
   end
 
   resources :work_histories, only: [:create, :destroy]
