@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '~> 5.1.4'
+gem 'webpacker'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'dotenv-rails'
