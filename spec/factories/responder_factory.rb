@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   # Default
   # It will use the User class

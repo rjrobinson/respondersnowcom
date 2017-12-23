@@ -7,12 +7,12 @@
 #
 # ) do
 #
-#   let(:agency) { FactoryGirl.create(:agency) }
+#   let(:agency) { FactoryBot.create(:agency) }
 #
 #   responder_log_in
 #
 #   scenario 'Responder adds Work History', js: true do
-#     agency = FactoryGirl.create(:agency)
+#     agency = FactoryBot.create(:agency)
 #
 #     click_on 'Work History'
 #

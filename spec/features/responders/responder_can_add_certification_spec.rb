@@ -7,7 +7,7 @@ feature 'Responder can log in to application', %(
 
 ) do
 
-  # let(:agency) { FactoryGirl.create(:agency) }
+  # let(:agency) { FactoryBot.create(:agency) }
 
   responder_log_in
 
