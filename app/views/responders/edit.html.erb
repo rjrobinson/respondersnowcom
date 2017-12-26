@@ -27,7 +27,7 @@ $(function () {
             errorDiv.text(data.error_msg);
         else if ("city" in data) {
             // Set city and state
-            container.find("#city-state").val(data.city + ',' + data.state);
+            container.find("#city-state").text(data.city + ',' + data.state);
             // container.find("input[name='state']").val(data.state);
         }
     }
@@ -35,7 +35,6 @@ $(function () {
     // Set up event handlers
     $('#responder_zipcode').on("keyup change", function () {
         // Get zip code
-        console.log('change')
         var zipcode = $(this).val().substring(0, 5);
         if (zipcode.length == 5 && /^[0-9]+$/.test(zipcode)) {
             // Clear error
