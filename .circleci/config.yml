@@ -8,9 +8,15 @@ jobs:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
+         environment:
+         - PG_HOST=localhost
+         - PG_USER=ubuntu
+         - RAILS_ENV=test
+         - RACK_ENV=test
        - image: circleci/postgres:9.6-alpine
          environment:
-          POSTGRES_USER: postgres
+         - POSTGRES_USER=ubuntu
+         - POSTGRES_DB=responders_now_test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -22,7 +28,7 @@ jobs:
     steps:
       - checkout
 
-      - run: sudo apt-get update
+      - run: sudo apt-get update apt-get install -y build-essential postgresql libpq-dev
       - run:
           name: Install System Dependencies
           command: sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
@@ -43,7 +49,7 @@ jobs:
           command: |
             yarn install
             sudo apt-get install postgresql-client
-            
+
       - save_cache:
           paths:
             - ./vendor/bundle
