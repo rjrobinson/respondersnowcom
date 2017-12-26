@@ -3,7 +3,7 @@ class WorkHistoriesController < ApplicationController
   def create
     @wh = WorkHistory.new(work_history_params)
     if @wh.save
-      redirect_back(fallback_location: root_path, flash: {notice : 'Work History Added'})
+      redirect_back(fallback_location: root_path, flash: {notice: 'Work History Added'})
     end
   end
 
