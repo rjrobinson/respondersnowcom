@@ -1,7 +1,7 @@
 <div class="ibox-content col-lg-8 form-inline">
   <%= simple_form_for current_responder, class: 'form-inline' do |f| %>
     <div class="form-group zipcode-display col-lg-4" id="zipcode-display">
-      <%= f.input :zipcode, label: false, class: 'form-control sr-only', id: 'zipcode-input', class: 'col-lg-6', input_html: {class: 'col-lg-6', pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode.to_s || '' %>
+      <%= f.input :zipcode, label: false, class: 'form-control sr-only', id: 'zipcode-input', class: 'col-lg-6', input_html: {class: 'col-lg-6', pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode || '' %>
       <%= f.submit 'Update Zipcode', class: 'btn btn-white' %>
       <div class="text-error"></div>
       <div id="city-state"></div>
