@@ -5,7 +5,7 @@ class AquiredCertificationsController < ApplicationController
   def create
     @certification = AquiredCertification.new(cert_params)
     if @certification.save
-      redirect_back(fallback_location: root_path), notice: "#{@certification.certification.name} Added to your profile!"
+      redirect_back(fallback_location: root_path, flash: {notice: "#{@certification.certification.name} Added to your profile!" )
     else
       redirect_back(fallback_location: root_path, flash: {error: 'Looks like there was an error'})
     end
@@ -32,11 +32,11 @@ class AquiredCertificationsController < ApplicationController
             aquired_on: DateTime.new(
                 params[:aquired_certification]['aquired_on(1i)'].to_i,
                 params[:aquired_certification]['aquired_on(2i)'].to_i,
-            ),
+                ),
             expires_on: DateTime.new(
                 params[:aquired_certification]['expires_on(1i)'].to_i,
                 params[:aquired_certification]['expires_on(2i)'].to_i,
-            ),
+                ),
             responder_id: current_responder.id,
         }
     )
