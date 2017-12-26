@@ -5,7 +5,7 @@ class AquiredCertificationsController < ApplicationController
   def create
     @certification = AquiredCertification.new(cert_params)
     if @certification.save
-      redirect_back(fallback_location: root_path, flash: {notice: "#{@certification.certification.name} Added to your profile!" )
+      redirect_back(fallback_location: root_path, flash: {notice: "#{@certification.certification.name} Added to your profile!"})
     else
       redirect_back(fallback_location: root_path, flash: {error: 'Looks like there was an error'})
     end
