@@ -20,7 +20,7 @@ jobs:
       - checkout
       - run:
           name: Install System Dependencies
-          command: sudo apt-get update -qq && sudo apt-get install -y build-essential postgresql libpq-dev nodejs rake apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+          command: sudo apt-get update -qq && sudo apt-get install -y build-essential postgresql libpq-dev nodejs rake qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
       - run:
           name: Install Ruby Dependencies
           command: bundle install --jobs=4 --retry=3 --path vendor/bundle
