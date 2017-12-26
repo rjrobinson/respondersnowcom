@@ -19,6 +19,14 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Install capybara-webkit
+
+          command: |
+            apt-get update
+            apt-get install -y software-properties-common
+            apt install -y gcc g++ make qt5-default libqt5webkit5-dev ruby-dev zlib1g-dev
+
       # Download and cache dependencies
       - restore_cache:
           keys:
