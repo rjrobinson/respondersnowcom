@@ -1,17 +1,102 @@
 <div class="ibox-content col-lg-6 form-inline">
   <%= simple_form_for current_responder, class: 'form-inline' do |f| %>
-      <div class="form-group">
-        <%= f.input :zipcode, label: false, class: 'form-control sr-only', class: 'col-lg-6', input_html: {class: 'col-lg-6', pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode.to_s || '' %>
-        <%= f.submit 'Update Zipcode', class: 'btn btn-white' %>
-      </div>
+    <div class="form-group zipcode-display" id="zipcode-display">
+      <%= f.input :zipcode, label: false, class: 'form-control sr-only', id: 'zipcode-input', class: 'col-lg-6', input_html: {class: 'col-lg-6', pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode.to_s || '' %>
+      <%= f.submit 'Update Zipcode', class: 'btn btn-white' %>
+      <div class="text-error"></div>
+    </div>
   <% end %>
 </div>
 
 
-<div class="ibox-content col-lg-6 form-inline">
-  <h5>Work History</h5>
+<div id="zipcode-displa" class="accordion-body in collapse" style="height: auto;">
+  <div class="accordion-inner">
+    <p>
+      This example auto-fills the city and state after a zip code is entered.
+    </p>
+
+    <div class="row-fluid">
+      <div class="span2">
+        <label>Zip Code</label>
+        <input type="text" name="zipcode" class="input-small">
+        <div class="text-error"></div>
+      </div>
+
+      <div class="span4">
+        <label>City</label>
+        <input type="text" name="city">
+      </div>
+
+      <div class="span2">
+        <label>State</label>
+        <input type="text" name="state" class="input-mini">
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="ibox-content col-lg-6">
-  <h5>Certifications</h5>
-</div>
+<script type="text/javascript">//<![CDATA[
+$(function () {
+    // IMPORTANT: Fill in your client key
+    var clientKey = "thmAfmVjv2OcZRh8Cf62K7wxUp42bE6fN8F6D2YQ9TBudxInnimucRPaCYia9zd2";
+
+    var cache = {};
+    var container = $("#zipcode-display");
+    var errorDiv = container.find("div.text-error");
+
+    /** Handle successful response */
+    function handleResp(data) {
+        // Check for error
+        if (data.error_msg)
+            errorDiv.text(data.error_msg);
+        else if ("city" in data) {
+            // Set city and state
+            container.find("input[name='city']").val(data.city);
+            container.find("input[name='state']").val(data.state);
+        }
+    }
+
+    // Set up event handlers
+    $('#responder_zipcode').on("keyup change", function () {
+        // Get zip code
+        console.log('change')
+        var zipcode = $(this).val().substring(0, 5);
+        if (zipcode.length == 5 && /^[0-9]+$/.test(zipcode)) {
+            // Clear error
+            errorDiv.empty();
+
+            // Check cache
+            if (zipcode in cache) {
+                handleResp(cache[zipcode]);
+            }
+            else {
+                // Build url
+                var url = "https://www.zipcodeapi.com/rest/" + clientKey + "/info.json/" + zipcode + "/radians";
+
+                // Make AJAX request
+                $.ajax({
+                    "url": url,
+                    "dataType": "json"
+                }).done(function (data) {
+                    handleResp(data);
+
+                    // Store in cache
+                    cache[zipcode] = data;
+                }).fail(function (data) {
+                    if (data.responseText && (json = $.parseJSON(data.responseText))) {
+                        // Store in cache
+                        cache[zipcode] = json;
+
+                        // Check for error
+                        if (json.error_msg)
+                            errorDiv.text(json.error_msg);
+                    }
+                    else
+                        errorDiv.text('Request failed.');
+                });
+            }
+        }
+    }).trigger("change");
+});
+//]]></script>

@@ -37,7 +37,7 @@ class DeviseCreateResponders < ActiveRecord::Migration[5.0]
 
       # LOCATION
 
-      t.integer :zipcode
+      t.string :zipcode
       t.float :latitude
       t.float :longitude
 

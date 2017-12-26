@@ -8,11 +8,11 @@ default: &default
 
 development:
   <<: *default
-  database: frn_dev
+  database: responders_now_dev
 
 test:
   <<: *default
-  database: frn_test
+  database: responders_now_test
 
 production:
   <<: *default

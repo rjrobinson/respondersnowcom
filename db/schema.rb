@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20170322145920) do
     t.datetime "locked_at"
     t.string "first_name"
     t.string "last_name"
-    t.integer "zipcode"
+    t.string "zipcode"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", null: false
