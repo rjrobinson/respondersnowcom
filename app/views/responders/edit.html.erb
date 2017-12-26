@@ -1,44 +1,19 @@
-<div class="ibox-content col-lg-6 form-inline">
+<div class="ibox-content col-lg-8 form-inline">
   <%= simple_form_for current_responder, class: 'form-inline' do |f| %>
-    <div class="form-group zipcode-display" id="zipcode-display">
+    <div class="form-group zipcode-display col-lg-4" id="zipcode-display">
       <%= f.input :zipcode, label: false, class: 'form-control sr-only', id: 'zipcode-input', class: 'col-lg-6', input_html: {class: 'col-lg-6', pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode.to_s || '' %>
       <%= f.submit 'Update Zipcode', class: 'btn btn-white' %>
       <div class="text-error"></div>
+      <div id="city-state"></div>
     </div>
   <% end %>
-</div>
-
-
-<div id="zipcode-displa" class="accordion-body in collapse" style="height: auto;">
-  <div class="accordion-inner">
-    <p>
-      This example auto-fills the city and state after a zip code is entered.
-    </p>
-
-    <div class="row-fluid">
-      <div class="span2">
-        <label>Zip Code</label>
-        <input type="text" name="zipcode" class="input-small">
-        <div class="text-error"></div>
-      </div>
-
-      <div class="span4">
-        <label>City</label>
-        <input type="text" name="city">
-      </div>
-
-      <div class="span2">
-        <label>State</label>
-        <input type="text" name="state" class="input-mini">
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <script type="text/javascript">//<![CDATA[
 $(function () {
     // IMPORTANT: Fill in your client key
+    // js-or5260CuimzMSvL9uJwRcTOO4rfCbywW4HhEWe2z59GgZr6iF6RjFJux57zZyTnX
+    // var clientKey = 'js-or5260CuimzMSvL9uJwRcTOO4rfCbywW4HhEWe2z59GgZr6iF6RjFJux57zZyTnX';
     var clientKey = "thmAfmVjv2OcZRh8Cf62K7wxUp42bE6fN8F6D2YQ9TBudxInnimucRPaCYia9zd2";
 
     var cache = {};
@@ -52,8 +27,8 @@ $(function () {
             errorDiv.text(data.error_msg);
         else if ("city" in data) {
             // Set city and state
-            container.find("input[name='city']").val(data.city);
-            container.find("input[name='state']").val(data.state);
+            container.find("#city-state").val(data.city + ',' + data.state);
+            // container.find("input[name='state']").val(data.state);
         }
     }
 
