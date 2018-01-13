@@ -18,49 +18,51 @@
       <div class="ibox-title">
         <h5>My Documents</h5>
         <div class="ibox-content">
-
-          <table class="table table-striped table-bordered table-hover dataTables-example">
-            <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date Aquired</th>
-              <th style="text-align: center;">Verified</th>
-              <th>
-                <%= link_to '/', class: 'btn btn-success btn-xs btn-block btn-outline' do %>
-                  <i class="fa fa-cloud-download"></i> Download All
-                <% end %>
-              </th>
-              <th>
-                <%= button_to '/', class: 'btn btn-danger btn-xs btn-block btn-outline',
-                              method: :delete,
-                              confirm: 'Are you sure you want to delete this?' do %>
-                  <i class="fa fa-trash"></i> Delete All
-                <% end %>
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <% current_responder.aquired_certifications.each do |cert| %>
-              <tr class="gradeX">
-                <td><%= cert.certification.name %></td>
-                <td><%= cert.aquired_on %></td>
-                <td class="center" style="text-align: center;"><i class="center fa fa-check"></i></td>
-                <td class="center">
-                  <%= link_to cert.document.url, class: 'btn btn-info btn-xs btn-block btn-outline' do %>
-                    <i class="fa fa-file-pdf-o"></i> PDF
+          <% unless current_responder.aquired_certifications.present? %>
+            <h1>No Documents / No Certifications</h1>
+          <% else %>
+            <table class="table table-striped table-bordered table-hover dataTables-example">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date Aquired</th>
+                <th style="text-align: center;">Verified</th>
+                <th>
+                  <%= link_to '/', class: 'btn btn-success btn-xs btn-block btn-outline' do %>
+                    <i class="fa fa-cloud-download"></i> Download All
                   <% end %>
-                </td>
-                <td class="center">
-                  <%= button_to aquired_certification_path(cert.id), class: 'btn btn-danger btn-xs btn-block btn-outline',
+                </th>
+                <th>
+                  <%= button_to '/', class: 'btn btn-danger btn-xs btn-block btn-outline',
                                 method: :delete,
                                 confirm: 'Are you sure you want to delete this?' do %>
-                    <i class="fa fa-trash"></i> Delete
+                    <i class="fa fa-trash"></i> Delete All
                   <% end %>
-                </td>
+                </th>
               </tr>
-            <% end %>
-
-            </table>
+              </thead>
+              <tbody>
+              <% current_responder.aquired_certifications.each do |cert| %>
+                <tr class="gradeX">
+                  <td><%= cert.certification.name %></td>
+                  <td><%= cert.aquired_on %></td>
+                  <td class="center" style="text-align: center;"><i class="center fa fa-check"></i></td>
+                  <td class="center">
+                    <%= link_to cert.document.url, class: 'btn btn-info btn-xs btn-block btn-outline' do %>
+                      <i class="fa fa-file-pdf-o"></i> PDF
+                    <% end %>
+                  </td>
+                  <td class="center">
+                    <%= button_to aquired_certification_path(cert.id), class: 'btn btn-danger btn-xs btn-block btn-outline',
+                                  method: :delete,
+                                  confirm: 'Are you sure you want to delete this?' do %>
+                      <i class="fa fa-trash"></i> Delete
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              </table>
+          <% end %>
         </div>
       </div>
       <!---->
@@ -95,7 +97,10 @@
                 <%= f.input :document, label: 'Upload PDF', as: :file, class: 'input-group-addon btn btn-default btn-file' %>
               </div>
               <br>
-              <%= f.submit 'Save', class: 'btn btn-success' %>
+              <%= f.button :button, class: 'btn btn btn-info btn-trans' do %>
+                <i class='fas fa-save'></i>
+                Save
+              <% end %>
             <% end %>
           </div>
         </div>
