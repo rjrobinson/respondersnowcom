@@ -1,14 +1,121 @@
-<div class="ibox-content col-lg-8 form-inline">
-  <%= simple_form_for current_responder, class: 'form-inline' do |f| %>
-    <div class="form-group zipcode-display col-lg-4" id="zipcode-display">
-      <%= f.input :zipcode, label: false, class: 'form-control sr-only', id: 'zipcode-input', class: 'col-lg-6', input_html: {class: 'col-lg-6', pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode || '' %>
-      <%= f.submit 'Update Zipcode', class: 'btn btn-white' %>
-      <div class="text-error"></div>
-      <div id="city-state"></div>
-    </div>
-  <% end %>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>Responder Profile</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Settings</a>
+      </li>
+      <li class="active">
+        <strong>Profile</strong>
+      </li>
+    </ol>
+  </div>
 </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Loaction Settings
+          <small class="m-l-sm"></small>
+        </h5>
+        <!--<div class="ibox-tools">-->
+        <!--<a class="collapse-link">-->
+        <!--<i class="fa fa-chevron-up"></i>-->
+        <!--</a>-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
+        <!--<i class="fa fa-wrench"></i>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu dropdown-user">-->
+        <!--<li><a href="#">Config option 1</a>-->
+        <!--</li>-->
+        <!--<li><a href="#">Config option 2</a>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--<a class="close-link">-->
+        <!--<i class="fa fa-times"></i>-->
+        <!--</a>-->
+        <!--</div>-->
+        <div class="ibox-content">
+          <div class="zipcode-display" id="zipcode-display">
+            <%= simple_form_for current_responder, class: 'form-inline' do |f| %>
+              <div class="form-group" id="responder_zipcode">
+                <%= f.input :zipcode,
+                            label: false,
+                            class: 'form-control sr-only',
+                            id: 'zipcode-input', input_html: {pattern: '[0-9]{4}'}, placeholder: current_responder.zipcode || '' %>
+              </div>
+              <div class="text-error"></div>
+              <div id="city-state"></div>
+              <%= f.submit 'Update Zipcode', class: 'btn btn-white' %>
+            <% end %>
+          </div>
+          <!--<div class="ibox-footer">-->
+          <!--<span class="pull-right">-->
+          <!--The righ side of the footer-->
+          <!--</span>-->
+          <!--This is simple footer example-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Personal Information
+          <small class="m-l-sm"></small>
+        </h5>
+        <!--<div class="ibox-tools">-->
+        <!--<a class="collapse-link">-->
+        <!--<i class="fa fa-chevron-up"></i>-->
+        <!--</a>-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
+        <!--<i class="fa fa-wrench"></i>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu dropdown-user">-->
+        <!--<li><a href="#">Config option 1</a>-->
+        <!--</li>-->
+        <!--<li><a href="#">Config option 2</a>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--<a class="close-link">-->
+        <!--<i class="fa fa-times"></i>-->
+        <!--</a>-->
+        <!--</div>-->
+        <div class="ibox-content">
+          <div>
+            <%= simple_form_for current_responder, class: 'form-inline' do |f| %>
+              <div class="form-group">
+                <%= f.input :first_name,
+                            class: 'form-control sr-only',
+                            placeholder: current_responder.first_name || '' %>
+              </div>
+              <div>
+                <%= f.input :last_name,
+                            class: 'form-control sr-only',
+                            placeholder: current_responder.last_name || '' %>
+              </div>
+              <div class="text-error"></div>
+              <div id="city-state"></div>
+              <%= f.button :button, class: 'btn btn btn-info btn-trans' do %>
+                <i class='fas fa-save'></i>
+                Save
+              <% end %>
 
+            <% end %>
+          </div>
+          <!--<div class="ibox-footer">-->
+          <!--<span class="pull-right">-->
+          <!--The right side of the footer-->
+          <!--</span>-->
+          <!--This is simple footer example-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <script type="text/javascript">//<![CDATA[
 $(function () {
     var clientKey = 'js-or5260CuimzMSvL9uJwRcTOO4rfCbywW4HhEWe2z59GgZr6iF6RjFJux57zZyTnX';

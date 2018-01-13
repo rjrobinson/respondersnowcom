@@ -8,6 +8,9 @@
   <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <!--FONT AWESOME 5-->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
   <%= csrf_meta_tags %>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
