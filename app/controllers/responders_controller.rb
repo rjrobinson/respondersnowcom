@@ -31,7 +31,7 @@ class RespondersController < ApplicationController
 
 
   def validate_responder
-    @responder = Responder.find(params[:id])
+    @responder = Responder.find(params[:id] || params[:responder_id])
     unless @responder == current_responder
       redirect_back(fallback_location: root_path, flash: {error: 'You are not authorized to access this page'})
     end
