@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ResponderProfile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "does things" do
+    expect(true).to be true
+  end
 end
