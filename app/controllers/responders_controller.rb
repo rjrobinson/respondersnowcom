@@ -1,4 +1,8 @@
 class RespondersController < ApplicationController
+
+  before_action :validate_responder, only: [:edit, :update, :work_histories, :certifications]
+
+
   def auth
     render :layout => 'empty'
   end
@@ -24,6 +28,14 @@ class RespondersController < ApplicationController
 
 
   private
+
+
+  def validate_responder
+    @responder = Responder.find(params[:id])
+    unless @responder == current_responder
+      redirect_back(fallback_location: root_path, flash: {error: 'You are not authorized to access this page' )
+    end
+  end
 
   def responder_params
     params.require(:responder).permit(:zipcode)
