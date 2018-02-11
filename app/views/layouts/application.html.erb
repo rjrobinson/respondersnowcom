@@ -16,7 +16,7 @@
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
-<!--<%= render 'layouts/skinconfig' %>-->
+<%= render 'layouts/skinconfig' %>
 <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
   <%= render 'layouts/navigation' %>
   <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
@@ -30,5 +30,6 @@
 <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
 <%= yield :javascript %>
 <%= javascript_include_tag 'app' %>
+<%= render partial: 'layouts/google_analytics' %>
 </body>
 </html>
