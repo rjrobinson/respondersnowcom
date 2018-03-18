@@ -76,7 +76,9 @@
               <%= error_messages_for @certification %>
               <div class="form-group">
                 <%= f.association :certification, collection: Certification.order(:name), class: 'col-sm-8' %>
-                <small>Are we missing your cert? <a>Request it</a></small>
+                <small>Are we missing your cert?
+                  <%= link_to 'Request it!', new_certification_path %>
+                </small>
               </div>
               <div class="form-group form-inline">
                 <label>Certification / License ID Number</label><br>

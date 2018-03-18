@@ -23,6 +23,10 @@ gem 'simple_form'
 gem 'devise'
 gem 'omniauth-facebook'
 
+
+# Email
+gem 'mandrill-api'
+
 # Paperclip
 gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '~> 2.3.0'
@@ -55,7 +59,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'factory_bot'#1ab39#1ab39
+  gem 'factory_bot' #1ab39#1ab39
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'rspec_junit_formatter', '0.2.2'

@@ -30,9 +30,10 @@ Rails.application.routes.draw do
     get :work_histories
     get :certifications
   end
+  resources :certifications, only: [:new]
 
   resources :work_histories, only: [:create, :destroy]
-  resources :certifications, only: [:create, :destroy, :update, :edit]
+  resources :certifications, only: [:create, :destroy, :update, :edit, :new]
   resources :aquired_certifications, only: [:create, :destroy, :update, :edit]
 
   # All routes

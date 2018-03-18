@@ -2,7 +2,7 @@
   <title>RespondersNOW</title>
 </head>
 <div class="navbar-wrapper">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top navbar-scroll" role="navigation">
     <div class="container">
       <div class="navbar-header page-scroll">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -19,10 +19,10 @@
           <li><a class="page-scroll" href="#features">Features</a></li>
           <li><a class="page-scroll" href="#team">Team</a></li>
           <li><a class="page-scroll" href="#team">Features</a></li>
-          <li><a class="page-scroll" href="#pricing">Agency<br>Login</a></li>
+          <!--<li><a class="page-scroll" href="#pricing">Agency<br>Login</a></li>-->
 
           <li><%= link_to auth_responders_path, class: 'page-scroll' do %>
-              Responder<br> Login
+              Login
             <% end %>
           </li>
         </ul>
@@ -30,6 +30,11 @@
     </div>
   </nav>
 </div>
+<style>
+  .text-blue {
+    text: '#446CB3';
+  }
+</style>
 <div id="inSlider" class="carousel carousel-fade blur" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#inSlider" data-slide-to="0" class="active"></li>
@@ -39,22 +44,23 @@
     <div class="item active">
       <div class="container">
         <div class="carousel-caption">
-          <h1>Tools to help you excel<br/>
-            in you career<br/>
+          <h1 class="text-blue">First Responder Tools<br/>
+            designed to help you <br/>
+            excel in your career<br/>
           </h1>
-          <p>We wanted tools to help develop our careers <br>
-            So, we made them.</p>
+          <p class="text-danger">We wanted tools to help develop our careers <br>
+            <span>So, we made them.</span>
+          </p>
           <p>
-            <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
+            <!--<a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>-->
           </p>
         </div>
         <div class="carousel-image wow zoomIn">
-          <br>
-          <br>
-          <br>
-          <img src="<%= image_path('landing/ambo.png') %>" alt="laptop"/>
+          <!--<br>-->
+          <!--<br>-->
+          <!--<br>-->
+          <!--<img src="<%= image_path('landing/ambo.png') %>" alt="laptop"/>-->
         </div>
-
       </div>
       <!-- Set background for slide in css -->
       <div class="header-back one"></div>
@@ -62,7 +68,7 @@
     </div>
     <div class="item">
       <div class="container">
-        <div class="carousel-caption blank">
+        <div class="carousel-caption blur-it">
           <h1>We connect top companies<br/> with fully qualified<br> First Responders</h1>
           <p>Stop filling your trucks with "warm bodies"</p>
           <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
@@ -86,35 +92,35 @@
 <section id="features" class="container services">
   <div class="row">
     <div class="col-sm-3">
-      <h2>Stop Calling, Get Interviews within 24 hours.</h2>
-      <p>Companies compete for your attention. Engage only with the companies you like.
-        Privacy is important - your profile is not shown to former employers or any other company you
-        list.
-        While on the platform, you’ll be showcased to vetted companies using FRNow.com every week.
+      <h2>Stop sotring your Certifications in that "folder"</h2>
+      <p>Seriously. It the future. It time for you to migrate to the cloud.
+        Storing your certifications in one place ensures that you have an accurate record.
+        You should keep all of the classes and certificatiosn you have in a safe and secure area.
+        Accessable form ANY device.
       </p>
-      <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+      <!--<p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
     </div>
     <div class="col-sm-3">
-      <h2>Whios Hiring ?</h2>
-      <p>Take the stress out of finding where to apply. Waiting on call backs? Let them apply to YOU !.
-        Also Take advantage of our pre-screen checks, to get placed at the top of their inboxes, daily!
+      <h2>Looking for a class ?</h2>
+      <p>If you're like any of us, Looking for CEUs usually involved posying on social media,
+        seeing what our employers are offering, or searching thorugh every PDF printout of academys in the area.
+        We were tired of that. Use our search Engine... it'll blow your socks off.
       </p>
-      <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+      <!--<p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
     </div>
     <div class="col-sm-3">
-      <h2>Agency Metrics</h2>
-      <p>Woulden't you like to know upfront if the agency fits YOUR Style? We as a series of questions,
-        and build out an
-        agency score. </p>
-      <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+      <h2>Job Board</h2>
+      <p>Our Advanced Placement Job Board is still under contruction.
+        But, we do have a section where you can see current openings.
+      </p>
+      <!--<p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
     </div>
     <div class="col-sm-3">
-      <h2>Showcase your experience and career goals.</h2>
-      <p>Create a profile to highlight your experience and desired career move.
-        Our team then reviews your profile to see if your skills match the needs of employers using
-        Hired and sends you
-        an invitation if you qualify.</p>
-      <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+      <h2>Class Alerts</h2>
+      <p>Sometimes a class isn't usually posted on a regular basis. Wouldn't it be
+        great if you could sign up for alerts on the classes you want to take?.
+      </p>
+      <!--<p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
     </div>
   </div>
 </section>
@@ -129,44 +135,44 @@
       <!--<p>Shouldn't you start to use it to land your next job?</p>-->
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3 text-center wow fadeInLeft">
-      <div>
-        <i class="fa fa-mobile features-icon"></i>
-        <h2>Responses in 4 days</h2>
-        <p>Built into the agreement with our hiring partners, you will have an interview in under 4 days, maybe
-          faster!</p>
-      </div>
-      <div class="m-t-lg">
-        <i class="fa fa-bar-chart features-icon"></i>
-        <h2>$$$</h2>
-        <p>See what you're worth, and what the average for the area is with enhanced analytics.
-        </p>
-      </div>
-    </div>
-    <div class="col-md-6 text-center  wow zoomIn">
-      <img src="<%= image_path('landing/perspective.png') %>" alt="dashboard" class="img-responsive">
-    </div>
-    <div class="col-md-3 text-center wow fadeInRight">
-      <div>
-        <i class="fa fa-envelope features-icon"></i>
-        <h2> Document Upload</h2>
-        <p>A safe and secure place to store all of your CEUs and Certifications.We offer that for free!
-          We can also send to your new employer once your hired! An "employment pack" if you will!
-        </p>
-      </div>
-      <!--<div class="m-t-lg">-->
-      <!--<i class="fa fa-google features-icon"></i>-->
-      <!--<h2>AngularJS version</h2>-->
-      <!--<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh-->
-      <!--ultricies-->
-      <!--vehicula ut id elit. Morbi leo risus.</p>-->
-      <!--</div>-->
-    </div>
-  </div>
+  <!--<div class="row">-->
+  <!--<div class="col-md-3 text-center wow fadeInLeft">-->
+  <!--<div>-->
+  <!--<i class="fa fa-mobile features-icon"></i>-->
+  <!--<h2>Responses in 4 days</h2>-->
+  <!--<p>Built into the agreement with our hiring partners, you will have an interview in under 4 days, maybe-->
+  <!--faster!</p>-->
+  <!--</div>-->
+  <!--<div class="m-t-lg">-->
+  <!--<i class="fa fa-bar-chart features-icon"></i>-->
+  <!--<h2>$$$</h2>-->
+  <!--<p>See what you're worth, and what the average for the area is with enhanced analytics.-->
+  <!--</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-md-6 text-center  wow zoomIn">-->
+  <!--<img src="<%= image_path('landing/perspective.png') %>" alt="dashboard" class="img-responsive">-->
+  <!--</div>-->
+  <!--<div class="col-md-3 text-center wow fadeInRight">-->
+  <!--<div>-->
+  <!--<i class="fa fa-envelope features-icon"></i>-->
+  <!--<h2> Document Upload</h2>-->
+  <!--<p>A safe and secure place to store all of your CEUs and Certifications.We offer that for free!-->
+  <!--We can also send to your new employer once your hired! An "employment pack" if you will!-->
+  <!--</p>-->
+  <!--</div>-->
+  <!--&lt;!&ndash;<div class="m-t-lg">&ndash;&gt;-->
+  <!--&lt;!&ndash;<i class="fa fa-google features-icon"></i>&ndash;&gt;-->
+  <!--&lt;!&ndash;<h2>AngularJS version</h2>&ndash;&gt;-->
+  <!--&lt;!&ndash;<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh&ndash;&gt;-->
+  <!--&lt;!&ndash;ultricies&ndash;&gt;-->
+  <!--&lt;!&ndash;vehicula ut id elit. Morbi leo risus.</p>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--</div>-->
+  <!--</div>-->
   <div class="row">
     <div class="col-lg-12 text-center">
-      <div class="navy-line"></div>
+      <!--<div class="navy-line"></div>-->
       <h1>Building tools that will propel your career forward!</h1>
       <p>Powered by a team of software engineers and first responders, we are dedicated to building what you need!</p>
     </div>

@@ -30,6 +30,6 @@
 <%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
 <%= yield :javascript %>
 <%= javascript_include_tag 'app' %>
-<%= render partial: 'layouts/google_analytics' %>
+
 </body>
 </html>

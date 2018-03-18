@@ -15,6 +15,9 @@ class CertificationsController < ApplicationController
   def edit
   end
 
+  def new
+    @certification = Certification.new
+  end
 
   private
 

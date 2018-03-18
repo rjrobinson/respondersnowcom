@@ -18,9 +18,13 @@ class Responder < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 
-def location_url
-  "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"
-end
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def location_url
+    "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"
+  end
 
   private
 
