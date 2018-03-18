@@ -1,5 +1,6 @@
 <head>
   <title>RespondersNOW</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 </head>
 <div class="navbar-wrapper">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -15,16 +16,11 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a class="page-scroll" href="#page-top">Home</a></li>
-          <li><a class="page-scroll" href="#features">Features</a></li>
-          <li><a class="page-scroll" href="#team">Team</a></li>
-          <li><a class="page-scroll" href="#team">Features</a></li>
+          <!--<li><a class="page-scroll" href="#page-top">Home</a></li>-->
+          <!--<li><a class="page-scroll" href="#features">Features</a></li>-->
+          <!--<li><a class="page-scroll" href="#team">Team</a></li>-->
+          <!--<li><a class="page-scroll" href="#team">Features</a></li>-->
           <!--<li><a class="page-scroll" href="#pricing">Agency<br>Login</a></li>-->
-
-          <li><%= link_to auth_responders_path, class: 'page-scroll' do %>
-              Login
-            <% end %>
-          </li>
         </ul>
       </div>
     </div>
@@ -53,15 +49,9 @@
           </p>
           <p>
             <%= link_to responder_facebook_omniauth_authorize_path, class: 'btn btn-success btn-facebook' do %>
-              <i class="fa fa-facebook"> </i> Sign in with Facebook
+              <i class="fab fa-facebook-f"> </i> Sign in with Facebook
             <% end %>
           </p>
-        </div>
-        <div class="carousel-image wow zoomIn">
-          <!--<br>-->
-          <!--<br>-->
-          <!--<br>-->
-          <!--<img src="<%= image_path('landing/ambo.png') %>" alt="laptop"/>-->
         </div>
       </div>
       <!-- Set background for slide in css -->
@@ -89,6 +79,33 @@
   </a>
 </div>
 
+<section id="social-media">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <div>
+        <div class="navy-line"></div>
+        <h4 class="widget-title">Follow us</h4>
+        <ul class="social-nav social-center">
+          <li>
+            <a href="https://twitter.com/respondersnow" target="_blank" title="Twitter" rel="nofollow" class="twitter"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/RespondersNow/" target="_blank" title="Facebook" rel="nofollow" class="facebook"><i class="fab fa-facebook-f"></i></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/respondersnow" target="_blank" title="Instagram" rel="nofollow" class="google"><i class="fab fa-instagram"></i></a>
+          </li>
+          <!--<li>-->
+          <!--<a href="#" target="_blank" title="Linkedin" rel="nofollow" class="linkedin"><i class="fa fa-linkedin"></i></a>-->
+          <!--</li>-->
+          <!--<li>-->
+          <!--<a href="#" target="_blank" title="Pinterest" rel="nofollow" class="pinterest"><i class="fa fa-pinterest"></i></a>-->
+          <!--</li>-->
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="features" class="container services">
   <div class="row">
@@ -127,50 +144,6 @@
 </section>
 
 <section class="container features">
-  <!--<div class="row">-->
-  <!--<div class="col-lg-12 text-center">-->
-  <!--<div class="navy-line"></div>-->
-  <!--<h1>Over 300 companies and <span class="navy">2900 First Responders</span> use-->
-  <!--<br>FirstRespondersNow.com-->
-  <!--</h1>-->
-  <!--<p>Shouldn't you start to use it to land your next job?</p>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="row">-->
-  <!--<div class="col-md-3 text-center wow fadeInLeft">-->
-  <!--<div>-->
-  <!--<i class="fa fa-mobile features-icon"></i>-->
-  <!--<h2>Responses in 4 days</h2>-->
-  <!--<p>Built into the agreement with our hiring partners, you will have an interview in under 4 days, maybe-->
-  <!--faster!</p>-->
-  <!--</div>-->
-  <!--<div class="m-t-lg">-->
-  <!--<i class="fa fa-bar-chart features-icon"></i>-->
-  <!--<h2>$$$</h2>-->
-  <!--<p>See what you're worth, and what the average for the area is with enhanced analytics.-->
-  <!--</p>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="col-md-6 text-center  wow zoomIn">-->
-  <!--<img src="<%= image_path('landing/perspective.png') %>" alt="dashboard" class="img-responsive">-->
-  <!--</div>-->
-  <!--<div class="col-md-3 text-center wow fadeInRight">-->
-  <!--<div>-->
-  <!--<i class="fa fa-envelope features-icon"></i>-->
-  <!--<h2> Document Upload</h2>-->
-  <!--<p>A safe and secure place to store all of your CEUs and Certifications.We offer that for free!-->
-  <!--We can also send to your new employer once your hired! An "employment pack" if you will!-->
-  <!--</p>-->
-  <!--</div>-->
-  <!--&lt;!&ndash;<div class="m-t-lg">&ndash;&gt;-->
-  <!--&lt;!&ndash;<i class="fa fa-google features-icon"></i>&ndash;&gt;-->
-  <!--&lt;!&ndash;<h2>AngularJS version</h2>&ndash;&gt;-->
-  <!--&lt;!&ndash;<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh&ndash;&gt;-->
-  <!--&lt;!&ndash;ultricies&ndash;&gt;-->
-  <!--&lt;!&ndash;vehicula ut id elit. Morbi leo risus.</p>&ndash;&gt;-->
-  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-  <!--</div>-->
-  <!--</div>-->
   <div class="row">
     <div class="col-lg-12 text-center">
       <!--<div class="navy-line"></div>-->
@@ -267,16 +240,16 @@
 <!--</div>-->
 <!--</section>-->
 
-<section class="features">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="navy-line"></div>
-        <h1>We have a lot of features in the pipeline! Let us know if you have any other ideas!</h1>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section class="features">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-lg-12">-->
+<!--<div class="navy-line"></div>-->
+<!--<h1>We have a lot of features in the pipeline! Let us know if you have any other ideas!</h1>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</section>-->
 <!--<section class="features">-->
 <!--<div class="container">-->
 <!--<div class="row">-->
@@ -714,6 +687,135 @@
 <!--</div>-->
 <!--</div>-->
 <!--</section>-->
+<!--footer-->
+
+<div class="navy-line"></div>
+<br>
+<br>
+<br>
+<!--<footer class="footer1">-->
+<!--<div class="container">-->
+
+<!--<div class="row">&lt;!&ndash; row &ndash;&gt;-->
+<!--<div class="col-lg-3 col-md-3">&lt;!&ndash; widgets column left &ndash;&gt;-->
+<!--<ul class="list-unstyled clear-margins">&lt;!&ndash; widgets &ndash;&gt;-->
+<!--<li class="widget-container widget_nav_menu">&lt;!&ndash; widgets list &ndash;&gt;-->
+<!--&lt;!&ndash;Add a title here.&ndash;&gt;-->
+<!--<h1 class="title-widget">Useful Links</h1>-->
+<!--<ul>-->
+<!--<li><a href="#"><i class="fa fa-angle-double-right"></i> About Us</a></li>-->
+<!--<li>-->
+<!--<a href="https://suicidepreventionlifeline.org/"><i class="fa fa-angle-double-right"></i>First Responder-->
+<!--Help Line</a></li>-->
+<!--<li><a href="#"><i class="fa fa-angle-double-right"></i> Grand Tests Series</a></li>-->
+<!--<li><a href="#"><i class="fa fa-angle-double-right"></i> Subject Wise Test Series</a></li>-->
+<!--<li><a href="#"><i class="fa fa-angle-double-right"></i> Smart Book</a></li>-->
+<!--<li><a href="#"><i class="fa fa-angle-double-right"></i> Test Centres</a></li>-->
+<!--<li><a href="#"><i class="fa fa-angle-double-right"></i> Admission Form</a></li>-->
+<!--<li><a href="#"><i class="fa fa-angle-double-right"></i> Computer Live Test</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>&lt;!&ndash; widgets column left end &ndash;&gt;-->
+<!--<div class="col-lg-3 col-md-3">&lt;!&ndash; widgets column left &ndash;&gt;-->
+<!--<ul class="list-unstyled clear-margins">&lt;!&ndash; widgets &ndash;&gt;-->
+<!--<li class="widget-container widget_nav_menu">&lt;!&ndash; widgets list &ndash;&gt;-->
+<!--&lt;!&ndash;Add a title here.&ndash;&gt;-->
+<!--<h1 class="title-widget"></h1>-->
+<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Enquiry Form</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Online Test Series</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Grand Tests Series</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Subject Wise Test Series</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Smart Book</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Test Centres</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Admission Form</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Computer Live Test</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>&lt;!&ndash; widgets column left end &ndash;&gt;-->
+<!--<div class="col-lg-3 col-md-3">&lt;!&ndash; widgets column left &ndash;&gt;-->
+<!--<ul class="list-unstyled clear-margins">&lt;!&ndash; widgets &ndash;&gt;-->
+<!--<li class="widget-container widget_nav_menu">&lt;!&ndash; widgets list &ndash;&gt;-->
+<!--&lt;!&ndash;Add a title here.&ndash;&gt;-->
+<!--<h1 class="title-widget"></h1>-->
+<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Enquiry Form</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Online Test Series</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Grand Tests Series</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Subject Wise Test Series</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Smart Book</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Test Centres</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Admission Form</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-angle-double-right"></i> Computer Live Test</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>&lt;!&ndash; widgets column left end &ndash;&gt;-->
+
+<!--<div class="col-lg-3 col-md-3">&lt;!&ndash; widgets column center &ndash;&gt;-->
+<!--<ul class="list-unstyled clear-margins">&lt;!&ndash; widgets &ndash;&gt;-->
+
+<!--<li class="widget-container widget_recent_news">&lt;!&ndash; widgets list &ndash;&gt;-->
+
+<!--<h1 class="title-widget">Contact Details </h1>-->
+
+<!--<div class="footerp">-->
+
+<!--<h2 class="title-median">RespondersNOW LLC</h2>-->
+<!--<p><b>Email id:</b> <a href="mailto:info@respondersnow.com">info@respondersnow.com</a></p>-->
+<!--<p><b>Get A Human Number</b>-->
+
+<!--<b style="color:#ffc106;">(8AM to 10PM):</b> <br>-->
+<!--732-555-5555</p>-->
+
+<!--<p><b>Postal Address</b>-->
+<!--<address>-->
+<!--PO BOX 1234-->
+<!--North Brunswick, NJ 08902-->
+<!--</address>-->
+<!--</p>-->
+<!--<p><b>Phone Numbers : </b>7325555555, </p>-->
+<!--</div>-->
+
+<!--<div class="social-icons">-->
+<!--<ul class="nomargin">-->
+<!--<a href="https://facebook.com/respondersnow"><i class="fab fa-facebook-f fa-3x social-fb" id="social"></i></a>-->
+<!--<a href="https://twitter.com/respondersnow"><i class="fab fa-twitter fa-3x social-tw" id="social"></i></a>-->
+<!--<a href="https://instagram.com/respondersnow"><i class="fab fa-instagram fa-3x social-gp" id="social"></i></a>-->
+<!--<a href="mailto:info@respondersnow.com"><i class="fa fa-envelope-square fa-3x social-em" id="social"></i></a>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</footer>-->
+<!--&lt;!&ndash;header&ndash;&gt;-->
+
+<div class="footer-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="copyright">© 2018, RespondersNOW, All rights reserved</div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="design">
+          <a href="#">RespondersNOW LLC </a> |
+          <a target="_blank" href="#">Built and managed by First Responders, For First Responders</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <% content_for :javascript do %>
 
   <script type="text/javascript">
