@@ -4,6 +4,13 @@ class CertificationsController < ApplicationController
   end
 
   def create
+    @certification = Certification.new(cert_params)
+    @certification.creator = current_responder
+    if @certification.save
+      redirect_back(fallback_location: root_path, flash: {notice: "#{@certification.name}"})
+    else
+      redirect_back(fallback_location: root_path, flash: {error: "#{params[:name]} Not Added"})
+    end
   end
 
   def destroy
@@ -22,8 +29,6 @@ class CertificationsController < ApplicationController
   private
 
   def cert_params
-
+    params.require(:certification).permit(:name)
   end
 end
-
-# resources :aquired_certifications, only: [:create, :destroy, :update, :edit]

@@ -10,6 +10,8 @@ class Responder < ApplicationRecord
   has_many :aquired_certifications
   has_many :certifications, through: :aquired_certifications
 
+  has_many :certifications, as: :creator
+
   geocoded_by :zipcode
   after_validation :geocode, :if => :zipcode_changed?
 
