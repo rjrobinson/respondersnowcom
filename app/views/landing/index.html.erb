@@ -52,7 +52,9 @@
             <span>So, we made them.</span>
           </p>
           <p>
-            <!--<a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>-->
+            <%= link_to responder_facebook_omniauth_authorize_path, class: 'btn btn-success btn-facebook' do %>
+              <i class="fa fa-facebook"> </i> Sign in with Facebook
+            <% end %>
           </p>
         </div>
         <div class="carousel-image wow zoomIn">
@@ -64,19 +66,18 @@
       </div>
       <!-- Set background for slide in css -->
       <div class="header-back one"></div>
-
     </div>
-    <div class="item">
-      <div class="container">
-        <div class="carousel-caption blur-it">
-          <h1>We connect top companies<br/> with fully qualified<br> First Responders</h1>
-          <p>Stop filling your trucks with "warm bodies"</p>
-          <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-        </div>
-      </div>
-      <!-- Set background for slide in css -->
-      <div class="header-back two"></div>
-    </div>
+    <!--<div class="item">-->
+    <!--<div class="container">-->
+    <!--<div class="carousel-caption blur-it">-->
+    <!--<h1>We connect top companies<br/> with fully qualified<br> First Responders</h1>-->
+    <!--<p>Stop filling your trucks with "warm bodies"</p>-->
+    <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; Set background for slide in css &ndash;&gt;-->
+    <!--<div class="header-back two"></div>-->
+    <!--</div>-->
   </div>
   <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

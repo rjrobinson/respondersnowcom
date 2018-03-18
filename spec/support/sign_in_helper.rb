@@ -11,7 +11,7 @@ def responder_log_in
   background do
     set_omniauth
     visit root_path
-    click_on 'Responder Login'
-    click_link_or_button 'Sign in with Facebook'
+    click_on 'Sign in with Facebook'
+      # click_link_or_button 'Sign in with Facebook'
   end
 end
