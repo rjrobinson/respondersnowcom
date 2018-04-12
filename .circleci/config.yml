@@ -17,6 +17,11 @@ jobs:
     steps:
       - checkout
 
+      # install webkit
+      - run:
+          name: Install System Dependencies
+          command: sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+
       # Restore Cached Dependencies
       - type: cache-restore
         name: Restore bundle cache
