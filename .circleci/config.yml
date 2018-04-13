@@ -23,7 +23,7 @@ jobs:
           command: sudo apt-get update -y
       - run:
           name: Install System Dependencies
-          command: sudo apt-get install qt5-default libqt5webkit5-dev
+          command: sudo apt-get install qt5-default libqt5webkit5-dev openssl libssl-dev
 
       # Restore Cached Dependencies
       - type: cache-restore
