@@ -44,7 +44,9 @@ jobs:
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # Setup the environment
-      - run: openssl aes-256-cbc -d -a -in .env-cipher -out  .env -k $ENV_KEY
+      - run:
+          name: Decrypt ENV Variables
+          command: openssl aes-256-cbc -d -in ~/respondersnow/.env-cipher -out  ~/respondersnow/.env -k $ENV_KEY
 
       # Setup the database
       - run: bundle exec rake db:setup
