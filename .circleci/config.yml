@@ -12,27 +12,23 @@ jobs:
           name: Decrypt Enviroment Variables
           command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
 
-      - run:
-          name: Configure Sidekiq
-          command: bundle config enterprise.contribsys.com d3403dd1:dabe79d7
-
       - restore_cache:
           name: Restore Bundled Gems
           keys:
             - bundle-{{ checksum "Gemfile.lock" }}
             - bundle
 
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-{{ .Branch }}
-            - yarn-packages-master
-            - yarn-packages-
-
-      - run:
-          name: Install Dependencies
-          command: yarn install
+#      - restore_cache:
+#          name: Restore Yarn Package Cache
+#          keys:
+#            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#            - yarn-packages-{{ .Branch }}
+#            - yarn-packages-master
+#            - yarn-packages-
+#
+#      - run:
+#          name: Install Dependencies
+#          command: yarn install
 
       - run:
           name: Bundle Install
@@ -43,11 +39,11 @@ jobs:
           paths:
             - vendor/bundle
 
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules/
+#      - save_cache:
+#          name: Save Yarn Package Cache
+#          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#          paths:
+#            - node_modules/
 
   rspec:
     working_directory: ~/repo
@@ -78,9 +74,9 @@ jobs:
           name: Decrypt Enviroment Variables
           command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
 
-      - run:
-          name: Install Yarn Webpack CLI
-          command: yarn add webpack-cli
+#      - run:
+#          name: Install Yarn Webpack CLI
+#          command: yarn add webpack-cli
 
       - restore_cache:
           keys:
@@ -91,10 +87,10 @@ jobs:
           name: Bundle Install
           command: bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-      - run:
-          name: Compile Webpacker for Testing
-          command: RAILS_ENV=test bundle exec rails webpacker:compile
-
+#      - run:
+#          name: Compile Webpacker for Testing
+#          command: RAILS_ENV=test bundle exec rails webpacker:compile
+#
       - run:
           name: Run rake:db:setup
           command: bundle exec rake db:setup
