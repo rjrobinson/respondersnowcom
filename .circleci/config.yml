@@ -2,54 +2,249 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/respondersnow
+    working_directory: ~/repo
     docker:
-      - image: circleci/ruby:2.4.1
-        environment:
-          PGHOST: localhost
-          PGUSER: respondersnow
-          RAILS_ENV: test
-      - image: postgres:9.5
-        environment:
-          POSTGRES_USER: respondersnow
-          POSTGRES_DB: respondersnow_test
-          POSTGRES_PASSWORD: ""
+      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
     steps:
       - checkout
 
-      # install webkit
       - run:
-          name: Update System
-          command: sudo apt-get update -y
+          name: Decrypt Enviroment Variables
+          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+
       - run:
-          name: Install System Dependencies
-          command: sudo apt-get install qt5-default libqt5webkit5-dev openssl libssl-dev
+          name: Configure Sidekiq
+          command: bundle config enterprise.contribsys.com d3403dd1:dabe79d7
 
-      # Restore Cached Dependencies
-      - type: cache-restore
-        name: Restore bundle cache
-        key: respondersnow-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          name: Restore Bundled Gems
+          keys:
+            - bundle-{{ checksum "Gemfile.lock" }}
+            - bundle
 
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-{{ .Branch }}
+            - yarn-packages-master
+            - yarn-packages-
 
-      # Cache Dependencies
-      - type: cache-save
-        name: Store bundle cache
-        key: respondersnow-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
-
-      # Wait for DB
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-
-      # Setup the environment
       - run:
-          name: Decrypt ENV Variables
-          command: openssl aes-256-cbc -d -in ~/respondersnow/.env-cipher -out  ~/respondersnow/.env -k $ENV_KEY
+          name: Install Dependencies
+          command: yarn install
 
-      # Setup the database
-      - run: bundle exec rake db:setup
+      - run:
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-      # Run the tests
-      - run: bundle exec rake
+      - save_cache:
+          key: bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+
+  rspec:
+    working_directory: ~/repo
+    docker:
+      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: root
+          DB_HOST: 127.0.0.1
+          DB_USER: root
+          RAILS_ENV: test
+          RACK_ENV: test
+          DB_ADAPTER: postgresql
+      - image: circleci/postgres:9.6
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: project-gru_test
+      - image: redis:2.8.23
+        environment:
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
+          REDIS_MAIN_DB: 3
+          REDIS_RECONNET_TIMEOUT: 60
+    steps:
+      - checkout
+
+      - run:
+          name: Decrypt Enviroment Variables
+          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+
+      - run:
+          name: Install Yarn Webpack CLI
+          command: yarn add webpack-cli
+
+      - restore_cache:
+          keys:
+            - bundle-{{ checksum "Gemfile.lock" }}
+            - bundle
+
+      - run:
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: Compile Webpacker for Testing
+          command: RAILS_ENV=test bundle exec rails webpacker:compile
+
+      - run:
+          name: Run rake:db:setup
+          command: bundle exec rake db:setup
+
+      - run:
+          name: Run RSPEC spec
+          command: |
+            bundle exec rspec spec --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress
+
+      - store_test_results:
+          path: ~/repo/spec
+      - store_artifacts:
+          path: ~/repo/spec/rspec.xml
+
+  brakeman:
+    working_directory: ~/repo
+    docker:
+      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
+    steps:
+      - checkout
+
+      - run:
+          name: Decrypt Enviroment Variables
+          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+
+      - restore_cache:
+          keys:
+            - bundle-{{ checksum "Gemfile.lock" }}
+            - bundle
+
+      - run:
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: Run Brakeman
+          command: bundle exec brakeman --exit-on-warn > ~/repo/spec/brakeman.txt
+
+      - store_artifacts:
+          path: ~/repo/spec/brakeman.txt
+
+  jest:
+    working_directory: ~/repo
+    docker:
+      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
+
+    steps:
+      - checkout
+
+      - run:
+          name: Decrypt Enviroment Variables
+          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-{{ .Branch }}
+            - yarn-packages-master
+            - yarn-packages-
+
+      - run:
+          name: Install Dependencies
+          command: yarn install
+
+      - run:
+          name: Jest Suite
+          command: yarn jest test --ci --testResultsProcessor="jest-junit"
+          environment:
+            JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
+
+  deploy-staging:
+    working_directory: ~/repo
+    docker:
+      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
+    steps:
+      - checkout
+
+      - run:
+          name: Decrypt Enviroment Variables
+          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+
+      - restore_cache:
+          keys:
+            - bundle-{{ checksum "Gemfile.lock" }}
+            - bundle
+
+      - run:
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: STAGING BRANCH - DEPLOYING WITH CAPISTRANO
+          command: bundle exec cap staging deploy --trace
+
+  deploy-production:
+      working_directory: ~/repo
+      docker:
+        - image: rjrobinson/soda-ruby-2.4.1-soda:latest
+      steps:
+        - checkout
+
+        - run:
+            name: Decrypt Enviroment Variables
+            command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+
+        - restore_cache:
+            keys:
+              - bundle-{{ checksum "Gemfile.lock" }}
+              - bundle
+
+        - run:
+            name: Bundle Install
+            command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+        - run:
+            name: PRODUCTION BRANCH - DEPLOYING WITH CAPISTRANO
+            command: bundle exec cap production-v2 deploy --trace
+
+
+workflows:
+  version: 2
+  gru_workflow:
+    jobs:
+      - build
+      - jest:
+          requires:
+            - build
+      - rspec:
+          requires:
+            - build
+      - brakeman:
+          requires:
+            - build
+      - deploy-staging:
+          requires:
+            - build
+            - rspec
+            - brakeman
+          filters:
+            branches:
+              only: STAGING
+      - deploy-production:
+          requires:
+            - build
+            - rspec
+            - brakeman
+          filters:
+            branches:
+              only: PRODUCTION
+
