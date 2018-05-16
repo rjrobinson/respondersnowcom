@@ -10,7 +10,7 @@ jobs:
 
       - run:
           name: Decrypt Enviroment Variables
-          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+          command: openssl aes-256-cbc -d -a -in ~/repo/.env-cipher -out .env -k $ENV_KEY
 
       - restore_cache:
           name: Restore Bundled Gems
