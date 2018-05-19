@@ -1,3 +1,16 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>Main Dashboard</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">This is</a>
+      </li>
+      <li class="active">
+        <strong>Breadcrumb</strong>
+      </li>
+    </ol>
+  </div>
+</div>
 <div class="wrapper wrapper-content">
   <section>
     <%= render partial: 'responders/responder_metrics' %>
@@ -5,7 +18,7 @@
   <section>
     <div class="row">
       <div class="col-md-9">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
           <div class="panel-heading">
             <h5 class="panel-title">Search Classes</h5>
           </div>
@@ -27,20 +40,11 @@
   <section>
     <div class="row">
       <div class="col-md-9">
-        <div class="ibox float-e-margins">
-          <div class="ibox-title">
-            <h5>Upcoming
-              Classes  <%= "within 10 mi of #{current_responder.zipcode}" if current_responder.zipcode %></h5>
-            <div class="ibox-tools">
-              <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-              </a>
-              <a class="close-link">
-                <i class="fa fa-times"></i>
-              </a>
-            </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5 class="panel-title">Upcoming Classes within 10 Miles of 08902</h5>
           </div>
-          <div class="ibox-content">
+          <div class="panel-body">
             <table class="table table-hover no-margins">
               <thead>
               <tr>
