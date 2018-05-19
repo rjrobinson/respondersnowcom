@@ -1,3 +1,72 @@
+<div class="row">
+  <div class="col-lg-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <!--<span class="label label-success pull-right"></span>-->
+        <h5 class="panel-title">Current Zipcode </h5>
+      </div>
+      <div class="panel-body">
+        <h1 class="no-margins">
+          <%= current_responder.zipcode if current_responder.zipcode %>
+        </h1>
+        <!--<div class="stat-percent font-bold text-success">top 10% <i class="fa fa-bolt"></i></div>-->
+        <small>click here to <a href="">update</a>.</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span class="label label-success pull-right"></span>
+        <h5 class="panel-title">Certifications</h5>
+      </div>
+      <div class="panel-body">
+        <h1 class="no-margins">
+          <h1 class="no-margins">
+            <%= current_responder.aquired_certifications.count if current_responder.aquired_certifications.any? %>
+          </h1>
+          <div class="stat-percent font-bold text-success"><i class="fa fa-bolt"></i> top 10% in your area</div>
+          <small>uploaded</small>
+        </h1>
+        <small>click here to <a href="">update</a>.</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h5 class="panel-title">Current Zipcode </h5>
+      </div>
+      <div class="panel-body">
+        <h1 class="no-margins">
+          <%= current_responder.zipcode if current_responder.zipcode %>
+        </h1>
+        <small>click here to <a href="">update</a>.</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="text-center">
+      <div>
+        <div class="navy-line"></div>
+        <h4 class="widget-title">Follow us</h4>
+        <ul class="social-nav social-center">
+          <li>
+            <a href="https://twitter.com/respondersnow" target="_blank" title="Twitter" rel="nofollow" class="twitter"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/RespondersNow/" target="_blank" title="Facebook" rel="nofollow" class="facebook"><i class="fab fa-facebook-f"></i></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/respondersnow" target="_blank" title="Instagram" rel="nofollow" class="google"><i class="fab fa-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!--<div class="row">-->
 <!--<div class="col-lg-3">-->
 <!--<div class="ibox float-e-margins">-->
@@ -52,62 +121,3 @@
 <!--</div>-->
 <!--</div>-->
 <!--</div>-->
-<div class="row">
-  <div class="col-lg-3">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
-        <!--<span class="label label-success pull-right"></span>-->
-        <h5>Current Zipcode </h5>
-      </div>
-      <div class="ibox-content">
-        <h1 class="no-margins">
-          <%= current_responder.zipcode if current_responder.zipcode %>
-        </h1>
-        <!--<div class="stat-percent font-bold text-success">top 10% <i class="fa fa-bolt"></i></div>-->
-        <small>click here to <a href="">update</a>.</small>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-3">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
-        <!--<span class="label label-success pull-right"></span>-->
-        <h5>Certifications</h5>
-      </div>
-      <div class="ibox-content">
-        <h1 class="no-margins">
-          <%= current_responder.aquired_certifications.count if current_responder.aquired_certifications.any? %>
-        </h1>
-        <div class="stat-percent font-bold text-success"><i class="fa fa-bolt"></i> top 10% in your area</div>
-        <small>uploaded</small>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-3">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
-        <!--<span class="label label-success pull-right"></span>-->
-        <h5>Classes Registered</h5>
-      </div>
-      <div class="ibox-content">
-        <h1 class="no-margins">7</h1>
-        <!--<div class="stat-percent font-bold text-success">top 10% <i class="fa fa-bolt"></i></div>-->
-        <small><br></small>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-3">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
-        <span class="label label-success pull-right"></span>
-        <h5>Some Other Stat</h5>
-      </div>
-      <div class="ibox-content">
-        <h1 class="no-margins">500</h1>
-        <div class="stat-percent font-bold text-danger"> facebook likes<i class="fa fa-bolt"></i></div>
-        <small><br></small>
-      </div>
-    </div>
-  </div>
-</div>
