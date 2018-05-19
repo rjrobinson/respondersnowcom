@@ -2,54 +2,98 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/respondersnow
+    working_directory: ~/repo
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
         environment:
-          PGHOST: localhost
-          PGUSER: respondersnow
+          PGHOST: 127.0.0.1
+          PGUSER: root
+          DB_HOST: 127.0.0.1
+          DB_USER: root
           RAILS_ENV: test
-      - image: postgres:9.5
+          RACK_ENV: test
+          DB_ADAPTER: postgresql
+      - image: circleci/postgres:9.6
         environment:
-          POSTGRES_USER: respondersnow
-          POSTGRES_DB: respondersnow_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_USER: root
+          POSTGRES_DB: project-gru_test
+
     steps:
       - checkout
 
-      # install webkit
+      - restore_cache:
+          name: Restore Bundled Gems
+          keys:
+            - bundle-{{ checksum "Gemfile.lock" }}
+            - bundle
+
       - run:
-          name: Update System
-          command: sudo apt-get update -y
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          key: bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - restore_cache:
+          keys:
+            - bundle-{{ checksum "Gemfile.lock" }}
+            - bundle
+
       - run:
-          name: Install System Dependencies
-          command: sudo apt-get install qt5-default libqt5webkit5-dev openssl libssl-dev
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-      # Restore Cached Dependencies
-      - type: cache-restore
-        name: Restore bundle cache
-        key: respondersnow-{{ checksum "Gemfile.lock" }}
-
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
-
-      # Cache Dependencies
-      - type: cache-save
-        name: Store bundle cache
-        key: respondersnow-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
-
-      # Wait for DB
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-
-      # Setup the environment
       - run:
-          name: Decrypt ENV Variables
-          command: openssl aes-256-cbc -d -in ~/respondersnow/.env-cipher -out  ~/respondersnow/.env -k $ENV_KEY
+          name: Run rake:db:setup
+          command: bundle exec rake db:setup
 
-      # Setup the database
-      - run: bundle exec rake db:setup
+      - run:
+          name: Run RSPEC spec
+          command: |
+            bundle exec rspec spec --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress
 
-      # Run the tests
-      - run: bundle exec rake
+      - store_test_results:
+          path: ~/repo/spec
+      - store_artifacts:
+          path: ~/repo/spec/rspec.xml
+
+#      - run:
+#          name: Run Brakeman
+#          command: bundle exec brakeman --exit-on-warn > ~/repo/spec/brakeman.txt
+#
+#      - store_artifacts:
+#          path: ~/repo/spec/brakeman.txt
+
+
+workflows:
+  version: 2
+  gru_workflow:
+    jobs:
+      - build
+#      - deploy-staging:
+#          requires:
+#            - build
+#            - rspec
+#            - brakeman
+#          filters:
+#            branches:
+#              only: STAGING
+#      - deploy-production:
+#          requires:
+#            - build
+#            - rspec
+#            - brakeman
+#          filters:
+#            branches:
+#              only: PRODUCTION
+
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: respondersnow
