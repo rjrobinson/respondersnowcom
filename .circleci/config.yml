@@ -8,9 +8,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Decrypt Enviroment Variables
-          command: openssl enc -in ~/repo/.env-cipher -out ~/repo/.env -d -aes256 -k $ENV_KEY
+#      - run:
+#          name: Decrypt Enviroment Variables
+#          command: openssl enc -in ~/repo/.env-cipher -out ~/repo/.env -d -aes256 -k $ENV_KEY
 
       - restore_cache:
           name: Restore Bundled Gems
@@ -70,9 +70,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Decrypt Enviroment Variables
-          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+#      - run:
+#          name: Decrypt Enviroment Variables
+#          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
 
 #      - run:
 #          name: Install Yarn Webpack CLI
@@ -115,9 +115,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Decrypt Enviroment Variables
-          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+#      - run:
+#          name: Decrypt Enviroment Variables
+#          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
 
       - restore_cache:
           keys:
@@ -143,9 +143,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Decrypt Enviroment Variables
-          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+#      - run:
+#          name: Decrypt Enviroment Variables
+#          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
 
       - restore_cache:
           keys:
@@ -218,9 +218,9 @@ workflows:
   gru_workflow:
     jobs:
       - build
-      - jest:
-          requires:
-            - build
+#      - jest:
+#          requires:
+#            - build
       - rspec:
           requires:
             - build
