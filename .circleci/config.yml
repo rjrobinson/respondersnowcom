@@ -62,12 +62,12 @@ jobs:
       - store_artifacts:
           path: ~/repo/spec/rspec.xml
 
-      - run:
-          name: Run Brakeman
-          command: bundle exec brakeman --exit-on-warn > ~/repo/spec/brakeman.txt
-
-      - store_artifacts:
-          path: ~/repo/spec/brakeman.txt
+#      - run:
+#          name: Run Brakeman
+#          command: bundle exec brakeman --exit-on-warn > ~/repo/spec/brakeman.txt
+#
+#      - store_artifacts:
+#          path: ~/repo/spec/brakeman.txt
 
 
 workflows:
@@ -92,3 +92,8 @@ workflows:
 #            branches:
 #              only: PRODUCTION
 
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: respondersnow
