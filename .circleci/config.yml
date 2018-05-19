@@ -5,50 +5,6 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: rjrobinson/soda-ruby-2.4.1-soda:latest
-    steps:
-      - checkout
-
-#      - run:
-#          name: Decrypt Enviroment Variables
-#          command: openssl enc -in ~/repo/.env-cipher -out ~/repo/.env -d -aes256 -k $ENV_KEY
-
-      - restore_cache:
-          name: Restore Bundled Gems
-          keys:
-            - bundle-{{ checksum "Gemfile.lock" }}
-            - bundle
-
-#      - restore_cache:
-#          name: Restore Yarn Package Cache
-#          keys:
-#            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-#            - yarn-packages-{{ .Branch }}
-#            - yarn-packages-master
-#            - yarn-packages-
-#
-#      - run:
-#          name: Install Dependencies
-#          command: yarn install
-
-      - run:
-          name: Bundle Install
-          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - save_cache:
-          key: bundle-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-#      - save_cache:
-#          name: Save Yarn Package Cache
-#          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-#          paths:
-#            - node_modules/
-
-  rspec:
-    working_directory: ~/repo
-    docker:
-      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
         environment:
           PGHOST: 127.0.0.1
           PGUSER: root
@@ -61,22 +17,24 @@ jobs:
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: project-gru_test
-      - image: redis:2.8.23
-        environment:
-          REDIS_HOST: 127.0.0.1
-          REDIS_PORT: 6379
-          REDIS_MAIN_DB: 3
-          REDIS_RECONNET_TIMEOUT: 60
+
     steps:
       - checkout
 
-#      - run:
-#          name: Decrypt Enviroment Variables
-#          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
+      - restore_cache:
+          name: Restore Bundled Gems
+          keys:
+            - bundle-{{ checksum "Gemfile.lock" }}
+            - bundle
 
-#      - run:
-#          name: Install Yarn Webpack CLI
-#          command: yarn add webpack-cli
+      - run:
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          key: bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
 
       - restore_cache:
           keys:
@@ -87,10 +45,6 @@ jobs:
           name: Bundle Install
           command: bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-#      - run:
-#          name: Compile Webpacker for Testing
-#          command: RAILS_ENV=test bundle exec rails webpacker:compile
-#
       - run:
           name: Run rake:db:setup
           command: bundle exec rake db:setup
@@ -108,26 +62,6 @@ jobs:
       - store_artifacts:
           path: ~/repo/spec/rspec.xml
 
-  brakeman:
-    working_directory: ~/repo
-    docker:
-      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
-    steps:
-      - checkout
-
-#      - run:
-#          name: Decrypt Enviroment Variables
-#          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
-
-      - restore_cache:
-          keys:
-            - bundle-{{ checksum "Gemfile.lock" }}
-            - bundle
-
-      - run:
-          name: Bundle Install
-          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
-
       - run:
           name: Run Brakeman
           command: bundle exec brakeman --exit-on-warn > ~/repo/spec/brakeman.txt
@@ -135,112 +69,26 @@ jobs:
       - store_artifacts:
           path: ~/repo/spec/brakeman.txt
 
-  jest:
-    working_directory: ~/repo
-    docker:
-      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
-
-    steps:
-      - checkout
-
-#      - run:
-#          name: Decrypt Enviroment Variables
-#          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
-
-      - restore_cache:
-          keys:
-            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-{{ .Branch }}
-            - yarn-packages-master
-            - yarn-packages-
-
-      - run:
-          name: Install Dependencies
-          command: yarn install
-
-      - run:
-          name: Jest Suite
-          command: yarn jest test --ci --testResultsProcessor="jest-junit"
-          environment:
-            JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
-
-  deploy-staging:
-    working_directory: ~/repo
-    docker:
-      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
-    steps:
-      - checkout
-
-      - run:
-          name: Decrypt Enviroment Variables
-          command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
-
-      - restore_cache:
-          keys:
-            - bundle-{{ checksum "Gemfile.lock" }}
-            - bundle
-
-      - run:
-          name: Bundle Install
-          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - run:
-          name: STAGING BRANCH - DEPLOYING WITH CAPISTRANO
-          command: bundle exec cap staging deploy --trace
-
-  deploy-production:
-      working_directory: ~/repo
-      docker:
-        - image: rjrobinson/soda-ruby-2.4.1-soda:latest
-      steps:
-        - checkout
-
-        - run:
-            name: Decrypt Enviroment Variables
-            command: openssl aes-256-cbc -d -in ~/repo/.env-cipher -k $ENV_KEY > .env
-
-        - restore_cache:
-            keys:
-              - bundle-{{ checksum "Gemfile.lock" }}
-              - bundle
-
-        - run:
-            name: Bundle Install
-            command: bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-        - run:
-            name: PRODUCTION BRANCH - DEPLOYING WITH CAPISTRANO
-            command: bundle exec cap production-v2 deploy --trace
-
 
 workflows:
   version: 2
   gru_workflow:
     jobs:
       - build
-#      - jest:
+#      - deploy-staging:
 #          requires:
 #            - build
-      - rspec:
-          requires:
-            - build
-      - brakeman:
-          requires:
-            - build
-      - deploy-staging:
-          requires:
-            - build
-            - rspec
-            - brakeman
-          filters:
-            branches:
-              only: STAGING
-      - deploy-production:
-          requires:
-            - build
-            - rspec
-            - brakeman
-          filters:
-            branches:
-              only: PRODUCTION
+#            - rspec
+#            - brakeman
+#          filters:
+#            branches:
+#              only: STAGING
+#      - deploy-production:
+#          requires:
+#            - build
+#            - rspec
+#            - brakeman
+#          filters:
+#            branches:
+#              only: PRODUCTION
 
