@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :agencies
+    resources :responders
+    resources :aquired_certifications
+    resources :certifications
+    resources :locations
+    resources :work_histories
+
+    root to: "agencies#index"
+  end
+
   devise_for :agencies
   devise_for :responders, controllers: {omniauth_callbacks: 'responders/omniauth_callbacks'}
   

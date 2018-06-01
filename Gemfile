@@ -31,6 +31,7 @@ gem 'mandrill-api'
 gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '~> 2.3.0'
 
+gem "administrate"
 # Document Tools
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
