@@ -10,3 +10,4 @@ coverage/
 /public/packs-test
 /node_modules
 /log
+log2/
