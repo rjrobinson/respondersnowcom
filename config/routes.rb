@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    resources :agencies
-    resources :responders
-    resources :aquired_certifications
-    resources :certifications
-    resources :locations
-    resources :work_histories
-
-    root to: "agencies#index"
-  end
+  # namespace :admin do
+  #   resources :agencies
+  #   resources :responders
+  #   resources :aquired_certifications
+  #   resources :certifications
+  #   resources :locations
+  #   resources :work_histories
+  #
+  #   root to: "agencies#index"
+  # end
 
   devise_for :agencies
   devise_for :responders, controllers: {omniauth_callbacks: 'responders/omniauth_callbacks'}
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   authenticated :responder do
     root to: 'dashboards#dashboard_2'
-    # TODO
+    #TODO
     # change this to 'dashboards#responder' to avoid confusion in the future
   end
 
