@@ -6,6 +6,7 @@ class CertificationsController < ApplicationController
   def create
     @certification = Certification.new(cert_params)
     @certification.creator = current_responder
+
     if @certification.save
       redirect_back(fallback_location: root_path, flash: {notice: "#{@certification.name}"})
     else

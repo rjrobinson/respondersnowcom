@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   devise_for :agencies
   devise_for :responders, controllers: {omniauth_callbacks: 'responders/omniauth_callbacks'}
-  
+
   # devise_scope :responder do
   #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_responder_session
   # end
@@ -42,6 +42,9 @@ Rails.application.routes.draw do
     get :certifications
   end
   resources :certifications, only: [:new]
+
+
+  resources :job_board, only: [:index]
 
   resources :work_histories, only: [:create, :destroy]
   resources :certifications, only: [:create, :destroy, :update, :edit, :new]

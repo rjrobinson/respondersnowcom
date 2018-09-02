@@ -1,20 +1,23 @@
 source 'https://rubygems.org'
 ruby '2.4.1'
 
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2.0'
 gem 'webpacker'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+
 gem 'dotenv-rails'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
-# gem 'therubyracer', platforms: :ruby
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 2.5'
+
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

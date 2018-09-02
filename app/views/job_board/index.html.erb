@@ -1,0 +1,58 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-9">
+    <h2> Current Job Listings</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+      </li>
+      <li>
+        This is a
+      </li>
+      <li class="active">
+        <strong> Job Board</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <h3>
+            1 result/s found for: <span class="text-navy">08902</span>
+            <small>Request time (0.23 nanoseconds)</small>
+          </h3>
+          <div class="search-form">
+            <form action="#" method="get">
+              <div class="input-group">
+                <input type="text" placeholder="Enter Zipcode" name="search" class="form-control input-sm">
+                <div class="input-group-btn">
+                  <button class="btn btn-sm btn-primary" type="submit">
+                    Search
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="hr-line-dashed"></div>
+          <%= render partial: 'other_result' %>
+          <!--          <div class="text-center">-->
+          <!--            <div class="btn-group">-->
+          <!--              <button class="btn btn-white" type="button"><i class="fa fa-chevron-left"></i></button>-->
+          <!--              <button class="btn btn-white">1</button>-->
+          <!--              <button class="btn btn-white  active">2</button>-->
+          <!--              <button class="btn btn-white">3</button>-->
+          <!--              <button class="btn btn-white">4</button>-->
+          <!--              <button class="btn btn-white">5</button>-->
+          <!--              <button class="btn btn-white">6</button>-->
+          <!--              <button class="btn btn-white">7</button>-->
+          <!--              <button class="btn btn-white" type="button"><i class="fa fa-chevron-right"></i></button>-->
+          <!--            </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
