@@ -8,21 +8,21 @@ class acquiredCertificationDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    responder: Field::BelongsTo,
-    certification: Field::BelongsTo,
-    id: Field::Number,
-    number: Field::String,
-    acquired_on: Field::DateTime,
-    expires: Field::Boolean,
-    expires_on: Field::DateTime,
-    primary: Field::Boolean,
-    legit: Field::Boolean,
-    document_file_name: Field::String,
-    document_content_type: Field::String,
-    document_file_size: Field::Number,
-    document_updated_at: Field::DateTime,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+      user: Field::BelongsTo,
+      certification: Field::BelongsTo,
+      id: Field::Number,
+      number: Field::String,
+      acquired_on: Field::DateTime,
+      expires: Field::Boolean,
+      expires_on: Field::DateTime,
+      primary: Field::Boolean,
+      legit: Field::Boolean,
+      document_file_name: Field::String,
+      document_content_type: Field::String,
+      document_file_size: Field::Number,
+      document_updated_at: Field::DateTime,
+      created_at: Field::DateTime,
+      updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -31,7 +31,7 @@ class acquiredCertificationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :responder,
+    :user,
     :certification,
     :id,
     :number,
@@ -40,7 +40,7 @@ class acquiredCertificationDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :responder,
+    :user,
     :certification,
     :id,
     :number,

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # namespace :admin do
   #   resources :agencies
-  #   resources :responders
+  #   resources :users
   #   resources :acquired_certifications
   #   resources :certifications
   #   resources :locations
@@ -12,13 +12,13 @@ Rails.application.routes.draw do
   # end
 
   devise_for :agencies
-  devise_for :responders, controllers: {omniauth_callbacks: 'responders/omniauth_callbacks'}
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
   # devise_scope :responder do
   #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_responder_session
   # end
 
-  authenticated :responder do
+  authenticated :user do
     root to: 'dashboards#dashboard_2'
     #TODO
     # change this to 'dashboards#responder' to avoid confusion in the future
@@ -33,11 +33,11 @@ Rails.application.routes.draw do
     get :autocomplete_agency_name, :on => :collection
   end
 
-  resource :responders, only: [] do
+  resource :users, only: [] do
     get :auth
   end
 
-  resources :responders, only: [:update, :edit] do
+  resources :users, only: [:update, :edit] do
     get :work_histories
     get :certifications
   end

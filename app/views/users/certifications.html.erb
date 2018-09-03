@@ -19,7 +19,7 @@
           <h5 class="panel-title"> Documents </h5>
         </div>
         <div class="panel-body">
-          <% unless current_responder.acquired_certifications %>
+          <% unless current_user.acquired_certifications %>
             <h1>No Documents / No Certifications</h1>
           <% else %>
             <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -42,7 +42,7 @@
               </tr>
               </thead>
               <tbody>
-              <% current_responder.acquired_certifications.each do |cert| %>
+              <% current_user.acquired_certifications.each do |cert| %>
                 <tr class="gradeX">
                   <td><%= cert.certification.name %></td>
                   <td><%= cert.acquired_on %></td>

@@ -37,14 +37,14 @@ class AcquiredCertificationsController < ApplicationController
                 params[:acquired_certification]['expires_on(1i)'].to_i,
                 params[:acquired_certification]['expires_on(2i)'].to_i,
             ),
-            responder_id: current_responder.id,
+            responder_id: current_user.id,
         }
     )
   end
 
   def only_responder_can_modify
     cert = AcquiredCertification.find(params[:id])
-    unless cert.responder == current_responder
+    unless cert.user == current_user
       flash[:error] = 'You dont have permission for that'
       redirect_back(fallback_location: root_path)
     end

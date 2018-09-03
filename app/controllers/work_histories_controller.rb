@@ -27,7 +27,7 @@ class WorkHistoriesController < ApplicationController
         }
     )
     new['agency_id'] = Agency.find_by(name: new['agency_id']).id
-    new[:responder_id] = current_responder.id
+    new[:responder_id] = current_user.id
     new
   end
 end

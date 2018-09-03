@@ -132,7 +132,7 @@ class ResponderDashboard < Administrate::BaseDashboard
     :uid,
   ].freeze
 
-  # Overwrite this method to customize how responders are displayed
+  # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
   # def display_resource(responder)

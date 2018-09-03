@@ -1,6 +1,6 @@
-class RespondersController < ApplicationController
+class UsersController < ApplicationController
 
-  before_action :validate_responder, only: [:edit, :update, :work_histories, :certifications]
+  before_action :validate_user, only: [:edit, :update, :work_histories, :certifications]
 
 
   def auth
@@ -19,7 +19,7 @@ class RespondersController < ApplicationController
   end
 
   def update
-    if Responder.find(params[:id]).update_attributes(responder_params)
+    if User.find(params[:id]).update_attributes(user_params)
       redirect_back(fallback_location: root_path, flash: {notice: 'Setting Updated'})
     else
       redirect_back(fallback_location: root_path, flash: {notice: 'Nothing updated'})
@@ -30,14 +30,14 @@ class RespondersController < ApplicationController
   private
 
 
-  def validate_responder
-    @responder = Responder.find(params[:id] || params[:responder_id])
-    unless @responder == current_responder
+  def validate_user
+    @user = User.find(params[:id] || params[:user_id])
+    unless @user == current_user
       redirect_back(fallback_location: root_path, flash: {error: 'You are not authorized to access this page'})
     end
   end
 
-  def responder_params
-    params.require(:responder).permit(:zipcode)
+  def user_params
+    params.require(:user).permit(:zipcode)
   end
 end

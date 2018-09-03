@@ -2,7 +2,7 @@ FactoryBot.define do
 
   # Default
   # It will use the User class
-  factory :responder do
+  factory :user do
     first_name 'Tony'
     last_name 'Stark'
     email 'tstark@avengers.org'

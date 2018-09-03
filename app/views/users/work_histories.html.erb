@@ -17,14 +17,14 @@
       <!---->
       <div class="ibox-title">
         <h5>Work History</h5>
-        <% unless current_responder.work_histories.present? %>
+        <% unless current_user.work_histories.present? %>
           <br>
           <h1>No Work History</h1>
           <small>Add your History and Experience to the right!</small>
           <!-- TODO FIXME -->
           <small>Add some picture here in teh future</small>
         <% end %>
-        <% current_responder.work_histories.each do |history| %>
+        <% current_user.work_histories.each do |history| %>
           <%= render partial: 'work_histories/agency_history', locals: {history: history, agency: history.agency} %>
         <% end %>
       </div>

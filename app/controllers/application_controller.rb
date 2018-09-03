@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_responder
+  # before_action :set_user
 
   private
 
@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def set_responder
-    if !current_responder && Rails.env.development?
-      @responder = Responder.first
-      sign_in_and_redirect @responder, event: :authentication #this will throw if @responder is not activated
-    end
-  end
+  # def set_user
+  #   if !current_user && Rails.env.development?
+  #     @user = User.first
+  #     sign_in_and_redirect @user, event: :authentication #this will throw if @responder is not activated
+  #   end
+  # end
 
 end

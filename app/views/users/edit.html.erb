@@ -26,23 +26,23 @@
         <div>
           <div class="ibox-content no-padding border-left-right">
 
-            <% if current_responder.avatar.attached? %>
+            <% if current_user.avatar.attached? %>
               <img alt="image"
                    class="img-responsive"
-                   src="<%= image_path(url_for(current_responder.avatar)) %>">
+                   src="<%= image_path(url_for(current_user.avatar)) %>">
             <% else %>
               <img alt="image" class="img-responsive" src="<%= image_path('defaults/default-profile-2.png') %>">
             <% end %>
-            <button class="btn btn-primary btn-block">
+            <button class="btn btn-block">
               <i class="fas fa-camera"></i> Update Photo
             </button>
           </div>
           <div class="ibox-content profile-content">
-            <h4><strong><%= current_responder.full_name %></strong></h4>
+            <h4><strong><%= current_user.full_name %></strong></h4>
             <!--            <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>-->
             <!-- Update Zipcode-->
             <div class="input-group">
-              <%= simple_form_for current_responder, wrapper: :vertical_form,
+              <%= simple_form_for current_user, wrapper: :vertical_form,
                                   wrapper_mappings: {
                                       check_boxes: :horizontal_radio_and_checkboxes,
                                       radio_buttons: :horizontal_radio_and_checkboxes,
@@ -55,7 +55,7 @@
                               label: false,
                               id: 'zipcode-input responder_zipcode',
                               input_html: {pattern: '[0-9]{4}'},
-                              placeholder: current_responder.zipcode || '' %>
+                              placeholder: current_user.zipcode || '' %>
 
                   <%= f.submit "Update", class: 'btn btn-xs' %>
                   <div class="text-error"></div>
@@ -97,8 +97,55 @@
     <div class="col-md-8">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>Primary Certifications</h5>
-          <button class="pull-right"><i class="fa fa-plus"></i> Add</button>
+          <h5><i class="fas fa-info-circle"></i> Primary Professional Certifications</h5>
+
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#primary-certification"
+            class="pull-right">
+            <i class="fa fa-plus"></i> Add
+          </button>
+          <div class="col-lg-4">
+            <style>
+              .center-btn {
+                display: flex;
+                justify-content: center;
+              }
+            </style>
+            <!-- Trigger the modal with a button -->
+            <!-- Modal -->
+            <div id="primary-certification" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New Professional Certification / License</h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= simple_form_for :new_cert, defaults: {inner_html: 'form-control'} do |f| %>
+                      <%= f.input :name, required: false %>
+                      <small class="center-btn">or</small>
+                      <%= f.input :certification, collection: Certification.all, required: false %>
+                      <%= f.input :state, collection: us_states %>
+                      <%= f.input :profession, collection: %w(EMT MICP FF POLICE HAZMAT RN ).sort %>
+                      <%= f.input :number %>
+                      <%= f.input :file, as: :file, label: 'File Upload', inner_html: '', required: false %>
+                    <% end %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--          /-->
+
+
         </div>
         <div class="ibox-content">
           <div>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Responder do
+describe User do
 
   describe 'validations' do
     it { should validate_presence_of(:first_name) }

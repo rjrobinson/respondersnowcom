@@ -2,7 +2,7 @@ class CreateAcquiredCertifications < ActiveRecord::Migration[5.0]
   def change
     create_table :acquired_certifications do |t|
 
-      t.references :responder
+      t.references :user
 
       t.references :certification
 

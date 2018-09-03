@@ -9,7 +9,7 @@ feature 'Responder can log in to application', %(
 
   # let(:agency) { FactoryBot.create(:agency) }
 
-  responder_log_in
+  user_log_in
 
   scenario 'Responder adds certification' do
 

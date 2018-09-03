@@ -1,5 +1,5 @@
 class DashboardsController < ApplicationController
-  before_action :authenticate_responder!
+  before_action :authenticate_user!
 
   def dashboard_1
   end

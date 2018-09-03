@@ -8,16 +8,16 @@ class WorkHistoryDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    agency: Field::BelongsTo,
-    responder: Field::BelongsTo,
-    id: Field::Number,
-    start_date: Field::DateTime,
-    end_date: Field::DateTime,
-    status: Field::String,
-    title: Field::String,
-    current: Field::Boolean,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+      agency: Field::BelongsTo,
+      user: Field::BelongsTo,
+      id: Field::Number,
+      start_date: Field::DateTime,
+      end_date: Field::DateTime,
+      status: Field::String,
+      title: Field::String,
+      current: Field::Boolean,
+      created_at: Field::DateTime,
+      updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -27,7 +27,7 @@ class WorkHistoryDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :agency,
-    :responder,
+    :user,
     :id,
     :start_date,
   ].freeze
@@ -36,7 +36,7 @@ class WorkHistoryDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :agency,
-    :responder,
+    :user,
     :id,
     :start_date,
     :end_date,
@@ -52,7 +52,7 @@ class WorkHistoryDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :agency,
-    :responder,
+    :user,
     :start_date,
     :end_date,
     :status,

@@ -2,7 +2,7 @@ class CreateWorkHistories < ActiveRecord::Migration[5.0]
   def change
     create_table :work_histories do |t|
 
-      t.integer :responder_id
+      t.integer :user_id
       t.integer :agency_id
 
       t.datetime :start_date

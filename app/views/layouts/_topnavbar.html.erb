@@ -6,13 +6,13 @@
 
     <ul class="nav navbar-top-links navbar-right">
       <li>
-        <% if responder_signed_in? %>
+        <% if user_signed_in? %>
         <li>
-          <%= button_to 'Logout', destroy_responder_session_path, :method => :delete, class: 'm-r-sm text-muted welcome-message' %>
+          <%= button_to 'Logout', destroy_user_session_path, :method => :delete, class: 'm-r-sm text-muted welcome-message' %>
         </li>
       <% else %>
         <li>
-          <%= link_to('Login', new_responder_session_path) %>
+          <%= link_to('Login', new_user_session_path) %>
         </li>
       <% end %>
       </li>

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
   enable_extension "plpgsql"
 
   create_table "acquired_certifications", id: :serial, force: :cascade do |t|
-    t.integer "responder_id"
+    t.integer "user_id"
     t.integer "certification_id"
     t.string "number"
     t.date "acquired_on"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["certification_id"], name: "index_acquired_certifications_on_certification_id"
-    t.index ["responder_id"], name: "index_acquired_certifications_on_responder_id"
+    t.index ["user_id"], name: "index_acquired_certifications_on_user_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -54,16 +54,19 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
   create_table "agencies", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "name"
+    t.string "level"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "location_id"
-    t.string "level"
+    t.index ["email"], name: "index_agencies_on_email", unique: true
+    t.index ["name"], name: "index_agencies_on_name", unique: true
   end
 
   create_table "certifications", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "course_code"
-    t.integer "default_ceus"
+    t.string "state"
+    t.string "abbvr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active"
@@ -79,7 +82,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "responders", id: :serial, force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -97,6 +100,8 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "uid"
+    t.string "provider"
     t.string "first_name"
     t.string "last_name"
     t.string "zipcode"
@@ -104,20 +109,14 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string "provider"
-    t.string "uid"
-    t.index ["confirmation_token"], name: "index_responders_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_responders_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_responders_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_responders_on_unlock_token", unique: true
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   create_table "work_histories", id: :serial, force: :cascade do |t|
-    t.integer "responder_id"
+    t.integer "user_id"
     t.integer "agency_id"
     t.datetime "start_date"
     t.datetime "end_date"

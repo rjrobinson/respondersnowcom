@@ -1,7 +1,7 @@
 class WorkHistory < ApplicationRecord
 
   belongs_to :agency
-  belongs_to :responder
+  belongs_to :user
 
 
   def pretty_start

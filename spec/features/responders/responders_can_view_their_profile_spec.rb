@@ -7,12 +7,12 @@ feature 'Responder can log in to application', %(
 
 ) do
 
-  responder_log_in
+  user_log_in
 
   describe "Reponders Actions" do
 
-    let(:responder) {Responder.first}
-    let(:other_responder) {Responder.create(
+    let(:user) {User.first}
+    let(:other_responder) {User.create(
         first_name: 'Other',
         last_name: 'Responder')
     }
@@ -24,7 +24,7 @@ feature 'Responder can log in to application', %(
       expect(page).to have_content "Responder Profile"
     end
 
-    scenario 'Responder will get an error message when trying to view other responders' do
+    scenario 'Responder will get an error message when trying to view other users' do
 
       visit edit_responder_path(other_responder)
 

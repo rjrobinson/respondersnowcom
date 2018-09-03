@@ -1,6 +1,6 @@
 class AcquiredCertification < ApplicationRecord
 
-  belongs_to :responder
+  belongs_to :user
 
   belongs_to :certification
 

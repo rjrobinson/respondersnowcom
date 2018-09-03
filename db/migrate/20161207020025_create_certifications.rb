@@ -5,8 +5,11 @@ class CreateCertifications < ActiveRecord::Migration[5.0]
       t.string :name
 
       t.string :course_code
-      
-      t.integer :default_ceus # num of CEUS
+
+      t.string :state
+
+      t.string :abbvr
+
 
       t.timestamps
     end
