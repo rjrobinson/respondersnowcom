@@ -31,8 +31,8 @@ gem 'omniauth-facebook'
 gem 'mandrill-api'
 
 # Paperclip
-gem 'paperclip', '~> 5.0.0'
-gem 'aws-sdk', '~> 2.3.0'
+
+gem 'aws-sdk-s3', '~> 1'
 
 gem "administrate"
 # Document Tools
