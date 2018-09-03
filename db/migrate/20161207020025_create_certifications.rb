@@ -6,10 +6,9 @@ class CreateCertifications < ActiveRecord::Migration[5.0]
 
       t.string :course_code
 
-      t.string :state
+      t.boolean :primary
 
       t.string :abbvr
-
 
       t.timestamps
     end

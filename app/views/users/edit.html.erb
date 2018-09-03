@@ -126,9 +126,9 @@
                   </div>
                   <div class="modal-body">
                     <%= simple_form_for :new_cert, defaults: {inner_html: 'form-control'} do |f| %>
-                      <%= f.input :name, required: false %>
+                      <%= f.input :certification, collection: Certification.primaries, required: false %>
                       <small class="center-btn">or</small>
-                      <%= f.input :certification, collection: Certification.all, required: false %>
+                      <%= f.input :name, required: false %>
                       <%= f.input :state, collection: us_states %>
                       <%= f.input :profession, collection: %w(EMT MICP FF POLICE HAZMAT RN ).sort %>
                       <%= f.input :number %>

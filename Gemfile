@@ -30,9 +30,13 @@ gem 'omniauth-facebook'
 # Email
 gem 'mandrill-api'
 
-# Paperclip
-
+# Active Storage
 gem 'aws-sdk-s3', '~> 1'
+
+
+# Google Ads
+gem 'ads-rails'
+
 
 gem "administrate"
 # Document Tools

@@ -20,10 +20,9 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
     t.integer "certification_id"
     t.string "number"
     t.date "acquired_on"
+    t.string "state"
     t.boolean "expires"
     t.date "expires_on"
-    t.boolean "primary"
-    t.boolean "legit", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["certification_id"], name: "index_acquired_certifications_on_certification_id"
@@ -65,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
   create_table "certifications", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "course_code"
-    t.string "state"
+    t.boolean "primary"
     t.string "abbvr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -10,13 +10,13 @@ class CreateAcquiredCertifications < ActiveRecord::Migration[5.0]
 
       t.date :acquired_on
 
+      t.string :state
+
       t.boolean :expires
 
       t.date :expires_on
 
-      t.boolean :primary
-
-      t.boolean :legit, default: false
+      t.date :acquired_on
 
       t.timestamps
     end
