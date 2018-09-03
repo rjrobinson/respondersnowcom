@@ -15,6 +15,21 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "acquired_certifications", id: :serial, force: :cascade do |t|
+    t.integer "responder_id"
+    t.integer "certification_id"
+    t.string "number"
+    t.date "acquired_on"
+    t.boolean "expires"
+    t.date "expires_on"
+    t.boolean "primary"
+    t.boolean "legit", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["certification_id"], name: "index_acquired_certifications_on_certification_id"
+    t.index ["responder_id"], name: "index_acquired_certifications_on_responder_id"
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,25 +58,6 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
     t.datetime "updated_at", null: false
     t.integer "location_id"
     t.string "level"
-  end
-
-  create_table "aquired_certifications", id: :serial, force: :cascade do |t|
-    t.integer "responder_id"
-    t.integer "certification_id"
-    t.string "number"
-    t.date "aquired_on"
-    t.boolean "expires"
-    t.date "expires_on"
-    t.boolean "primary"
-    t.boolean "legit", default: false
-    t.string "document_file_name"
-    t.string "document_content_type"
-    t.integer "document_file_size"
-    t.datetime "document_updated_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["certification_id"], name: "index_aquired_certifications_on_certification_id"
-    t.index ["responder_id"], name: "index_aquired_certifications_on_responder_id"
   end
 
   create_table "certifications", id: :serial, force: :cascade do |t|

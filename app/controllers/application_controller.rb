@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
 
 
   def set_responder
-
     if !current_responder && Rails.env.development?
       @responder = Responder.first
       sign_in_and_redirect @responder, event: :authentication #this will throw if @responder is not activated

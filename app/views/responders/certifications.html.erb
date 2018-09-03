@@ -13,21 +13,20 @@
 </div>
 <div class="wrapper wrapper-content  animated fadeInRight">
   <div class="row">
-    <div class="col-lg-12">
-      <!---->
+    <div class="col-lg-8">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h5 class="panel-title">Documents</h5>
+          <h5 class="panel-title"> Documents </h5>
         </div>
         <div class="panel-body">
-          <% unless current_responder.aquired_certifications %>
+          <% unless current_responder.acquired_certifications %>
             <h1>No Documents / No Certifications</h1>
           <% else %>
             <table class="table table-striped table-bordered table-hover dataTables-example">
               <thead>
               <tr>
                 <th>Name</th>
-                <th>Date Aquired</th>
+                <th>Date Acquired</th>
                 <th class="text-center">
                   <div class="btn-group">
                     <%= link_to '/', class: 'btn btn-success btn-xs btn-outline' do %>
@@ -43,16 +42,16 @@
               </tr>
               </thead>
               <tbody>
-              <% current_responder.aquired_certifications.each do |cert| %>
+              <% current_responder.acquired_certifications.each do |cert| %>
                 <tr class="gradeX">
                   <td><%= cert.certification.name %></td>
-                  <td><%= cert.aquired_on %></td>
+                  <td><%= cert.acquired_on %></td>
                   <td class="text-center">
                     <div class="btn-group">
                       <%= link_to cert.document.url, class: 'btn btn-info btn-sm btn-outline' do %>
                         <i class="far fa-file-pdf"></i> PDF
                       <% end %>
-                      <%= link_to aquired_certification_path(cert.id), class: 'btn btn-sm btn-danger btn-outline',
+                      <%= link_to acquiredCertification_path(cert.id), class: 'btn btn-sm btn-danger btn-outline',
                                   method: :delete,
                                   confirm: 'Are you sure you want to delete this?' do %>
                         <i class="fa fa-trash"></i>
@@ -66,6 +65,51 @@
         </div>
       </div>
       <!---->
+    </div>
+    <div class="col-lg-4">
+      <style>
+        .center-btn {
+          display: flex;
+          justify-content: center;
+        }
+      </style>
+      <!-- Trigger the modal with a button -->
+
+      <div class="text-enter center-btn">
+        <button type="button"
+                class="btn btn-primary btn-lg"
+                data-toggle="modal"
+                data-target="#myModal">
+          <i class="fas fa-plus"></i> Add Certification
+        </button>
+      </div>
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add New Certification</h4>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for :new_cert, defaults: {inner_html: 'form-control'} do |f| %>
+                <%= f.input :name, required: false %>
+                <p>or</p>
+                <%= f.input :certification, collection: Certification.all, required: false %>
+                <%= f.input :state, collection: ['NY', 'NJ', 'PA', 'NREMT'].sort %>
+                <%= f.input :number %>
+                <%= f.input :file, as: :file, label: 'File Upload', inner_html: '', required: false %>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

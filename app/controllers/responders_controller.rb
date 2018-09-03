@@ -12,7 +12,7 @@ class RespondersController < ApplicationController
   end
 
   def certifications
-    @certification = AquiredCertification.new
+    @certification = AcquiredCertification.new
   end
 
   def edit

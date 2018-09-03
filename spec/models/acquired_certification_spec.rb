@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AquiredCertification do
+describe AcquiredCertification do
 
   describe 'validations' do
     it { should belong_to(:responder) }

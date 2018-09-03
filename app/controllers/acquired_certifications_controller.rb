@@ -1,9 +1,9 @@
-class AquiredCertificationsController < ApplicationController
+class AcquiredCertificationsController < ApplicationController
 
   before_action :only_responder_can_modify, only: [:destroy, :update]
 
   def create
-    @certification = AquiredCertification.new(cert_params)
+    @certification = AcquiredCertification.new(cert_params)
     if @certification.save
       redirect_back(fallback_location: root_path, flash: {notice: "#{@certification.certification.name} Added to your profile!"})
     else
@@ -12,7 +12,7 @@ class AquiredCertificationsController < ApplicationController
   end
 
   def destroy
-    AquiredCertification.find(params[:id]).destroy
+    AcquiredCertification.find(params[:id]).destroy
     redirect_back(fallback_location: root_path, flash: {error: 'Removed'})
   end
 
@@ -26,24 +26,24 @@ class AquiredCertificationsController < ApplicationController
   private
 
   def cert_params
-    new = params.require(:aquired_certification).permit!
+    new = params.require(:acquired_certification).permit!
     new.merge(
         {
-            aquired_on: DateTime.new(
-                params[:aquired_certification]['aquired_on(1i)'].to_i,
-                params[:aquired_certification]['aquired_on(2i)'].to_i,
-                ),
+            acquired_on: DateTime.new(
+                params[:acquired_certification]['acquired_on(1i)'].to_i,
+                params[:acquired_certification]['acquired_on(2i)'].to_i,
+            ),
             expires_on: DateTime.new(
-                params[:aquired_certification]['expires_on(1i)'].to_i,
-                params[:aquired_certification]['expires_on(2i)'].to_i,
-                ),
+                params[:acquired_certification]['expires_on(1i)'].to_i,
+                params[:acquired_certification]['expires_on(2i)'].to_i,
+            ),
             responder_id: current_responder.id,
         }
     )
   end
 
   def only_responder_can_modify
-    cert = AquiredCertification.find(params[:id])
+    cert = AcquiredCertification.find(params[:id])
     unless cert.responder == current_responder
       flash[:error] = 'You dont have permission for that'
       redirect_back(fallback_location: root_path)

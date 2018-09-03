@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class AquiredCertificationDashboard < Administrate::BaseDashboard
+class acquiredCertificationDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -12,7 +12,7 @@ class AquiredCertificationDashboard < Administrate::BaseDashboard
     certification: Field::BelongsTo,
     id: Field::Number,
     number: Field::String,
-    aquired_on: Field::DateTime,
+    acquired_on: Field::DateTime,
     expires: Field::Boolean,
     expires_on: Field::DateTime,
     primary: Field::Boolean,
@@ -44,7 +44,7 @@ class AquiredCertificationDashboard < Administrate::BaseDashboard
     :certification,
     :id,
     :number,
-    :aquired_on,
+    :acquired_on,
     :expires,
     :expires_on,
     :primary,
@@ -64,7 +64,7 @@ class AquiredCertificationDashboard < Administrate::BaseDashboard
     :responder,
     :certification,
     :number,
-    :aquired_on,
+    :acquired_on,
     :expires,
     :expires_on,
     :primary,
@@ -75,10 +75,10 @@ class AquiredCertificationDashboard < Administrate::BaseDashboard
     :document_updated_at,
   ].freeze
 
-  # Overwrite this method to customize how aquired certifications are displayed
+  # Overwrite this method to customize how acquired certifications are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(aquired_certification)
-  #   "AquiredCertification ##{aquired_certification.id}"
+  # def display_resource(acquired_certification)
+  #   "acquiredCertification ##{acquired_certification.id}"
   # end
 end

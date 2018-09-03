@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # namespace :admin do
   #   resources :agencies
   #   resources :responders
-  #   resources :aquired_certifications
+  #   resources :acquired_certifications
   #   resources :certifications
   #   resources :locations
   #   resources :work_histories
@@ -41,14 +41,15 @@ Rails.application.routes.draw do
     get :work_histories
     get :certifications
   end
-  resources :certifications, only: [:new]
 
 
   resources :job_board, only: [:index]
 
   resources :work_histories, only: [:create, :destroy]
+
   resources :certifications, only: [:create, :destroy, :update, :edit, :new]
-  resources :aquired_certifications, only: [:create, :destroy, :update, :edit]
+
+  resources :acquired_certifications, only: [:create, :destroy, :update, :edit, :new]
 
   # All routes
   get 'dashboards/dashboard_1'

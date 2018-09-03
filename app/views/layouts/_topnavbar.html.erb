@@ -2,24 +2,24 @@
   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
       <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-      <!--<form role="search" class="navbar-form-custom" method="post" action="">-->
-      <!--<div class="form-group">-->
-      <!--<input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search"/>-->
-      <!--</div>-->
-      <!--</form>-->
     </div>
+
     <ul class="nav navbar-top-links navbar-right">
       <li>
-        <!---->
         <% if responder_signed_in? %>
-          <li>
-            <%= button_to 'Logout', destroy_responder_session_path, :method => :delete, class: 'm-r-sm text-muted welcome-message' %>
-          </li>
+        <li>
+          <%= button_to 'Logout', destroy_responder_session_path, :method => :delete, class: 'm-r-sm text-muted welcome-message' %>
+        </li>
       <% else %>
-          <li>
-            <%= link_to('Login', new_responder_session_path) %>
-          </li>
+        <li>
+          <%= link_to('Login', new_responder_session_path) %>
+        </li>
       <% end %>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="fas fa-plus"></i>
+        </a>
       </li>
       <li class="dropdown">
         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -116,13 +116,11 @@
           </li>
         </ul>
       </li>
-
-
-      <li>
-        <a class="right-sidebar-toggle">
-          <i class="fa fa-tasks"></i>
-        </a>
-      </li>
+      <!--      <li>-->
+      <!--        <a class="right-sidebar-toggle">-->
+      <!--          <i class="fa fa-tasks"></i>-->
+      <!--        </a>-->
+      <!--      </li>-->
     </ul>
   </nav>
 </div>

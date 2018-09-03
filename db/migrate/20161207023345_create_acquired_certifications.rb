@@ -1,23 +1,22 @@
-class CreateAquiredCertifications < ActiveRecord::Migration[5.0]
+class CreateAcquiredCertifications < ActiveRecord::Migration[5.0]
   def change
-    create_table :aquired_certifications do |t|
+    create_table :acquired_certifications do |t|
 
       t.references :responder
+
       t.references :certification
 
       t.string :number # Certification Number
 
-      t.date :aquired_on
+      t.date :acquired_on
+
       t.boolean :expires
+
       t.date :expires_on
 
       t.boolean :primary
 
       t.boolean :legit, default: false
-
-      t.attachment :document
-
-      # Add training site later
 
       t.timestamps
     end
