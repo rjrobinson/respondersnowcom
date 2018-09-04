@@ -116,34 +116,34 @@
             <!-- Trigger the modal with a button -->
             <!-- Modal -->
             <div id="primary-certification" class="modal fade" role="dialog">
-              <div class="modal-dialog">
+              <%= simple_form_for :new_cert,
+                                  url: acquired_certifications_path,
+                                  method: :post,
+                                  defaults: {inner_html: 'form-control'} do |f| %>
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add New Professional Certification / License</h4>
+                    </div>
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add New Professional Certification / License</h4>
-                  </div>
-                  <div class="modal-body">
-                    <%= simple_form_for :new_cert, defaults: {inner_html: 'form-control'} do |f| %>
-                      <%= f.input :certification, collection: Certification.primaries, required: false %>
-                      <small class="center-btn">or</small>
-                      <%= f.input :name, required: false %>
+                    <div class="modal-body">
+                      <%= f.input :certification, collection: Certification.primaries %>
                       <%= f.input :state, collection: us_states %>
-                      <%= f.input :profession, collection: %w(EMT MICP FF POLICE HAZMAT RN ).sort %>
                       <%= f.input :number %>
-                      <%= f.input :file, as: :file, label: 'File Upload', inner_html: '', required: false %>
-                    <% end %>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file' %>
+                    </div>
+                    <div class="modal-footer">
+                      <%= f.submit "Save", class: 'btn btn-success' %>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
                   </div>
                 </div>
-
-              </div>
-            </div>
-          </div>
-          <!--          /-->
+                </div>
+              <% end %>
+              </div> <!-- END OF COL/-->
 
 
         </div>
@@ -151,16 +151,18 @@
           <div>
             <div class="feed-activity-list">
               <!--              //-->
+              <% current_user.acquired_certifications.each do |cert| %>
+                <div class="feed-element">
+                  <a href="#" class="pull-left">
+                    <img alt="image" class='img-circle' src="<%= image_path(cert.patch_image_name) %>">
+                    <strong>NR <%= cert.abbvr %> # 12345 </strong>
+                    <i class="far fa-id-card"></i>
+                  </a>
+                  <div class="media-body ">
 
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path('patches/nremt.jpg') %>">
-                  <strong>NR EMT # 12345 </strong>
-                </a>
-                <div class="media-body ">
-
+                  </div>
                 </div>
-              </div>
+              <% end %>
 
               <!--              //-->
               <div class="feed-element">

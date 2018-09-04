@@ -8,16 +8,13 @@ class AcquiredCertification < ApplicationRecord
 
   validates_presence_of :file
 
-  # has_attached_file :document,
-  #                   storage: :s3,
-  #                   s3_credentials: Proc.new {|a| a.instance.s3_credentials},
-  #                   s3_region: ENV['AWS_REGION'],
-  #                   :thumb => ['120x120#', :png],
-  #                   :s3_permissions => 'public-read',
-  #                   dependent: :destroy
-  # validates_attachment :document, content_type: {content_type: ['application/pdf', 'image/jpeg', 'image/gif', 'image/png']}
-
   validates_presence_of :document
+
+  delegate :abbvr, to: :certification
+
+  def patch_image_name
+    "patches/#{state.downcase}#{abbvr.downcase}"
+  end
 
   def s3_credentials
     {

@@ -1,23 +1,5 @@
 Rails.application.routes.draw do
 
-  # namespace :admin do
-  #   resources :agencies
-  #   resources :users
-  #   resources :acquired_certifications
-  #   resources :certifications
-  #   resources :locations
-  #   resources :work_histories
-  #
-  #   root to: "agencies#index"
-  # end
-
-  devise_for :agencies
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
-
-  # devise_scope :responder do
-  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_responder_session
-  # end
-
   authenticated :user do
     root to: 'dashboards#dashboard_2'
     #TODO
@@ -26,10 +8,22 @@ Rails.application.routes.draw do
 
   root to: 'landing#index'
 
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+
+  namespace :admin do
+    resources :agencies
+    resources :users
+    resources :acquired_certifications
+    resources :certifications
+    resources :locations
+    resources :work_histories
+
+    root to: "agencies#index"
+  end
+
   resources :locations
 
   resource :agencies, only: [] do
-    # get :autocomplete_name
     get :autocomplete_agency_name, :on => :collection
   end
 

@@ -5,4 +5,6 @@ class Certification < ApplicationRecord
   validates :name, presence: true
 
   scope :primaries, -> {where(primary: true).order(:name)}
+
+
 end
