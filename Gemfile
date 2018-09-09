@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.0'
-gem 'webpacker'
+gem 'webpacker', '~> 3.5'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
