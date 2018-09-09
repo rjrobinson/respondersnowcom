@@ -1,0 +1,43 @@
+<%= simple_form_for cert,
+                    url: acquired_certifications_path,
+                    method: :post,
+                    defaults: {inner_html: 'form-control'} do |f| %>
+  <% if primary %>
+    <%= f.association :certification, collection: Certification.primaries %>
+  <% else %>
+    <%= f.association :certification, collection: Certification.secondary %>
+  <% end %>
+  Are we missing a certification or course ? click <%= link_to "here", new_certification_path %>
+  <%= f.input :state, collection: us_states %>
+  <%= f.input :number %>
+  <div class="form-group">
+    <%= f.input :acquired_on, as: :date, start_year: Date.today.year - 50,
+                end_year: Date.today.year, discard_day: true,
+                order: [:month, :year], label: 'Aquired On', id: 'wh-end-date' %>
+
+    <%= f.input :expires,
+                label: "Does this Expire ?",
+                id: 'does-it-exipre',
+                as: :select,
+                selected: false,
+                checked_value: "NO",
+                unchecked_value: "YES" %>
+
+
+    <%= f.input :expires_on, as: :date, start_year: Date.today.year + 10, end_year: Date.today.year,
+                discard_day: true, order: [:month, :year], label: 'Expires On', id: 'wh-end-date expires-date', inner_html: 'hidden',
+                required: false
+    %>
+    <div>
+
+      <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file' %>
+      <%= f.submit "Save", class: 'btn btn-success center-btn' %>
+
+<% end %>
+<script type="text/javascript" charset="utf-8">
+    $('.acquired_certification_expires_on').toggleClass('hidden');
+
+    $('.acquired_certification_expires').change(function () {
+        $('.acquired_certification_expires_on').toggleClass('hidden');
+    });
+</script>

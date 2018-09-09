@@ -1,280 +1,194 @@
-<div class="wrapper wrapper-content">
-  <%= render partial: 'responders/responder_metrics' %>
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="ibox float-e-margins">
-            <div class="ibox-title">
-              <h5>Search Classes</h5>
-            </div>
-            <div class="ibox-content">
-              <div class="input-group stylish-input-group">
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon">
-                        <button type="submit">
-                            <span class="fas fa-search"></span>
-                        </button>
-                    </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="ibox float-e-margins">
-            <div class="ibox-title">
-              <h5>Upcoming
-                Classes  <%= "within 10 mi of #{current_responder.zipcode}" if current_responder.zipcode %></h5>
-              <div class="ibox-tools">
-                <a class="collapse-link">
-                  <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="close-link">
-                  <i class="fa fa-times"></i>
-                </a>
-              </div>
-            </div>
-            <div class="ibox-content">
-              <table class="table table-hover no-margins">
-                <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>Date</th>
-                  <th>Class</th>
-                  <th>Location</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>
-                    <small>open</small>
-                  </td>
-                  <td><i class="fa fa-clock-o"></i> 11-10 11:20pm</td>
-                  <td>CPR</td>
-                  <td class="text-navy">North Brunswick, NJ</td>
-                  <td><a href="">register</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <small>open</small>
-                  </td>
-                  <td><i class="fa fa-clock-o"></i> 11-10 11:20pm</td>
-                  <td>TCCC</td>
-                  <td class="text-navy">Camden, NJ</td>
-                  <td><a href="">register</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <small>open</small>
-                  </td>
-                  <td><i class="fa fa-clock-o"></i> 11-12 11:20pm</td>
-                  <td>CPR</td>
-                  <td class="text-navy">North Brunswick, NJ</td>
-                  <td><a href="">register</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <small>open</small>
-                  </td>
-                  <td><i class="fa fa-clock-o"></i> 11-12 11:20pm</td>
-                  <td>CPR</td>
-                  <td class="text-navy">North Brunswick, NJ</td>
-                  <td><a href="">register</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <small>open</small>
-                  </td>
-                  <td><i class="fa fa-clock-o"></i> 11-12 11:20pm</td>
-                  <td>First Aid</td>
-                  <td class="text-navy">North Brunswick, NJ</td>
-                  <td><a href="">register</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <small>open</small>
-                  </td>
-                  <td><i class="fa fa-clock-o"></i> 12-12 11:20pm</td>
-                  <td>Etrication I</td>
-                  <td class="text-navy">North Brunswick, NJ</td>
-                  <td><a href="">register</a></td>
-                </tr>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>RespondersNow.com</h2>
+    <ol class="breadcrumb">
+      <li class="active">
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Welcome</a>
+      </li>
 
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <!--<div class="col-lg-6">-->
-        <!--<div class="ibox float-e-margins">-->
-        <!--<div class="ibox-title">-->
-        <!--<h5>Ads Go Here</h5>-->
-        <!--<div class="ibox-tools">-->
-        <!--<a class="collapse-link">-->
-        <!--<i class="fa fa-chevron-up"></i>-->
-        <!--</a>-->
-        <!--<a class="close-link">-->
-        <!--<i class="fa fa-times"></i>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="ibox-content">-->
-        <!--<ul class="todo-list m-t small-list">-->
-        <!--<li>-->
-        <!--<a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>-->
-        <!--<span class="m-l-xs todo-completed">Buy a milk</span>-->
-
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>-->
-        <!--<span class="m-l-xs">Go to shop and find some products.</span>-->
-
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>-->
-        <!--<span class="m-l-xs">Send documents to Mike</span>-->
-        <!--<small class="label label-primary"><i class="fa fa-clock-o"></i> 1 mins</small>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>-->
-        <!--<span class="m-l-xs">Go to the doctor dr Smith</span>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>-->
-        <!--<span class="m-l-xs todo-completed">Plan vacation</span>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>-->
-        <!--<span class="m-l-xs">Create new stuff</span>-->
-        <!--</li>-->
-        <!--<li>-->
-        <!--<a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>-->
-        <!--<span class="m-l-xs">Call to Anna for dinner</span>-->
-        <!--</li>-->
-        <!--</ul>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-      </div>
-      <!--<div class="row">-->
-      <!--<div class="col-lg-12">-->
-      <!--<div class="ibox float-e-margins">-->
-      <!--<div class="ibox-title">-->
-      <!--<h5>Transactions worldwide</h5>-->
-      <!--<div class="ibox-tools">-->
-      <!--<a class="collapse-link">-->
-      <!--<i class="fa fa-chevron-up"></i>-->
-      <!--</a>-->
-      <!--<a class="close-link">-->
-      <!--<i class="fa fa-times"></i>-->
-      <!--</a>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--<div class="ibox-content">-->
-
-      <!--<div class="row">-->
-      <!--<div class="col-lg-6">-->
-      <!--<table class="table table-hover margin bottom">-->
-      <!--<thead>-->
-      <!--<tr>-->
-      <!--<th style="width: 1%" class="text-center">No.</th>-->
-      <!--<th>Transaction</th>-->
-      <!--<th class="text-center">Date</th>-->
-      <!--<th class="text-center">Amount</th>-->
-      <!--</tr>-->
-      <!--</thead>-->
-      <!--<tbody>-->
-      <!--<tr>-->
-      <!--<td class="text-center">1</td>-->
-      <!--<td>-->
-      <!--Security doors-->
-      <!--</td>-->
-      <!--<td class="text-center small">16 Jun 2014</td>-->
-      <!--<td class="text-center"><span class="label label-primary">$483.00</span></td>-->
-
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td class="text-center">2</td>-->
-      <!--<td>-->
-      <!--Wardrobes-->
-      <!--</td>-->
-      <!--<td class="text-center small">10 Jun 2014</td>-->
-      <!--<td class="text-center"><span class="label label-primary">$327.00</span></td>-->
-
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td class="text-center">3</td>-->
-      <!--<td>-->
-      <!--Set of tools-->
-      <!--</td>-->
-      <!--<td class="text-center small">12 Jun 2014</td>-->
-      <!--<td class="text-center"><span class="label label-warning">$125.00</span></td>-->
-
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td class="text-center">4</td>-->
-      <!--<td> Panoramic pictures</td>-->
-      <!--<td class="text-center small">22 Jun 2013</td>-->
-      <!--<td class="text-center"><span class="label label-primary">$344.00</span></td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td class="text-center">5</td>-->
-      <!--<td>Phones</td>-->
-      <!--<td class="text-center small">24 Jun 2013</td>-->
-      <!--<td class="text-center"><span class="label label-primary">$235.00</span></td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-      <!--<td class="text-center">6</td>-->
-      <!--<td>Monitors</td>-->
-      <!--<td class="text-center small">26 Jun 2013</td>-->
-      <!--<td class="text-center"><span class="label label-primary">$100.00</span></td>-->
-      <!--</tr>-->
-      <!--</tbody>-->
-      <!--</table>-->
-      <!--</div>-->
-      <!--<div class="col-lg-6">-->
-      <!--<div id="world-map" style="height: 300px;"></div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-    </div>
-    <div class="col-lg-4">
-      <section id="social-media">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <div>
-              <div class="navy-line"></div>
-              <h4 class="widget-title">Follow us</h4>
-              <ul class="social-nav social-center">
-                <li>
-                  <a href="https://twitter.com/respondersnow" target="_blank" title="Twitter" rel="nofollow" class="twitter"><i class="fab fa-twitter"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.facebook.com/RespondersNow/" target="_blank" title="Facebook" rel="nofollow" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/respondersnow" target="_blank" title="Instagram" rel="nofollow" class="google"><i class="fab fa-instagram"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <div class="col-lg-4">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-7581132771547508",
-              enable_page_level_ads: true
-          });
-      </script>
-    </div>
+    </ol>
   </div>
+</div>
+<div class="wrapper wrapper-content">
+  <section>
+    <%= render partial: 'users/user_metrics' %>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h5 class="panel-title">Search Classes</h5>
+          </div>
+          <div class="panel-body">
+            <div class="input-group stylish-input-group">
+              <input type="text" class="form-control" placeholder="Course search coming soon!">
+              <span class="input-group-addon">
+                        <button type="submit">
+                          <span class="fas fa-search"></span>
+                        </button>
+                      </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <!--      <div class="col-md-9">-->
+      <!--        <div class="panel panel-info">-->
+      <!--          <div class="panel-heading">-->
+      <!--            <h5 class="panel-title">Upcoming Classes within 10 Miles of 08902</h5>-->
+      <!--          </div>-->
+      <!--          <div class="panel-body">-->
+      <!--            <table class="table table-hover no-margins">-->
+      <!--              <thead>-->
+      <!--              <tr>-->
+      <!--                <th>Status</th>-->
+      <!--                <th>Date</th>-->
+      <!--                <th>Class</th>-->
+      <!--                <th>Location</th>-->
+      <!--                <th></th>-->
+      <!--              </tr>-->
+      <!--              </thead>-->
+      <!--              <tbody>-->
+      <!--              <tr>-->
+      <!--                <td>-->
+      <!--                  <small>open</small>-->
+      <!--                </td>-->
+      <!--                <td><i class="far fa-clock"></i> 11-10 11:20pm</td>-->
+      <!--                <td>CPR</td>-->
+      <!--                <td class="text-navy">North Brunswick, NJ</td>-->
+      <!--                <td><a href="">register</a></td>-->
+      <!--              </tr>-->
+      <!--              <tr>-->
+      <!--                <td>-->
+      <!--                  <small>open</small>-->
+      <!--                </td>-->
+      <!--                <td><i class="far fa-clock"></i> 11-10 11:20pm</td>-->
+      <!--                <td>TCCC</td>-->
+      <!--                <td class="text-navy">Camden, NJ</td>-->
+      <!--                <td><a href="">register</a></td>-->
+      <!--              </tr>-->
+      <!--              <tr>-->
+      <!--                <td>-->
+      <!--                  <small>open</small>-->
+      <!--                </td>-->
+      <!--                <td><i class="far fa-clock"></i> 11-12 11:20pm</td>-->
+      <!--                <td>CPR</td>-->
+      <!--                <td class="text-navy">North Brunswick, NJ</td>-->
+      <!--                <td><a href="">register</a></td>-->
+      <!--              </tr>-->
+      <!--              <tr>-->
+      <!--                <td>-->
+      <!--                  <small>open</small>-->
+      <!--                </td>-->
+      <!--                <td><i class="far fa-clock"></i> 11-12 11:20pm</td>-->
+      <!--                <td>CPR</td>-->
+      <!--                <td class="text-navy">North Brunswick, NJ</td>-->
+      <!--                <td><a href="">register</a></td>-->
+      <!--              </tr>-->
+      <!--              <tr>-->
+      <!--                <td>-->
+      <!--                  <small>open</small>-->
+      <!--                </td>-->
+      <!--                <td><i class="far fa-clock"></i> 11-12 11:20pm</td>-->
+      <!--                <td>First Aid</td>-->
+      <!--                <td class="text-navy">North Brunswick, NJ</td>-->
+      <!--                <td><a href="">register</a></td>-->
+      <!--              </tr>-->
+      <!--              <tr>-->
+      <!--                <td>-->
+      <!--                  <small>open</small>-->
+      <!--                </td>-->
+      <!--                <td><i class="far fa-clock"></i> 12-12 11:20pm</td>-->
+      <!--                <td>Etrication I</td>-->
+      <!--                <td class="text-navy">North Brunswick, NJ</td>-->
+      <!--                <td><a href="">register</a></td>-->
+      <!--              </tr>-->
+
+      <!--              </tbody>-->
+      <!--            </table>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="col-md-9">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5><i class="fas fa-info-circle"></i> Primary Professional Certifications</h5>
+
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#primary-certification"
+              class="pull-right">
+              <i class="fa fa-plus"></i> Add
+            </button>
+            <div class="col-lg-4">
+              <style>
+                .center-btn {
+                  display: flex;
+                  justify-content: center;
+                }
+              </style>
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+              <div id="primary-certification" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add New Professional Certification / License</h4>
+                    </div>
+
+                    <div class="modal-body">
+                      <%= render partial: 'certifications/form', locals: {primary: true, cert: @certification} %>
+                    </div>
+                    <div class="modal-footer">
+
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-ban"></i> Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- END OF COL/-->
+
+
+        </div>
+        <div class="ibox-content">
+          <div>
+            <div class="feed-activity-list">
+              <!--              //-->
+              <% current_user.primaries.each do |cert| %>
+                <div class="feed-element">
+                  <a href="#" class="pull-left">
+                    <img alt="image" class='img-circle' src="<%= image_path(cert.cert_logo) %>">
+                    <strong><%= cert.state.upcase %> <%= cert.abbvr %> # 12345 </strong>
+                    <i class="far fa-id-card"></i>
+                  </a>
+                  <div class="media-body ">
+
+                  </div>
+                </div>
+              <% end %>
+
+              <!-- END OF CERTS //-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="1234"></div>
+      <%= google_adsense_include_tag client: 'ca-pub-7581132771547508', slot: '1234', enable_page_level_ads: true %>
+    </div>
+</div>
+</div>
 </div>

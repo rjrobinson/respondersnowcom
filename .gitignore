@@ -10,3 +10,7 @@ coverage/
 /public/packs-test
 /node_modules
 /log
+log2/
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

@@ -1,10 +1,11 @@
 class DashboardsController < ApplicationController
-  before_action :authenticate_responder!
+  before_action :authenticate_user!
 
   def dashboard_1
   end
 
   def dashboard_2
+    @certification = AcquiredCertification.new
   end
 
   def dashboard_3

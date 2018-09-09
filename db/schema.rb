@@ -10,43 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318204715) do
+ActiveRecord::Schema.define(version: 2018_09_02_175057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "acquired_certifications", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "certification_id"
+    t.string "number"
+    t.date "acquired_on"
+    t.string "state"
+    t.boolean "expires"
+    t.date "expires_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["certification_id"], name: "index_acquired_certifications_on_certification_id"
+    t.index ["user_id"], name: "index_acquired_certifications_on_user_id"
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
   create_table "agencies", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "location_id"
     t.string "level"
-  end
-
-  create_table "aquired_certifications", id: :serial, force: :cascade do |t|
-    t.integer "responder_id"
-    t.integer "certification_id"
-    t.string "number"
-    t.date "aquired_on"
-    t.boolean "expires"
-    t.date "expires_on"
-    t.boolean "primary"
-    t.boolean "legit", default: false
-    t.string "document_file_name"
-    t.string "document_content_type"
-    t.integer "document_file_size"
-    t.datetime "document_updated_at"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["certification_id"], name: "index_aquired_certifications_on_certification_id"
-    t.index ["responder_id"], name: "index_aquired_certifications_on_responder_id"
+    t.index ["email"], name: "index_agencies_on_email", unique: true
+    t.index ["name"], name: "index_agencies_on_name", unique: true
   end
 
   create_table "certifications", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "course_code"
-    t.integer "default_ceus"
+    t.boolean "primary", default: false
+    t.string "abbvr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active"
@@ -62,7 +81,7 @@ ActiveRecord::Schema.define(version: 20180318204715) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "responders", id: :serial, force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -80,6 +99,8 @@ ActiveRecord::Schema.define(version: 20180318204715) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "uid"
+    t.string "provider"
     t.string "first_name"
     t.string "last_name"
     t.string "zipcode"
@@ -87,20 +108,14 @@ ActiveRecord::Schema.define(version: 20180318204715) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string "provider"
-    t.string "uid"
-    t.index ["confirmation_token"], name: "index_responders_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_responders_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_responders_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_responders_on_unlock_token", unique: true
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   create_table "work_histories", id: :serial, force: :cascade do |t|
-    t.integer "responder_id"
+    t.integer "user_id"
     t.integer "agency_id"
     t.datetime "start_date"
     t.datetime "end_date"

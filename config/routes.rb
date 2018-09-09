@@ -1,40 +1,49 @@
 Rails.application.routes.draw do
 
-  devise_for :agencies
-  devise_for :responders, controllers: {omniauth_callbacks: 'responders/omniauth_callbacks'}
-  
-  # devise_scope :responder do
-  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_responder_session
-  # end
-
-  authenticated :responder do
+  authenticated :user do
     root to: 'dashboards#dashboard_2'
-    # TODO
+    #TODO
     # change this to 'dashboards#responder' to avoid confusion in the future
   end
 
   root to: 'landing#index'
 
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+
+  namespace :admin do
+    resources :agencies
+    resources :users
+    resources :acquired_certifications
+    resources :certifications
+    resources :locations
+    resources :work_histories
+
+    root to: "agencies#index"
+  end
+
   resources :locations
 
   resource :agencies, only: [] do
-    # get :autocomplete_name
     get :autocomplete_agency_name, :on => :collection
   end
 
-  resource :responders, only: [] do
+  resource :users, only: [] do
     get :auth
   end
 
-  resources :responders, only: [:update, :edit] do
+  resources :users, only: [:update, :edit] do
     get :work_histories
     get :certifications
   end
-  resources :certifications, only: [:new]
+
+
+  resources :job_board, only: [:index]
 
   resources :work_histories, only: [:create, :destroy]
-  resources :certifications, only: [:create, :destroy, :update, :edit, :new]
-  resources :aquired_certifications, only: [:create, :destroy, :update, :edit]
+
+  resources :certifications, only: [:index, :create, :destroy, :update, :edit, :new]
+
+  resources :acquired_certifications, only: [:create, :destroy, :update, :edit, :new]
 
   # All routes
   get 'dashboards/dashboard_1'

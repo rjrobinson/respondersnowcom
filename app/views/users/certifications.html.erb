@@ -1,0 +1,230 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>Certifications</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Profile</a>
+      </li>
+      <li class="active">
+        <strong> Certifications</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5 class="panel-title">Notification Settings</h5>
+        </div>
+        <div class="panel-body">
+          Move this to User Setting Model
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5 class="panel-title"> Documents </h5>
+        </div>
+        <div class="panel-body">
+          <% unless current_user.acquired_certifications %>
+            <h1>No Documents / No Certifications</h1>
+          <% else %>
+            <table class="table table-striped table-bordered table-hover dataTables-example">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date Acquired</th>
+                <th class="text-center">
+                  <div class="btn-group">
+                    <%= link_to '/', class: 'btn btn-success btn-xs btn-outline' do %>
+                      <i class="fas fa-download"></i> Download All
+                    <% end %>
+                    <%= link_to '/', class: 'btn btn-danger btn-xs btn-outline',
+                                method: :delete,
+                                confirm: 'Are you sure you want to delete this?' do %>
+                      <i class="fa fa-trash"></i> Delete All
+                    <% end %>
+                  </div>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <% current_user.certs_sorted_by_name.each do |cert| %>
+                <tr class="gradeX">
+                  <div id="<%= cert.id %>" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title"><%= cert.certification.name %></h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class='content' style="float:none">
+                            <% if cert.file.attachment.present? %>
+                              <object
+                                style="width: 100%; height: 800px;"
+                                data="<%= url_for(cert.file) %>" type="application/pdf">
+                                <embed
+                                  style="width: 100%; height:800px;"
+                                  src="<%= url_for(cert.file) %>" type="application/pdf"/>
+                              </object>
+
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="<%= cert.id %>delete" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <p class="center-btn">ARE YOU SURE YOU WANT TO DELETE THIS?</p><br>
+                          <h2 class="text-navy"><%= cert.certification.name %></h2>
+                        </div>
+                        <div class="modal-footer">
+                          <%= link_to "Yes, Delete this.", acquired_certification_path(cert.id), class: 'btn btn-lg btn-danger btn-outline pull-right',
+
+                                      method: :delete,
+                                      confirm: 'Are you sure you want to delete this?' %>
+                          <button type="button" class="btn btn-lg btn-info pull-left" data-dismiss="modal">
+                            No. Do not delete.
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div id="<%= cert.id %>edit" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <%= render partial: 'certifications/form', locals: {primary: cert.certification.primary, cert: cert} %>
+                          <button type="button" class="btn btn-lg btn-info pull-left" data-dismiss="modal">
+                            No. Do not delete.
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <td><%= cert.certification.name %></td>
+                  <td><%= cert.acquired_on %></td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <% if cert.file.attachment.present? %>
+                        <button type="button" class="btn btn-sm btn-default btn-info" data-toggle="modal" data-target="#<%= cert.id %>">
+                          <i class="far fa-file-pdf"></i>
+                        </button>
+                      <% end %>
+                      <button type="button" class="btn btn-sm btn-default btn-danger" data-toggle="modal" data-target="#<%= cert.id %>delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-default btn-danger" data-toggle="modal" data-target="#<%= cert.id %>edit">
+                        <i class="far fa-edit"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              </table>
+          <% end %>
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="col-lg-4">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div>
+        <div class="text-enter center-btn">
+          <button type="button"
+                  class="btn btn-primary btn-lg"
+                  data-toggle="modal"
+                  data-target="#add_primary">
+            <i class="fas fa-plus"></i> Add Primary Certification
+          </button>
+        </div>
+        <!-- Modal -->
+        <div id="add_primary" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Certification</h4>
+              </div>
+              <div class="modal-body">
+                <%= render partial: 'certifications/form', locals: {primary: true, cert: @certification} %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="text-enter center-btn">
+          <button type="button"
+                  class="btn btn-primary btn-lg"
+                  data-toggle="modal"
+                  data-target="#add_secondary">
+            <i class="fas fa-plus"></i> Add Secondary Certification
+          </button>
+        </div>
+        <!-- Modal -->
+        <div id="add_secondary" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Certification</h4>
+              </div>
+              <div class="modal-body">
+                <%= render partial: 'certifications/form', locals: {primary: false, cert: @certification} %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <style>
+        .center-btn {
+          display: flex;
+          justify-content: center;
+        }
+      </style>
+      <!-- Trigger the modal with a button -->
+    </div>
+  </div>
+</div>
