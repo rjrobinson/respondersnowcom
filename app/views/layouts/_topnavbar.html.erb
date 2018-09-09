@@ -8,7 +8,7 @@
       <li>
         <% if user_signed_in? %>
         <li>
-          <%= button_to 'Logout', destroy_user_session_path, :method => :delete, class: 'm-r-sm text-muted welcome-message' %>
+          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'm-r-sm text-muted welcome-message' %>
         </li>
       <% else %>
         <li>
