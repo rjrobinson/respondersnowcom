@@ -28,21 +28,23 @@ class AcquiredCertificationsController < ApplicationController
   private
 
   def cert_params
-    binding.pry
-    new = params.require(:acquired_certification).permit!
-    new.merge(
-        {
-            acquired_on: DateTime.new(
-                params[:acquired_certification]['acquired_on(1i)'].to_i,
-                params[:acquired_certification]['acquired_on(2i)'].to_i,
-            ),
-            expires_on: DateTime.new(
-                params[:acquired_certification]['expires_on(1i)'].to_i,
-                params[:acquired_certification]['expires_on(2i)'].to_i,
-            ),
-            responder_id: current_user.id,
-        }
-    )
+    new = params.require(:new_cert).permit!
+    new.merge({
+                  acquired_on: DateTime.new(
+                      params[:new_cert]['acquired_on(1i)'].to_i,
+                      params[:new_cert]['acquired_on(2i)'].to_i,
+                  ),
+                  responder_id: current_user.id,
+              })
+
+    if params[:new_cert][:expires]
+      new.merge({expires_on: DateTime.new(
+          params[:new_cert]['expires_on(1i)'].to_i,
+          params[:new_cert]['expires_on(2i)'].to_i,
+      )})
+    end
+
+    new
   end
 
   def only_user_can_modify

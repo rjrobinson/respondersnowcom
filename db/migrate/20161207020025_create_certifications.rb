@@ -6,7 +6,7 @@ class CreateCertifications < ActiveRecord::Migration[5.0]
 
       t.string :course_code
 
-      t.boolean :primary
+      t.boolean :primary, default: false
 
       t.string :abbvr
 

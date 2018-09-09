@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class acquiredCertificationDashboard < Administrate::BaseDashboard
+class AcquiredCertificationDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -31,48 +31,48 @@ class acquiredCertificationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :user,
-    :certification,
-    :id,
-    :number,
+      :user,
+      :certification,
+      :id,
+      :number,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :user,
-    :certification,
-    :id,
-    :number,
-    :acquired_on,
-    :expires,
-    :expires_on,
-    :primary,
-    :legit,
-    :document_file_name,
-    :document_content_type,
-    :document_file_size,
-    :document_updated_at,
-    :created_at,
-    :updated_at,
+      :user,
+      :certification,
+      :id,
+      :number,
+      :acquired_on,
+      :expires,
+      :expires_on,
+      :primary,
+      :legit,
+      :document_file_name,
+      :document_content_type,
+      :document_file_size,
+      :document_updated_at,
+      :created_at,
+      :updated_at,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :responder,
-    :certification,
-    :number,
-    :acquired_on,
-    :expires,
-    :expires_on,
-    :primary,
-    :legit,
-    :document_file_name,
-    :document_content_type,
-    :document_file_size,
-    :document_updated_at,
+      :responder,
+      :certification,
+      :number,
+      :acquired_on,
+      :expires,
+      :expires_on,
+      :primary,
+      :legit,
+      :document_file_name,
+      :document_content_type,
+      :document_file_size,
+      :document_updated_at,
   ].freeze
 
   # Overwrite this method to customize how acquired certifications are displayed

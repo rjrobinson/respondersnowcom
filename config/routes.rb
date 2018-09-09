@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   resources :work_histories, only: [:create, :destroy]
 
-  resources :certifications, only: [:create, :destroy, :update, :edit, :new]
+  resources :certifications, only: [:index, :create, :destroy, :update, :edit, :new]
 
   resources :acquired_certifications, only: [:create, :destroy, :update, :edit, :new]
 

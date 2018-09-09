@@ -1,14 +1,14 @@
 class CertificationsController < ApplicationController
 
   def index
+    @certifications = Certification.all.order(:name)
   end
 
   def create
     @certification = Certification.new(cert_params)
-    @certification.creator = current_user
 
     if @certification.save
-      redirect_back(fallback_location: root_path, flash: {notice: "#{@certification.name}"})
+      redirect_back(fallback_location: root_path, flash: {notice: "Added #{@certification.name}"})
     else
       redirect_back(fallback_location: root_path, flash: {error: "#{params[:name]} Not Added"})
     end
@@ -30,6 +30,13 @@ class CertificationsController < ApplicationController
   private
 
   def cert_params
-    params.require(:certification).permit(:name)
+    params.require(:certification).permit(
+        :name,
+        :course_code,
+        :primary,
+        :abbvr,
+        :logo
+    ).merge({creator: current_user})
+
   end
 end

@@ -66,3 +66,8 @@ RSpec.configure do |config|
     end
   end
 end
+
+
+def here
+  binding.pry
+end

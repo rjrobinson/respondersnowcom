@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_175057) do
   create_table "certifications", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "course_code"
-    t.boolean "primary"
+    t.boolean "primary", default: false
     t.string "abbvr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

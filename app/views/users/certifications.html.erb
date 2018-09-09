@@ -94,14 +94,7 @@
               <h4 class="modal-title">Add New Certification</h4>
             </div>
             <div class="modal-body">
-              <%= simple_form_for :new_cert, defaults: {inner_html: 'form-control'} do |f| %>
-                <%= f.input :name, required: false %>
-                <p>or</p>
-                <%= f.input :certification, collection: Certification.all, required: false %>
-                <%= f.input :state, collection: ['NY', 'NJ', 'PA', 'NREMT'].sort %>
-                <%= f.input :number %>
-                <%= f.input :file, as: :file, label: 'File Upload', inner_html: '', required: false %>
-              <% end %>
+              <%= render partial: 'certifications/form', locals: {primary: false} %>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
