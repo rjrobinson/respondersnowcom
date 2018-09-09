@@ -26,6 +26,10 @@ class User < ApplicationRecord
   end
 
 
+  def certs_sorted_by_name
+    acquired_certifications.joins(:certification).order('certifications.name')
+  end
+
   def full_name
     name
   end
