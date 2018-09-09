@@ -7,6 +7,8 @@ Rails.application.configure do
   config.cache_classes = false
   config.assets.quiet = true
 
+  config.active_storage.service = :local
+
   # Do not eager load code on boot.
   config.eager_load = false
 

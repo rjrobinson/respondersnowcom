@@ -1,13 +1,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-sm-4">
-    <h2>Responders Now</h2>
+    <h2>RespondersNow.com</h2>
     <ol class="breadcrumb">
-      <li>
-        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">This is</a>
-      </li>
       <li class="active">
-        <strong>Breadcrumb</strong>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Welcome</a>
       </li>
+
     </ol>
   </div>
 </div>
@@ -168,11 +166,11 @@
           <div>
             <div class="feed-activity-list">
               <!--              //-->
-              <% current_user.acquired_certifications.each do |cert| %>
+              <% current_user.primaries.each do |cert| %>
                 <div class="feed-element">
                   <a href="#" class="pull-left">
-                    <img alt="image" class='img-circle' src="<%= image_path(cert.patch_image_name) %>">
-                    <strong>NR <%= cert.abbvr %> # 12345 </strong>
+                    <img alt="image" class='img-circle' src="<%= image_path(cert.cert_logo) %>">
+                    <strong><%= cert.state.upcase %> <%= cert.abbvr %> # 12345 </strong>
                     <i class="far fa-id-card"></i>
                   </a>
                   <div class="media-body ">
@@ -181,36 +179,6 @@
                 </div>
               <% end %>
 
-              <!--              //-->
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-emt.png') %>">
-                  <strong>NJ EMT # 586908 </strong>
-                </a>
-                <div class="media-body ">
-
-                </div>
-              </div>
-
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-micu.png') %>">
-                  <strong>NJ MICP # 101012 </strong>
-                </a>
-                <div class="media-body ">
-
-                </div>
-              </div>
-
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-ff.jpg') %>">
-                  <strong>NJ Fire Fighter # 54321 </strong>
-                </a>
-                <div class="media-body ">
-
-                </div>
-              </div>
               <!-- END OF CERTS //-->
             </div>
           </div>

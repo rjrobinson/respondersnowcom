@@ -28,21 +28,22 @@ class AcquiredCertificationsController < ApplicationController
   private
 
   def cert_params
-    new = params.require(:new_cert).permit!
-    new.merge({
-                  acquired_on: DateTime.new(
-                      params[:new_cert]['acquired_on(1i)'].to_i,
-                      params[:new_cert]['acquired_on(2i)'].to_i,
-                  ),
-                  responder_id: current_user.id,
-              })
+    new = params.require(:acquired_certification).permit!
+    new = new.merge({
+                        acquired_on: DateTime.new(
+                            params[:acquired_certification]['acquired_on(1i)'].to_i,
+                            params[:acquired_certification]['acquired_on(2i)'].to_i,
+                        ),
+                        user_id: current_user.id,
+                    })
 
-    if params[:new_cert][:expires]
-      new.merge({expires_on: DateTime.new(
-          params[:new_cert]['expires_on(1i)'].to_i,
-          params[:new_cert]['expires_on(2i)'].to_i,
+    if params[:acquired_certification][:expires]
+      new = new.merge({expires_on: DateTime.new(
+          params[:acquired_certification]['expires_on(1i)'].to_i,
+          params[:acquired_certification]['expires_on(2i)'].to_i,
       )})
     end
+    new = new.merge(user: current_user)
 
     new
   end

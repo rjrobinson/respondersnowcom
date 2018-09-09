@@ -1,17 +1,17 @@
-<%= simple_form_for :new_cert,
+<%= simple_form_for @certification,
                     url: acquired_certifications_path,
                     method: :post,
                     defaults: {inner_html: 'form-control'} do |f| %>
   <% if primary %>
-    <%= f.input :certification, collection: Certification.primaries %>
+    <%= f.association :certification, collection: Certification.primaries %>
   <% else %>
-    <%= f.input :certification, collection: Certification.secondary %>
+    <%= f.association :certification, collection: Certification.secondary %>
   <% end %>
   Are we missing a certification or course ? click <%= link_to "here", new_certification_path %>
   <%= f.input :state, collection: us_states %>
   <%= f.input :number %>
   <div class="form-group">
-    <%= f.input :aquired_on, as: :date, start_year: Date.today.year - 50,
+    <%= f.input :acquired_on, as: :date, start_year: Date.today.year - 50,
                 end_year: Date.today.year, discard_day: true,
                 order: [:month, :year], label: 'Aquired On', id: 'wh-end-date' %>
 
@@ -35,9 +35,9 @@
 
 <% end %>
 <script type="text/javascript" charset="utf-8">
-    $('.new_cert_expires_on').toggleClass('hidden');
+    $('.acquired_certification_expires_on').toggleClass('hidden');
 
-    $('.new_cert_expires').change(function () {
-        $('.new_cert_expires_on').toggleClass('hidden');
+    $('.acquired_certification_expires').change(function () {
+        $('.acquired_certification_expires_on').toggleClass('hidden');
     });
 </script>

@@ -5,6 +5,7 @@ class DashboardsController < ApplicationController
   end
 
   def dashboard_2
+    @certification = AcquiredCertification.new
   end
 
   def dashboard_3

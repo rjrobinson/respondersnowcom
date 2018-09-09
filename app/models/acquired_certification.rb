@@ -6,21 +6,21 @@ class AcquiredCertification < ApplicationRecord
 
   has_one_attached :file
 
-  validates_presence_of :file
-
-  validates_presence_of :document
-
-  delegate :abbvr, to: :certification
+  delegate :abbvr, :logo, :course_code, to: :certification
 
   def patch_image_name
     "patches/#{state.downcase}#{abbvr.downcase}"
   end
 
-  def s3_credentials
-    {
-        bucket: "rnow-certifications-#{Rails.env}",
-        access_key_id: ENV['AWS_SECRET_KEY_ID'],
-        secret_access_key: ENV['AWS_SECRET_KEY']
-    }
+
+  def cert_logo
+    image = if FileTest.exist?(Rails.root.join('app', 'assets', 'images', 'patches', "#{state.downcase}-#{abbvr.downcase}.png"))
+              "patches/#{state.downcase}-#{abbvr.downcase}.png"
+            elsif logo.attached?
+              url_for(logo)
+            else
+              "defaults/#{course_code.downcase}.png"
+            end
+    image
   end
 end

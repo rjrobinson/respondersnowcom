@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :work_histories, dependent: :destroy
 
   has_many :acquired_certifications
-  has_many :certifications, through: :acquiredCertifications
+  has_many :certifications, through: :acquired_certifications
 
   has_many :certifications, as: :creator
 
@@ -25,6 +25,11 @@ class User < ApplicationRecord
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+
+  def primaries
+    acquired_certifications
   end
 
   def location_url
