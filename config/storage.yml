@@ -9,10 +9,10 @@ local:
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: <%= ENV['AWS_SECRET_KEY_ID'] %>
-  secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
+  access_key_id: <%= ENV['AWS_SECRET_KEY'] %>
+  secret_access_key: <%= ENV['AWS_ACCESS_KEY_ID'] %>
   region: us-east-1
-  bucket: <%= "rnow-certifications-#{Rails.env}" %>
+  bucket: "resnow-files"
 
 
 # Remember not to checkin your GCS keyfile to a repository
