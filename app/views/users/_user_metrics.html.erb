@@ -1,3 +1,27 @@
+<style>
+  .badge-icon {
+    max-width: 125%;
+    /*max-height: 20%;*/
+  }
+</style>
+<div class="row">
+  <% Certification::CODES.each do |code| %>
+    <div class="col-lg-2">
+      <div class="widget style1">
+        <div class="row vertical-align">
+          <div class="col-xs-3">
+            <%= image_tag "defaults/#{code.downcase.gsub(' ', '-')}.png", class: 'badge-icon' %>
+          </div>
+          <div class="col-xs-9 text-left">
+            <h2 class="font-bold"><%= current_user.send("#{code.downcase.gsub(' ', '_')}_certs").count %></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
 <div class="row">
   <div class="col-lg-3">
     <div class="panel panel-primary">

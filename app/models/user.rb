@@ -19,6 +19,13 @@ class User < ApplicationRecord
   after_validation :geocode, :if => :zipcode_changed?
 
 
+  Certification::CODES.each do |code|
+    define_method :"#{code.gsub(' ', '_').downcase}_certs" do
+      acquired_certifications.where(certification_id: Certification.where(course_code: code).pluck(:id))
+    end
+  end
+
+
   def full_name
     name
   end
