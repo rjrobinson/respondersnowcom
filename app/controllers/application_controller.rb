@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
+
   before_bugsnag_notify :add_user_info_to_bugsnag
+
 
   # before_action :set_user
 
@@ -15,6 +17,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
   end
+
 
   private
 
