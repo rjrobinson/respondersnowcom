@@ -36,8 +36,6 @@ gem 'aws-sdk-s3', '~> 1'
 # Google Ads
 gem 'ads-rails'
 
-
-gem "administrate"
 # Document Tools
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

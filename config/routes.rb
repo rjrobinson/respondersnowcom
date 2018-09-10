@@ -12,18 +12,7 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'landing#terms_of_service'
 
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
-
-  namespace :admin do
-    resources :agencies
-    resources :users
-    resources :acquired_certifications
-    resources :certifications
-    resources :locations
-    resources :work_histories
-
-    root to: "agencies#index"
-  end
-
+  
   resources :locations
 
   resource :agencies, only: [] do
