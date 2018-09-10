@@ -170,7 +170,7 @@
                 <div class="feed-element">
                   <a href="#" class="pull-left">
                     <img alt="image" style="max-width: 5%" src="<%= image_path(cert.cert_logo) %>">
-                    <strong><%= cert.state.upcase %> <%= cert.abbvr %> # 12345 </strong>
+                    <strong><%= cert.state.upcase %> <%= cert.abbvr %> <%= "##{cert.number}" if cert.number %> </strong>
                     <i class="far fa-id-card"></i>
                   </a>
                   <div class="media-body ">
