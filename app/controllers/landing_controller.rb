@@ -7,6 +7,9 @@ class LandingController < ApplicationController
   end
 
   def privacy
+  end
+
+  def terms_of_service
 
   end
 end

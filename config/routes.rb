@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root to: 'landing#index'
 
   get 'privacy', to: 'landing#privacy'
+  get 'terms_of_service', to: 'landing#terms_of_service'
 
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
