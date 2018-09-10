@@ -106,21 +106,11 @@
             <table class="table table-striped table-bordered table-hover dataTables-example">
               <thead>
               <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Date Acquired</th>
                 <th>Expires</th>
-                <th class="text-center">
-                  <div class="btn-group">
-                    <%= link_to '/', class: 'btn btn-success btn-xs btn-outline' do %>
-                      <i class="fas fa-download"></i> Download All
-                    <% end %>
-                    <%= link_to '/', class: 'btn btn-danger btn-xs btn-outline',
-                                method: :delete,
-                                confirm: 'Are you sure you want to delete this?' do %>
-                      <i class="fa fa-trash"></i> Delete All
-                    <% end %>
-                  </div>
-                </th>
+                <th></th>
               </tr>
               </thead>
               <tbody>
@@ -195,12 +185,11 @@
                     </div>
                   </div>
 
-                  <td>
-                    <img alt="image" style="max-width: 5%" src="<%= image_path(cert.cert_logo) %>">
-                    <%= cert.certification.name %>
-                  </td>
-                  <td><%= cert.acquired_on %></td>
-                  <td class="text-center"><%= cert.expires ? "#{distance_of_time_in_words(Time.now, cert.expires_on)} from now".humanize : "Never" %></td>
+                  <td class="text-center">
+                    <img alt="image" style="max-width: 35px" src="<%= image_path(cert.cert_logo) %>"></td>
+                  <td><%= cert.certification.name %></td>
+                  <td class="text-left"><%= cert.acquired_on %></td>
+                  <td class="text-left"><%= cert.expires ? "#{distance_of_time_in_words(Time.now, cert.expires_on)} from now".humanize : "Never" %></td>
                   <td class="text-center">
                     <div class="btn-group pull-right">
                       <% if cert.file.attachment.present? %>
