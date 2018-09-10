@@ -8,7 +8,7 @@
     <i class="fas fa-question-circle"></i> <span class="nav-label"> FAQ</span>
   </a>
 </li>
-<li class="">
+<li class="<%= is_active_controller('users') %>">
   <%= link_to user_certifications_path(current_user) do %>
     <i class="fas fa-certificate"></i> <span class="nav-label"> Certifications</span>
   <% end %>

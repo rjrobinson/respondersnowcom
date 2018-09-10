@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   root to: 'landing#index'
 
+  get 'privacy', to: 'landing#privacy'
+
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
   namespace :admin do

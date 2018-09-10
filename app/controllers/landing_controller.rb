@@ -6,4 +6,7 @@ class LandingController < ApplicationController
     render :layout => "empty"
   end
 
+  def privacy
+
+  end
 end
