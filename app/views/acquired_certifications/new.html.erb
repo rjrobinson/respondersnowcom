@@ -1,0 +1,41 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>Certifications</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Profile</a>
+      </li>
+      <li>
+        <strong> Certifications</strong>
+      </li>
+      <li class="active">
+        <strong> New</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5 class="panel-title"> Add New Primary </h5>
+        </div>
+        <div class="panel-body">
+          <%= render partial: 'certifications/form', locals: {primary: true, cert: AcquiredCertification.new} %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5 class="panel-title"> Add New Primary </h5>
+        </div>
+        <div class="panel-body">
+          <%= render partial: 'certifications/form', locals: {primary: false, cert: AcquiredCertification.new} %>
+        </div>
+      </div>
+    </div>
+  </div>
+

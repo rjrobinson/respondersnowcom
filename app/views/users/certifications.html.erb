@@ -12,7 +12,87 @@
   </div>
 </div>
 <div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5 class="panel-title"> Add New Certification </h5>
+        </div>
+        <div class="panel-body">
 
+
+          <button type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#add_primary">
+            <i class="fas fa-plus"></i> Add Primary Certification
+          </button>
+          <div id="add_primary" class="modal fade" role="dialog">
+            <!--NEW-->
+            <div id="add_primary" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Certification</h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= render partial: 'certifications/form', locals: {primary: true, cert: @certification} %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- OLD-->
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Add Certification</h4>
+                </div>
+                <div class="modal-body">
+                  <%= render partial: 'certifications/form', locals: {primary: true, cert: @certification} %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#add_secondary">
+            <i class="fas fa-plus"></i> Add Secondary Certification
+          </button>
+          <div id="add_secondary" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Add Certification</h4>
+                </div>
+                <div class="modal-body">
+                  <%= render partial: 'certifications/form', locals: {primary: false, cert: @certification} %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-8">
       <div class="panel panel-primary">
@@ -28,6 +108,7 @@
               <tr>
                 <th>Name</th>
                 <th>Date Acquired</th>
+                <th>Expires</th>
                 <th class="text-center">
                   <div class="btn-group">
                     <%= link_to '/', class: 'btn btn-success btn-xs btn-outline' do %>
@@ -119,8 +200,9 @@
                     <%= cert.certification.name %>
                   </td>
                   <td><%= cert.acquired_on %></td>
+                  <td class="text-center"><%= cert.expires ? "#{distance_of_time_in_words(Time.now, cert.expires_on)} from now".humanize : "Never" %></td>
                   <td class="text-center">
-                    <div class="btn-group">
+                    <div class="btn-group pull-right">
                       <% if cert.file.attachment.present? %>
                         <button type="button" class="btn btn-sm btn-info btn-outline" data-toggle="modal" data-target="#<%= cert.id %>">
                           <i class="far fa-file-pdf"></i>

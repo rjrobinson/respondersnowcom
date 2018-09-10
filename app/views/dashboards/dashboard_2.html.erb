@@ -169,7 +169,7 @@
               <% current_user.primaries.each do |cert| %>
                 <div class="feed-element">
                   <a href="#" class="pull-left">
-                    <img alt="image" class='img-circle' src="<%= image_path(cert.cert_logo) %>">
+                    <img alt="image" style="max-width: 5%" src="<%= image_path(cert.cert_logo) %>">
                     <strong><%= cert.state.upcase %> <%= cert.abbvr %> # 12345 </strong>
                     <i class="far fa-id-card"></i>
                   </a>

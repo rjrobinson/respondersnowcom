@@ -2,6 +2,10 @@ class AcquiredCertificationsController < ApplicationController
 
   before_action :only_user_can_modify, only: [:destroy, :update]
 
+  def new
+    @certification = AcquiredCertification.new
+  end
+
   def create
     @certification = AcquiredCertification.new(cert_params)
     if @certification.save
