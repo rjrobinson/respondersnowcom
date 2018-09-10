@@ -92,3 +92,5 @@ gem 'simplecov', :require => false, :group => :test
 
 
 ruby '2.4.1'
+
+gem "bugsnag", "~> 6.8"

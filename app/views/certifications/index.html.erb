@@ -25,6 +25,7 @@
         <th>Primary</th>
         <th>Abbvr</th>
         <th>Logo</th>
+        <th></th>
       </tr>
       <% @certifications.each do |cert| %>
         <tr>
@@ -32,7 +33,17 @@
           <td><%= cert.course_code %></td>
           <td><%= cert.primary %></td>
           <td><%= cert.abbvr if cert.abbvr %></td>
-          <td><%= cert.logo if cert.logo %></td>
+          <td>
+            <% if cert.logo %>
+              <img alt="image" style="max-width: 35px" src="<%= image_path(cert.logo) %>">
+            <% else %>
+              <p>No Logo"</p>
+            <% end %>
+          </td>
+          <td>
+            <button>Edit</button>
+            <button>Destroy</button>
+          </td>
         </tr>
       <% end %>
     </table>

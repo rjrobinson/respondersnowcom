@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
+  before_bugsnag_notify :add_user_info_to_bugsnag
+
   # before_action :set_user
 
   private
@@ -14,12 +16,17 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
   end
 
+  private
 
-  # def set_user
-  #   if !current_user && Rails.env.development?
-  #     @user = User.first
-  #     sign_in_and_redirect @user, event: :authentication #this will throw if @responder is not activated
-  #   end
-  # end
+  def add_user_info_to_bugsnag(report)
+    if current_user
+      report.user = {
+          email: current_user.email,
+          name: current_user.name,
+          id: current_user.id
+      }
+    end
+  end
+
 
 end
