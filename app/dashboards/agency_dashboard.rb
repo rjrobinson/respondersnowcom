@@ -12,9 +12,9 @@ class AgencyDashboard < Administrate::BaseDashboard
     id: Field::Number,
     email: Field::String,
     name: Field::String,
+    level: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    level: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -36,9 +36,9 @@ class AgencyDashboard < Administrate::BaseDashboard
     :id,
     :email,
     :name,
+    :level,
     :created_at,
     :updated_at,
-    :level,
   ].freeze
 
   # FORM_ATTRIBUTES

@@ -9,10 +9,13 @@ class CertificationDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     creator: Field::Polymorphic,
+    logo_attachment: Field::HasOne,
+    logo_blob: Field::HasOne,
     id: Field::Number,
     name: Field::String,
     course_code: Field::String,
-    default_ceus: Field::Number,
+    primary: Field::Boolean,
+    abbvr: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     active: Field::Boolean,
@@ -25,19 +28,22 @@ class CertificationDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :creator,
+    :logo_attachment,
+    :logo_blob,
     :id,
-    :name,
-    :course_code,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :creator,
+    :logo_attachment,
+    :logo_blob,
     :id,
     :name,
     :course_code,
-    :default_ceus,
+    :primary,
+    :abbvr,
     :created_at,
     :updated_at,
     :active,
@@ -48,9 +54,12 @@ class CertificationDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :creator,
+    :logo_attachment,
+    :logo_blob,
     :name,
     :course_code,
-    :default_ceus,
+    :primary,
+    :abbvr,
     :active,
   ].freeze
 
