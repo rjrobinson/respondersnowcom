@@ -46,6 +46,16 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     ads-rails (5.1.0)
       rails (~> 5.1)
+    ahoy_matey (2.1.0)
+      addressable
+      browser (~> 2.0)
+      device_detector
+      geocoder (>= 1.4.5)
+      railties (>= 4.2)
+      referer-parser (>= 0.3)
+      request_store
+      safely_block (>= 0.2.1)
+      user_agent_parser
     arel (9.0.0)
     autoprefixer-rails (9.1.4)
       execjs
@@ -76,6 +86,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     brakeman (4.3.1)
+    browser (2.5.3)
     bugsnag (6.8.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.3)
@@ -91,6 +102,7 @@ GEM
     capybara-webkit (1.15.0)
       capybara (>= 2.3, < 4.0)
       json
+    chartkick (3.0.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -111,6 +123,7 @@ GEM
     crass (1.0.4)
     database_cleaner (1.7.0)
     debug_inspector (0.0.3)
+    device_detector (1.0.1)
     devise (4.5.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -123,6 +136,7 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
+    errbase (0.1.0)
     erubi (1.7.1)
     excon (0.62.0)
     execjs (2.7.0)
@@ -137,6 +151,8 @@ GEM
     geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (4.0.1)
+      activesupport (>= 4.2)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -270,6 +286,9 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (3.3.5)
+    referer-parser (0.3.0)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -298,6 +317,8 @@ GEM
       builder (< 4)
       rspec-core (>= 2, < 4, != 2.12.0)
     rubyzip (1.2.2)
+    safely_block (0.2.1)
+      errbase
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -349,6 +370,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.18)
       execjs (>= 0.3.0, < 3)
+    user_agent_parser (2.4.1)
     vuejs-rails (2.5.13)
     warden (1.2.7)
       rack (>= 1.0)
@@ -372,6 +394,7 @@ PLATFORMS
 
 DEPENDENCIES
   ads-rails
+  ahoy_matey
   aws-sdk-s3 (~> 1)
   bcrypt (~> 3.1.7)
   better_errors
@@ -382,6 +405,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-webkit
+  chartkick
   coffee-rails (~> 4.2)
   coveralls
   database_cleaner
@@ -390,6 +414,7 @@ DEPENDENCIES
   factory_bot
   font-awesome-rails
   geocoder
+  groupdate
   guard
   guard-rails
   guard-rspec

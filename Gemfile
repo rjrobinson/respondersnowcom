@@ -39,6 +39,12 @@ gem 'aws-sdk-s3', '~> 1'
 # Google Ads
 gem 'ads-rails'
 
+
+#  Analytics
+gem 'ahoy_matey'
+gem 'groupdate'
+gem 'chartkick'
+
 # Document Tools
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
