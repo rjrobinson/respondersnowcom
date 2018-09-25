@@ -154,7 +154,11 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    gull (0.4.0)
+      httpclient
+      nokogiri (>= 1.6.8)
     hashie (3.5.7)
+    httpclient (2.8.3)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -389,6 +393,7 @@ DEPENDENCIES
   guard
   guard-rails
   guard-rspec
+  gull
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails

@@ -26,6 +26,9 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 
+# Weather
+gem 'gull'
+
 # Email
 gem 'mandrill-api'
 
