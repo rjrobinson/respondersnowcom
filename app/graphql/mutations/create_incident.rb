@@ -7,20 +7,6 @@ class Mutations::CreateIncident < Types::BaseMutationType
 
 
   def resolve(incident:)
-    location = Location.find_or_create_by(address: incident.address)
-    i = if location.save
-          scene_lookup = IncidentType.find_or_create_by(name: incident.scene_type)
-          Incident.new(message: incident.message,
-                       location: location,
-                       incident_type: scene_lookup,
-                       user: context[:current_user],
-                       status: incident.status || "Unconfirmed"
-          )
-
-        end
-
-    i.save if i.valid?
-
-    i
+    inc = Incident.new_with_location(incident.to_h.merge(current_user: context[:current_user]))
   end
 end

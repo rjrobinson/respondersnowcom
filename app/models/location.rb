@@ -2,7 +2,7 @@ class Location < ApplicationRecord
 
   geocoded_by :address
 
-  before_create :geocode
+  before_validation :geocode
 
   reverse_geocoded_by :latitude, :longitude do |obj, results|
     if geo = results.first
@@ -14,7 +14,12 @@ class Location < ApplicationRecord
 
   after_create :reverse_geocode
 
-  before_create :county_lookup
+  after_create :county_lookup
+
+
+  def self.new_by_coord(lat:, long:)
+    Location.find_or_create_by(latitude: lat, longitude: long)
+  end
 
   def address
     [street, city, state, country].compact.join(', ')
