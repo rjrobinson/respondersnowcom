@@ -13,6 +13,15 @@ module Types
       Incident.all
     end
 
+    field :incident, IncidentType, null: false do
+      description "returns one incident"
+      argument :id, ID, required: true
+    end
+
+    def incident(id:)
+      Incident.find(id)
+    end
+
     def locations
       Location.limit(10)
     end
