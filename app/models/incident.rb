@@ -1,7 +1,8 @@
 class Incident < ApplicationRecord
 
-  has_one :location
-  has_one :incident_type
+  belongs_to :location
+  belongs_to :incident_type
+  belongs_to :user
 
   has_many :votes
   has_many :incident_confirmeds

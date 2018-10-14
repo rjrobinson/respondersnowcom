@@ -7,10 +7,10 @@ module Types
           description: 'List of locations'
 
 
-    field :incidents, String, null: false
+    field :incidents, [IncidentType], null: false
 
     def incidents
-      "Hello World. "
+      Incident.all
     end
 
     def locations

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_154308) do
+ActiveRecord::Schema.define(version: 2018_10_14_164743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,13 +149,14 @@ ActiveRecord::Schema.define(version: 2018_10_14_154308) do
     t.string "message"
     t.bigint "location_id"
     t.bigint "incident_type_id"
-    t.integer "submitted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.integer "user_id"
     t.index ["id"], name: "index_incidents_on_id"
     t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
     t.index ["location_id"], name: "index_incidents_on_location_id"
+    t.index ["user_id"], name: "index_incidents_on_user_id"
   end
 
   create_table "locations", id: :serial, force: :cascade do |t|
