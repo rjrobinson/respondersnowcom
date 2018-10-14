@@ -10,6 +10,32 @@ class Incident < ApplicationRecord
 
   has_many :incident_reports
 
+
+  def upvote(user:)
+    votes.find_or_create_by(user: user).update(vote_value: 1)
+  end
+
+  def downvote(user:)
+    votes.find_or_create_by(user: user).update(vote_value: -1)
+  end
+
+  def remove_vote(user:)
+    votes.find_or_create_by(user: user).update(vote_value: nil)
+  end
+
+  def upvotes
+    votes.where(vote_value: 1).count
+  end
+
+  def downvotes
+    votes.where(vote_value: -1).count
+  end
+
+
+  def score
+    upvotes - downvotes
+  end
+
   def self.new_with_location(params)
 
     # Find or create the location #

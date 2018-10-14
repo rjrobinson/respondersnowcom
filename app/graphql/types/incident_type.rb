@@ -37,6 +37,9 @@ class Types::IncidentType < Types::BaseObject
   field :incident_reports, [Types::IncidentReport], null: false
 
 
+  field :upvotes, Int, null: false
+  field :downvotes, Int, null: false
+  field :score, Int, null: false
   field :errors, [Types::ErrorType], null: true
 
   def errors
