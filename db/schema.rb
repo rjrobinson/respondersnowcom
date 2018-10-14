@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_10_213559) do
+ActiveRecord::Schema.define(version: 2018_10_14_153221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,43 @@ ActiveRecord::Schema.define(version: 2018_10_10_213559) do
     t.string "creator_type"
   end
 
+  create_table "incident_confirmeds", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "incident_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["incident_id"], name: "index_incident_confirmeds_on_incident_id"
+    t.index ["user_id"], name: "index_incident_confirmeds_on_user_id"
+  end
+
+  create_table "incident_flags", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "incident_id"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["incident_id"], name: "index_incident_flags_on_incident_id"
+    t.index ["user_id"], name: "index_incident_flags_on_user_id"
+  end
+
+  create_table "incident_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "incidents", force: :cascade do |t|
+    t.string "message"
+    t.bigint "location_id"
+    t.bigint "incident_type_id"
+    t.integer "submitted_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "parent_incident_id"
+    t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
+    t.index ["location_id"], name: "index_incidents_on_location_id"
+  end
+
   create_table "locations", id: :serial, force: :cascade do |t|
     t.string "address"
     t.float "latitude"
@@ -155,6 +192,16 @@ ActiveRecord::Schema.define(version: 2018_10_10_213559) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "incident_id"
+    t.integer "vote_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["incident_id"], name: "index_votes_on_incident_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
   create_table "work_histories", id: :serial, force: :cascade do |t|
