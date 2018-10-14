@@ -46,5 +46,28 @@ RSpec.describe Incident, type: :model do
 
       end
     end
+
+    describe "#new_with_location" do
+
+      it 'should create a new incident' do
+
+        location = create(:location)
+        user = create(:user)
+        params = {
+            street: location.street,
+            city: location.city,
+            state: location.state,
+            status: "Just started, unconfirmed",
+            scene_type: "EMS",
+            message: "CrazyTown"
+        }
+
+
+        incident = Incident.new_with_location(params.merge(user: user))
+
+        expect(incident).to be_valid
+      end
+
+    end
   end
 end
