@@ -20,7 +20,7 @@ class Incident < ApplicationRecord
   end
 
   def remove_vote(user:)
-    votes.find_or_create_by(user: user).update(vote_value: nil)
+    votes.find_or_create_by(user: user).delete
   end
 
   def upvotes
