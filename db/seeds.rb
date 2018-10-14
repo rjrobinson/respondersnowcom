@@ -18,6 +18,7 @@ CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |ro
   location.county = row[:county]
   location.city = row[:city]
 
+  location.zipcode = "#{row[:city]}, #{row[:state]}".to_zip.first
   location.save
   # a.update(location_id: location.id)
   # a.save
