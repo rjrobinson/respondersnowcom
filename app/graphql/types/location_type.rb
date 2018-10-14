@@ -5,7 +5,8 @@ class Types::LocationType < Types::BaseObject
   field :latitude, Float, null: false
   field :longitude, Float, null: false
 
-  field :address, String, null: false
+  # field :address, String, null: false
+  field :street, String, null: false
   field :state, String, null: false
   field :county, String, null: false
   field :city, String, null: false

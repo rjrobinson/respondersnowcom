@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_164743) do
+ActiveRecord::Schema.define(version: 2018_10_14_191300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,7 +160,6 @@ ActiveRecord::Schema.define(version: 2018_10_14_164743) do
   end
 
   create_table "locations", id: :serial, force: :cascade do |t|
-    t.string "address"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", null: false
@@ -170,6 +169,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_164743) do
     t.string "city"
     t.string "box"
     t.string "zipcode"
+    t.string "street"
+    t.string "country", default: "US"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
