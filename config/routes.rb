@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
-  post "/graphql", to: "graphql#execute"
+
+  post "api/graphql", to: "graphql#execute"
   authenticated :user do
     root to: 'dashboards#dashboard_2'
     #TODO
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'landing#terms_of_service'
 
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
-  
+
   resources :locations
 
   resource :agencies, only: [] do

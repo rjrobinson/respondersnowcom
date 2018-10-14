@@ -56,8 +56,10 @@ gem 'chartkick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
+# LOCATIONS
 gem 'geocoder'
+gem 'area'
+#
 gem 'coveralls', require: false
 
 gem 'rails-jquery-autocomplete'

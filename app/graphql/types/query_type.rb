@@ -6,8 +6,15 @@ module Types
     field :locations, [LocationType], null: true,
           description: 'List of locations'
 
+
+    field :incidents, String, null: false
+
+    def incidents
+      "Hello World. "
+    end
+
     def locations
-      Location.where.not(county: nil)
+      Location.limit(10)
     end
 
     # TODO: remove me
