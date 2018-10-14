@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_153221) do
+ActiveRecord::Schema.define(version: 2018_10_14_154308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,16 @@ ActiveRecord::Schema.define(version: 2018_10_14_153221) do
     t.index ["user_id"], name: "index_incident_flags_on_user_id"
   end
 
+  create_table "incident_reports", force: :cascade do |t|
+    t.string "message"
+    t.bigint "user_id"
+    t.bigint "incident_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["incident_id"], name: "index_incident_reports_on_incident_id"
+    t.index ["user_id"], name: "index_incident_reports_on_user_id"
+  end
+
   create_table "incident_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -142,7 +152,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_153221) do
     t.integer "submitted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "parent_incident_id"
+    t.string "status"
+    t.index ["id"], name: "index_incidents_on_id"
     t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
     t.index ["location_id"], name: "index_incidents_on_location_id"
   end
@@ -197,7 +208,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_153221) do
   create_table "votes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "incident_id"
-    t.integer "vote_value"
+    t.integer "vote_value", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["incident_id"], name: "index_votes_on_incident_id"
@@ -216,4 +227,12 @@ ActiveRecord::Schema.define(version: 2018_10_14_153221) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "incident_flags", "incidents"
+  add_foreign_key "incident_flags", "users"
+  add_foreign_key "incident_reports", "incidents"
+  add_foreign_key "incident_reports", "users"
+  add_foreign_key "incidents", "incident_types"
+  add_foreign_key "incidents", "locations"
+  add_foreign_key "votes", "incidents"
+  add_foreign_key "votes", "users"
 end

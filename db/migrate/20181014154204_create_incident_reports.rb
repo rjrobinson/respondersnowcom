@@ -1,11 +1,9 @@
-class CreateIncidentFlags < ActiveRecord::Migration[5.2]
+class CreateIncidentReports < ActiveRecord::Migration[5.2]
   def change
-    create_table :incident_flags do |t|
-
+    create_table :incident_reports do |t|
+      t.string :message
       t.references :user, foreign_key: true
       t.references :incident, foreign_key: true
-
-      t.string :reason
 
       t.timestamps
     end
