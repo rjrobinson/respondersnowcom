@@ -67,7 +67,7 @@ RSpec.describe Incident, type: :model do
 
         expect(incident).to be_valid
       end
-      
+
     end
   end
 end
