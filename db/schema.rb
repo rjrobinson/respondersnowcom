@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_191300) do
+ActiveRecord::Schema.define(version: 2018_10_19_214103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,28 @@ ActiveRecord::Schema.define(version: 2018_10_14_191300) do
     t.boolean "active"
     t.integer "creator_id"
     t.string "creator_type"
+  end
+
+  create_table "hospital_statuses", force: :cascade do |t|
+    t.string "county"
+    t.bigint "hospital_id"
+    t.string "status"
+    t.string "reason"
+    t.datetime "start_time"
+    t.datetime "expire_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hospital_id"], name: "index_hospital_statuses_on_hospital_id"
+  end
+
+  create_table "hospitals", force: :cascade do |t|
+    t.string "name"
+    t.bigint "location_id"
+    t.string "abilities"
+    t.string "county"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_hospitals_on_location_id"
   end
 
   create_table "incident_confirmeds", force: :cascade do |t|
@@ -229,6 +251,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_191300) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "hospital_statuses", "hospitals"
   add_foreign_key "incident_flags", "incidents"
   add_foreign_key "incident_flags", "users"
   add_foreign_key "incident_reports", "incidents"
