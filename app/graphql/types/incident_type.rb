@@ -40,9 +40,5 @@ class Types::IncidentType < Types::BaseObject
   field :upvotes, Int, null: false
   field :downvotes, Int, null: false
   field :score, Int, null: false
-  field :errors, [Types::ErrorType], null: true
 
-  def errors
-    object.errors.each {|e| {field_name: e, error: object.errors[e]}}
-  end
 end
