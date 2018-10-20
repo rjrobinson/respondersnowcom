@@ -13,11 +13,8 @@ class Mutations::IncidentConfirm < Types::BaseMutationType
 
 
   def self.accessible?(context)
-    true
+    context[:current_user]&.can_confirm?
   end
-
-  def self.authorized?(object, context)
-    authorized ||= true
-  end
+  
 
 end
