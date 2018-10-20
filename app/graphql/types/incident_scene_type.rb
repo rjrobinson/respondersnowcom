@@ -6,6 +6,6 @@ class Types::IncidentSceneType < Types::BaseObject
   def errors
     object.errors.each {|e| {field_name: e, error: object.errors[e]}}
   end
-  
+
 
 end

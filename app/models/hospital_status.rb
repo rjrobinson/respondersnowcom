@@ -1,9 +1,9 @@
 class HospitalStatus < ApplicationRecord
-  belongs_to :hostpital
+  belongs_to :hospital
 
 
   def expired?
-    expire_time < Time.now
+    self.expire_time < Time.zone.now
   end
 
 end

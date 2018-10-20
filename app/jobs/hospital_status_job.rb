@@ -33,8 +33,6 @@ class HospitalStatusJob < ApplicationJob
     end
 
     array_hospitals.each do |data|
-      binding.pry
-
       h = Hospital.find_by(name: data["facility"])
 
       if h&.last_status_expired?
@@ -45,6 +43,20 @@ class HospitalStatusJob < ApplicationJob
             expire_time: Chronic.parse(data["expire_time"]),
             reason: data["reason"]
         )
+      end
+
+      # GUARD
+      # IF There are no status updates,
+      # and this would be the first iteration, then just make it the first time
+      if h.hospital_statuses.empty?
+        h.hospital_statuses.create(
+            county: data["county"],
+            status: data["status"],
+            start_time: Chronic.parse(data["startTime"]),
+            expire_time: Chronic.parse(data["expire_time"]),
+            reason: data["reason"]
+        )
+
       end
     end
 

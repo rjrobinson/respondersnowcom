@@ -6,21 +6,22 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
-# require 'csv'
-#
-# CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |row|
-#
-#
-#   location = Location.find_or_create_by(city: row[:city], state: "NJ")
-#
-#   location.county = row[:county]
-#   location.city = row[:city]
-#
-#   location.zipcode = "#{row[:city]}, #{row[:state]}".to_zip.first
-#   location.save
-#   # a.update(location_id: location.id)
-#   # a.save
-# end
+require 'csv'
+
+CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |row|
+
+
+  location = Location.find_or_create_by(city: row[:city], state: "NJ")
+
+  location.county = row[:county]
+  location.city = row[:city]
+
+  location.zipcode = "#{row[:city]}, #{row[:state]}".to_zip.first
+  puts "Saving #{location.city}"
+  location.save
+  # a.update(location_id: location.id)
+  # a.save
+end
 
 
 hospitals = [

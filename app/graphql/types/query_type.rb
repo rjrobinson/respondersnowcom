@@ -26,12 +26,16 @@ module Types
       Location.limit(10)
     end
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-          description: "An example field added by the generator"
+    field :hospitals, [HospitalType], null: false do
+      argument :on_divert, Boolean, required: false
+    end
 
-    def test_field
-      "Hello World!"
+    def hospitals(on_divert: false)
+      if on_divert
+        Hospital.on_divert
+      else
+        Hospital.all
+      end
     end
   end
 
