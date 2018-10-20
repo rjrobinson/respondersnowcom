@@ -26,6 +26,18 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 
+gem "chronic"
+
+
+#  Background Jobs
+gem 'sidekiq'
+
+
+# HOSPITAL DATA SYNC
+gem "selenium-webdriver"
+gem "webdrivers"
+gem 'chromedriver-helper'
+
 # Weather
 gem 'gull'
 
@@ -86,7 +98,6 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'factory_bot' #1ab39#1ab39
   gem 'launchy'
-  gem 'selenium-webdriver'
   gem 'rspec_junit_formatter', '0.2.2'
   gem 'brakeman', require: false
 
@@ -111,5 +122,3 @@ gem 'simplecov', :require => false, :group => :test
 ruby '2.4.1'
 
 gem "bugsnag", "~> 6.8"
-
-gem 'graphiql-rails', group: :development
