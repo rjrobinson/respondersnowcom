@@ -4,9 +4,11 @@ class Incident < ApplicationRecord
   belongs_to :incident_type
   belongs_to :user
 
-  has_many :votes
-  has_many :incident_confirmeds
-  has_many :incident_flags
+  has_many :votes, as: :voteable
+
+  # has_many :incident_confirmeds
+  # alias_attribute :confirmations, :incident_confirmeds
+  has_many :flags, as: :flagable
 
   has_many :incident_reports
 
@@ -59,7 +61,7 @@ class Incident < ApplicationRecord
     votes.count > TRENDING_VOTES_COUNT
   end
 
-
+  # VOTING
   def upvote(user:)
     votes.find_or_create_by(user: user).update(vote_value: 1)
   end
@@ -80,9 +82,20 @@ class Incident < ApplicationRecord
     votes.where(vote_value: -1).count
   end
 
-
   def score
     upvotes - downvotes
+  end
+
+  # Confirmed
+  def user_can_confirm?(user)
+    false
+  end
+
+
+  def confirm(user: user)
+    if user_can_confirm?(user)
+
+    end
   end
 
   def self.new_with_location(params)

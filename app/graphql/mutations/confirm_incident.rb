@@ -6,6 +6,9 @@ class Mutations::ConfirmIncident < Types::BaseMutationType
   argument :incident_id, Integer, required: true
   #  ADD RESOLVE METHOD
   def resolve(incident:)
-  #   Logic to confirm incident.
+    incident = Incident.find(incident_id)
+    incident.confrim(user: context[:current_user])
+
+    incident
   end
 end

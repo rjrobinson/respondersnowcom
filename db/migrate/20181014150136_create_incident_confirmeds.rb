@@ -1,8 +1,11 @@
 class CreateIncidentConfirmeds < ActiveRecord::Migration[5.2]
   def change
-    create_table :incident_confirmeds do |t|
-      t.references :user
-      t.references :incident
+    # Changed this to act as polymorphic
+    create_table :confirmations, id: :uuid do |t|
+      t.references :user, type: :uuid
+
+      t.integer :confirmable_id, type: :uuid
+      t.string :confirmable_type
 
       t.timestamps
     end

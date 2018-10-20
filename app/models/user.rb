@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  has_many :votes
+
   geocoded_by :zipcode
 
   after_validation :geocode, :if => :zipcode_changed?

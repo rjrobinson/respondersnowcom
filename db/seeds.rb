@@ -671,3 +671,8 @@ hospitals.each do |h|
   p "Creating #{h[:facility]}"
   Hospital.create(name: h[:facility].titlecase)
 end
+
+
+puts "Syncing with Hospital Divert System"
+
+HospitalStatusJob.perform_now

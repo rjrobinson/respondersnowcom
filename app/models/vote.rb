@@ -1,12 +1,12 @@
 class Vote < ApplicationRecord
 
-  belongs_to :incident
+  belongs_to :voteable, polymorphic: true
   belongs_to :user
 
   validates_presence_of :vote_value
 
-  validates :incident, uniqueness: {scope: :user}
-  validates :user, uniqueness: {scope: :incident}
+  validates :voteable, uniqueness: {scope: :user}
+  validates :user, uniqueness: {scope: :voteable}
 
 
   def upvote

@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_142442) do
+ActiveRecord::Schema.define(version: 2018_10_20_160708) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "acquired_certifications", id: :serial, force: :cascade do |t|
+  create_table "acquired_certifications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.integer "user_id"
     t.integer "certification_id"
     t.string "number"
@@ -39,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -50,7 +52,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "agencies", id: :serial, force: :cascade do |t|
+  create_table "agencies", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "name"
     t.string "level"
@@ -73,7 +75,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
 
-  create_table "ahoy_visits", force: :cascade do |t|
+  create_table "ahoy_visits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "visit_token"
     t.string "visitor_token"
     t.bigint "user_id"
@@ -98,7 +100,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
-  create_table "certifications", id: :serial, force: :cascade do |t|
+  create_table "certifications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name"
     t.string "course_code"
     t.boolean "primary", default: false
@@ -110,9 +112,32 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.string "creator_type"
   end
 
-  create_table "hospital_statuses", force: :cascade do |t|
+  create_table "confirmations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "confirmable_id"
+    t.string "confirmable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["confirmable_id", "confirmable_type"], name: "index_confirmations_on_confirmable_id_and_confirmable_type"
+    t.index ["confirmable_id", "user_id"], name: "index_confirmations_on_confirmable_id_and_user_id"
+    t.index ["user_id"], name: "index_confirmations_on_user_id"
+  end
+
+  create_table "flags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.integer "flaggable_id"
+    t.string "flaggable_type"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flaggable_id", "flaggable_type"], name: "index_flags_on_flaggable_id_and_flaggable_type"
+    t.index ["flaggable_id", "user_id"], name: "index_flags_on_flaggable_id_and_user_id"
+    t.index ["user_id"], name: "index_flags_on_user_id"
+  end
+
+  create_table "hospital_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "county"
-    t.bigint "hospital_id"
+    t.uuid "hospital_id"
     t.string "status"
     t.string "reason"
     t.datetime "start_time"
@@ -122,9 +147,9 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.index ["hospital_id"], name: "index_hospital_statuses_on_hospital_id"
   end
 
-  create_table "hospitals", force: :cascade do |t|
+  create_table "hospitals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.bigint "location_id"
+    t.uuid "location_id"
     t.string "abilities"
     t.string "county"
     t.datetime "created_at", null: false
@@ -132,58 +157,41 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.index ["location_id"], name: "index_hospitals_on_location_id"
   end
 
-  create_table "incident_confirmeds", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "incident_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["incident_id"], name: "index_incident_confirmeds_on_incident_id"
-    t.index ["user_id"], name: "index_incident_confirmeds_on_user_id"
-  end
-
-  create_table "incident_flags", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "incident_id"
-    t.string "reason"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["incident_id"], name: "index_incident_flags_on_incident_id"
-    t.index ["user_id"], name: "index_incident_flags_on_user_id"
-  end
-
-  create_table "incident_reports", force: :cascade do |t|
+  create_table "incident_reports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "message"
-    t.bigint "user_id"
-    t.bigint "incident_id"
+    t.uuid "user_id"
+    t.uuid "incident_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["incident_id"], name: "index_incident_reports_on_incident_id"
     t.index ["user_id"], name: "index_incident_reports_on_user_id"
   end
 
-  create_table "incident_types", force: :cascade do |t|
+  create_table "incident_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "incidents", force: :cascade do |t|
+  create_table "incidents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "message"
-    t.bigint "location_id"
-    t.bigint "incident_type_id"
+    t.uuid "location_id"
+    t.uuid "incident_type_id"
+    t.uuid "user_id"
+    t.string "status"
+    t.float "rank", default: 0.0
+    t.boolean "archived", default: false
+    t.datetime "ranked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
-    t.integer "user_id"
-    t.float "rank", default: 0.0
-    t.datetime "ranked_at"
-    t.index ["id"], name: "index_incidents_on_id"
     t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
     t.index ["location_id"], name: "index_incidents_on_location_id"
+    t.index ["rank"], name: "index_incidents_on_rank"
     t.index ["user_id"], name: "index_incidents_on_user_id"
   end
 
-  create_table "locations", id: :serial, force: :cascade do |t|
+  create_table "locations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "uuid"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", null: false
@@ -197,7 +205,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.string "country", default: "US"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "uuid"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -231,17 +240,17 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "votes", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "incident_id"
+  create_table "votes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.integer "voteable_id"
+    t.string "voteable_type"
     t.integer "vote_value", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["incident_id"], name: "index_votes_on_incident_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-  create_table "work_histories", id: :serial, force: :cascade do |t|
+  create_table "work_histories", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.integer "user_id"
     t.integer "agency_id"
     t.datetime "start_date"
@@ -253,13 +262,13 @@ ActiveRecord::Schema.define(version: 2018_10_20_142442) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "flags", "users"
   add_foreign_key "hospital_statuses", "hospitals"
-  add_foreign_key "incident_flags", "incidents"
-  add_foreign_key "incident_flags", "users"
+  add_foreign_key "hospitals", "locations"
   add_foreign_key "incident_reports", "incidents"
   add_foreign_key "incident_reports", "users"
   add_foreign_key "incidents", "incident_types"
   add_foreign_key "incidents", "locations"
-  add_foreign_key "votes", "incidents"
+  add_foreign_key "incidents", "users"
   add_foreign_key "votes", "users"
 end

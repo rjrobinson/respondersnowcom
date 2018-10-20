@@ -1,9 +1,9 @@
 class Dothings < ActiveRecord::Migration[5.2]
   def change
-    create_table :hospital_statuses do |t|
+    create_table :hospital_statuses, id: :uuid do |t|
       t.string :county
 
-      t.references :hospital, foreign_key: true
+      t.references :hospital, type: :uuid, foreign_key: true
       t.string :status
       t.string :reason
 
