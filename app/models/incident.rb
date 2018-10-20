@@ -11,6 +11,17 @@ class Incident < ApplicationRecord
   has_many :incident_reports
 
 
+  TRENDING_VOTES_COUNT = 100
+
+
+  scope :is_trending, -> {}
+
+
+  def is_trending
+    votes.count > TRENDING_VOTES_COUNT
+  end
+
+
   def upvote(user:)
     votes.find_or_create_by(user: user).update(vote_value: 1)
   end
