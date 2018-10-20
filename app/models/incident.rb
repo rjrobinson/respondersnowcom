@@ -12,9 +12,47 @@ class Incident < ApplicationRecord
 
 
   TRENDING_VOTES_COUNT = 100
+  SYSTEM_EPOCH = 1.day.ago.to_i
+  SECOND_DIVISOR = 3600
 
 
-  scope :is_trending, -> {}
+  def self.trending
+    sorted = Incident.last(100).each.map do |inc|
+      pop = inc.popularity
+      rec = inc.recentness
+      [pop + rec, inc.id]
+    end.sort_by(&:first)
+
+    sorted
+  end
+
+
+  def current_rank
+    inc.popularity + inc.recentness
+  end
+
+  def popularity(weight: 3)
+    (votes.count + incident_reports.count) * weight
+  end
+
+  def recentness(timestamp: created_at, epoch: SYSTEM_EPOCH, divisor: SECOND_DIVISOR)
+    seconds = timestamp.to_i - epoch
+
+    (seconds / divisor).to_i
+  end
+
+
+  def self.trending
+    sorted = Incident.last(100).each.map do |inc|
+      pop = inc.popularity
+      puts pop
+      rec = inc.recentness
+      puts rec
+      [pop + rec, inc.id]
+    end.sort_by(&:first)
+
+    sorted
+  end
 
 
   def is_trending

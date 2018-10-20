@@ -34,6 +34,7 @@ class Types::IncidentType < Types::BaseObject
   field :created_at, String, null: false
   field :updated_at, String, null: false
   field :status, String, null: false
+  field :rank, Int, null: false
   field :incident_reports, [Types::IncidentReport], null: false
 
 

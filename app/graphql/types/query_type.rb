@@ -13,6 +13,12 @@ module Types
       Incident.all
     end
 
+    field :trending, [IncidentType], null: false
+
+    def trending
+      Incident.trending.reverse
+    end
+
     field :incident, IncidentType, null: false do
       description "returns one incident"
       argument :id, ID, required: true
