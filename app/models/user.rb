@@ -28,6 +28,10 @@ class User < ApplicationRecord
   end
 
 
+  def can_confirm?
+    false
+  end
+
   def display_id
     "#{last_name[0]}#{id}NJ".downcase
   end

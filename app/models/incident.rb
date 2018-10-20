@@ -6,7 +6,7 @@ class Incident < ApplicationRecord
 
   has_many :votes, as: :voteable
   has_many :confirmations, as: :confirmable
-  
+
   # has_many :incident_confirmeds
   # alias_attribute :confirmations, :incident_confirmeds
   has_many :flags, as: :flagable
@@ -91,14 +91,9 @@ class Incident < ApplicationRecord
     upvotes - downvotes
   end
 
-  # Confirmed
-  def user_can_confirm?(user)
-    false
-  end
-
-
+  # Confirmations
   def confirm(user:)
-
+    confirmations.find_or_create_by(user: user)
   end
 
   # : User.first
