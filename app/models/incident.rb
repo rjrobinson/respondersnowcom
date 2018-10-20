@@ -5,7 +5,8 @@ class Incident < ApplicationRecord
   belongs_to :user
 
   has_many :votes, as: :voteable
-
+  has_many :confirmations, as: :confirmable
+  
   # has_many :incident_confirmeds
   # alias_attribute :confirmations, :incident_confirmeds
   has_many :flags, as: :flagable
@@ -29,8 +30,12 @@ class Incident < ApplicationRecord
   end
 
 
+  def calculate_rank
+    update(rank: popularity + recentness, ranked_at: Time.now)
+  end
+
   def current_rank
-    inc.popularity + inc.recentness
+    popularity + recentness
   end
 
   def popularity(weight: 3)
@@ -92,12 +97,11 @@ class Incident < ApplicationRecord
   end
 
 
-  def confirm(user: user)
-    if user_can_confirm?(user)
+  def confirm(user:)
 
-    end
   end
 
+  # : User.first
   def self.new_with_location(params)
 
     # Find or create the location #

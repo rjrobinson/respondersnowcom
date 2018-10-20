@@ -113,8 +113,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_160708) do
   end
 
   create_table "confirmations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "confirmable_id"
+    t.uuid "user_id"
+    t.string "confirmable_id"
     t.string "confirmable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_160708) do
 
   create_table "flags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
-    t.integer "flaggable_id"
+    t.string "flaggable_id"
     t.string "flaggable_type"
     t.string "reason"
     t.datetime "created_at", null: false
@@ -242,12 +242,14 @@ ActiveRecord::Schema.define(version: 2018_10_20_160708) do
 
   create_table "votes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
-    t.integer "voteable_id"
+    t.string "voteable_id"
     t.string "voteable_type"
     t.integer "vote_value", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_votes_on_user_id"
+    t.index ["voteable_id", "user_id"], name: "index_votes_on_voteable_id_and_user_id"
+    t.index ["voteable_id", "vote_value"], name: "index_votes_on_voteable_id_and_vote_value"
   end
 
   create_table "work_histories", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

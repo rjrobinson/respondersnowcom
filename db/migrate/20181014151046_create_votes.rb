@@ -4,7 +4,7 @@ class CreateVotes < ActiveRecord::Migration[5.2]
 
       t.references :user, type: :uuid, foreign_key: true
 
-      t.integer :voteable_id, type: :uuid
+      t.string :voteable_id, type: :uuid
       t.string :voteable_type
 
       t.integer :vote_value, default: 0

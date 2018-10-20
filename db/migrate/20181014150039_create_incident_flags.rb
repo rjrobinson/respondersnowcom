@@ -5,7 +5,8 @@ class CreateIncidentFlags < ActiveRecord::Migration[5.2]
     create_table :flags, id: :uuid do |t|
 
       t.references :user, type: :uuid, foreign_key: true
-      t.integer :flaggable_id, type: :uuid
+
+      t.string :flaggable_id, type: :uuid
       t.string :flaggable_type
 
       t.string :reason
