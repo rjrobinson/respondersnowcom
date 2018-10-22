@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
 
   def can_confirm?
-    false
+    true
   end
 
   def display_id

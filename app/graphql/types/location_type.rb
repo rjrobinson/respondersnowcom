@@ -12,8 +12,6 @@ class Types::LocationType < Types::BaseObject
   field :city, String, null: false
   field :box, String, null: true
   field :zipcode, String, null: true
-
-  field :created_at, String, null: false
-  field :updated_at, String, null: false
+  
 end
 

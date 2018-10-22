@@ -10,8 +10,4 @@ class Types::HospitalType < Types::BaseObject
 
   field :status, Types::HospitalStatusType, null: true
 
-  def status
-    object.status
-  end
-
 end

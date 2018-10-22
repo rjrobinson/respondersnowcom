@@ -6,7 +6,9 @@ module Types
     def errors
       object.errors.each {|e| {field_name: e, error: object.errors[e]}}
     end
-    
 
+
+    field :created_at, String, null: false
+    field :updated_at, String, null: false
   end
 end

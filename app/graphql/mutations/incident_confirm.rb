@@ -15,6 +15,6 @@ class Mutations::IncidentConfirm < Types::BaseMutationType
   def self.accessible?(context)
     context[:current_user]&.can_confirm?
   end
-  
+
 
 end
