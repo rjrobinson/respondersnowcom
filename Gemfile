@@ -59,6 +59,9 @@ gem 'graphql-preload'
 gem 'ads-rails'
 
 
+# Merit
+gem 'merit'
+
 #  Analytics
 gem 'ahoy_matey'
 gem 'groupdate'

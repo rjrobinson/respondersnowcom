@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_merit
+
 
   devise :database_authenticatable, :omniauthable, omniauth_providers: [:facebook]
 
