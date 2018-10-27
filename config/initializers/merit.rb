@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure merit parameters
 Merit.setup do |config|
   # Check rules on each request or in background
@@ -27,7 +29,7 @@ badge_id = 0
  }, {
      id: (badge_id = badge_id + 1),
      name: 'best-unicorn',
-     custom_fields: {category: 'fantasy'}
+     custom_fields: { category: 'fantasy' }
  }].each do |attrs|
   Merit::Badge.create! attrs
 end

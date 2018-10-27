@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Incident, type: :model do
@@ -5,8 +7,7 @@ RSpec.describe Incident, type: :model do
     it {should belong_to(:location)}
     it {should belong_to(:incident_type)}
     it {should have_many(:votes)}
-    it {should have_many(:incident_confirmeds)}
-    it {should have_many(:incident_flags)} # change the name of this to just Flag
+    
     it {should have_many(:incident_reports)}
   end
 
@@ -15,9 +16,7 @@ RSpec.describe Incident, type: :model do
   let(:user) {create(:user)}
 
   describe "#upvote" do
-
     it 'should increase the vote by one.' do
-
       incident.upvote(user: user)
 
 
@@ -29,9 +28,7 @@ RSpec.describe Incident, type: :model do
     end
 
     describe "#downvote" do
-
       it 'should decrease the vote by one.' do
-
         incident.downvote(user: user)
 
 
@@ -43,14 +40,11 @@ RSpec.describe Incident, type: :model do
 
         expect(incident.votes.count).to eq 0
         expect(incident.score).to eq 0
-
       end
     end
 
     describe "#new_with_location" do
-
       it 'should create a new incident' do
-
         location = create(:location)
         user = create(:user)
         params = {
@@ -67,7 +61,6 @@ RSpec.describe Incident, type: :model do
 
         expect(incident).to be_valid
       end
-
     end
   end
 end

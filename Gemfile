@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.0'
@@ -84,7 +86,7 @@ gem 'mapbox-rails'
 gem 'vuejs-rails'
 
 group :development, :test do
-  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
@@ -99,7 +101,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'factory_bot' #1ab39#1ab39
+  gem 'factory_bot' # 1ab39#1ab39
   gem 'launchy'
   gem 'rspec_junit_formatter', '0.2.2'
   gem 'brakeman', require: false
@@ -120,7 +122,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test
 
 
 ruby '2.4.1'

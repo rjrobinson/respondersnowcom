@@ -1,5 +1,6 @@
-module StatesHelper
+# frozen_string_literal: true
 
+module StatesHelper
   def us_states
     [
         ['National Registry', 'NR'],
@@ -249,7 +250,4 @@ module StatesHelper
       'wisconsin' => 'WI',
       'wyoming' => 'WY'
   }
-
-
-
 end

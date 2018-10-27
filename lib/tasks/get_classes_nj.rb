@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'http'
 require 'nokogiri'
 require 'active_support'
@@ -13,8 +15,6 @@ class Course
   #   @description = args[:description]
   #   @classes = []
   # end
-
-
 end
 
 class NJClass
@@ -28,14 +28,13 @@ class NJClass
   #   @schedule = args[:schedule]
   #   @classes = []
   # end
-
 end
 
 class ClassDateTime
   attr_accessor :date, :time, :details, :location, :classroom, :instructor
 end
 
-#Get categories of classes
+# Get categories of classes
 
 def get_categories
   begin
@@ -49,17 +48,17 @@ def get_categories
 end
 
 
-#Get courses links from each category and make sure no duplicates
+# Get courses links from each category and make sure no duplicates
 courses = []
 course_names = []
 
 categories = get_categories
 categories.each do |category|
   begin
-    doc = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/CourseCatalog/'+category['href']).to_s)
+    doc = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/CourseCatalog/' + category['href']).to_s)
     current_courses = doc.xpath('//a').select { |link| link['href'] =~ /\.\.\/training\/classscheduler\/index\.cfm\?Fuseaction=Home\.CourseDetails&intCSCourseID=\d+&AddPopularity=1/i }
 
-    #Check if already got class URL
+    # Check if already got class URL
     current_courses.each do |course|
       unless course_names.include? course.text
         course_names << course.text
@@ -69,7 +68,6 @@ categories.each do |category|
   rescue
     puts 'error'
   end
-
 end
 
 puts "Num courses: #{courses.length}"
@@ -197,29 +195,29 @@ puts "Num courses: #{courses.length}"
 ###############################
 
 
-puts('Num courses: '+courses.length.to_s)
+puts('Num courses: ' + courses.length.to_s)
 
-#Get classes info page and course info page for each course
+# Get classes info page and course info page for each course
 classesInfo = Array.new(courses.length)
 coursesInfo = Array.new(courses.length)
-for i in 0..(courses.length-1)
-  coursesInfo[i] = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/CourseCatalog/'+courses[i]['href']).to_s)
+for i in 0..(courses.length - 1)
+  coursesInfo[i] = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/CourseCatalog/' + courses[i]['href']).to_s)
   classesInfo[i] = Array.new
   classLinks = coursesInfo[i].xpath('//a').select { |link| link.text == 'View Class Summary' }
   for classLink in classLinks
-    doc = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/'+classLink['href'][22..-1]).to_s)
+    doc = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/' + classLink['href'][22..-1]).to_s)
     classesInfo[i] << doc
   end
 end
 
-#Search for course name and description
+# Search for course name and description
 course = Array.new(coursesInfo.length)
-for i in 0..(coursesInfo.length-1)
+for i in 0..(coursesInfo.length - 1)
   course[i] = Course.new
   course[i].name = courseNames[i].strip
   courseTrs = coursesInfo[i].xpath('//tr')
 
-  #Get course description from course info page
+  # Get course description from course info page
   for cTr in courseTrs
     c = cTr.children.select { |c| c.name != 'text' }
     if c.length == 2
@@ -232,10 +230,10 @@ for i in 0..(coursesInfo.length-1)
     end
   end
 
-  #Search for classes details
+  # Search for classes details
   course[i].classes = Array.new(classesInfo[i].length)
-  puts('Classes: '+classesInfo[i].length.to_s)
-  for j in 0..(classesInfo[i].length-1)
+  puts('Classes: ' + classesInfo[i].length.to_s)
+  for j in 0..(classesInfo[i].length - 1)
     course[i].classes[j] = Class.new
     classTrs = classesInfo[i][j].xpath('//tr')
     for cTr in classTrs
@@ -257,12 +255,12 @@ for i in 0..(coursesInfo.length-1)
     end
 
 
-    #Get tables containing class schedule
+    # Get tables containing class schedule
     course[i].classes[j].schedule = ClassDateTime.new
-    courseTables = coursesInfo[i].xpath('//table').select { |c| c.name!='text' }
+    courseTables = coursesInfo[i].xpath('//table').select { |c| c.name != 'text' }
     classTables = Array.new
-    for y in 0..(courseTables.length-1)
-      trs = courseTables[y].xpath('tr').select { |c| c.name!='text' }
+    for y in 0..(courseTables.length - 1)
+      trs = courseTables[y].xpath('tr').select { |c| c.name != 'text' }
       if trs.length != 0
         tds = trs[0].xpath('td').select { |c| c.name != 'text' }
         if tds.length != 0
@@ -277,7 +275,7 @@ for i in 0..(coursesInfo.length-1)
     end
 
 
-    #Find the correct schedule table and get the info from it
+    # Find the correct schedule table and get the info from it
     for tBody in classTables
       courseTrs = tBody.xpath('tr').select { |c| c.name != 'text' }
       for cTr in courseTrs
@@ -308,5 +306,3 @@ for i in 0..(coursesInfo.length-1)
 end
 
 puts ActiveSupport::JSON.encode(course)
-
-

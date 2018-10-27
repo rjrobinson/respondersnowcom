@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if Rails.env.test?
   Capybara::Webkit.configure do |config|
     # Enable debug mode. Prints a log of everything the driver is doing.

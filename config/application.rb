@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -25,6 +27,5 @@ module Frnow
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
-    
   end
 end

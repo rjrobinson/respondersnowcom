@@ -1,5 +1,6 @@
-class Mutations::IncidentCreate < Types::BaseMutationType
+# frozen_string_literal: true
 
+class Mutations::IncidentCreate < Types::BaseMutationType
   null true
   description "address should be one line including at least street, city, state "
 

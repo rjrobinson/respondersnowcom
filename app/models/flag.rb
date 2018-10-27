@@ -1,5 +1,6 @@
-class Flag < ApplicationRecord
+# frozen_string_literal: true
 
+class Flag < ApplicationRecord
   INCIDENT_FLAG_TYPES = "Inappropriate"
 
   belongs_to :flaggable, polymorphic: true
@@ -15,5 +16,4 @@ class Flag < ApplicationRecord
       errors.add(:user_already_flagged, "user has already flagged this resource")
     end
   end
-
 end

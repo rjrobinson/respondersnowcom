@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FrnowSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
@@ -11,5 +13,4 @@ class FrnowSchema < GraphQL::Schema
   def self.resolve_type(type, obj, ctx)
     obj.graphql_type
   end
-
 end

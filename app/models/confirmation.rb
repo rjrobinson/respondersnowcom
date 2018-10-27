@@ -1,5 +1,6 @@
-class Confirmation < ApplicationRecord
+# frozen_string_literal: true
 
+class Confirmation < ApplicationRecord
   belongs_to :confirmable, polymorphic: true
   belongs_to :user
 

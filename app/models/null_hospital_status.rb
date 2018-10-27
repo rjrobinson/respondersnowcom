@@ -1,5 +1,6 @@
-class NullHospitalStatus
+# frozen_string_literal: true
 
+class NullHospitalStatus
   attr_reader :county, :expire_time, :start_time, :status, :created_at, :updated_at, :id, :reason
 
   def initialize

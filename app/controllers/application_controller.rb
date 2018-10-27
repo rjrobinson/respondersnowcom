@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -14,22 +16,20 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
-  end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
+    end
 
 
   private
 
-  def add_user_info_to_bugsnag(report)
-    if current_user
-      report.user = {
-          email: current_user.email,
-          name: current_user.name,
-          id: current_user.id
-      }
+    def add_user_info_to_bugsnag(report)
+      if current_user
+        report.user = {
+            email: current_user.email,
+            name: current_user.name,
+            id: current_user.id
+        }
+      end
     end
-  end
-
-
 end

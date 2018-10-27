@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Types::IncidentInputType < Types::BaseInputType
   graphql_name "IncidentInputType"
 
@@ -19,9 +21,8 @@ class Types::IncidentInputType < Types::BaseInputType
   argument :longitude, Float, required: false
 
 
-  #TODO Add Scene Type
+  # TODO Add Scene Type
   argument :scene_type, String, required: false
   argument :message, String, required: false
   argument :status, String, required: false
-
 end

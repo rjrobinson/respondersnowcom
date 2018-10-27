@@ -1,5 +1,6 @@
-class Mutations::IncidentAddFlag < Types::BaseMutationType
+# frozen_string_literal: true
 
+class Mutations::IncidentAddFlag < Types::BaseMutationType
   null true
   description "Super Users"
 

@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
   post "api/graphql", to: "graphql#execute"
   authenticated :user do
     root to: 'dashboards#dashboard_2'
-    #TODO
+    # TODO
     # change this to 'dashboards#responder' to avoid confusion in the future
   end
 
@@ -16,12 +17,12 @@ Rails.application.routes.draw do
   get 'privacy', to: 'landing#privacy'
   get 'terms_of_service', to: 'landing#terms_of_service'
 
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :locations
 
   resource :agencies, only: [] do
-    get :autocomplete_agency_name, :on => :collection
+    get :autocomplete_agency_name, on: :collection
   end
 
   resource :users, only: [] do
@@ -175,5 +176,4 @@ Rails.application.routes.draw do
   get 'cssanimations/index'
 
   get 'landing/index'
-
 end

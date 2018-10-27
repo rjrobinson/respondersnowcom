@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GalleryController < ApplicationController
   def basic_gallery
   end
@@ -7,5 +9,4 @@ class GalleryController < ApplicationController
 
   def slick_carusela
   end
-
 end

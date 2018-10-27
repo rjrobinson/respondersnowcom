@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FormsController < ApplicationController
   def basic_forms
   end
@@ -16,5 +18,4 @@ class FormsController < ApplicationController
 
   def markdown
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TablesController < ApplicationController
   def static_tables
   end
@@ -10,5 +12,4 @@ class TablesController < ApplicationController
 
   def jqgrid
   end
-
 end

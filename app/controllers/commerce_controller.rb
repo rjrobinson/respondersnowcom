@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommerceController < ApplicationController
   def products_grid
   end
@@ -19,6 +21,4 @@ class CommerceController < ApplicationController
 
   def cart
   end
-
-
 end

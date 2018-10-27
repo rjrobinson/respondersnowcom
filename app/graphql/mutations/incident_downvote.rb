@@ -1,5 +1,6 @@
-class Mutations::IncidentDownvote < Types::BaseMutationType
+# frozen_string_literal: true
 
+class Mutations::IncidentDownvote < Types::BaseMutationType
   null true
   description "will allow users to DOWNVOTE an incident"
 

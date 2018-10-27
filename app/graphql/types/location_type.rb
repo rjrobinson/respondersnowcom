@@ -1,5 +1,6 @@
-class Types::LocationType < Types::BaseObject
+# frozen_string_literal: true
 
+class Types::LocationType < Types::BaseObject
   field :id, ID, null: false
 
   field :latitude, Float, null: true
@@ -12,6 +13,4 @@ class Types::LocationType < Types::BaseObject
   field :city, String, null: false
   field :box, String, null: true
   field :zipcode, String, null: true
-
 end
-

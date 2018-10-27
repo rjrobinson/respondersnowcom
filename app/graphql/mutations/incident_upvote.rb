@@ -1,5 +1,6 @@
-class Mutations::IncidentUpvote < Types::BaseMutationType
+# frozen_string_literal: true
 
+class Mutations::IncidentUpvote < Types::BaseMutationType
   null true
   description "will allow users to UPVOTE an incident"
 

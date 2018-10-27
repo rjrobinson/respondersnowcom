@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DashboardsController < ApplicationController
   before_action :authenticate_user!
 
@@ -13,7 +15,7 @@ class DashboardsController < ApplicationController
   end
 
   def dashboard_4
-    render :layout => 'layout_2'
+    render layout: 'layout_2'
   end
 
   def dashboard_4_1
@@ -21,5 +23,4 @@ class DashboardsController < ApplicationController
 
   def dashboard_5
   end
-
 end

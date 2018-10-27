@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class QueryType < Types::BaseObject
     # Add root-level fields here.
@@ -44,5 +46,4 @@ module Types
       end
     end
   end
-
 end
