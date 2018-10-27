@@ -9,16 +9,19 @@ module Types
           description: 'List of locations'
 
 
-    field :incidents, [IncidentType], null: false
+    field :incidents, [IncidentType], null: false do
+      description "this will return all incidents that have not been flagged more than 3 times."
+      # TODO: Consider changing this value of 3 to be in a settings model.
+    end
 
     def incidents
-      Incident.all
+      Incident.filter_flagged
     end
 
     field :trending, [IncidentType], null: false
 
     def trending
-      Incident.trending.reverse
+      Incident.filter_flagged.order(rank: :desc)
     end
 
     field :incident, IncidentType, null: false do

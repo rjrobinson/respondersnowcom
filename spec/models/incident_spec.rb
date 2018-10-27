@@ -7,7 +7,7 @@ RSpec.describe Incident, type: :model do
     it {should belong_to(:location)}
     it {should belong_to(:incident_type)}
     it {should have_many(:votes)}
-    
+
     it {should have_many(:incident_reports)}
   end
 

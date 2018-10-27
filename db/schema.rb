@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_220354) do
+ActiveRecord::Schema.define(version: 2018_10_27_211748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -194,6 +194,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_220354) do
     t.datetime "ranked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "flagged", default: false
     t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
     t.index ["location_id"], name: "index_incidents_on_location_id"
     t.index ["rank"], name: "index_incidents_on_rank"

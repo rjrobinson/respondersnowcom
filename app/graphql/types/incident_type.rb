@@ -26,7 +26,7 @@ class Types::IncidentType < Types::BaseObject
   field :score, Int, null: false
 
   field :flags, [Types::FlagType], null: true
-
+  
   def confirmed
     object.confirmations.count > 1
   end
