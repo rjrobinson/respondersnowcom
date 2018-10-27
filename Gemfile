@@ -103,7 +103,8 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec_junit_formatter', '0.2.2'
   gem 'brakeman', require: false
-
+  gem 'rubocop'
+  gem "rubocop-rails_config"
 end
 
 group :development do

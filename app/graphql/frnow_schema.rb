@@ -8,4 +8,8 @@ class FrnowSchema < GraphQL::Schema
   end
 
 
+  def self.resolve_type(type, obj, ctx)
+    obj.graphql_type
+  end
+
 end

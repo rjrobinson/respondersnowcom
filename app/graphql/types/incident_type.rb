@@ -19,10 +19,12 @@ class Types::IncidentType < Types::BaseObject
 
   field :confirmed, Boolean, null: false
   field :confirmations, [Types::ConfirmationType], null: true
+
   field :upvotes, Int, null: false
   field :downvotes, Int, null: false
   field :score, Int, null: false
 
+  field :flags, [Types::FlagType], null: true
 
   def confirmed
     object.confirmations.count > 1

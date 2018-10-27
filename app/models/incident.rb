@@ -7,9 +7,7 @@ class Incident < ApplicationRecord
   has_many :votes, as: :voteable
   has_many :confirmations, as: :confirmable
 
-  # has_many :incident_confirmeds
-  # alias_attribute :confirmations, :incident_confirmeds
-  has_many :flags, as: :flagable
+  has_many :flags, as: :flaggable
 
   has_many :incident_reports
 
