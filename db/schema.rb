@@ -284,7 +284,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_220354) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "super_user", default: false
-    t.integer "sash_id"
+    t.string "sash_id"
     t.integer "level", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
