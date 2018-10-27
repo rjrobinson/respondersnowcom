@@ -1,4 +1,4 @@
-class Mutations::CreateIncident < Types::BaseMutationType
+class Mutations::IncidentCreate < Types::BaseMutationType
 
   null true
   description "address should be one line including at least street, city, state "
@@ -7,6 +7,6 @@ class Mutations::CreateIncident < Types::BaseMutationType
 
 
   def resolve(incident:)
-    inc = Incident.new_with_location(incident.to_h.merge(current_user: context[:current_user]))
+    Incident.new_with_location(incident.to_h.merge(current_user: context[:current_user]))
   end
 end

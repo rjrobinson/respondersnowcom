@@ -1,26 +1,3 @@
-class Types::IncidentInputType < Types::BaseInputType
-  graphql_name "IncidentInputType"
-  description %(
-    All the attributes needed to create an Incident.
-    A full address ( street, city, state)
-    or Lat/Long will be required to validate a correct address
-  )
-
-  argument :street, String, required: false
-  argument :city, String, required: false
-  argument :state, String, required: false
-
-  argument :latitude, Float, required: false
-  argument :longitude, Float, required: false
-
-
-  argument :scene_type, String, required: true
-  argument :message, String, required: true
-  argument :status, String, required: false
-
-end
-
-
 class Types::IncidentType < Types::BaseObject
 
   description "The base of an submission"
@@ -48,6 +25,6 @@ class Types::IncidentType < Types::BaseObject
 
 
   def confirmed
-    object.confirmations.count >= 1
+    object.confirmations.count > 1
   end
 end
