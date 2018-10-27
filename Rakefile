@@ -5,4 +5,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Frnow::Application.load_tasks
+Resnow::Application.load_tasks

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FrnowSchema < GraphQL::Schema
+class ResnowSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 
