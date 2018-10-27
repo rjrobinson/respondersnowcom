@@ -4,7 +4,7 @@ class Types::UserType < Types::BaseObject
   field :full_name, String, null: false
   field :display_id, ID, null: false
 
-  field :errors, [Types::ErrorType], null: true
+  field :errors, [Types::ActiveRecordErrorType], null: true
 
 
 end

@@ -1,4 +1,4 @@
-class Types::ErrorType < Types::BaseObject
+class Types::ActiveRecordErrorType < Types::BaseObject
 
   description "An ActiveRecord Error"
 

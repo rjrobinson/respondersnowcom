@@ -1,7 +1,8 @@
 module Types
+
   class BaseObject < GraphQL::Schema::Object
 
-    field :errors, [Types::ErrorType], null: true
+    field :errors, [Types::ActiveRecordErrorType], null: true
 
     def errors
       object.errors.each {|e| {field_name: e, error: object.errors[e]}}
@@ -11,4 +12,5 @@ module Types
     field :created_at, String, null: false
     field :updated_at, String, null: false
   end
+
 end
