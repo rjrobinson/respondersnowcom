@@ -6,7 +6,10 @@ module Types
     # They will be entry points for queries on your schema.
 
 
-    field :incidents_by_subscription, [IncidentType], null: true
+    field :incidents_by_subscription, [IncidentType], null: true do
+      description %|A list of Incidents from the users subscriptions.
+                                 Incidents will be sent back newest first, but have the option to sort by their ranking|
+    end
 
     def incidents_by_subscription
       context[:current_user]&.incidents&.filter_flagged
