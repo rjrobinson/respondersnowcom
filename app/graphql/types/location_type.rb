@@ -13,4 +13,12 @@ class Types::LocationType < Types::BaseObject
   field :city, String, null: false
   field :box, String, null: true
   field :zipcode, String, null: true
+
+  field :errors, [Types::ActiveRecordErrorType], null: true
+
+  def errors
+    object.errors.each {|e| {field_name: e, error: object.errors[e]}}
+  end
+
+
 end
