@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_27_211748) do
+ActiveRecord::Schema.define(version: 2018_10_28_014900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -133,6 +133,22 @@ ActiveRecord::Schema.define(version: 2018_10_27_211748) do
     t.index ["user_id"], name: "index_confirmations_on_user_id"
   end
 
+  create_table "counties", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "county_subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "county_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["county_id"], name: "index_county_subscriptions_on_county_id"
+    t.index ["user_id"], name: "index_county_subscriptions_on_user_id"
+  end
+
   create_table "flags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.string "flaggable_id"
@@ -195,6 +211,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_211748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "flagged", default: false
+    t.uuid "county_id"
     t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
     t.index ["location_id"], name: "index_incidents_on_location_id"
     t.index ["rank"], name: "index_incidents_on_rank"
@@ -317,6 +334,8 @@ ActiveRecord::Schema.define(version: 2018_10_27_211748) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "county_subscriptions", "counties"
+  add_foreign_key "county_subscriptions", "users"
   add_foreign_key "flags", "users"
   add_foreign_key "hospital_statuses", "hospitals"
   add_foreign_key "hospitals", "locations"
