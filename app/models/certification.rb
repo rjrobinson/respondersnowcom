@@ -1,5 +1,6 @@
-class Certification < ApplicationRecord
+# frozen_string_literal: true
 
+class Certification < ApplicationRecord
   CODES = ["FIRE", "EMS", "HAZMAT", "TECHNICAL RESCUE", "FEMA"].sort.freeze
 
   belongs_to :creator, polymorphic: true
@@ -8,8 +9,7 @@ class Certification < ApplicationRecord
 
   has_one_attached :logo
 
-  scope :primaries, -> {where(primary: true).order(:name)}
+  scope :primaries, -> { where(primary: true).order(:name) }
 
-  scope :secondary, -> {where(primary: false).order(:name)}
-
+  scope :secondary, -> { where(primary: false).order(:name) }
 end

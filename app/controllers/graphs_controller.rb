@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GraphsController < ApplicationController
   def flot
   end
@@ -22,5 +24,4 @@ class GraphsController < ApplicationController
 
   def c3charts
   end
-
 end

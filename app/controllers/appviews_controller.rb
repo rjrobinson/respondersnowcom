@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AppviewsController < ApplicationController
   def contacts
   end
@@ -42,7 +44,7 @@ class AppviewsController < ApplicationController
   end
 
   def outlook_view
-    render :layout => "layout_3"
+    render layout: "layout_3"
   end
 
   def issue_tracker
@@ -53,5 +55,4 @@ class AppviewsController < ApplicationController
 
   def article
   end
-
 end

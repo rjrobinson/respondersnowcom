@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MiscellaneousController < ApplicationController
   def google_maps
   end
@@ -82,5 +84,4 @@ class MiscellaneousController < ApplicationController
 
   def masonry
   end
-
 end

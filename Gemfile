@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.0'
@@ -26,6 +28,18 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 
+gem "chronic"
+
+
+#  Background Jobs
+gem 'sidekiq'
+
+
+# HOSPITAL DATA SYNC
+gem "selenium-webdriver"
+gem "webdrivers"
+gem 'chromedriver-helper'
+
 # Weather
 gem 'gull'
 
@@ -36,9 +50,19 @@ gem 'mandrill-api'
 gem 'aws-sdk-s3', '~> 1'
 
 
+# GraphQL
+gem 'graphql'
+gem 'graphiql-rails'
+gem 'optics-agent'
+gem 'graphql-batch'
+gem 'graphql-preload'
+
 # Google Ads
 gem 'ads-rails'
 
+
+# Merit
+gem 'merit'
 
 #  Analytics
 gem 'ahoy_matey'
@@ -49,8 +73,10 @@ gem 'chartkick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
+# LOCATIONS
 gem 'geocoder'
+gem 'area'
+#
 gem 'coveralls', require: false
 
 gem 'rails-jquery-autocomplete'
@@ -60,6 +86,7 @@ gem 'mapbox-rails'
 gem 'vuejs-rails'
 
 group :development, :test do
+  gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
@@ -74,12 +101,12 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'factory_bot' #1ab39#1ab39
+  gem 'factory_bot' # 1ab39#1ab39
   gem 'launchy'
-  gem 'selenium-webdriver'
   gem 'rspec_junit_formatter', '0.2.2'
   gem 'brakeman', require: false
-
+  gem 'rubocop'
+  gem "rubocop-rails_config"
 end
 
 group :development do
@@ -95,7 +122,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test
 
 
 ruby '2.4.1'

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
+  has_merit
 
   devise :database_authenticatable, :omniauthable, omniauth_providers: [:facebook]
 
@@ -14,9 +17,11 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  has_many :votes
+
   geocoded_by :zipcode
 
-  after_validation :geocode, :if => :zipcode_changed?
+  after_validation :geocode, if: :zipcode_changed?
 
 
   Certification::CODES.each do |code|
@@ -25,6 +30,14 @@ class User < ApplicationRecord
     end
   end
 
+
+  def can_confirm?
+    true
+  end
+
+  def display_id
+    "#{last_name[0]}#{id}NJ".downcase
+  end
 
   def certs_sorted_by_name
     acquired_certifications.joins(:certification).order('certifications.name')
@@ -49,16 +62,16 @@ class User < ApplicationRecord
 
   private
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      name = auth.info.name.split(' ')
-      user.first_name = name[0] # assuming the user model has a name
-      user.last_name = name[1]
-      #
+    def self.from_omniauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+        name = auth.info.name.split(' ')
+        user.first_name = name[0] # assuming the user model has a name
+        user.last_name = name[1]
+        #
 
-      # user.avatar = auth.info.image # assuming the user model has an image
+        # user.avatar = auth.info.image # assuming the user model has an image
+      end
     end
-  end
 end

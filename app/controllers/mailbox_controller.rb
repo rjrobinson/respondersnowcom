@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MailboxController < ApplicationController
   def inbox
   end
@@ -12,15 +14,14 @@ class MailboxController < ApplicationController
   end
 
   def basic_action_email
-    render :layout => false
+    render layout: false
   end
 
   def alert_email
-    render :layout => false
+    render layout: false
   end
 
   def billing_email
-    render :layout => false
+    render layout: false
   end
-
 end

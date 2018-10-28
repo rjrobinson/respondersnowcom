@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 1f2f1a8c0e945fe08abd2e2b9f0fcbc681d96b6e
+  branch: master
+  specs:
+    faker (1.9.1)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,7 +64,13 @@ GEM
       request_store
       safely_block (>= 0.2.1)
       user_agent_parser
+    ambry (1.0.0)
+    archive-zip (0.11.0)
+      io-like (~> 0.3.0)
+    area (0.10.0)
+      fastercsv (~> 1.5)
     arel (9.0.0)
+    ast (2.4.0)
     autoprefixer-rails (9.1.4)
       execjs
     aws-eventstream (1.0.1)
@@ -105,6 +119,10 @@ GEM
     chartkick (3.0.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (2.1.0)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
+    chronic (0.10.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -114,6 +132,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.2)
     coveralls (0.8.22)
       json (>= 1.8, < 3)
       simplecov (~> 0.16.1)
@@ -144,6 +163,7 @@ GEM
       activesupport (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
+    fastercsv (1.5.5)
     ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
@@ -151,6 +171,19 @@ GEM
     geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    google-protobuf (3.6.1)
+    graphiql-rails (1.4.11)
+      railties
+      sprockets-rails
+    graphql (1.8.10)
+    graphql-batch (0.3.10)
+      graphql (>= 0.8, < 2)
+      promise.rb (~> 0.7.2)
+    graphql-preload (2.1.0)
+      activerecord (>= 4.1, < 6)
+      graphql (>= 1.8, < 2)
+      graphql-batch (~> 0.3)
+      promise.rb (~> 0.7)
     groupdate (4.0.1)
       activesupport (>= 4.2)
     guard (2.14.2)
@@ -174,9 +207,12 @@ GEM
       httpclient
       nokogiri (>= 1.6.8)
     hashie (3.5.7)
+    hitimes (1.3.0)
     httpclient (2.8.3)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
+    io-like (0.3.0)
+    jaro_winkler (1.5.1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -206,6 +242,8 @@ GEM
     mapbox-rails (1.6.1.1)
     marcel (0.3.2)
       mimemagic (~> 0.3.2)
+    merit (3.0.2)
+      ambry (~> 1.0.0)
     meta_request (0.6.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (>= 1.1, < 3)
@@ -219,6 +257,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nenv (0.3.0)
+    net-http-persistent (2.9.4)
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
@@ -239,8 +278,19 @@ GEM
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
+    optics-agent (0.5.4)
+      faraday (~> 0.11)
+      google-protobuf (~> 3.2)
+      graphql (~> 1.1)
+      hitimes (~> 1.2)
+      net-http-persistent (~> 2.0)
     orm_adapter (0.5.0)
+    parallel (1.12.1)
+    parser (2.5.1.2)
+      ast (~> 2.4.0)
     pg (0.21.0)
+    powerpack (0.1.2)
+    promise.rb (0.7.4)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -251,6 +301,8 @@ GEM
     rack (2.0.5)
     rack-contrib (2.0.1)
       rack (~> 2.0)
+    rack-protection (2.0.4)
+      rack
     rack-proxy (0.6.4)
       rack
     rack-test (1.1.0)
@@ -281,6 +333,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
@@ -316,6 +369,18 @@ GEM
     rspec_junit_formatter (0.2.2)
       builder (< 4)
       rspec-core (>= 2, < 4, != 2.12.0)
+    rubocop (0.60.0)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.5, != 2.5.1.1)
+      powerpack (~> 0.1)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.4.0)
+    rubocop-rails_config (0.2.5)
+      railties (>= 3.0)
+      rubocop (~> 0.56)
+    ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
     safely_block (0.2.1)
       errbase
@@ -338,6 +403,11 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
+    sidekiq (5.0.4)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.3, >= 3.3.3)
     simple_form (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -370,6 +440,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.18)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.4.0)
     user_agent_parser (2.4.1)
     vuejs-rails (2.5.13)
     warden (1.2.7)
@@ -379,6 +450,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webdrivers (3.4.2)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
+      selenium-webdriver (~> 3.0)
     webpacker (3.5.5)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -395,6 +470,7 @@ PLATFORMS
 DEPENDENCIES
   ads-rails
   ahoy_matey
+  area
   aws-sdk-s3 (~> 1)
   bcrypt (~> 3.1.7)
   better_errors
@@ -406,14 +482,21 @@ DEPENDENCIES
   capybara
   capybara-webkit
   chartkick
+  chromedriver-helper
+  chronic
   coffee-rails (~> 4.2)
   coveralls
   database_cleaner
   devise
   dotenv-rails
   factory_bot
+  faker!
   font-awesome-rails
   geocoder
+  graphiql-rails
+  graphql
+  graphql-batch
+  graphql-preload
   groupdate
   guard
   guard-rails
@@ -426,8 +509,10 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mandrill-api
   mapbox-rails
+  merit
   meta_request
   omniauth-facebook
+  optics-agent
   pg (~> 0.18)
   pry-rails
   puma (~> 3.0)
@@ -436,10 +521,13 @@ DEPENDENCIES
   redis (~> 3.0)
   rspec-rails (~> 3.5)
   rspec_junit_formatter (= 0.2.2)
+  rubocop
+  rubocop-rails_config
   sass-rails (~> 5.0)
   select2-rails
   selenium-webdriver
   shoulda-matchers (~> 3.1)
+  sidekiq
   simple_form
   simplecov
   spring
@@ -450,6 +538,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   vuejs-rails
   web-console
+  webdrivers
   webpacker (~> 3.5)
 
 RUBY VERSION

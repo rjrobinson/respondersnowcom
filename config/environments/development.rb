@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = true
@@ -46,7 +48,7 @@ Rails.application.configure do
 
   config.assets.quiet = true
 
-  config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # MAIL SETTINGS
   config.action_mailer.delivery_method = :smtp
@@ -71,5 +73,5 @@ Rails.application.configure do
       user_name: ENV['MANDRILL_USERNAME'],
       password: ENV['MANDRILL_API_KEY']
   }
-  config.action_mailer.default_url_options = {host: 'respondersnow.com'}
+  config.action_mailer.default_url_options = { host: 'respondersnow.com' }
 end

@@ -1,6 +1,6 @@
 class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
   def change
-    create_table :ahoy_visits do |t|
+    create_table :ahoy_visits, id: :uuid do |t|
       t.string :visit_token
       t.string :visitor_token
 

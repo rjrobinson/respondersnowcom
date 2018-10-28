@@ -1,6 +1,6 @@
+# frozen_string_literal: true
+
 class ExampleMailer < ApplicationMailer
-
-
   def sample_email(user)
     @user = user
     mail(to: @user.email, subject: 'Sample Email')
@@ -18,6 +18,4 @@ class ExampleMailer < ApplicationMailer
 
     send_mail(user.email, subject, body)
   end
-
-
 end

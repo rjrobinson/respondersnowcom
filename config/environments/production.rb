@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
@@ -101,12 +103,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-      :address => "smtp.gmail.com",
-      :port => 587,
-      :user_name => ENV['gmail_username'],
-      :password => ENV['gmail_password'],
-      :authentication => "plain",
-      :enable_starttls_auto => true
+      address: "smtp.gmail.com",
+      port: 587,
+      user_name: ENV['gmail_username'],
+      password: ENV['gmail_password'],
+      authentication: "plain",
+      enable_starttls_auto: true
   }
 
 
@@ -117,5 +119,4 @@ Rails.application.configure do
       user_name: ENV['MANDRILL_USERNAME'],
       password: ENV['MANDRILL_API_KEY']
   }
-
 end

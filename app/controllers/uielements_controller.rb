@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UielementsController < ApplicationController
   def typography
   end
@@ -31,5 +33,4 @@ class UielementsController < ApplicationController
 
   def video
   end
-
 end

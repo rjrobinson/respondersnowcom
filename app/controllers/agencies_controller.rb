@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AgenciesController < ApplicationController
   autocomplete :agency, :name
 
@@ -6,9 +8,8 @@ class AgenciesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @agencies.map(&:name) }
+      format.json { render json: @agencies.map(&:name) }
     end
-
   end
 
   def autocomplete_name
