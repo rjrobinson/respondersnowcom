@@ -16,7 +16,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <!--<li><a class="page-scroll" href="#page-top">Home</a></li>-->
+          <!--          <li><a class="page-scroll" href="#">Sign In / Up</a></li>-->
           <!--<li><a class="page-scroll" href="#features">Features</a></li>-->
           <!--<li><a class="page-scroll" href="#team">Team</a></li>-->
           <!--<li><a class="page-scroll" href="#team">Features</a></li>-->
@@ -28,7 +28,7 @@
 </div>
 <style>Profile Com
 .text-blue {
-  text: '#446CB3';
+  text: '#1C76BB';
 }
 </style>
 <div id="inSlider" class="carousel carousel-fade blur" data-ride="carousel">
@@ -48,9 +48,8 @@
             <span>So, we made them.</span>
           </p>
           <p>
-            <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-success btn-facebook' do %>
-              <i class="fab fa-facebook-f"> </i> Sign in with Facebook
-            <% end %>
+            <%= link_to "Sign In / Sign Up", new_user_session_path, class: 'btn btn-success btn-block' %>
+
           </p>
         </div>
       </div>

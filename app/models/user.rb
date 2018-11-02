@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
-  devise :database_authenticatable, :confirmable, :recoverable, :omniauthable, omniauth_providers: [:facebook]
+  devise :database_authenticatable, :confirmable, :registerable, :trackable, :recoverable, :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   has_merit
 
   typed_store :settings do |s|
     s.string :theme, default: "light"
+    s.boolean :anon, default: true
+    s.boolean :peroidic_updates, default: true
   end
 
   # VALIDATORS
@@ -43,7 +45,6 @@ class User < ApplicationRecord
       acquired_certifications.where(certification_id: Certification.where(course_code: code).pluck(:id))
     end
   end
-
 
   def can_confirm?
     true

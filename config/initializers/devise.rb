@@ -7,6 +7,8 @@ Devise.setup do |config|
 
   require 'devise/orm/active_record'
 
+  config.allow_unconfirmed_access_for = 365.days
+
   config.case_insensitive_keys = [:email]
 
 
