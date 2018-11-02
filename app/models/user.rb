@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
+  devise :database_authenticatable, :confirmable, :recoverable, :omniauthable, omniauth_providers: [:facebook]
+
   has_merit
 
   typed_store :settings do |s|
     s.string :theme, default: "light"
   end
 
-
-  devise :database_authenticatable, :omniauthable, omniauth_providers: [:facebook]
-
+  # VALIDATORS
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  # WORK HISTORIES & PROFILE INFORMATION
   has_many :work_histories, dependent: :destroy
-
   has_many :acquired_certifications
   has_many :certifications, through: :acquired_certifications
-
   has_many :certifications, as: :creator
 
+  #  Mark for removal?
   has_one_attached :avatar
 
   has_many :votes
@@ -30,6 +30,12 @@ class User < ApplicationRecord
   geocoded_by :zipcode
 
   after_validation :geocode, if: :zipcode_changed?
+
+  after_create :send_notification
+
+  def send_notification
+    AdminMailer.new_user(user: self).deliver
+  end
 
 
   Certification::CODES.each do |code|
@@ -55,14 +61,13 @@ class User < ApplicationRecord
     acquired_certifications.joins(:certification).order('certifications.name')
   end
 
-  def full_name
-    name
-  end
-
   def name
     "#{first_name} #{last_name}"
   end
 
+  def full_name
+    name
+  end
 
   def primaries
     acquired_certifications
@@ -81,8 +86,6 @@ class User < ApplicationRecord
       name = auth.info.name.split(' ')
       user.first_name = name[0] # assuming the user model has a name
       user.last_name = name[1]
-      #
-
       # user.avatar = auth.info.image # assuming the user model has an image
     end
   end

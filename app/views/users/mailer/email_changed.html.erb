@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h1>Hi <%= @user.name %></h1>
+    <p>
+      Sample mail sent using smtp.
+    </p>
+    <h2>Email Template</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_2' %>">Home</a>
+      </li>
+      <li>
+        <a>Mailbox</a>
+      </li>
+      <li class="active">
+        <strong>Email Template</strong>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-2">
+
+  </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox ">
+        <div class="ibox-title">
+          <h5>Responsive transactional HTML email templates</h5>
+        </div>
+        <div class="ibox-content">
+          <% if @resource.try(:unconfirmed_email?) %>
+            <p>
+              We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.
+            </p>
+          <% else %>
+            <p>
+              We're contacting you to notify you that your email has been changed to <%= @resource.email %>.
+            </p>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
