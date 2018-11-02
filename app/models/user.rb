@@ -1,7 +1,11 @@
 # frozen_string_literal: true
-
 class User < ApplicationRecord
   has_merit
+
+  typed_store :settings do |s|
+    s.string :theme, default: "light"
+  end
+
 
   devise :database_authenticatable, :omniauthable, omniauth_providers: [:facebook]
 
@@ -68,16 +72,6 @@ class User < ApplicationRecord
     "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"
   end
 
-  include Storext.model
-  # "settings" matches what we named the database column
-  store_attributes :settings do
-    subscribed_to_newsletter Boolean, default: false
-    # time_zone String
-    # theme String, default: 'dark'
-    # send_highlights_browser_push Boolean, default: true
-    # send_mention_email Boolean, default: true
-  end
-
   private
 
   def self.from_omniauth(auth)
@@ -92,4 +86,5 @@ class User < ApplicationRecord
       # user.avatar = auth.info.image # assuming the user model has an image
     end
   end
+
 end

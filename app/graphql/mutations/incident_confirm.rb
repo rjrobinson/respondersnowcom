@@ -10,6 +10,11 @@ class Mutations::IncidentConfirm < Types::BaseMutationType
   def resolve(incident:)
     incident = Incident.find(incident[:id])
     incident.confirm(user: context[:current_user])
+
+    if incident.errors.nil? # add points
+      context[:current_user]&.add_points(2, category: "Voted")
+    end
+
     incident
   end
 

@@ -27,9 +27,9 @@ gem 'simple_form'
 gem 'devise'
 gem 'omniauth-facebook'
 
-
+gem 'activerecord-typedstore'
 gem 'chronic'
-gem 'storext'
+
 
 #  Background Jobs
 gem 'sidekiq'
