@@ -31,6 +31,12 @@ class User < ApplicationRecord
 
   after_validation :geocode, if: :zipcode_changed?
 
+  after_create :send_notification
+
+  def send_notification
+    AdminMailer.new_user(user: self).deliver
+  end
+
 
   Certification::CODES.each do |code|
     define_method :"#{code.gsub(' ', '_').downcase}_certs" do
