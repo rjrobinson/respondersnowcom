@@ -4,6 +4,7 @@ class Incident < ApplicationRecord
   belongs_to :location
   belongs_to :incident_type
   belongs_to :user
+  belongs_to :county
 
   has_many :votes, as: :voteable
   has_many :confirmations, as: :confirmable

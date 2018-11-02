@@ -27,8 +27,8 @@ gem 'simple_form'
 gem 'devise'
 gem 'omniauth-facebook'
 
-
-gem "chronic"
+gem 'activerecord-typedstore'
+gem 'chronic'
 
 
 #  Background Jobs
@@ -36,8 +36,8 @@ gem 'sidekiq'
 
 
 # HOSPITAL DATA SYNC
-gem "selenium-webdriver"
-gem "webdrivers"
+gem 'selenium-webdriver'
+gem 'webdrivers'
 gem 'chromedriver-helper'
 
 # Weather
@@ -106,7 +106,7 @@ group :development, :test do
   gem 'rspec_junit_formatter', '0.2.2'
   gem 'brakeman', require: false
   gem 'rubocop'
-  gem "rubocop-rails_config"
+  gem 'rubocop-rails_config'
 end
 
 group :development do
@@ -127,4 +127,4 @@ gem 'simplecov', require: false, group: :test
 
 ruby '2.4.1'
 
-gem "bugsnag", "~> 6.8"
+gem 'bugsnag', '~> 6.8'
