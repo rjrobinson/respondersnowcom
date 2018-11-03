@@ -5,9 +5,27 @@ require 'simplecov'
 require 'coveralls'
 
 SimpleCov.start 'rails' do
-  add_filter '/controllers/*'
   add_filter 'app/mailers/application_mailer.rb'
   add_filter 'app/jobs/application_job.rb'
+  add_filter 'app/views/*'
+  add_filter 'app/controllers/appviews_controller.rb'
+  add_filter 'app/controllers/commerce_controller.rb'
+  add_filter 'app/controllers/cssanimations_controller.rb'
+  add_filter 'app/controllers/forms_controller.rb'
+  add_filter 'app/controllers/gallery_controller.rb'
+  add_filter 'app/controllers/graphs_controller.rb'
+  add_filter 'app/controllers/gridoptions_controller.rb'
+  add_filter 'app/controllers/landing_controller.rb'
+  add_filter 'app/controllers/layoutsoptions_controller.rb'
+  add_filter 'app/controllers/mailbox_controller.rb'
+  add_filter 'app/controllers/metrics_controller.rb'
+  add_filter 'app/controllers/miscellaneous_controller.rb'
+  add_filter 'app/controllers/pages_controller.rb'
+  add_filter 'app/controllers/tables_controller.rb'
+  add_filter 'app/controllers/uielements_controller.rb'
+  add_filter 'app/controllers/widgets_controller.rb'
+  add_filter 'app/graphql/*t'
+
 end
 
 ENV['RAILS_ENV'] ||= 'test'

@@ -9,11 +9,14 @@ def user_sign_in
   click_on 'Sign in'
 end
 
-def user_log_in
+def user_log_in_with_omniauth
   background do
     set_omniauth
+
     visit root_path
-    click_on 'Sign in with Facebook'
-    # click_link_or_button 'Sign in with Facebook'
+
+    click_on 'Sign In / Sign Up'
+
+    click_link_or_button 'Sign in with Facebook'
   end
 end
