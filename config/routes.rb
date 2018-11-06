@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get :certifications
   end
 
+  resource :subscription, only: [:new, :destroy, :create]
 
   resources :job_board, only: [:index]
 

@@ -43,6 +43,9 @@ gem 'chromedriver-helper'
 # Weather
 gem 'gull'
 
+# Stripe Payment Processing
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Email
 gem 'mandrill-api'
 

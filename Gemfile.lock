@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: d62f12f277d76f31f4cbe28825ee1771c4f60cf4
+  specs:
+    stripe (3.29.0)
+      faraday (~> 0.10)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: 1f2f1a8c0e945fe08abd2e2b9f0fcbc681d96b6e
   branch: master
@@ -535,6 +542,7 @@ DEPENDENCIES
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe!
   terminal-notifier
   terminal-notifier-guard
   tzinfo-data
