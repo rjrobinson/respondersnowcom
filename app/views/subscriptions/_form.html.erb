@@ -1,0 +1,17 @@
+<div>
+  <h3 class="font-bold">Click here to Subscribe</h3>
+  <%= form_tag subscription_path %>
+  <form action="<%= subscription_path %>" method="POST">
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
+      data-amount="499"
+      data-email="<%= current_user.email %>"
+      data-name="RespondersNOW.com"
+      data-description="Subscribe Now"
+      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+      data-locale="auto"
+      data-zip-code="true">
+    </script>
+  </form>
+</div>

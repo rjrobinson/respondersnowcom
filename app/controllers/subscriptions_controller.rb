@@ -4,8 +4,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    # look up
-    binding.pry
     customer = if current_user.stripe_id?
                  Stripe::Customer.retrieve(current_user.stripe_id)
                else

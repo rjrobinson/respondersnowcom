@@ -55,187 +55,108 @@
         </div>
       </div>
     </div>
-    <!--    Professional Certifications   /-->
+
     <div class="col-md-8">
-      <div class="ibox float-e-margins">
+      <div class="ibox">
         <div class="ibox-title">
-          <h5><i class="fas fa-info-circle"></i> Primary Professional Certifications</h5>
-          <!--          <button-->
-          <!--            type="button"-->
-          <!--            data-toggle="modal"-->
-          <!--            data-target="#primary-certification"-->
-          <!--            class="pull-right">-->
-          <!--            <i class="fa fa-plus"></i> Add-->
-          <!--          </button>-->
-          <div class="col-lg-4">
-            <div id="primary-certification" class="modal fade" role="dialog">
-
-              <%= simple_form_for :new_cert,
-                                  url: acquired_certifications_path,
-                                  method: :post,
-                                  defaults: {inner_html: 'form-control'} do |f| %>
-                <div class="modal-dialog">
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Add New Professional Certification / License</h4>
-                    </div>
-
-                    <div class="modal-body">
-                      <%= f.input :certification, collection: Certification.primaries %>
-                      <%= f.input :state, collection: us_states %>
-                      <%= f.input :number %>
-                      <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file' %>
-                    </div>
-                    <div class="modal-footer">
-                      <%= f.submit "Save", class: 'btn btn-success' %>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-
-                  </div>
-              <% end %>
-              </div>
-            </div>
-          </div> <!-- END OF COL/-->
+          <h5>Subscription</h5>
+        </div>
+        <div class="ibox-content">
+          <% if current_user.stripe_id %>
+            <h3>Currently Subscribed. Automatically renews at $4.99 / month</h3>
+            <button class="btn btn-danger">
+              <i class=" fa fa-times-circle"></i> Cancel Subscription
+            </button>
+          <% else %>
+            <%= render partial: "subscriptions/form" %>
+          <% end %>
         </div>
       </div>
-      <div class="ibox-content">
-        <div>
-          <div class="feed-activity-list">
-            <!--              //-->
-            <% current_user.acquired_certifications.each do |cert| %>
+      <!--    Professional Certifications   /-->
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5><i class="fas fa-info-circle"></i> Primary Professional Certifications</h5>
+        </div>
+
+        <div class="ibox-content">
+          <div>
+            <div class="feed-activity-list">
+              <!--              //-->
+              <% current_user.acquired_certifications.each do |cert| %>
+                <div class="feed-element">
+                  <a href="#" class="pull-left">
+                    <img alt="image" class='img-circle' src="<%= image_path(cert.patch_image_name) %>">
+                    <strong>NR <%= cert.abbvr %> # 12345 </strong>
+                    <i class="far fa-id-card"></i>
+                  </a>
+                  <div class="media-body ">
+
+                  </div>
+                </div>
+              <% end %>
               <div class="feed-element">
                 <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path(cert.patch_image_name) %>">
-                  <strong>NR <%= cert.abbvr %> # 12345 </strong>
-                  <i class="far fa-id-card"></i>
+                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-emt.png') %>">
+                  <strong>NJ EMT # 586908 </strong>
+                </a>
+                <div class="media-body "></div>
+              </div>
+              <div class="feed-element">
+                <a href="#" class="pull-left">
+                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-micu.png') %>">
+                  <strong>NJ MICP # 101012 </strong>
+                </a>
+                <div class="media-body ">
+                </div>
+              </div>
+
+              <div class="feed-element">
+                <a href="#" class="pull-left">
+                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-ff.jpg') %>">
+                  <strong>NJ Fire Fighter # 54321 </strong>
                 </a>
                 <div class="media-body ">
 
                 </div>
               </div>
-            <% end %>
-            <div class="feed-element">
-              <a href="#" class="pull-left">
-                <img alt="image" class='img-circle' src="<%= image_path('patches/nj-emt.png') %>">
-                <strong>NJ EMT # 586908 </strong>
-              </a>
-              <div class="media-body "></div>
+              <!-- END OF CERTS //-->
             </div>
-            <div class="feed-element">
-              <a href="#" class="pull-left">
-                <img alt="image" class='img-circle' src="<%= image_path('patches/nj-micu.png') %>">
-                <strong>NJ MICP # 101012 </strong>
-              </a>
-              <div class="media-body ">
-              </div>
-            </div>
-
-            <div class="feed-element">
-              <a href="#" class="pull-left">
-                <img alt="image" class='img-circle' src="<%= image_path('patches/nj-ff.jpg') %>">
-                <strong>NJ Fire Fighter # 54321 </strong>
-              </a>
-              <div class="media-body ">
-
-              </div>
-            </div>
-            <!-- END OF CERTS //-->
           </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div id="primary-certification" class="modal fade" role="dialog">
+
+            <%= simple_form_for :new_cert,
+                                url: acquired_certifications_path,
+                                method: :post,
+                                defaults: {inner_html: 'form-control'} do |f| %>
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New Professional Certification / License</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <%= f.input :certification, collection: Certification.primaries %>
+                    <%= f.input :state, collection: us_states %>
+                    <%= f.input :number %>
+                    <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file' %>
+                  </div>
+                  <div class="modal-footer">
+                    <%= f.submit "Save", class: 'btn btn-success' %>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+
+                </div>
+            <% end %>
+
+            </div>
+          </div> <!-- END OF COL/-->
         </div>
       </div>
     </div>
-    <!--    -->
   </div>
 </div>
-
-<% content_for :javascript do %>
-  <script type="text/javascript">//<![CDATA[
-  $(function () {
-      var clientKey = 'js-or5260CuimzMSvL9uJwRcTOO4rfCbywW4HhEWe2z59GgZr6iF6RjFJux57zZyTnX';
-      // var clientKey = "thmAfmVjv2OcZRh8Cf62K7wxUp42bE6fN8F6D2YQ9TBudxInnimucRPaCYia9zd2";
-
-      var cache = {};
-      var container = $("#zipcode-display");
-      var errorDiv = container.find("div.text-error");
-
-      /** Handle successful response */
-      function handleResp(data) {
-          // Check for error
-          if (data.error_msg)
-              errorDiv.text(data.error_msg);
-          else if ("city" in data) {
-              // Set city and state
-              container.find("#city-state").text(data.city + ',' + data.state);
-              // container.find("input[name='state']").val(data.state);
-          }
-      }
-
-      // Set up event handlers
-      $('#responder_zipcode').on("keyup change", function () {
-          // Get zip code
-          var zipcode = $(this).val().substring(0, 5);
-          if (zipcode.length == 5 && /^[0-9]+$/.test(zipcode)) {
-              // Clear error
-              errorDiv.empty();
-
-              // Check cache
-              if (zipcode in cache) {
-                  handleResp(cache[zipcode]);
-              }
-              else {
-                  // Build url
-                  var url = "https://www.zipcodeapi.com/rest/" + clientKey + "/info.json/" + zipcode + "/radians";
-
-                  // Make AJAX request
-                  $.ajax({
-                      "url": url,
-                      "dataType": "json"
-                  }).done(function (data) {
-                      handleResp(data);
-
-                      // Store in cache
-                      cache[zipcode] = data;
-                  }).fail(function (data) {
-                      if (data.responseText && (json = $.parseJSON(data.responseText))) {
-                          // Store in cache
-                          cache[zipcode] = json;
-
-                          // Check for error
-                          if (json.error_msg)
-                              errorDiv.text(json.error_msg);
-                      }
-                      else
-                          errorDiv.text('Request failed.');
-                  });
-              }
-          }
-      }).trigger("change");
-  });
-  </script>
-  <script type="text/javascript">
-
-
-      $(function () {
-
-          $("span.pie").peity("pie", {
-              fill: ['#1C76BB', '#d7d7d7', '#ffffff']
-          })
-
-          $(".line").peity("line", {
-              fill: '#1C76BB',
-              stroke: '#169c81',
-          })
-
-          $(".bar").peity("bar", {
-              fill: ["#1C76BB", "#d7d7d7"]
-          })
-
-
-      });
-
-  </script>
-
-<% end %>
-
