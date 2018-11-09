@@ -25,32 +25,41 @@
           <h5>Profile Detail</h5>
         </div>
         <div>
-          <div class="ibox-content no-padding border-left-right">
+          <div class="ibox-content">
+            <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
+              <%= f.error_notification %>
 
-            <% if current_user.avatar.attached? %>
-              <img alt="image"
-                   class="img-responsive"
-                   src="<%= image_path(url_for(current_user.avatar)) %>">
-            <% else %>
-              <img alt="image" class="img-responsive" src="<%= image_path('defaults/default-profile-2.png') %>">
-            <% end %>
-            <button class="btn btn-block">
-              <i class="fas fa-camera"></i> Update Photo
-            </button>
-          </div>
-          <div class="ibox-content profile-content">
-            <h4><strong><%= current_user.full_name %></strong></h4>
-            <div class="input-group">
-              <%= simple_form_for current_user, defaults: {input_html: {class: 'form-control', label: false}} do |f| %>
+              <div class="form-inputs">
                 <%= f.input :first_name, required: false %>
                 <%= f.input :last_name, required: false %>
                 <%= f.input :zipcode, id: 'zipcode-input responder_zipcode',
                             input_html: {pattern: '[0-9]{4}'},
                             placeholder: current_user.zipcode || '' %>
-                <br>
-                <%= f.submit "Update", class: 'btn btn-block btn-primary' %>
-              <% end %>
-            </div>
+              </div>
+              <div class="form-inputs">
+                <%= f.input :email, required: true, autofocus: true %>
+
+                <% if current_user.pending_reconfirmation? %>
+                  <p>Currently waiting confirmation for: <%= current_user.unconfirmed_email %></p>
+                <% end %>
+                <hr>
+                <p>Change your Password</p>
+                <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+
+                <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+                <%= f.input :password_confirmation, required: false %>
+              </div>
+
+              <div class="form-actions">
+                <%= f.button :submit, "Update", class: "btn btn-info" %>
+              </div>
+            <% end %>
+
+            <h3>Cancel my account</h3>
+
+            <p>Unhappy? <%= link_to "Cancel my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete %></p>
+
+            <%= link_to "Back", :back %>
           </div>
         </div>
       </div>
@@ -62,7 +71,7 @@
           <h5>Subscription</h5>
         </div>
         <div class="ibox-content">
-          <% if current_user.stripe_id %>
+          <% if !current_user.stripe_id %>
             <h3>Currently Subscribed. Automatically renews at $4.99 / month</h3>
             <button class="btn btn-danger">
               <i class=" fa fa-times-circle"></i> Cancel Subscription
@@ -72,91 +81,7 @@
           <% end %>
         </div>
       </div>
-      <!--    Professional Certifications   /-->
-      <div class="ibox">
-        <div class="ibox-title">
-          <h5><i class="fas fa-info-circle"></i> Primary Professional Certifications</h5>
-        </div>
 
-        <div class="ibox-content">
-          <div>
-            <div class="feed-activity-list">
-              <!--              //-->
-              <% current_user.acquired_certifications.each do |cert| %>
-                <div class="feed-element">
-                  <a href="#" class="pull-left">
-                    <img alt="image" class='img-circle' src="<%= image_path(cert.patch_image_name) %>">
-                    <strong>NR <%= cert.abbvr %> # 12345 </strong>
-                    <i class="far fa-id-card"></i>
-                  </a>
-                  <div class="media-body ">
-
-                  </div>
-                </div>
-              <% end %>
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-emt.png') %>">
-                  <strong>NJ EMT # 586908 </strong>
-                </a>
-                <div class="media-body "></div>
-              </div>
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-micu.png') %>">
-                  <strong>NJ MICP # 101012 </strong>
-                </a>
-                <div class="media-body ">
-                </div>
-              </div>
-
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class='img-circle' src="<%= image_path('patches/nj-ff.jpg') %>">
-                  <strong>NJ Fire Fighter # 54321 </strong>
-                </a>
-                <div class="media-body ">
-
-                </div>
-              </div>
-              <!-- END OF CERTS //-->
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div id="primary-certification" class="modal fade" role="dialog">
-
-            <%= simple_form_for :new_cert,
-                                url: acquired_certifications_path,
-                                method: :post,
-                                defaults: {inner_html: 'form-control'} do |f| %>
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add New Professional Certification / License</h4>
-                  </div>
-
-                  <div class="modal-body">
-                    <%= f.input :certification, collection: Certification.primaries %>
-                    <%= f.input :state, collection: us_states %>
-                    <%= f.input :number %>
-                    <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file' %>
-                  </div>
-                  <div class="modal-footer">
-                    <%= f.submit "Save", class: 'btn btn-success' %>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-
-                </div>
-            <% end %>
-
-            </div>
-          </div> <!-- END OF COL/-->
-        </div>
-      </div>
     </div>
   </div>
 </div>
