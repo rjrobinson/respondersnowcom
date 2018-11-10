@@ -18,7 +18,6 @@
 </div>
 <div class="wrapper wrapper-content">
   <div class="row animated fadeInRight">
-    <!--    USER PROFILE-->
     <div class="col-md-4">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
@@ -42,36 +41,60 @@
                 <% if current_user.pending_reconfirmation? %>
                   <p>Currently waiting confirmation for: <%= current_user.unconfirmed_email %></p>
                 <% end %>
-                <hr>
-                <p>Change your Password</p>
-                <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+                <div class="form-actions">
+                  <%= f.button :submit, "Update", class: "btn btn-info" %>
+                </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Change Password</h5>
+        </div>
+        <div class="ibox-content">
+          <% if current_user.provider %>
+            <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
+          <% else %>
+            <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
+              <%= f.error_notification %>
 
-                <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-                <%= f.input :password_confirmation, required: false %>
-              </div>
+              <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+
+              <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+              <%= f.input :password_confirmation, required: false %>
+
 
               <div class="form-actions">
                 <%= f.button :submit, "Update", class: "btn btn-info" %>
               </div>
             <% end %>
-
-            <h3>Cancel my account</h3>
-
-            <p>Unhappy? <%= link_to "Cancel my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete %></p>
-
-            <%= link_to "Back", :back %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
-
-    <div class="col-md-8">
+    <div class="col-md-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5> Delete my account</h5>
+        </div>
+        <div class="ibox-content">
+          <p>Unhappy? <%= link_to "Cancel my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row animated fadeInRight">
+    <div class="col-md-12">
       <div class="ibox">
         <div class="ibox-title">
           <h5>Subscription</h5>
         </div>
         <div class="ibox-content">
-          <% if !current_user.stripe_id %>
+          <% if current_user.stripe_id %>
             <h3>Currently Subscribed. Automatically renews at $4.99 / month</h3>
             <button class="btn btn-danger">
               <i class=" fa fa-times-circle"></i> Cancel Subscription
@@ -81,7 +104,6 @@
           <% end %>
         </div>
       </div>
-
     </div>
   </div>
 </div>

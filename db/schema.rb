@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2018_11_03_205424) do
   enable_extension "uuid-ossp"
 
   create_table "acquired_certifications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "certification_id"
+    t.uuid "user_id"
+    t.uuid "certification_id"
     t.string "number"
     t.date "acquired_on"
     t.string "state"
