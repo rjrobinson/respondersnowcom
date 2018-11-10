@@ -53,6 +53,18 @@
     <div class="col-md-4">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
+          <h5>User Settings</h5>
+        </div>
+        <div class="ibox-content">
+          <% current_user.settings.each do |k, v| %>
+            <h3><%= k.to_s.humanize %>: <%= v.to_s.humanize %></h3>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
           <h5>Change Password</h5>
         </div>
         <div class="ibox-content">
@@ -75,8 +87,6 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <div class="col-md-4">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5> Delete my account</h5>
