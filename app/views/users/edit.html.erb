@@ -25,7 +25,7 @@
         </div>
         <div>
           <div class="ibox-content">
-            <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
+            <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: {method: :patch}) do |f| %>
               <%= f.error_notification %>
 
               <div class="form-inputs">
