@@ -68,7 +68,7 @@
           <h5>Change Password</h5>
         </div>
         <div class="ibox-content">
-          <% if current_user.provider %>
+          <% if !current_user.provider %>
             <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
           <% else %>
             <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
@@ -81,7 +81,7 @@
 
 
               <div class="form-actions">
-                <%= f.button :submit, "Update", class: "btn btn-info" %>
+                <%= f.button :submit, "Update Password", class: "btn btn-info" %>
               </div>
             <% end %>
           <% end %>
@@ -89,17 +89,21 @@
       </div>
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5> Delete my account</h5>
+          <h5>Delete my account</h5>
         </div>
         <div class="ibox-content">
-          <p>Unhappy? <%= link_to "Cancel my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete %></p>
+          <p>
+            <%= link_to "Delete my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %>
+            <br>
+            <small> this cannot be undone. :-)</small>
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <div class="row animated fadeInRight">
-    <div class="col-md-12">
-      <div class="ibox">
+  <div class="row animated fadeInLeft">
+    <div class="col-md-4">
+      <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5>Subscription</h5>
         </div>
@@ -115,5 +119,7 @@
         </div>
       </div>
     </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
   </div>
 </div>
