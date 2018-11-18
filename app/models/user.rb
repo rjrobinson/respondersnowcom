@@ -78,7 +78,50 @@ class User < ApplicationRecord
     "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"
   end
 
+  def subscription
+    Stripe::Customer.retrieve(stripe_id)
+  end
+  def create_subscription(plan:)
+    Stripe::Subscription.create(
+        customer: stripe_id,
+        items: [
+            {
+                plan: plan,
+            },
+        ]
+    )
+  end
+
+  def update_stripe_data(stripe_data:)
+    assign_attributes(
+        stripe_id: stripe_data[:stripe_id],
+        stripe_token: stripe_data[:stripe_token]
+    )
+
+    if card_last4?
+      save if changed?
+    else
+      save
+      update_card_info
+    end
+  end
+
+
   private
+
+  def update_card_info
+    customer = Stripe::Customer.retrieve(stripe_id)
+    card = customer.sources.create(source: "tok_amex")
+    # todo ^^ CHANGE tok_amex to actual token in Prod ^^
+    #
+    update_attributes(card_last4: card.last4,
+                      card_exp_month: card.exp_month,
+                      card_exp_year: card.exp_year,
+                      card_brand: card.brand,
+
+
+    )
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

@@ -68,7 +68,7 @@
           <h5>Change Password</h5>
         </div>
         <div class="ibox-content">
-          <% if !current_user.provider %>
+          <% if current_user.provider %>
             <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
           <% else %>
             <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
@@ -95,7 +95,7 @@
           <p>
             <%= link_to "Delete my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %>
             <br>
-            <small> this cannot be undone. :-)</small>
+            <small> this cannot be undone.</small>
           </p>
         </div>
       </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="ibox-content">
           <% if current_user.stripe_id %>
-            <h3>Currently Subscribed. Automatically renews at $4.99 / month</h3>
+            <h3>Currently Subscribed. Automatically renews at $5 / month</h3>
             <button class="btn btn-danger">
               <i class=" fa fa-times-circle"></i> Cancel Subscription
             </button>
