@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
-    <h2>User Profile</h2>
+    <h2>User Settings</h2>
     <ol class="breadcrumb">
       <li>
         <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
@@ -9,7 +9,7 @@
         <a>App views</a>
       </li>
       <li class="active">
-        <strong>Profile</strong>
+        <strong>Settings</strong>
       </li>
     </ol>
   </div>
@@ -17,109 +17,131 @@
   </div>
 </div>
 <div class="wrapper wrapper-content">
-  <div class="row animated fadeInRight">
-    <div class="col-md-4">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>Profile Detail</h5>
-        </div>
-        <div>
-          <div class="ibox-content">
-            <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: {method: :patch}) do |f| %>
-              <%= f.error_notification %>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="tabs-container">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#tab-1">
+            <i class="far fa-user"></i> Profile</a>
+          </li>
+          <li class=""><a data-toggle="tab" href="#tab-3">
+            <i class="fas fa-cog"></i> Feed Settings</a>
+          </li>
+          <li class=""><a data-toggle="tab" href="#tab-4">
+            <i class="far fa-bell"></i> Notifications</a>
+          </li>
+          <li class=""><a data-toggle="tab" href="#tab-2">
+            <i class="fab fa-superpowers"></i> Premium Subscription</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab-1" class="tab-pane active">
+            <div class="panel-body">
+              <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: {method: :patch}) do |f| %>
+                <%= f.error_notification %>
 
-              <div class="form-inputs">
-                <%= f.input :first_name, required: false %>
-                <%= f.input :last_name, required: false %>
-                <%= f.input :zipcode, id: 'zipcode-input responder_zipcode',
-                            input_html: {pattern: '[0-9]{4}'},
-                            placeholder: current_user.zipcode || '' %>
-              </div>
-              <div class="form-inputs">
-                <%= f.input :email, required: true, autofocus: true %>
-
-                <% if current_user.pending_reconfirmation? %>
-                  <p>Currently waiting confirmation for: <%= current_user.unconfirmed_email %></p>
-                <% end %>
-                <div class="form-actions">
-                  <%= f.button :submit, "Update", class: "btn btn-info" %>
+                <div class="form-inputs">
+                  <%= f.input :first_name, required: false %>
+                  <%= f.input :last_name, required: false %>
+                  <%= f.input :zipcode, id: 'zipcode-input responder_zipcode',
+                              input_html: {pattern: '[0-9]{4}'},
+                              placeholder: current_user.zipcode || '' %>
                 </div>
-            <% end %>
+                <div class="form-inputs">
+                  <%= f.input :email, required: true, autofocus: true %>
+
+                  <% if current_user.pending_reconfirmation? %>
+                    <p>Currently waiting confirmation for: <%= current_user.unconfirmed_email %></p>
+                  <% end %>
+                  <div class="form-actions">
+                    <%= f.button :submit, "Update", class: "btn btn-info" %>
+                  </div>
+              <% end %>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <% if current_user.provider %>
+                <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
+              <% else %>
+                <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
+                  <%= f.error_notification %>
+
+                  <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+
+                  <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+                  <%= f.input :password_confirmation, required: false %>
+
+
+                  <div class="form-actions">
+                    <%= f.button :submit, "Update Password", class: "btn btn-info" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+          <div id="tab-2" class="tab-pane">
+            <div class="panel-body">
+              <% if current_user.stripe_id %>
+                <h3>Currently Subscribed</h3>
+                <p>Automatically renews at $5 / month</p>
+
+                <h3>Responders NOW Premium is a subscription membership that upgrades your account with extra
+                  features:</h3>
+                <ul>
+                  <li>Experience RespondersNOW ads-free</li>
+                  <li>Monthly Coins</li>
+                  <li>Access the members-only Lounge</li>
+                </ul>
+                <button class="text-center btn btn-danger btn-outline ">
+                  <div>
+                    <h4>Responders NOW Premium</h4>
+                    <p>Your Premium subscription will automatically renew at the beginning of your next billing cycle.
+                      <br>
+                      If your subscription ends, you will have Premium until March 15, 2019.
+                      premium features
+                    </p>
+                  </div>
+                  <div>
+                    <i class=" fa fa-times-circle"></i> <br>
+                    <h4>Cancel</h4>
+                  </div>
+                </button>
+              <% else %>
+                <%= render partial: "subscriptions/form" %>
+              <% end %>
+            </div>
+          </div>
+          <div id="tab-3" class="tab-pane">
+            <div class="panel-body">
+              <strong>Donec quam felis</strong>
+
+              <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks,
+                and grow familiar with the countless indescribable forms of the insects
+                and flies, then I feel the presence of the Almighty, who formed us in his own image, and the
+                breath </p>
+
+              <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls
+                like
+                mine. I am so happy, my dear friend, so absorbed in the exquisite
+                sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single
+                stroke at the present moment; and yet.</p>
+            </div>
+          </div>
+          <div id="tab-4" class="tab-pane">
+            <div class="panel-body">
+              <strong>Delete Account</strong>
+              <p>
+                <%= link_to "Delete my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %>
+                <br>
+                <small> this cannot be undone.</small>
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>User Settings</h5>
-        </div>
-        <div class="ibox-content">
-          <% current_user.settings.each do |k, v| %>
-            <h3><%= k.to_s.humanize %>: <%= v.to_s.humanize %></h3>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>Change Password</h5>
-        </div>
-        <div class="ibox-content">
-          <% if current_user.provider %>
-            <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
-          <% else %>
-            <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
-              <%= f.error_notification %>
-
-              <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-
-              <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-              <%= f.input :password_confirmation, required: false %>
-
-
-              <div class="form-actions">
-                <%= f.button :submit, "Update Password", class: "btn btn-info" %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>Delete my account</h5>
-        </div>
-        <div class="ibox-content">
-          <p>
-            <%= link_to "Delete my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %>
-            <br>
-            <small> this cannot be undone.</small>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row animated fadeInLeft">
-    <div class="col-md-4">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>Subscription</h5>
-        </div>
-        <div class="ibox-content">
-          <% if current_user.stripe_id %>
-            <h3>Currently Subscribed. Automatically renews at $5 / month</h3>
-            <button class="btn btn-danger">
-              <i class=" fa fa-times-circle"></i> Cancel Subscription
-            </button>
-          <% else %>
-            <%= render partial: "subscriptions/form" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
+    <div class="col-lg-4"></div>
   </div>
 </div>
