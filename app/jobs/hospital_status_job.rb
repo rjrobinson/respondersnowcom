@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "selenium-webdriver"
 require "chromedriver-helper"
 
@@ -37,11 +39,11 @@ class HospitalStatusJob < ApplicationJob
 
       if h&.last_status_expired?
         h.hospital_statuses.create(
-            county: data["county"],
-            status: data["status"],
-            start_time: Chronic.parse(data["startTime"]),
-            expire_time: Chronic.parse(data["expire_time"]),
-            reason: data["reason"]
+          county: data["county"],
+          status: data["status"],
+          start_time: Chronic.parse(data["startTime"]),
+          expire_time: Chronic.parse(data["expire_time"]),
+          reason: data["reason"]
         )
       end
 
@@ -50,11 +52,11 @@ class HospitalStatusJob < ApplicationJob
       # and this would be the first iteration, then just make it the first time
       if h.hospital_statuses.empty?
         h.hospital_statuses.create(
-            county: data["county"],
-            status: data["status"],
-            start_time: Chronic.parse(data["startTime"]),
-            expire_time: Chronic.parse(data["expire_time"]),
-            reason: data["reason"]
+          county: data["county"],
+          status: data["status"],
+          start_time: Chronic.parse(data["startTime"]),
+          expire_time: Chronic.parse(data["expire_time"]),
+          reason: data["reason"]
         )
 
       end
@@ -65,4 +67,3 @@ class HospitalStatusJob < ApplicationJob
     driver.quit
   end
 end
-

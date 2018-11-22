@@ -1,5 +1,6 @@
-class Hospital < ApplicationRecord
+# frozen_string_literal: true
 
+class Hospital < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   belongs_to :location
@@ -24,5 +25,4 @@ class Hospital < ApplicationRecord
   def status
     last_status_expired? ? NullHospitalStatus.new : hospital_statuses&.last
   end
-
 end

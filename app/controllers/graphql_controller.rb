@@ -22,56 +22,56 @@ class GraphqlController < ApplicationController
 
   private
 
-  def get_document(query_string)
-    cache_key = Base64.encode64(query_string)
-    document = Rails.cache.fetch(cache_key)
+    def get_document(query_string)
+      cache_key = Base64.encode64(query_string)
+      document = Rails.cache.fetch(cache_key)
 
-    if document
-      logger.info "###############################"
-      logger.info "Got cached document #{document}"
-      logger.info "###############################"
-    else
-      logger.info "####################################"
-      logger.info "Parsing query string #{query_string}"
-      logger.info "Cached at key #{cache_key}"
-      logger.info "####################################"
-
-      document = GraphQL.parse(query_string)
-      Rails.cache.write(cache_key, document)
-    end
-
-    document
-  end
-
-  # Handle form data, JSON body, or a blank value
-  def ensure_hash(ambiguous_param)
-    case ambiguous_param
-    when String
-      if ambiguous_param.present?
-        ensure_hash(JSON.parse(ambiguous_param))
+      if document
+        logger.info "###############################"
+        logger.info "Got cached document #{document}"
+        logger.info "###############################"
       else
-        {}
+        logger.info "####################################"
+        logger.info "Parsing query string #{query_string}"
+        logger.info "Cached at key #{cache_key}"
+        logger.info "####################################"
+
+        document = GraphQL.parse(query_string)
+        Rails.cache.write(cache_key, document)
       end
-    when Hash, ActionController::Parameters
-      ambiguous_param
-    when nil
-      {}
-    else
-      raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
+
+      document
     end
-  end
 
-  def handle_error_in_development(e)
-    logger.error e.message
-    logger.error e.backtrace.join("\n")
+    # Handle form data, JSON body, or a blank value
+    def ensure_hash(ambiguous_param)
+      case ambiguous_param
+      when String
+        if ambiguous_param.present?
+          ensure_hash(JSON.parse(ambiguous_param))
+        else
+          {}
+        end
+      when Hash, ActionController::Parameters
+        ambiguous_param
+      when nil
+        {}
+      else
+        raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
+      end
+    end
 
-    render json: {error: {message: e.message, backtrace: e.backtrace}, data: {}}, status: 500
-  end
+    def handle_error_in_development(e)
+      logger.error e.message
+      logger.error e.backtrace.join("\n")
+
+      render json: { error: { message: e.message, backtrace: e.backtrace }, data: {} }, status: 500
+    end
 
 
   private
 
-  def set_test_user
-    @current_user ||= User.first
-  end
+    def set_test_user
+      @current_user ||= User.first
+    end
 end

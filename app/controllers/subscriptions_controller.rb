@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscriptionsController < ApplicationController
   PLANS = {
       monthly: "plan_DuKIPvnVwvCihp",
@@ -10,10 +12,10 @@ class SubscriptionsController < ApplicationController
 
   def create
     customer = if current_user.stripe_id?
-                 Stripe::Customer.retrieve(current_user.stripe_id)
-               else
-                 Stripe::Customer.create(email: current_user.email)
-               end
+      Stripe::Customer.retrieve(current_user.stripe_id)
+    else
+      Stripe::Customer.create(email: current_user.email)
+    end
 
     current_user.update_stripe_data(stripe_data: {
         stripe_id: customer["id"],
@@ -22,10 +24,13 @@ class SubscriptionsController < ApplicationController
 
     current_user.create_subscription(plan: PLANS[:monthly])
 
-    redirect_back(fallback_location: edit_user_path(current_user), flash: {notice: 'Welcome!'})
+    redirect_back(fallback_location: edit_user_path(current_user), flash: { notice: 'Welcome!' })
   end
 
 
   def destroy
+    current_user.
+    sub = Stripe::Subscription.retrieve("sub_8epEF0PuRhmltU")
+    sub.delete
   end
 end

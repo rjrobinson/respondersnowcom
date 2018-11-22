@@ -13,8 +13,6 @@ class Types::FlagType < Types::BaseObject
   field :errors, [Types::ActiveRecordErrorType], null: true
 
   def errors
-    object.errors.map {|e| {field_name: e, error: object.errors[e]}}
+    object.errors.map { |e| { field_name: e, error: object.errors[e] } }
   end
-
-
 end

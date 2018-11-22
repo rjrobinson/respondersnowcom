@@ -44,7 +44,7 @@ gem 'chromedriver-helper'
 gem 'gull'
 
 # Stripe Payment Processing
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 
 # Email
 gem 'mandrill-api'

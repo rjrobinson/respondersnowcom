@@ -21,21 +21,24 @@
     <div class="col-lg-8">
       <div class="tabs-container">
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#tab-1">
+          <li class="active"><a data-toggle="tab" href="#profile">
             <i class="far fa-user"></i> Profile</a>
           </li>
-          <li class=""><a data-toggle="tab" href="#tab-3">
+          <li class=""><a data-toggle="tab" href="#feed-settings">
             <i class="fas fa-cog"></i> Feed Settings</a>
           </li>
           <li class=""><a data-toggle="tab" href="#tab-4">
             <i class="far fa-bell"></i> Notifications</a>
           </li>
-          <li class=""><a data-toggle="tab" href="#tab-2">
+          <li class=""><a data-toggle="tab" href="#subscription">
             <i class="fab fa-superpowers"></i> Premium Subscription</a>
+          </li>
+          <li class=""><a data-toggle="tab" href="#delete-account">
+            <i class="fab fa-trash"></i> Delete Account</a>
           </li>
         </ul>
         <div class="tab-content">
-          <div id="tab-1" class="tab-pane active">
+          <div id="profile" class="tab-pane active">
             <div class="panel-body">
               <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: {method: :patch}) do |f| %>
                 <%= f.error_notification %>
@@ -80,40 +83,7 @@
               <% end %>
             </div>
           </div>
-
-          <div id="tab-2" class="tab-pane">
-            <div class="panel-body">
-              <% if current_user.stripe_id %>
-                <h3>Currently Subscribed</h3>
-                <p>Automatically renews at $5 / month</p>
-
-                <h3>Responders NOW Premium is a subscription membership that upgrades your account with extra
-                  features:</h3>
-                <ul>
-                  <li>Experience RespondersNOW ads-free</li>
-                  <li>Monthly Coins</li>
-                  <li>Access the members-only Lounge</li>
-                </ul>
-                <button class="text-center btn btn-danger btn-outline ">
-                  <div>
-                    <h4>Responders NOW Premium</h4>
-                    <p>Your Premium subscription will automatically renew at the beginning of your next billing cycle.
-                      <br>
-                      If your subscription ends, you will have Premium until March 15, 2019.
-                      premium features
-                    </p>
-                  </div>
-                  <div>
-                    <i class=" fa fa-times-circle"></i> <br>
-                    <h4>Cancel</h4>
-                  </div>
-                </button>
-              <% else %>
-                <%= render partial: "subscriptions/form" %>
-              <% end %>
-            </div>
-          </div>
-          <div id="tab-3" class="tab-pane">
+          <div id="feed-settings" class="tab-pane">
             <div class="panel-body">
               <strong>Donec quam felis</strong>
 
@@ -129,7 +99,43 @@
                 stroke at the present moment; and yet.</p>
             </div>
           </div>
-          <div id="tab-4" class="tab-pane">
+          <div id="subscription" class="tab-pane">
+            <div class="panel-body">
+              <% if current_user.stripe_id %>
+                <button class="btn btn-success btn-outline btn-block">
+                  <h3>Currently Subscribed</h3>
+                  <p>Automatically renews at $5 / month</p>
+                </button>
+                <hr>
+              <% end %>
+              <h3>Responders NOW Premium is a subscription membership that upgrades your account with extra
+                features:</h3>
+              <ul>
+                <li>Experience RespondersNOW ads-free</li>
+                <li>Monthly Coins</li>
+                <li>Access the members-only Lounge</li>
+              </ul>
+              <% if current_user.stripe_id %>
+                <hr>
+                <div>
+                  <h4>Responders NOW Premium</h4>
+                  <p>Your Premium subscription will automatically renew at the beginning of your next billing cycle.
+                    <br>
+                    If your subscription ends, you will have Premium until March 15, 2019.
+                    premium features
+                  </p>
+                </div>
+                <button class="text-center btn btn-danger btn-outline btn-block">
+                  <h3>
+                    <i class=" fa fa-times-circle"></i> Cancel Subscription
+                  </h3>
+                </button>
+              <% else %>
+                <%= render partial: "subscriptions/form" %>
+              <% end %>
+            </div>
+          </div>
+          <div id="delete-account" class="tab-pane">
             <div class="panel-body">
               <strong>Delete Account</strong>
               <p>
