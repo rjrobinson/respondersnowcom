@@ -94,15 +94,14 @@ class User < ApplicationRecord
 
   def cancel_subscription
     subscriptions.first.delete
-    update(stripe_id: nil)
   end
 
-  def cancel_subscription
-    subscription.delete
-    user.update(stripe_id: nil)
+  def currently_subscribed?
+    subscription.present?
   end
 
-  def create_subscription(plan:)
+  def create_subscription(plan: Subscription::PLANS[:monthly])
+    raise NoStripeIDError if stripe_id.nil?
     Stripe::Subscription.create(
         customer: stripe_id,
         items: [

@@ -16,13 +16,15 @@ Rails.application.routes.draw do
   get 'privacy', to: 'landing#privacy'
   get 'terms_of_service', to: 'landing#terms_of_service'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
   resources :locations
 
   resource :agencies, only: [] do
     get :autocomplete_agency_name, on: :collection
   end
+
+  get '/settings', to: 'users#settings'
 
   resource :users, only: [] do
     get :auth
@@ -33,7 +35,9 @@ Rails.application.routes.draw do
     get :certifications
   end
 
-  resource :subscription, only: [:new, :destroy, :create]
+  resource :subscription, only: [:new, :destroy, :create] do
+    get :reactivate
+  end
 
   resources :job_board, only: [:index]
 

@@ -12,10 +12,10 @@ class SubscriptionsController < ApplicationController
 
   def create
     customer = if current_user.stripe_id?
-      Stripe::Customer.retrieve(current_user.stripe_id)
-    else
-      Stripe::Customer.create(email: current_user.email)
-    end
+                 Stripe::Customer.retrieve(current_user.stripe_id)
+               else
+                 Stripe::Customer.create(email: current_user.email)
+               end
 
     current_user.update_stripe_data(stripe_data: {
         stripe_id: customer["id"],
@@ -24,14 +24,18 @@ class SubscriptionsController < ApplicationController
 
     current_user.create_subscription(plan: PLANS[:monthly])
 
-    redirect_back(fallback_location: edit_user_path(current_user), flash: { notice: 'Welcome!' })
+    redirect_back(fallback_location: settings_path(current_user), flash: {notice: 'Welcome!'})
   end
 
+  def reactivate
+    current_user.create_subscription(plan: PLANS[:monthly])
+
+    redirect_back(fallback_location: settings_path(current_user), flash: {notice: 'Subscription has been activated'})
+  end
 
   def destroy
-    customer = Stripe::Customer.retrieve(current_user.stripe_id)
-    customer.cancel_subscription
-    sub = Stripe::Subscription.retrieve("sub_8epEF0PuRhmltU")
-    sub.delete
+    current_user.cancel_subscription
+
+    redirect_back(fallback_location: settings_path(current_user), flash: {notice: 'Subscription has been canceled'})
   end
 end
