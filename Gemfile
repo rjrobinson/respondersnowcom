@@ -56,7 +56,7 @@ gem 'aws-sdk-s3', '~> 1'
 # GraphQL
 gem 'graphql'
 gem 'graphiql-rails'
-gem 'optics-agent'
+# gem 'optics-agent'
 gem 'graphql-batch'
 # gem 'graphql-preload'
 
