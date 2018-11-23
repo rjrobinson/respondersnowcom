@@ -43,6 +43,9 @@ gem 'chromedriver-helper'
 # Weather
 gem 'gull'
 
+# Stripe Payment Processing
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
+
 # Email
 gem 'mandrill-api'
 
@@ -53,9 +56,8 @@ gem 'aws-sdk-s3', '~> 1'
 # GraphQL
 gem 'graphql'
 gem 'graphiql-rails'
-gem 'optics-agent'
 gem 'graphql-batch'
-gem 'graphql-preload'
+
 
 # Google Ads
 gem 'ads-rails'

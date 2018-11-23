@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 unless Rails.env.test?
   ActionMailer::Base.smtp_settings = {
       address: 'smtp.mandrillapp.com',

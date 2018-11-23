@@ -6,7 +6,7 @@
         <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
       </li>
       <li>
-        <a>App views</a>
+        <a>User</a>
       </li>
       <li class="active">
         <strong>Settings</strong>
@@ -101,10 +101,20 @@
           </div>
           <div id="subscription" class="tab-pane">
             <div class="panel-body">
-              <% if current_user.stripe_id %>
+              <% if current_user.stripe_id && current_user.currently_subscribed? %>
                 <button class="btn btn-success btn-outline btn-block">
                   <h3>Currently Subscribed</h3>
                   <p>Automatically renews at $5 / month</p>
+                </button>
+                <hr>
+              <% end %>
+              <% if current_user.stripe_id && !current_user.currently_subscribed? %>
+                <button class="btn btn-info btn-outline btn-block">
+                  <h3>Currently Not Subscribed</h3>
+                  <%= link_to reactivate_subscription_path do %>
+                    <p>Click Here to Reactivate your subscription</p>
+                    <p>Automatically renews at $5 / month</p>
+                  <% end %>
                 </button>
                 <hr>
               <% end %>
@@ -124,12 +134,17 @@
                     If your subscription ends, you will have Premium until March 15, 2019.
                     premium features
                   </p>
+                  <hr>
                 </div>
-                <button class="text-center btn btn-danger btn-outline btn-block">
-                  <h3>
-                    <i class=" fa fa-times-circle"></i> Cancel Subscription
-                  </h3>
-                </button>
+                <% if current_user.currently_subscribed? %>
+                  <button class="text-center btn btn-danger btn-outline btn-block">
+                    <h3>
+                      <%= link_to subscription_path, method: :delete, class: 'danger' do %>
+                        <i class=" fa fa-times-circle danger"></i> Cancel Subscription
+                      <% end %>
+                    </h3>
+                  </button>
+                <% end %>
               <% else %>
                 <%= render partial: "subscriptions/form" %>
               <% end %>

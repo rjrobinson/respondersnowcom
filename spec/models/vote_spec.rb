@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.describe Vote, type: :model do
   describe "validations" do
+    it { should belong_to :user }
 
-    it {should belong_to :user}
+    it { should belong_to :voteable }
 
-    it {should belong_to :voteable}
-
-    it {should validate_presence_of :vote_value}
+    it { should validate_presence_of :vote_value }
 
 
     it 'should validate that the user can only vote once' do

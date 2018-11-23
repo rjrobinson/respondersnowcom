@@ -1,6 +1,8 @@
 # frozen_string_literal: true
+
 class User < ApplicationRecord
-  devise :database_authenticatable, :confirmable, :registerable, :trackable, :recoverable, :omniauthable, omniauth_providers: [:facebook, :twitter]
+  devise :database_authenticatable, :confirmable, :registerable, :trackable, :recoverable,
+         :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   has_merit
 
@@ -78,7 +80,68 @@ class User < ApplicationRecord
     "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"
   end
 
+  def stripe_customer
+    Stripe::Customer.retrieve(stripe_id)
+  end
+
+  def subscriptions
+    stripe_customer.subscriptions
+  end
+
+  def subscription
+    subscriptions.first
+  end
+
+  def cancel_subscription
+    subscriptions.first.delete
+  end
+
+  def currently_subscribed?
+    subscription.present?
+  end
+
+  def create_subscription(plan: Subscription::PLANS[:monthly])
+    raise NoStripeIDError if stripe_id.nil?
+    Stripe::Subscription.create(
+        customer: stripe_id,
+        items: [
+            {
+                plan: plan,
+            },
+        ]
+    )
+  end
+
+  def update_stripe_data(stripe_data:)
+    assign_attributes(
+        stripe_id: stripe_data[:stripe_id],
+        stripe_token: stripe_data[:stripe_token]
+    )
+
+    if card_last4?
+      save if changed?
+    else
+      save
+      update_card_info
+    end
+  end
+
+
   private
+
+  def update_card_info
+    customer = Stripe::Customer.retrieve(stripe_id)
+    card = customer.sources.create(source: "tok_amex")
+    # todo ^^ CHANGE tok_amex to actual token in Prod ^^
+    #
+    update_attributes(card_last4: card.last4,
+                      card_exp_month: card.exp_month,
+                      card_exp_year: card.exp_year,
+                      card_brand: card.brand,
+
+
+    )
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -90,5 +153,4 @@ class User < ApplicationRecord
       # user.avatar = auth.info.image # assuming the user model has an image
     end
   end
-
 end

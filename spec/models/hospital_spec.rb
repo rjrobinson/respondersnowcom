@@ -4,15 +4,13 @@ require 'rails_helper'
 
 RSpec.describe Hospital, type: :model do
   describe "validations" do
-    it {should belong_to :location}
+    it { should belong_to :location }
 
-    it {should have_many :hospital_statuses}
-
+    it { should have_many :hospital_statuses }
   end
 
 
   describe "#on_divert" do
-
     it 'should return only hospitals on divert' do
       hospital = create(:hospital)
       hospital.hospital_statuses.create(county: "MIDDLESEX",

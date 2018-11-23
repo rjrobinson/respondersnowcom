@@ -26,7 +26,6 @@ SimpleCov.start 'rails' do
   add_filter 'app/controllers/uielements_controller.rb'
   add_filter 'app/controllers/widgets_controller.rb'
   add_filter 'app/graphql/'
-
 end
 
 ENV['RAILS_ENV'] ||= 'test'

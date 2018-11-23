@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Mutations::IncidentConfirm < Types::BaseMutationType
-
   null true
   description "will allow users to CONFIRM an incident"
 
@@ -22,6 +21,4 @@ class Mutations::IncidentConfirm < Types::BaseMutationType
   def self.accessible?(context)
     context[:current_user]&.can_confirm?
   end
-
-
 end

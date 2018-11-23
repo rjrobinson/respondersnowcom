@@ -4,16 +4,16 @@ require 'rails_helper'
 
 RSpec.describe Incident, type: :model do
   describe 'validations' do
-    it {should belong_to(:location)}
-    it {should belong_to(:incident_type)}
-    it {should have_many(:votes)}
+    it { should belong_to(:location) }
+    it { should belong_to(:incident_type) }
+    it { should have_many(:votes) }
 
-    it {should have_many(:incident_reports)}
+    it { should have_many(:incident_reports) }
   end
 
 
-  let(:incident) {create(:incident)}
-  let(:user) {create(:user)}
+  let(:incident) { create(:incident) }
+  let(:user) { create(:user) }
 
   describe "#upvote" do
     it 'should increase the vote by one.' do

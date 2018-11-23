@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get :autocomplete_agency_name, on: :collection
   end
 
+  get '/settings', to: 'users#settings'
+
   resource :users, only: [] do
     get :auth
   end
@@ -33,6 +35,9 @@ Rails.application.routes.draw do
     get :certifications
   end
 
+  resource :subscription, only: [:new, :destroy, :create] do
+    get :reactivate
+  end
 
   resources :job_board, only: [:index]
 

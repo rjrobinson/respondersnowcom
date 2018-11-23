@@ -3,12 +3,17 @@
     <i class="fas fa-home"></i><span class="nav-label"> Dashboard</span>
   <% end %>
 </li>
+<li class="<%= is_active_action('settings') %>">
+  <%= link_to settings_path do %>
+    <i class="fas fa-cogs"></i><span class="nav-label"> Settings</span>
+  <% end %>
+</li>
 <li class="">
   <a href="#">
     <i class="fas fa-ambulance"></i> <span class="nav-label"> Live Map</span>
   </a>
 </li>
-<li class="<%= is_active_controller('users') %>">
+<li class="<%= is_active_action('certifications') %>">
   <%= link_to user_certifications_path(current_user) do %>
     <i class="fas fa-certificate"></i> <span class="nav-label"> Certifications</span>
   <% end %>

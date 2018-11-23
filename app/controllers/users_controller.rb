@@ -16,14 +16,18 @@ class UsersController < ApplicationController
     @certification = AcquiredCertification.new
   end
 
+  def settings
+    # will use the current_user as the data set. user/settings.
+  end
+
   def edit
   end
 
   def update
     if User.find(params[:id]).update_attributes(user_params)
-      redirect_back(fallback_location: root_path, flash: { notice: 'Setting Updated' })
+      redirect_back(fallback_location: root_path, flash: {notice: 'Setting Updated'})
     else
-      redirect_back(fallback_location: root_path, flash: { notice: 'Nothing updated' })
+      redirect_back(fallback_location: root_path, flash: {notice: 'Nothing updated'})
     end
   end
 
@@ -31,14 +35,14 @@ class UsersController < ApplicationController
   private
 
 
-    def validate_user
-      @user = User.find(params[:id] || params[:user_id])
-      unless @user == current_user
-        redirect_back(fallback_location: root_path, flash: { error: 'You are not authorized to access this page' })
-      end
+  def validate_user
+    @user = User.find(params[:id] || params[:user_id])
+    unless @user == current_user
+      redirect_back(fallback_location: root_path, flash: {error: 'You are not authorized to access this page'})
     end
+  end
 
-    def user_params
-      params.require(:user).permit(:zipcode)
-    end
+  def user_params
+    params.require(:user).permit(:zipcode)
+  end
 end

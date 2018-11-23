@@ -1,5 +1,6 @@
-class Location < ApplicationRecord
+# frozen_string_literal: true
 
+class Location < ApplicationRecord
   geocoded_by :address
 
   before_validation :geocode
@@ -36,5 +37,4 @@ class Location < ApplicationRecord
       update(county: found) if found
     end
   end
-
 end
