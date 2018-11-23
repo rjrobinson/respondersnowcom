@@ -58,7 +58,7 @@ gem 'graphql'
 gem 'graphiql-rails'
 gem 'optics-agent'
 gem 'graphql-batch'
-gem 'graphql-preload'
+# gem 'graphql-preload'
 
 # Google Ads
 gem 'ads-rails'

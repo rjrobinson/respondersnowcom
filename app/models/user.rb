@@ -80,8 +80,26 @@ class User < ApplicationRecord
     "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"
   end
 
-  def subscription
+  def stripe_customer
     Stripe::Customer.retrieve(stripe_id)
+  end
+
+  def subscriptions
+    stripe_customer.subscriptions
+  end
+
+  def subscription
+    subscriptions.first
+  end
+
+  def cancel_subscription
+    subscriptions.first.delete
+    update(stripe_id: nil)
+  end
+
+  def cancel_subscription
+    subscription.delete
+    user.update(stripe_id: nil)
   end
 
   def create_subscription(plan:)

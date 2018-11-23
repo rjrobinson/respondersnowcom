@@ -29,7 +29,8 @@ class SubscriptionsController < ApplicationController
 
 
   def destroy
-    current_user.
+    customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    customer.cancel_subscription
     sub = Stripe::Subscription.retrieve("sub_8epEF0PuRhmltU")
     sub.delete
   end
