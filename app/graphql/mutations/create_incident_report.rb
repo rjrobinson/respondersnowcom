@@ -5,20 +5,22 @@ class Mutations::CreateIncidentReport < Types::BaseMutationType
 
   description "users can add a report on an incident"
 
-  argument :incident_input, Types::IncidentInputType, required: true
+  argument :report_input, Types::ReportInputType, required: true
 
   field :incident, Types::IncidentType, null: false
 
-  def resolve(incident_input:)
-    incident = Incident.find(incident_input[:id])
-    report = incident.incident_reports.new(message: incident_input[:message], user: context[:current_user])
+  def resolve(report_input:)
+    incident = Incident.find(report_input[:incident_id])
+    
+    report = incident.incident_reports.new(message: report_input[:message], user: context[:current_user])
+
     if report.save # add user points
       context[:current_user]&.add_points(5, category: 'incident report')
     end
 
     {
         incident: incident,
-        errors: incident.errors
+        errors: incident&.errors
     }
 
   end
