@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Types::IncidentType < Types::BaseActiveRecordObject
+class Types::IncidentType < Types::ActiveRecordBase
   description "The base of an submission"
 
   field :id, ID, null: false

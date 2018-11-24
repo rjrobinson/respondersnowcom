@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Types::IncidentReport < Types::BaseActiveRecordObject
+class Types::IncidentReport < Types::ActiveRecordBase
   description "A list of reports, who updated them, and when."
 
   field :id, ID, null: false

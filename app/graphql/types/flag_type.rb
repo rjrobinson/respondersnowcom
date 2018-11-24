@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Types::FlagType < Types::BaseActiveRecordObject
+class Types::FlagType < Types::ActiveRecordBase
   field :id, ID, null: false
   field :message, String, null: false
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Types::HospitalType < Types::BaseActiveRecordObject
+class Types::HospitalType < Types::ActiveRecordBase
   field :id, ID, null: false
   field :name, String, null: false
 

@@ -22,7 +22,7 @@ class Types::IncidentInputType < Types::BaseInputType
 
 
   # TODO Add Scene Type
-  argument :scene_type, String, required: false
-  argument :message, String, required: false
-  argument :status, String, required: false
+  argument :scene_type, String, required: true
+  argument :message, String, required: true
+  argument :status, String, required: true
 end

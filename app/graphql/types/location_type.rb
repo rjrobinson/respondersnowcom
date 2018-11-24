@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Types::LocationType < Types::BaseActiveRecordObject
+class Types::LocationType < Types::ActiveRecordBase
   field :id, ID, null: false
 
   field :latitude, Float, null: true
