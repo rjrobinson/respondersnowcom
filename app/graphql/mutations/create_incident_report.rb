@@ -22,6 +22,5 @@ class Mutations::CreateIncidentReport < Types::BaseMutationType
         incident: incident,
         errors: incident&.errors
     }
-
   end
 end

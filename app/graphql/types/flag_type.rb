@@ -9,5 +9,4 @@ class Types::FlagType < Types::BaseActiveRecordObject
   end
 
   field :user, Types::UserType, null: false
-
 end

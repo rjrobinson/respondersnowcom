@@ -13,5 +13,4 @@ class Types::LocationType < Types::BaseActiveRecordObject
   field :city, String, null: false
   field :box, String, null: true
   field :zipcode, String, null: true
-
 end

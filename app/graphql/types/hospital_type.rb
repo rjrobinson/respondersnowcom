@@ -10,5 +10,4 @@ class Types::HospitalType < Types::BaseActiveRecordObject
   field :county, String, null: true
 
   field :status, Types::HospitalStatusType, null: true
-
 end

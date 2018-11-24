@@ -103,19 +103,19 @@ class User < ApplicationRecord
   def create_subscription(plan: Subscription::PLANS[:monthly])
     raise NoStripeIDError if stripe_id.nil?
     Stripe::Subscription.create(
-        customer: stripe_id,
-        items: [
-            {
-                plan: plan,
-            },
-        ]
+      customer: stripe_id,
+      items: [
+          {
+              plan: plan,
+          },
+      ]
     )
   end
 
   def update_stripe_data(stripe_data:)
     assign_attributes(
-        stripe_id: stripe_data[:stripe_id],
-        stripe_token: stripe_data[:stripe_token]
+      stripe_id: stripe_data[:stripe_id],
+      stripe_token: stripe_data[:stripe_token]
     )
 
     if card_last4?
@@ -129,28 +129,28 @@ class User < ApplicationRecord
 
   private
 
-  def update_card_info
-    customer = Stripe::Customer.retrieve(stripe_id)
-    card = customer.sources.create(source: "tok_amex")
-    # todo ^^ CHANGE tok_amex to actual token in Prod ^^
-    #
-    update_attributes(card_last4: card.last4,
-                      card_exp_month: card.exp_month,
-                      card_exp_year: card.exp_year,
-                      card_brand: card.brand,
+    def update_card_info
+      customer = Stripe::Customer.retrieve(stripe_id)
+      card = customer.sources.create(source: "tok_amex")
+      # todo ^^ CHANGE tok_amex to actual token in Prod ^^
+      #
+      update_attributes(card_last4: card.last4,
+                        card_exp_month: card.exp_month,
+                        card_exp_year: card.exp_year,
+                        card_brand: card.brand,
 
 
-    )
-  end
-
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      name = auth.info.name.split(' ')
-      user.first_name = name[0] # assuming the user model has a name
-      user.last_name = name[1]
-      # user.avatar = auth.info.image # assuming the user model has an image
+      )
     end
-  end
+
+    def self.from_omniauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+        name = auth.info.name.split(' ')
+        user.first_name = name[0] # assuming the user model has a name
+        user.last_name = name[1]
+        # user.avatar = auth.info.image # assuming the user model has an image
+      end
+    end
 end

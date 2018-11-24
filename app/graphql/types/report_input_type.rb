@@ -12,5 +12,4 @@ class Types::ReportInputType < Types::BaseInputType
   end
 
   argument :message, String, required: true
-  
 end

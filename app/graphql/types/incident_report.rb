@@ -8,5 +8,4 @@ class Types::IncidentReport < Types::BaseActiveRecordObject
 
   field :flags, Types::FlagType, null: true
   field :user, Types::UserType, null: false
-
 end

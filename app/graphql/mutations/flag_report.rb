@@ -21,6 +21,5 @@ class Mutations::FlagReport < Types::BaseMutationType
         incident: report.incident,
         errors: report&.errors
     }
-
   end
 end

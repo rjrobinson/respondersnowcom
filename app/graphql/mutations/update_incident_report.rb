@@ -18,6 +18,5 @@ class Mutations::UpdateIncidentReport < Types::BaseMutationType
         incident: incident,
         errors: incident.errors
     }
-
   end
 end
