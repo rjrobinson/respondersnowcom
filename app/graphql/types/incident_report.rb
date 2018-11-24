@@ -3,6 +3,7 @@
 class Types::IncidentReport < Types::BaseObject
   description "A list of reports, who updated them, and when."
 
+  field :id, ID, null: false
   field :message, String, null: false
 
   field :user, Types::UserType, null: false
@@ -10,6 +11,6 @@ class Types::IncidentReport < Types::BaseObject
   field :errors, [Types::ActiveRecordErrorType], null: true
 
   def errors
-    object.errors.each { |e| { field_name: e, error: object.errors[e] } }
+    object.errors.each {|e| {field_name: e, error: object.errors[e]}}
   end
 end

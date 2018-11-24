@@ -11,5 +11,7 @@ module Types
     field :incident_up_vote, mutation: Mutations::IncidentUpvote
 
     field :create_incident_report, mutation: Mutations::CreateIncidentReport
+    field :update_incident_report, mutation: Mutations::UpdateIncidentReport
+
   end
 end

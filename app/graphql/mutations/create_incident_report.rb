@@ -11,7 +11,7 @@ class Mutations::CreateIncidentReport < Types::BaseMutationType
 
   def resolve(report_input:)
     incident = Incident.find(report_input[:incident_id])
-    
+
     report = incident.incident_reports.new(message: report_input[:message], user: context[:current_user])
 
     if report.save # add user points
