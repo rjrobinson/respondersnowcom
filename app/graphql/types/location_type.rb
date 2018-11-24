@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Types::LocationType < Types::BaseObject
+class Types::LocationType < Types::BaseActiveRecordObject
   field :id, ID, null: false
 
   field :latitude, Float, null: true
@@ -14,9 +14,4 @@ class Types::LocationType < Types::BaseObject
   field :box, String, null: true
   field :zipcode, String, null: true
 
-  field :errors, [Types::ActiveRecordErrorType], null: true
-
-  def errors
-    object.errors.each { |e| { field_name: e, error: object.errors[e] } }
-  end
 end
