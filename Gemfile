@@ -71,6 +71,10 @@ gem 'ahoy_matey'
 gem 'groupdate'
 gem 'chartkick'
 
+
+# Monitoring Tools
+gem 'newrelic_rpm'
+
 # Document Tools
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
