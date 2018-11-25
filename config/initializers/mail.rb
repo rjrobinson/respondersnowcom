@@ -6,8 +6,8 @@ unless Rails.env.test?
       authentication: 'login',
       domain: 'respondersnow.com',
       port: "587",
-      user_name: ENV['SMTP_USERNAME'],
-      password: ENV['SMTP_API_KEY'],
+      user_name: Rails.application.credentials.mandrill[:smtp_username],
+      password: Rails.application.credentials.mandrill[:smtp_api_key], # SMTP password is any valid API key
       enable_starttls_auto: true
   }
 

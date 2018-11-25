@@ -2,6 +2,8 @@
 
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
+  config.require_master_key = true
+
   config.webpacker.check_yarn_integrity = false
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -105,22 +107,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-  # SMTP settings for gmail
-  config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      user_name: ENV['gmail_username'],
-      password: ENV['gmail_password'],
-      authentication: "plain",
-      enable_starttls_auto: true
-  }
 
-
-  # PRODUCTION MANDRILL ACCOUNT
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.mandrillapp.com',
-      port: 25,
-      user_name: ENV['MANDRILL_USERNAME'],
-      password: ENV['MANDRILL_API_KEY']
-  }
 end
