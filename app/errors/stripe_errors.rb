@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NoStripeIDError < StandardError
   attr_reader :action
 
@@ -8,7 +10,4 @@ class NoStripeIDError < StandardError
     # Store the action in an instance variable
     @action = action
   end
-
 end
-
-

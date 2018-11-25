@@ -3,11 +3,16 @@
 module Types
   class MutationType < Types::BaseObject
     # Incidents
-    # field :incident_add_flag, Types::IncidentType, mutation: Mutations::IncidentAddFlag
-    # field :incident_confirm, Types::IncidentType, mutation: Mutations::IncidentConfirm
-    field :incident_create, mutation: Mutations::IncidentCreate
-    # field :incident_down_vote, Types::IncidentType, mutation: Mutations::IncidentDownvote
-    # field :incident_remove_vote, Types::IncidentType, mutation: Mutations::IncidentRemoveVote
-    # field :incident_up_vote, Types::IncidentType, mutation: Mutations::IncidentUpvote
+    field :flag_incident, mutation: Mutations::FlagIncident
+    field :create_incident, mutation: Mutations::CreateIncident
+    field :confirm_incident, mutation: Mutations::ConfirmIncident
+
+
+    field :incident_down_vote, mutation: Mutations::IncidentDownvote
+    field :incident_remove_vote, mutation: Mutations::IncidentRemoveVote
+    field :incident_up_vote, mutation: Mutations::IncidentUpvote
+
+    field :create_incident_report, mutation: Mutations::CreateIncidentReport
+    field :update_incident_report, mutation: Mutations::UpdateIncidentReport
   end
 end

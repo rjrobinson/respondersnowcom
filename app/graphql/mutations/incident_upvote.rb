@@ -4,11 +4,17 @@ class Mutations::IncidentUpvote < Types::BaseMutationType
   null true
   description "will allow users to UPVOTE an incident"
 
-  argument :incident, Types::IncidentInputType, required: true
+  argument :id, ID, required: true
 
-  def resolve(incident:)
-    incident = Incident.find(incident[:id])
+  field :incident, Types::IncidentType, null: false
+
+  def resolve(id:)
+    incident = Incident.find(id)
     incident.upvote(user: context[:current_user])
-    incident
+    {
+        incident: incident,
+        errors: incident&.errors
+    }
+
   end
 end

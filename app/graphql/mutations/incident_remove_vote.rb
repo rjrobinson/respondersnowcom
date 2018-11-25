@@ -4,11 +4,17 @@ class Mutations::IncidentRemoveVote < Types::BaseMutationType
   null true
   description "to totally remove a vote."
 
-  argument :incident, Types::IncidentInputType, required: true
+  argument :id, ID, required: true
+  field :incident, Types::IncidentType, null: false
 
-  def resolve(incident:)
-    incident = Incident.find(incident[:id])
+  def resolve(id:)
+    incident = Incident.find(id)
     incident.remove_vote(user: context[:current_user])
-    incident
+
+    {
+        incident: incident,
+        errors: incident&.errors
+    }
+
   end
 end

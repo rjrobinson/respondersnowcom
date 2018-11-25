@@ -8,20 +8,20 @@
 #
 # require 'csv'
 #
-# CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |row|
-#
-#
-#   location = Location.find_or_create_by(city: row[:city], state: "NJ")
-#
-#   location.county = row[:county]
-#   location.city = row[:city]
-#
-#   location.zipcode = "#{row[:city]}, #{row[:state]}".to_zip.first
-#   puts "Saving #{location.city}"
-#   location.save
-#   # a.update(location_id: location.id)
-#   # a.save
-# end
+CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |row|
+
+
+  location = Location.find_or_create_by(city: row[:city], state: "NJ")
+
+  location.county = row[:county]
+  location.city = row[:city]
+
+  location.zipcode = "#{row[:city]}, #{row[:state]}".to_zip.first
+  puts "Saving #{location.city}"
+  location.save
+  # a.update(location_id: location.id)
+  # a.save
+end
 
 
 hospitals = [
@@ -678,9 +678,6 @@ puts "Syncing with Hospital Divert System"
 HospitalStatusJob.perform_now
 
 
-
-
-
 ["Fire", "Police", "EMS"].each do |e|
   IncidentType.create(name: e)
 end
@@ -689,12 +686,12 @@ l_uuids = Location.all.pluck(:id)
 i_uuids = IncidentType.all.pluck(:id)
 
 100.times do |n|
-  Incident.create(message: Faker::Community.quotes,
+  Incident.create(message: Faker::TvShows::Community.quotes,
                   location_id: l_uuids[rand(1..Location.count)],
                   incident_type_id: i_uuids[(1..IncidentType.count)],
                   user_id: User.first.id,
                   status: "Reported",
                   created_at: Time.now - n.hours.ago,
                   updated_at: Time.now - n.hours.ago
-                  )
+  )
 end
