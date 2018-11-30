@@ -1,9 +1,14 @@
 {
   "dependencies": {
     "@rails/webpacker": "3.5",
+    "apollo-boost": "0.1.22",
+    "axios": "0.18.0",
     "babel-preset-react": "6.24.1",
     "coffeescript": "1.12.7",
     "flag-icon-css": "3.2.1",
+    "google-map-react": "1.1.1",
+    "graphql": "14.0.2",
+    "graphql-tag": "2.10.0",
     "prop-types": "15.6.2",
     "react": "16.6.3",
     "react-dom": "16.6.3"
