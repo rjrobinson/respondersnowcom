@@ -10,6 +10,8 @@
             <span class="clear">
               <span class="block m-t-xs">
                 <strong class="font-bold"><%= "#{current_user.first_name} #{current_user.last_name}" if current_user %></strong>
+                <br>
+                <strong class="font-bold"><%= current_user.points %>pts</strong>
               </span>
                             <span class="text-muted text-xs block">
                               EMT New Jersey<b class="caret"></b>
@@ -26,7 +28,7 @@
         </div>
       </li>
       <%= render partial: 'users/main_nav' if current_user %>
-      <% if true %>
+      <% if false %>
         <li class="<%= is_active_controller('dashboards') %>">
           <a href=""><i class="fa fa-th-large"></i>
             <span class="nav-label" data-i18n="nav.dashboard">Dashboards</span>
