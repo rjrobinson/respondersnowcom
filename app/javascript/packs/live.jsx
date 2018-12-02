@@ -29,14 +29,35 @@ class RegionalMap extends Component {
                                 <div id="regional" className="tab-pane active">
                                     <div className="panel-body">
                                         <div className="ibox-content">
-                                            <div className="feed-activity-list" style={{height: '75vh'}}>
+                                            <div className="feed-activity-list"
+                                                 style={{height: '75vh', overflowX: 'scroll'}}>
 
                                                 <div className="feed-element">
                                                     <div>
                                                         <small className="pull-right text-navy">1m ago</small>
-                                                        <strong>
-                                                            <i className="fas fa-fire" style={{color: "red"}}></i> NJ \\
-                                                            MIDDLESEX \\ North Brunswick</strong>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-fire"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        980 Newton Street
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
                                                         <div>Working Structure Fire Reported
                                                         </div>
                                                         <small className="text-danger pull-right">unconfirmed</small>
@@ -47,12 +68,30 @@ class RegionalMap extends Component {
                                                 <div className="feed-element">
                                                     <div>
                                                         <small className="pull-right">2m ago</small>
-                                                        <strong>
-                                                            <i className="fas fa-car-crash"></i>
-                                                            <i className="fas fa-car-crash" style={{color: "blue"}}></i>
-                                                            NJ \\ Middlesex \\ North Brunswick
-                                                        </strong>
-                                                        <div>Rt. 130 SB and Georges Road for the Pin</div>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
                                                         <small className="text-info pull-right">2 confirmations</small>
                                                         <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
                                                     </div>
@@ -61,7 +100,29 @@ class RegionalMap extends Component {
                                                 <div className="feed-element">
                                                     <div>
                                                         <small className="pull-right">5m ago</small>
-                                                        <strong>GSP - MVA w/ Car Fire</strong>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-fire"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        740 Herman Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
                                                         <div>No Injuries. FD and EMS On Scene working</div>
                                                         <small className="text-muted">NJ - Middlesex - Wall Township
                                                         </small>
@@ -80,9 +141,30 @@ class RegionalMap extends Component {
                                                             {/*<br/>*/}
                                                             {/*<i className="far fa-thumbs-up"></i> 18*/}
                                                         </div>
-                                                        <strong>NJ - Middlesex - Wall Township </strong>
-                                                        <div>1422 Schoolhouse Road</div>
-                                                        <div>WORKING FIRE</div>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-exclamation-triangle"
+                                                                           style={{color: "orange"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        3812 Birchwood Ct.
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Hazmat Spill</div>
                                                         <small className="text-success pull-right">confirmed</small>
                                                         <small className="text-muted">Yesterday 8:48 pm - 10.06.2014
                                                         </small>
@@ -93,7 +175,28 @@ class RegionalMap extends Component {
                                                 <div className="feed-element">
                                                     <div>
                                                         <small className="pull-right">12m ago</small>
-                                                        <strong>NJ MONMOUTH PATERSON</strong>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-fire"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Monmouth</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span className="text-danger">Paterson</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        US1 N. & College
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
                                                         <div>Ped Struck</div>
                                                         <small className="text-muted">Yesterday 8:48 pm - 10.06.2014
                                                         </small>
@@ -102,7 +205,28 @@ class RegionalMap extends Component {
                                                 <div className="feed-element">
                                                     <div>
                                                         <small className="pull-right">15m ago</small>
-                                                        <strong>NY >> New York >> New York </strong>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-university"
+                                                                           style={{color: "orange"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Hudson</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span className="text-danger">Secaucus</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        74 Arn Terrace
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
                                                         <div>Bank Robbery</div>
                                                         <div>Police are looking for a male wearing all pink, looks like
                                                             a "clown"
@@ -115,7 +239,28 @@ class RegionalMap extends Component {
                                                 <div className="feed-element">
                                                     <div>
                                                         <small className="pull-right">5m ago</small>
-                                                        <strong>NJ |> Middlesex |> North Brunswick</strong>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-fire"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Ocean</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span className="text-danger">Brick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        759 Sycamore Dr.
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
                                                         <div>Reported Batman sighting. Units urged to proceed with
                                                             caution
                                                         </div>
@@ -126,10 +271,306 @@ class RegionalMap extends Component {
                                                 </div>
                                                 <div className="feed-element">
                                                     <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "black"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "black"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "black"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "black"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-fire"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-fire"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
+                                                        <small className="pull-right">2m ago</small>
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-car-crash"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Middlesex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span
+                                                                            className="text-danger">North Brunswick</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rt. 130 SB and Georges Road
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Rollover Reported Entrapment Rollover</div>
+                                                        <small className="text-info pull-right">2 confirmations</small>
+                                                        <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                                    </div>
+                                                </div>
+                                                <div className="feed-element">
+                                                    <div>
                                                         <small className="pull-right">5m ago</small>
-                                                        <strong>NJ |> MIDDLESEX |> NORTH BRUNSWICK</strong>
-                                                        <div>Water Rescue. FD and EMS Rescue On Scene. 602 Has
-                                                            Command.
+                                                        <small>
+                                                            <strong>
+                                                                <ol className="breadcrumb">
+                                                                    <li>
+                                                                        <i className="fas fa-fire"
+                                                                           style={{color: "red"}}></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy"> NJ</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span className="text-navy">Essex</span>
+                                                                    </li>
+                                                                    <li className="active">
+                                                                        <span className="text-danger">Newark</span>
+                                                                    </li>
+                                                                </ol>
+                                                            </strong>
+                                                        </small>
+                                                        <div>Water Rescue. FD and EMS Rescue On Scene.
                                                         </div>
                                                         <small className="text-muted">Yesterday 8:48 pm - 10.06.2014
                                                         </small>
