@@ -89,7 +89,6 @@ gem 'rails-jquery-autocomplete'
 
 gem 'select2-rails'
 gem 'mapbox-rails'
-gem 'vuejs-rails'
 
 group :development, :test do
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
