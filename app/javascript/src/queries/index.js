@@ -14,6 +14,8 @@ export const GET_INCIDENTS = gql`
                 city
                 street
             }
+            rank
+            createdAt
         }
     }
 `;

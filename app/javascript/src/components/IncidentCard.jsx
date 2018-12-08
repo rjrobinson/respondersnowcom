@@ -1,14 +1,15 @@
 import React from 'react'
-
+import TimeAgo from 'react-timeago'
+import Moment from 'react-moment';
 
 const IncidentCard = ({incident}) => {
 
-    const {message, location} = incident;
+    const {message, location, status, createdAt, rank} = incident;
 
     return (
         <div className="feed-element">
             <div>
-                <small className="pull-right">2m ago</small>
+                <small className="pull-right"><TimeAgo date={createdAt}/></small>
                 <small>
                     <strong>
                         {/*Seperate this out to a component. */}
@@ -22,9 +23,14 @@ const IncidentCard = ({incident}) => {
                         {/* --- */}
                     </strong>
                 </small>
-                <div>{message}</div>
-                <small className="text-info pull-right">2 confirmations</small>
-                <small className="text-muted">Today 2:23 pm - 11.06.2014</small>
+
+                <p><strong>{rank}</strong>-{message}</p>
+                <small className="text-danger pull-right">{status}</small>
+                <small className="text-muted">
+                    <Moment format="HH:mm D MMM YYYY">
+                        {createdAt}
+                    </Moment>
+                </small>
             </div>
         </div>
     )

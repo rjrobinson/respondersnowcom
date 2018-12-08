@@ -25,13 +25,13 @@ module Types
     end
 
     def incidents
-      Incident.filter_flagged
+      Incident.filter_flagged.limit(10)
     end
 
     field :trending, [IncidentType], null: false
 
     def trending
-      Incident.filter_flagged.order(rank: :desc)
+      Incident.filter_flagged
     end
 
     field :incident, IncidentType, null: false do

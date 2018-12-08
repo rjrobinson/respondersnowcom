@@ -12,8 +12,12 @@ const renderIncidents = ({incidents}) => {
     })
 }
 
+const pollIntervalTime = 5000
+
 const IncidentList = () => (
-    <Query query={GET_INCIDENTS}>
+    <Query
+        query={GET_INCIDENTS}
+        pollInterval={pollIntervalTime}>
         {
             ({loading, error, data}) => {
                 if (loading) return <Spinner/>;
