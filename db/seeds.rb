@@ -685,7 +685,7 @@ end
 l_uuids = Location.all.pluck(:id)
 i_uuids = IncidentType.all.pluck(:id)
 
-100.times do |n|
+25.times do |n|
   Incident.create(message: Faker::TvShows::Community.quotes,
                   location_id: l_uuids[rand(1..Location.count)],
                   incident_type_id: i_uuids[(1..IncidentType.count)],

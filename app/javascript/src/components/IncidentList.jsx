@@ -1,8 +1,5 @@
 import React from 'react'
-import {Query} from "react-apollo";
-import {GET_INCIDENTS} from "../queries";
 import IncidentCard from './IncidentCard'
-import Spinner from './Spinner'
 
 
 const renderIncidents = ({incidents}) => {
@@ -12,28 +9,32 @@ const renderIncidents = ({incidents}) => {
     })
 }
 
-const pollIntervalTime = 5000
-
-const IncidentList = () => (
-    <Query
-        query={GET_INCIDENTS}
-        pollInterval={pollIntervalTime}>
-        {
-            ({loading, error, data}) => {
-                if (loading) return <Spinner/>;
-                if (error) return `Error! ${error.message}`;
-
-                console.log(data)
-
-                return (
-                    <div>
-                        {renderIncidents(data)}
+const IncidentList = ({data}) => (
+    <div>
+        <div className="tabs-container">
+            <div>
+                <ul className="nav nav-tabs">
+                    <li className="active"><a data-toggle="tab" href="#regional">Regional</a></li>
+                    <li><a data-toggle="tab" href="#national">National</a></li>
+                </ul>
+                <div className="tab-content ">
+                    <div id="regional" className="tab-pane active">
+                        <div className="panel-body">
+                            <div className="ibox-content">
+                                <div className="feed-activity-list"
+                                     style={{height: '75vh', overflowX: 'scroll'}}>
+                                    {/*RENDER INCIDENTS*/}
+                                    {renderIncidents(data)}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                );
-            }
-        }
-    </Query>
+                </div>
+            </div>
+        </div>
+    </div>
+
 );
 
 
-export default IncidentList
+export default IncidentList;

@@ -20,6 +20,7 @@
     "react-dom": "16.6.3",
     "react-moment": "0.8.4",
     "react-router": "4.3.1",
+    "react-spinkit": "3.0.0",
     "react-timeago": "4.1.9",
     "reactstrap": "6.5.0"
   },

@@ -9,6 +9,8 @@ export const GET_INCIDENTS = gql`
             upvotes
             message
             location {
+                lat: latitude
+                long: longitude
                 state
                 county
                 city
@@ -16,6 +18,20 @@ export const GET_INCIDENTS = gql`
             }
             rank
             createdAt
+        }
+    }
+`;
+
+
+export const GET_INCIDENT_MARKERS = gql`
+    {
+        incidents {
+            id
+            location {
+                id
+                lat: latitude
+                long: longitude
+            }
         }
     }
 `;

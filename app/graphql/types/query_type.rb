@@ -25,7 +25,7 @@ module Types
     end
 
     def incidents
-      Incident.filter_flagged.limit(10)
+      Incident.filter_flagged.order(created_at: :desc).limit(15)
     end
 
     field :trending, [IncidentType], null: false

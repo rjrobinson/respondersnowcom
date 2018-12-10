@@ -24,7 +24,7 @@ const IncidentCard = ({incident}) => {
                     </strong>
                 </small>
 
-                <p><strong>{rank}</strong>-{message}</p>
+                <p>{message}</p>
                 <small className="text-danger pull-right">{status}</small>
                 <small className="text-muted">
                     <Moment format="HH:mm D MMM YYYY">
