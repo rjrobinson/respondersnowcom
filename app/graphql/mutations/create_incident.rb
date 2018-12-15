@@ -17,7 +17,8 @@ class Mutations::CreateIncident < Types::BaseMutationType
 
     {
         incident: incident,
-        errors: []
+        errors: incident&.errors || nil
     }
   end
 end
+

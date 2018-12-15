@@ -35,3 +35,8 @@ export const GET_INCIDENT_MARKERS = gql`
         }
     }
 `;
+
+// export const CREATE_INCIDENT_FORM_DATA =gql`
+//
+//
+// `
