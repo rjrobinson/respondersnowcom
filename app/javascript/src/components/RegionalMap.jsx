@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 
 import IncidentList from './Incidents/IncidentList';
 import IncidentMap from './Incidents/IncidentMap';
+import CreateIncident from './Incidents/CreateIncidentForm'
+
 import {GET_INCIDENTS} from "../queries";
 import Spinner from "react-spinkit";
 import {Query} from "react-apollo";
-import CreateIncidentForm from "./Incidents/CreateIncidentForm";
 
 
 const pollIntervalTime = 1000;
@@ -26,7 +27,7 @@ class RegionalMap extends Component {
                             <div className={"row"}>
                                 <div className={"row"}>
                                     <div className="col-lg-12">
-                                        <CreateIncidentForm/>
+                                        <CreateIncident/>
                                     </div>
                                 </div>
                                 <div className={"row"}>

@@ -36,7 +36,35 @@ export const GET_INCIDENT_MARKERS = gql`
     }
 `;
 
-// export const CREATE_INCIDENT_FORM_DATA =gql`
+export const FETCH_INCIDENT_GROUPS = gql`
+    {
+        incidentGroups {
+            id
+            name
+        }
+    }
+
+`
+
+export const CREATE_INCIDENT = gql`
+    mutation createIncident($incidentInput: IncidentInputType!) {
+    createIncident(incidentInput: $incidentInput) {
+        incident {
+            id
+            message
+        }
+    }
+}
+`
+
+// {
+//     "incidentInput": {
+//     "message" : "Some random message",
+//         "state": "NJ",
+//         "street": "980 Newton St",
+//         "city": "North Brunswick",
+//         "status": "1st alarm",
+//         "sceneType": "EMS"
 //
-//
-// `
+// }
+// }

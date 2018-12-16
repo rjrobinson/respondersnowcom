@@ -2,7 +2,7 @@
 
 class Incident < ApplicationRecord
   belongs_to :location
-  belongs_to :incident_type
+  belongs_to :incident_group
   belongs_to :user
   belongs_to :county
 
@@ -116,7 +116,7 @@ class Incident < ApplicationRecord
     i = if location.save
       Incident.new(message: params[:message],
                    location: location,
-                   incident_type: IncidentType.find_or_create_by(name: params[:scene_type].downcase),
+                   incident_type: IncidentGroup.find_or_create_by(name: params[:scene_type].downcase),
                    user: params[:current_user],
                    status: params[:status] || "Unconfirmed"
       )

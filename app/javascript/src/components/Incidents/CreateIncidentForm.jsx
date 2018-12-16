@@ -1,9 +1,12 @@
-import React from 'react';
-import {Option, ReactSelectProps} from 'react-select'
+import React, {Component} from 'react';
+import Select, {Option, ReactSelectProps} from 'react-select'
 import {FormControl, FormGroup, HelpBlock} from "react-bootstrap";
 import LocationSearchInput from '../UIComponents/LocationSearchInput'
+import {Query} from "react-apollo";
+import {FETCH_INCIDENT_GROUPS} from "../../queries";
 
-class CreateIncidentForm extends React.Component {
+
+class CreateIncidentForm extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -13,6 +16,8 @@ class CreateIncidentForm extends React.Component {
         this.state = {
             value: ''
         };
+
+
     }
 
     getValidationState() {
@@ -23,17 +28,15 @@ class CreateIncidentForm extends React.Component {
         return null;
     }
 
-    handleAddressUpdate = (result) => {
-        console.log(result)
-
-    }
-
+    handleAddressUpdate = (result) => this.setState({address: result});
 
     handleChange(e) {
         this.setState({value: e.target.value});
     }
 
     render() {
+        const {queryData} = this.props;
+
         return (
             <form>
                 <FormGroup
@@ -44,10 +47,20 @@ class CreateIncidentForm extends React.Component {
                     <FormControl
                         type="text"
                         value={this.state.value}
-                        placeholder="Enter text"
+                        placeholder="Short Description"
                         onChange={this.handleChange}
                     />
                     <FormControl.Feedback/>
+                    <Select
+                        value={this.state.role}
+                        options={queryData.incidentGroups}
+                        isSearchable={true}
+                        onChange={option =>
+                            this.setState({role: option})
+                        }
+                        getOptionLabel={option => option.name}
+                        getOptionValue={option => option.id}
+                    />
                     <HelpBlock>Validation is based on string length.</HelpBlock>
                 </FormGroup>
             </form>
@@ -56,4 +69,17 @@ class CreateIncidentForm extends React.Component {
 
 }
 
-export default CreateIncidentForm;
+const CreateIncident = () => (
+    <Query query={FETCH_INCIDENT_GROUPS}>
+        {({loading, error, data}) => {
+            if (loading) return <div>loading . . .</div>;
+
+            if (error) return <div>Error</div>;
+
+            return <CreateIncidentForm queryData={data}/>
+        }}
+    </Query>
+)
+
+
+export default CreateIncident;

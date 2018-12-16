@@ -679,16 +679,16 @@ HospitalStatusJob.perform_now
 
 
 ["Fire", "Police", "EMS"].each do |e|
-  IncidentType.create(name: e)
+  IncidentGroup.create(name: e)
 end
 
 l_uuids = Location.all.pluck(:id)
-i_uuids = IncidentType.all.pluck(:id)
+i_uuids = IncidentGroup.all.pluck(:id)
 
 25.times do |n|
   Incident.create(message: Faker::TvShows::Community.quotes,
                   location_id: l_uuids[rand(1..Location.count)],
-                  incident_type_id: i_uuids[(1..IncidentType.count)],
+                  incident_type_id: i_uuids[(1..IncidentGroup.count)],
                   user_id: User.first.id,
                   status: "Reported",
                   created_at: Time.now - n.hours.ago,

@@ -27,12 +27,13 @@ export default class LocationSearchInput extends React.Component {
 
     handleChange = address => {
         this.setState({address});
-        this.props.handleAddressUpdate(this.state.address)
     };
 
     handleSelect = address => {
         geocodeByAddress(address)
             .then(results => {
+                let {formatted_address} = results[0];
+                this.setState({address: formatted_address});
                 this.props.handleAddressUpdate(addressFromComponents(results[0]));
             })
             .catch(error => console.error('Error', error));
@@ -49,7 +50,7 @@ export default class LocationSearchInput extends React.Component {
                     <div>
                         <input
                             {...getInputProps({
-                                placeholder: 'Search Places ...',
+                                placeholder: 'Enter Incident Address',
                                 className: 'location-search-input form-control',
                             })}
                         />

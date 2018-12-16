@@ -5,7 +5,7 @@ class Types::IncidentType < Types::ActiveRecordBase
 
   field :id, ID, null: false
   field :location, Types::LocationType, null: false
-  field :incident_type, Types::IncidentSceneType, null: false
+  field :incident_type, Types::IncidentGroupType, null: false
   field :message, String, null: false
   field :user, UserType, null: false
 

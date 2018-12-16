@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_214228) do
+ActiveRecord::Schema.define(version: 2018_12_16_032909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -183,6 +183,13 @@ ActiveRecord::Schema.define(version: 2018_11_12_214228) do
     t.index ["location_id"], name: "index_hospitals_on_location_id"
   end
 
+  create_table "incident_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "abvr"
+  end
+
   create_table "incident_reports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "message"
     t.uuid "user_id"
@@ -193,8 +200,10 @@ ActiveRecord::Schema.define(version: 2018_11_12_214228) do
     t.index ["user_id"], name: "index_incident_reports_on_user_id"
   end
 
-  create_table "incident_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "incident_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.string "abvr"
+    t.integer "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -204,7 +213,6 @@ ActiveRecord::Schema.define(version: 2018_11_12_214228) do
     t.uuid "location_id"
     t.uuid "incident_type_id"
     t.uuid "user_id"
-    t.string "status"
     t.float "rank", default: 0.0
     t.boolean "archived", default: false
     t.datetime "ranked_at"
@@ -212,6 +220,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_214228) do
     t.datetime "updated_at", null: false
     t.boolean "flagged", default: false
     t.uuid "county_id"
+    t.integer "status_id"
     t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
     t.index ["location_id"], name: "index_incidents_on_location_id"
     t.index ["rank"], name: "index_incidents_on_rank"
@@ -351,7 +360,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_214228) do
   add_foreign_key "hospitals", "locations"
   add_foreign_key "incident_reports", "incidents"
   add_foreign_key "incident_reports", "users"
-  add_foreign_key "incidents", "incident_types"
+  add_foreign_key "incidents", "incident_groups", column: "incident_type_id"
   add_foreign_key "incidents", "locations"
   add_foreign_key "incidents", "users"
   add_foreign_key "votes", "users"
