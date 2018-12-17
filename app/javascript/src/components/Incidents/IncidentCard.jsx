@@ -20,15 +20,15 @@ const IncidentCard = ({incident}) => {
                             <li className="active"><span className="text-danger">{location.city}</span></li>
                             <li>{location.street}</li>
                         </ol>
-                        {/* --- */}
+
                     </strong>
                 </small>
 
                 <p>{message}</p>
                 <small className="text-danger pull-right">{status.name}</small>
                 <small className="text-muted">
-                    <Moment format="HH:mm D MMM YYYY">
-                        {createdAt}
+                    <Moment format="HH:mm D MMM YYYY" interval={60000}>
+                        {Date(createdAt).toISOString}
                     </Moment>
                 </small>
             </div>

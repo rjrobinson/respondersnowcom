@@ -3,12 +3,12 @@ import './../style/style.css'
 
 import IncidentList from './Incidents/IncidentList';
 import IncidentMap from './Incidents/IncidentMap';
-import CreateIncident from './Incidents/CreateIncidentForm'
-import FormModal from './UIComponents/FormModal'
+import CreateIncidentFormModal from './Incidents/CreateIncidentForm'
 
 import {GET_INCIDENTS} from "../queries";
 import Spinner from "react-spinkit";
 import {Query} from "react-apollo";
+import {ToastContainer} from "react-toastify";
 
 
 const pollIntervalTime = 10000;
@@ -29,9 +29,8 @@ class RegionalMap extends Component {
                             <div className={"row"}>
                                 <div className={"row"}>
                                     <div className="col-lg-12">
-                                        <FormModal popoverText="Hello World" toolTip="Yes" buttonText="Send Report">
-                                            <CreateIncident/>
-                                        </FormModal>
+                                        <ToastContainer/>
+                                        <CreateIncidentFormModal/>
                                     </div>
                                 </div>
                                 <div className={"row"}>

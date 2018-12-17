@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Select, {Option, ReactSelectProps} from 'react-select'
-import {Alert, Button, ControlLabel, Form, FormControl, FormGroup} from "react-bootstrap";
+import {Alert, Button, ControlLabel, Form, FormControl, FormGroup, Modal} from "react-bootstrap";
 import LocationSearchInput from '../UIComponents/LocationSearchInput'
 import {Mutation, Query} from "react-apollo";
 import {CREATE_INCIDENT, FETCH_INCIDENT_GROUPS} from "../../queries";
-
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const renderErrors = mutationData => {
     const errors = mutationData ? mutationData.createIncident.incident.errors : [];
@@ -64,6 +65,9 @@ class CreateIncidentForm extends Component {
             }
         })
 
+        this.setState({value: "", address: null, incidentGroupId: null})
+        toast("Incident Added!");
+        this.props.handleClose();
     }
 
     render() {
@@ -74,9 +78,9 @@ class CreateIncidentForm extends Component {
                 mutation={CREATE_INCIDENT}
                 onCompleted={this.onCompleted}>
                 {(createIncident, {data: mutationData}) => (
+
                     <Form
-                        onSubmit={this.onSubmit(createIncident)}
-                    >
+                        onSubmit={this.onSubmit(createIncident)}>
                         {renderErrors(mutationData)}
                         <FormGroup>
                             <ControlLabel>Incidnet Address / Location</ControlLabel>
@@ -113,7 +117,6 @@ class CreateIncidentForm extends Component {
                                 Submit
                             </Button>
                         </FormGroup>
-
                     </Form>
 
                 )}
@@ -122,54 +125,109 @@ class CreateIncidentForm extends Component {
     }
 }
 
-const CreateIncident = () => (
-    <Query query={FETCH_INCIDENT_GROUPS}>
-        {({loading, error, data}) => {
-            if (loading) return <div>loading . . .</div>;
+class CreateIncident extends Component {
 
-            if (error) return <div>Error</div>;
+    render() {
+        return (
+            <Query query={FETCH_INCIDENT_GROUPS}>
+                {({loading, error, data}) => {
+                    if (loading) return <div>loading . . .</div>;
 
-            return (
-                <div>
-                    <CreateIncidentForm queryData={data}/>
-                    <div className="panel-body">
+                    if (error) return <div>Error</div>;
+
+                    return (
                         <div>
-                            <h4 className="text-center">
-                                <strong>
-                                    Please fill out the report below to report on an incident.
-                                </strong>
-                            </h4>
-                            <p>
-                                All of the incidents will have human eyes on this before it goes out to the world unless
-                                you have enough rep ponts to be automatically confirmed.
-                            </p>
-                            <br/>
-                            <h4>Incident Location / Address</h4>
-                            <p>At this time we only support street address automatically. If you need to report an
-                                intersection, please note that in the "Short Description" section and we will update
-                                that manually
-                            </p>
-                            <br/>
-                            <h4>Short Description</h4>
-                            <p>You are limited to 140 chacters. If you need to send more of an update, you will be able
-                                to add additional information once approved. examples ("Working Structure Fire, WSF,
-                                Rollover w/ Entrapment.")
-                                There is a "status" field available to those with enough rep points.
-                            </p>
-                            <br/>
-                            <h4>Only Registered First Responders will have the ability to upvote / confirm / flag events
-                                and gain points.</h4>
-                            <p className={"text-muted"}>For more information on rep points, please see the readme.</p>
-                            <br/>
-                            <h3>Thank you for your report</h3>
+                            <CreateIncidentForm queryData={data} handleClose={this.props.handleClose}/>
+                            <div className="panel-body">
+                                <div>
+                                    <h4 className="text-center">
+                                        <strong>
+                                            Please fill out the report below to report on an incident.
+                                        </strong>
+                                    </h4>
+                                    <p>
+                                        All of the incidents will have human eyes on this before it goes out to the
+                                        world unless
+                                        you have enough rep ponts to be automatically confirmed.
+                                    </p>
+                                    <br/>
+                                    <h4>Incident Location / Address</h4>
+                                    <p>At this time we only support street address automatically. If you need to report
+                                        an
+                                        intersection, please note that in the "Short Description" section and we will
+                                        update
+                                        that manually
+                                    </p>
+                                    <br/>
+                                    <h4>Short Description</h4>
+                                    <p>You are limited to 140 chacters. If you need to send more of an update, you will
+                                        be able
+                                        to add additional information once approved. examples ("Working Structure Fire,
+                                        WSF,
+                                        Rollover w/ Entrapment.")
+                                        There is a "status" field available to those with enough rep points.
+                                    </p>
+                                    <br/>
+                                    <h4>Only Registered First Responders will have the ability to upvote / confirm /
+                                        flag events
+                                        and gain points.</h4>
+                                    <p className={"text-muted"}>For more information on rep points, please see the
+                                        readme.</p>
+                                    <br/>
+                                    <h3>Thank you for your report</h3>
+                                </div>
+                                <hr/>
+                            </div>
                         </div>
-                        <hr/>
-                    </div>
-                </div>
-            )
-        }}
-    </Query>
-)
+                    )
+                }}
+            </Query>
+        )
+    }
+}
+
+class CreateIncidentFormModal extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
+        this.state = {
+            show: false
+        };
+    }
+
+    handleClose() {
+        this.setState({show: false});
+    }
+
+    handleShow() {
+        this.setState({show: true});
+    }
+
+    render() {
+        return (
+            <div>
+                <Button bsStyle="primary" bsSize="small" onClick={this.handleShow}>
+                    Send Report
+                </Button>
+
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Send Report</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <CreateIncident handleClose={this.handleClose}/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.handleClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
+        );
+    }
+}
 
 
-export default CreateIncident;
+export default CreateIncidentFormModal;

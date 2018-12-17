@@ -25,6 +25,7 @@
     "react-select": "2.1.2",
     "react-spinkit": "3.0.0",
     "react-timeago": "4.1.9",
+    "react-toastify": "4.5.0",
     "reactstrap": "6.5.0"
   },
   "devDependencies": {

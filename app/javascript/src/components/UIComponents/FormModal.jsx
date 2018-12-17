@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
-import {Popover, Button, Modal, Tooltip} from 'react-bootstrap'
+import {Button, Modal, Tooltip} from 'react-bootstrap'
 
 class FormModal extends Component {
     constructor(props, context) {
         super(props, context);
 
         this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);Tooltip
+        this.handleClose = this.handleClose.bind(this);
+        Tooltip
 
         this.state = {
             show: false
@@ -14,21 +15,14 @@ class FormModal extends Component {
     }
 
     handleClose() {
-        this.setState({ show: false });
+        this.setState({show: false});
     }
 
     handleShow() {
-        this.setState({ show: true });
+        this.setState({show: true});
     }
 
     render() {
-        const popover = (
-            <Popover id="modal-popover" title="popover">
-                {this.props.popoverText}
-            </Popover>
-        );
-        const tooltip = <Tooltip id="modal-tooltip">{this.props.toolTip}</Tooltip>;
-
         return (
             <div>
                 <Button bsStyle="primary" bsSize="small" onClick={this.handleShow}>
