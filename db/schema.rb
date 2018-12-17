@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_16_032909) do
+ActiveRecord::Schema.define(version: 2018_12_16_204137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_032909) do
   create_table "incidents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "message"
     t.uuid "location_id"
-    t.uuid "incident_type_id"
+    t.uuid "incident_group_id"
     t.uuid "user_id"
     t.float "rank", default: 0.0
     t.boolean "archived", default: false
@@ -220,8 +220,8 @@ ActiveRecord::Schema.define(version: 2018_12_16_032909) do
     t.datetime "updated_at", null: false
     t.boolean "flagged", default: false
     t.uuid "county_id"
-    t.integer "status_id"
-    t.index ["incident_type_id"], name: "index_incidents_on_incident_type_id"
+    t.uuid "incident_status_id"
+    t.index ["incident_group_id"], name: "index_incidents_on_incident_group_id"
     t.index ["location_id"], name: "index_incidents_on_location_id"
     t.index ["rank"], name: "index_incidents_on_rank"
     t.index ["user_id"], name: "index_incidents_on_user_id"
@@ -360,7 +360,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_032909) do
   add_foreign_key "hospitals", "locations"
   add_foreign_key "incident_reports", "incidents"
   add_foreign_key "incident_reports", "users"
-  add_foreign_key "incidents", "incident_groups", column: "incident_type_id"
+  add_foreign_key "incidents", "incident_groups"
   add_foreign_key "incidents", "locations"
   add_foreign_key "incidents", "users"
   add_foreign_key "votes", "users"

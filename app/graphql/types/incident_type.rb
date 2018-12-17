@@ -11,7 +11,8 @@ class Types::IncidentType < Types::ActiveRecordBase
 
   field :created_at, String, null: false
   field :updated_at, String, null: false
-  field :status, String, null: false
+  field :status, Types::IncidentStatusType, null: true
+
   field :rank, Float, null: false
   field :ranked_at, String, null: true
 

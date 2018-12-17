@@ -16,6 +16,6 @@
 //= require inspinia.js
 //= require toastr/toastr.min.js
 //= require google
-//= require autocomplete-rails
+
 //= require app
 //= require_tree .

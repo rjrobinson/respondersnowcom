@@ -3,7 +3,7 @@ class ChangeColumnForStatus < ActiveRecord::Migration[5.2]
     remove_column :incidents, :status, :string
 
     add_column :incident_groups, :abvr, :string
-    add_column :incidents, :status_id, :integer
+    add_column :incidents, :incident_status_id, :uuid
   end
 
 end

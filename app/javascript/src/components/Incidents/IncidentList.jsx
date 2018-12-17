@@ -17,13 +17,12 @@ const IncidentList = ({data}) => (
                     <li className="active"><a data-toggle="tab" href="#regional">Regional</a></li>
                     <li><a data-toggle="tab" href="#national">National</a></li>
                 </ul>
-                <div className="tab-content ">
+                <div className="tab-content right-shrink">
                     <div id="regional" className="tab-pane active">
-                        <div className="panel-body">
-                            <div className="ibox-content">
+                        <div className="panel-body right-shrink">
+                            <div className="ibox-content right-shrink">
                                 <div className="feed-activity-list"
                                      style={{height: '75vh', overflowX: 'scroll'}}>
-                                    {/*RENDER INCIDENTS*/}
                                     {renderIncidents(data)}
                                 </div>
                             </div>

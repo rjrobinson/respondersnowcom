@@ -81,17 +81,12 @@ gem 'newrelic_rpm'
 # Document Tools
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'mapbox-rails'
 # LOCATIONS
 gem 'geocoder'
 gem 'area'
 #
 gem 'coveralls', require: false
-
-gem 'rails-jquery-autocomplete'
-
-gem 'select2-rails'
-gem 'mapbox-rails'
 
 group :development, :test do
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'

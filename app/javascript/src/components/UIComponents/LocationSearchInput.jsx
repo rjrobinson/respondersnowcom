@@ -1,8 +1,10 @@
 import React from 'react';
-import PlacesAutocomplete, {geocodeByAddress,} from 'react-places-autocomplete';
+import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 
 
-const addressFromComponents = ({address_components, coordinates, formatted_address}) => {
+const addressFromComponents = (results) => {
+    const {address_components, formatted_address} = results;
+
     const components_by_type = {};
     address_components.map(component => {
         components_by_type[component.types[0]] = component.short_name;
@@ -11,7 +13,8 @@ const addressFromComponents = ({address_components, coordinates, formatted_addre
     if (components_by_type["street_number"] && components_by_type["route"]) {
         components_by_type["street"] = `${components_by_type["street_number"]} ${components_by_type["route"]}`
     }
-    components_by_type["coordinates"] = coordinates;
+
+    getLatLng(results).then(latLng => components_by_type["latLng"] = latLng);
     components_by_type["formatted_address"] = formatted_address;
 
     return components_by_type
