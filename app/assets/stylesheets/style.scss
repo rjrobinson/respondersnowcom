@@ -4,18 +4,14 @@
  *   version 2.6.2
  *
 */
-
 // Google Fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
-
 // Bootstra
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
 // Variables, Mixins
 @import "base/variables";
 @import "base/mixins";
-
 // INSPINIA Theme Elements
 @import "base/typography";
 @import "base/navigation";
@@ -29,23 +25,17 @@
 @import "base/chat";
 @import "base/metismenu";
 @import "base/spinners";
-
 // Landing page
 @import "base/landing";
-
 // RTL Support
 @import "base/rtl";
-
 // For demo only - config box style
 @import "base/theme-config";
-
 // INSPINIA Skins
 @import "base/skins";
 @import "base/md-skin";
-
 // Media query style
 @import "base/media";
-
 // Custom style
 // Your custom style to override base style
 @import "base/custom";
@@ -56,7 +46,9 @@
     display: none;
   }
 
-  body { overflow: visible !important; }
+  body {
+    overflow: visible !important;
+  }
 
   #page-wrapper {
     margin: 0;

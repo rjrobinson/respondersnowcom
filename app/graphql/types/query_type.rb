@@ -25,14 +25,16 @@ module Types
     end
 
     def incidents
-      Incident.filter_flagged
+      Incident.filter_flagged.order(created_at: :desc).limit(15)
     end
+
 
     field :trending, [IncidentType], null: false
 
     def trending
-      Incident.filter_flagged.order(rank: :desc)
+      Incident.filter_flagged
     end
+
 
     field :incident, IncidentType, null: false do
       description "returns one incident"
@@ -41,6 +43,12 @@ module Types
 
     def incident(id:)
       Incident.find(id)
+    end
+
+    field :incident_groups, [IncidentGroupType], null: false
+
+    def incident_groups
+      IncidentGroup.all
     end
 
     def locations

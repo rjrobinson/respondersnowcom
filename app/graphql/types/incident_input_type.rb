@@ -13,16 +13,15 @@ class Types::IncidentInputType < Types::BaseInputType
     description "Must pass ID for any mutation except Create"
   end
 
-  argument :street, String, required: false
   argument :city, String, required: false
+  argument :county, String, required: false
+  argument :formatted_address, String, required: false
+  argument :incident_group_id, ID, required: false
+  argument :incident_status_id, ID, required: false
+  argument :lat, Float, required: false
+  argument :lng, Float, required: false
+  argument :message, String, required: false
   argument :state, String, required: false
-
-  argument :latitude, Float, required: false
-  argument :longitude, Float, required: false
-
-
-  # TODO Add Scene Type
-  argument :scene_type, String, required: true
-  argument :message, String, required: true
-  argument :status, String, required: true
+  argument :street, String, required: false
+  argument :street_number, String, required: false
 end

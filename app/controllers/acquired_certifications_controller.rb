@@ -40,7 +40,7 @@ class AcquiredCertificationsController < ApplicationController
             params[:acquired_certification]['acquired_on(2i)'].to_i,
         ),
         user_id: current_user.id,
-                      )
+      )
 
       if params[:acquired_certification][:expires]
         new = new.merge(expires_on: DateTime.new(

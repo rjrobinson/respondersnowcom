@@ -2,6 +2,8 @@
 
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
+  config.webpacker.check_yarn_integrity = false
+  # Verifies that versions and hashed value of the package contents in the project's package.json
   config.require_master_key = true
 
   config.webpacker.check_yarn_integrity = false
@@ -68,7 +70,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
 
-  config.action_mailer.default_url_options = {host: 'respondersnow.com'}
+  config.action_mailer.default_url_options = { host: 'respondersnow.com' }
 
 
   # Use a different cache store in production.
@@ -107,5 +109,4 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-
 end

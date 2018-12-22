@@ -13,7 +13,7 @@
  *= require style
  *= require font-awesome
  *= require dashboards
- *= require select2-bootstrap
+
  *= require mapbox
  */
 
@@ -376,6 +376,7 @@ footer1 {
       background: darken($defaultColor, 10%);
     }
   }
+
   input {
     opacity: 0;
     position: absolute;

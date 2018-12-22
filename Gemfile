@@ -15,7 +15,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
-gem 'jquery-rails'
+# gem 'bootstrap', '~> 4.1.3'
+gem 'sprockets-rails'
+gem 'jquery-rails', '~> 4.3.1'
+
 gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 2.5'
 
@@ -78,18 +81,12 @@ gem 'newrelic_rpm'
 # Document Tools
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'mapbox-rails'
 # LOCATIONS
 gem 'geocoder'
 gem 'area'
 #
 gem 'coveralls', require: false
-
-gem 'rails-jquery-autocomplete'
-
-gem 'select2-rails'
-gem 'mapbox-rails'
-gem 'vuejs-rails'
 
 group :development, :test do
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'

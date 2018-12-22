@@ -5,9 +5,9 @@
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 //
-//= require jquery
+//= require jquery3
 //= require jquery-ui
-//= require jquery_ujs
+//= require rails-ujs
 //= require bootstrap-sprockets
 //= require metisMenu/jquery.metisMenu.js
 //= require pace/pace.min.js
@@ -16,7 +16,6 @@
 //= require inspinia.js
 //= require toastr/toastr.min.js
 //= require google
-//= require autocomplete-rails
-//= require mapbox.js
-//= require vue
+
 //= require app
+//= require_tree .

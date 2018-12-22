@@ -2,22 +2,28 @@
 
 class Incident < ApplicationRecord
   belongs_to :location
-  belongs_to :incident_type
+  belongs_to :incident_group
+  belongs_to :incident_status
+
   belongs_to :user
   belongs_to :county
 
-  has_many :votes, as: :voteable
-  has_many :confirmations, as: :confirmable
+  has_many :votes, as: :voteable, dependent: :destroy
+  has_many :confirmations, as: :confirmable, dependent: :destroy
 
-  has_many :flags, as: :flaggable
+  has_many :flags, as: :flaggable, dependent: :destroy
 
-  has_many :incident_reports
+  has_many :incident_reports, dependent: :destroy
 
 
   TRENDING_VOTES_COUNT = 100
   SYSTEM_EPOCH = 1.day.ago.to_i
   SECOND_DIVISOR = 3600
 
+
+  def status
+    incident_status
+  end
 
   scope :filter_flagged, -> { where(flagged: false) }
 
@@ -104,27 +110,42 @@ class Incident < ApplicationRecord
 
   # : User.first
   def self.new_with_location(params)
+    # {:city=>"North Brunswick Township",
+    #  :county=>"Middlesex County",
+    #  :formatted_address=>"880 Ridgewood Ave, North Brunswick Township, NJ 08902, USA",
+    #  :incident_group_id=>"e608e12a-c181-4b65-a1c0-a6a0ff63bbe5",
+    #  :incident_status_id=>"598879c9-4d1f-4e90-b128-47ae5092ba98",
+    #  :lat=>40.4642341,
+    #  :lng=>-74.47009539999999,
+    #  :message=>"Squad Call",
+    #  :state=>"NJ",
+    #  :street=>"Ridgewood Ave"
+    # :street_number => "980"}
+
     # Find or create the location #
-    location = if params[:latitude].present? && params[:longitude].present?
-      Location.new_by_coord(lat: params[:latitude], long: params[:longitude])
-    else
-      Location.find_or_create_by(street: params[:street], state: params[:state], city: params[:city])
-    end
+    location = Location.find_or_create_by(
+      street: "#{params[:street_number] || ""} #{params[:street]}",
+      state: params[:state],
+      city: params[:city],
+      county: params[:county],
+      state: params[:state],
+      latitude: params[:lat],
+      longitude: params[:lng])
 
-    location.valid?
+    county = County.find_or_create_by(name: params[:county], state: params[:state])
 
-    i = if location.save
-      Incident.new(message: params[:message],
-                   location: location,
-                   incident_type: IncidentType.find_or_create_by(name: params[:scene_type].downcase),
-                   user: params[:current_user],
-                   status: params[:status] || "Unconfirmed"
+    incident = if location.save
+      Incident.create(
+        location: location,
+          message: params[:message],
+          incident_group_id: params[:incident_group_id],
+          user: params[:current_user],
+          incident_status_id: params[:incident_status_id] || IncidentStatus.find_or_create_by(name: "unconfirmed")
       )
 
     end
 
-    i.save if i.valid?
 
-    i
+    incident
   end
 end

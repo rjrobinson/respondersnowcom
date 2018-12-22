@@ -49,25 +49,19 @@ jobs:
           name: Run rake:db:setup
           command: bundle exec rake db:setup
 
+      - store_test_results:
+          path: ~/repo/spec
+
+      - store_artifacts:
+          path: ~/repo/spec/rspec.xml
+
       - run:
           name: Run RSPEC spec
           command: |
             bundle exec rspec spec --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress
-
-      - store_test_results:
-          path: ~/repo/spec
-      - store_artifacts:
-          path: ~/repo/spec/rspec.xml
-
-#      - run:
-#          name: Run Brakeman
-#          command: bundle exec brakeman --exit-on-warn > ~/repo/spec/brakeman.txt
-#
-#      - store_artifacts:
-#          path: ~/repo/spec/brakeman.txt
+            --format RspecJunitFormatter \
+            --out /tmp/test-results/rspec.xml \
+            --format progress
 
 
 workflows:

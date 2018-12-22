@@ -5,7 +5,8 @@ require 'rails_helper'
 RSpec.describe Incident, type: :model do
   describe 'validations' do
     it { should belong_to(:location) }
-    it { should belong_to(:incident_type) }
+    it { should belong_to(:incident_group) }
+    it { should belong_to(:incident_status) }
     it { should have_many(:votes) }
 
     it { should have_many(:incident_reports) }
