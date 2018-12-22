@@ -25,7 +25,7 @@ class Incident < ApplicationRecord
     incident_status
   end
 
-  scope :filter_flagged, -> { where(flagged: false) }
+  scope :filter_flagged, -> {where(flagged: false)}
 
   def self.trending
     sorted = Incident.last(100).each.map do |inc|
@@ -51,7 +51,7 @@ class Incident < ApplicationRecord
   end
 
   def popularity(weight: 3)
-    (votes.count + incident_reports.count) * weight
+    (votes.count + incident_reports.count) ^ weight
   end
 
   def recentness(timestamp: created_at, epoch: SYSTEM_EPOCH, divisor: SECOND_DIVISOR)
@@ -124,26 +124,26 @@ class Incident < ApplicationRecord
 
     # Find or create the location #
     location = Location.find_or_create_by(
-      street: "#{params[:street_number] || ""} #{params[:street]}",
-      state: params[:state],
-      city: params[:city],
-      county: params[:county],
-      state: params[:state],
-      latitude: params[:lat],
-      longitude: params[:lng])
+        street: "#{params[:street_number] || ""} #{params[:street]}",
+        state: params[:state],
+        city: params[:city],
+        county: params[:county],
+        state: params[:state],
+        latitude: params[:lat],
+        longitude: params[:lng])
 
     county = County.find_or_create_by(name: params[:county], state: params[:state])
 
     incident = if location.save
-      Incident.create(
-        location: location,
-          message: params[:message],
-          incident_group_id: params[:incident_group_id],
-          user: params[:current_user],
-          incident_status_id: params[:incident_status_id] || IncidentStatus.find_or_create_by(name: "unconfirmed")
-      )
+                 Incident.create(
+                     location: location,
+                     message: params[:message],
+                     incident_group_id: params[:incident_group_id],
+                     user: params[:current_user],
+                     incident_status_id: params[:incident_status_id] || IncidentStatus.find_or_create_by(name: "unconfirmed")
+                 )
 
-    end
+               end
 
 
     incident

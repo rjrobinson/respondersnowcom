@@ -2,6 +2,8 @@ import React from 'react';
 import IncidentCard from './IncidentCard';
 import {Row, Tab, Tabs} from 'react-bootstrap';
 import {CreateIncident} from "./CreateIncidentForm";
+import {IBox, IBoxContent} from "../UIComponents/Ibox/Ibox";
+import {ActivityFeed} from "../UIComponents/ActivityFeedComponent";
 
 const renderIncidents = ({incidents}) => {
     return incidents.map(incident => {
@@ -10,32 +12,36 @@ const renderIncidents = ({incidents}) => {
     })
 }
 
+
 const IncidentList = ({data}) => (
 
     <Row>
-        <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+        <IBox>
+            <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                 <Tab eventKey={1} title="Regional">
-                    <div className="ibox-content">
-                        <div className="feed-activity-list"
-                             style={{height: '75vh', overflowX: 'scroll'}}>
+                    <IBoxContent>
+                        <ActivityFeed
+                            style={{height: '75vh', overflowX: 'scroll'}}>
                             {renderIncidents(data)}
-                        </div>
-                    </div>
+                        </ActivityFeed>
+                    </IBoxContent>
                 </Tab>
                 <Tab eventKey={2} title="National">
-
-                    <div className="feed-activity-list"
-                         style={{height: '75vh', overflowX: 'scroll'}}>
-                        {renderIncidents(data)}
-                    </div>
-
+                    <IBoxContent>
+                        <ActivityFeed
+                            style={{height: '75vh', overflowX: 'scroll'}}>
+                            {renderIncidents(data)}
+                        </ActivityFeed>
+                    </IBoxContent>
                 </Tab>
                 <Tab eventKey={3} title="Send Report">
-                    <div className="ibox-content">
+                    <IBoxContent>
                         <CreateIncident/>
-                    </div>
+                    </IBoxContent>
                 </Tab>
-        </Tabs>
+
+            </Tabs>
+        </IBox>
     </Row>
 
 
