@@ -1,14 +1,14 @@
 import React from 'react'
 import TimeAgo from 'react-timeago'
 import Moment from 'react-moment';
+import FeedElement from '../UIComponents/FeedElement'
 
 const IncidentCard = ({incident}) => {
 
     const {message, location, status, createdAt, rank} = incident;
 
     return (
-        <div className="feed-element">
-            <div>
+        <FeedElement>
                 <small className="pull-right"><TimeAgo date={createdAt}/></small>
                 <small>
                     <strong>
@@ -31,8 +31,7 @@ const IncidentCard = ({incident}) => {
                         {Date(createdAt).toISOString}
                     </Moment>
                 </small>
-            </div>
-        </div>
+        </FeedElement>
     )
 }
 

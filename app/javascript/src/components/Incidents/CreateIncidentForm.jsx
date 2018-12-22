@@ -63,6 +63,8 @@ class CreateIncidentForm extends Component {
                     streetNumber: street_number
                 }
             }
+        }).then(() => {
+            this.setState({address: null, value: ""})
         })
 
         this.setState({value: "", address: null, incidentGroupId: null})
@@ -125,7 +127,7 @@ class CreateIncidentForm extends Component {
     }
 }
 
-class CreateIncident extends Component {
+export class CreateIncident extends Component {
 
     render() {
         return (
@@ -137,48 +139,50 @@ class CreateIncident extends Component {
 
                     return (
                         <div>
-                            <CreateIncidentForm queryData={data} handleClose={this.props.handleClose}/>
                             <div className="panel-body">
-                                <div>
-                                    <h4 className="text-center">
-                                        <strong>
-                                            Please fill out the report below to report on an incident.
-                                        </strong>
-                                    </h4>
-                                    <p>
-                                        All of the incidents will have human eyes on this before it goes out to the
-                                        world unless
-                                        you have enough rep ponts to be automatically confirmed.
-                                    </p>
-                                    <br/>
-                                    <h4>Incident Location / Address</h4>
-                                    <p>At this time we only support street address automatically. If you need to report
-                                        an
-                                        intersection, please note that in the "Short Description" section and we will
-                                        update
-                                        that manually
-                                    </p>
-                                    <br/>
-                                    <h4>Short Description</h4>
-                                    <p>You are limited to 140 chacters. If you need to send more of an update, you will
-                                        be able
-                                        to add additional information once approved. examples ("Working Structure Fire,
-                                        WSF,
-                                        Rollover w/ Entrapment.")
-                                        There is a "status" field available to those with enough rep points.
-                                    </p>
-                                    <br/>
-                                    <h4>Only Registered First Responders will have the ability to upvote / confirm /
-                                        flag events
-                                        and gain points.</h4>
-                                    <p className={"text-muted"}>For more information on rep points, please see the
-                                        readme.</p>
-                                    <br/>
-                                    <h3>Thank you for your report</h3>
-                                </div>
-                                <hr/>
+                                <h4 className="text-center">
+                                    <strong>
+                                        Please fill out the form below to report on an incident.
+                                    </strong>
+                                </h4>
+                                <p>
+                                    All of the incidents will have human eyes on this before it goes out to the
+                                    world unless you have enough merit ponts to be automatically confirmed.
+                                </p>
                             </div>
+                            <hr/>
+                            <CreateIncidentForm queryData={data} handleClose={this.props.handleClose}/>
+                            <hr/>
+                            <div className="panel-body">
+
+                                <h4>Incident Location / Address</h4>
+                                <p>At this time we only support street address automatically. If you need to report
+                                    an
+                                    intersection, please note that in the "Short Description" section and we will
+                                    update
+                                    that manually
+                                </p>
+                                <br/>
+                                <h4>Short Description</h4>
+                                <p>You are limited to 140 chacters. If you need to send more of an update, you will
+                                    be able
+                                    to add additional information once approved. examples ("Working Structure Fire,
+                                    WSF,
+                                    Rollover w/ Entrapment.")
+                                    There is a "status" field available to those with enough rep points.
+                                </p>
+                                <br/>
+                                <h4>Only Registered First Responders will have the ability to upvote / confirm /
+                                    flag events
+                                    and gain points.</h4>
+                                <p className={"text-muted"}>For more information on rep points, please see the
+                                    readme.</p>
+                                <br/>
+                                <h3>Thank you for your report</h3>
+                            </div>
+                            <hr/>
                         </div>
+
                     )
                 }}
             </Query>
@@ -186,7 +190,8 @@ class CreateIncident extends Component {
     }
 }
 
-class CreateIncidentFormModal extends Component {
+
+export class CreateIncidentFormModal extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -228,6 +233,3 @@ class CreateIncidentFormModal extends Component {
         );
     }
 }
-
-
-export default CreateIncidentFormModal;

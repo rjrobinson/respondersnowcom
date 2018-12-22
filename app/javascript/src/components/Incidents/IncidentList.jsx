@@ -1,6 +1,7 @@
-import React from 'react'
-import IncidentCard from './IncidentCard'
-
+import React from 'react';
+import IncidentCard from './IncidentCard';
+import {Row, Tab, Tabs} from 'react-bootstrap';
+import {CreateIncident} from "./CreateIncidentForm";
 
 const renderIncidents = ({incidents}) => {
     return incidents.map(incident => {
@@ -10,28 +11,33 @@ const renderIncidents = ({incidents}) => {
 }
 
 const IncidentList = ({data}) => (
-    <div>
-        <div className="tabs-container">
-            <div>
-                <ul className="nav nav-tabs">
-                    <li className="active"><a data-toggle="tab" href="#regional">Regional</a></li>
-                    <li><a data-toggle="tab" href="#national">National</a></li>
-                </ul>
-                <div className="tab-content right-shrink">
-                    <div id="regional" className="tab-pane active">
-                        <div className="panel-body right-shrink">
-                            <div className="ibox-content right-shrink">
-                                <div className="feed-activity-list"
-                                     style={{height: '75vh', overflowX: 'scroll'}}>
-                                    {renderIncidents(data)}
-                                </div>
-                            </div>
+
+    <Row>
+        <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+                <Tab eventKey={1} title="Regional">
+                    <div className="ibox-content">
+                        <div className="feed-activity-list"
+                             style={{height: '75vh', overflowX: 'scroll'}}>
+                            {renderIncidents(data)}
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </Tab>
+                <Tab eventKey={2} title="National">
+
+                    <div className="feed-activity-list"
+                         style={{height: '75vh', overflowX: 'scroll'}}>
+                        {renderIncidents(data)}
+                    </div>
+
+                </Tab>
+                <Tab eventKey={3} title="Send Report">
+                    <div className="ibox-content">
+                        <CreateIncident/>
+                    </div>
+                </Tab>
+        </Tabs>
+    </Row>
+
 
 );
 
