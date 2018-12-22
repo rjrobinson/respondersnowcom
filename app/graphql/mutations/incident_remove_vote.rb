@@ -15,6 +15,5 @@ class Mutations::IncidentRemoveVote < Types::BaseMutationType
         incident: incident,
         errors: incident&.errors
     }
-
   end
 end

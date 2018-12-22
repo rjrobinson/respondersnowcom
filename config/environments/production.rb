@@ -70,7 +70,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
 
-  config.action_mailer.default_url_options = {host: 'respondersnow.com'}
+  config.action_mailer.default_url_options = { host: 'respondersnow.com' }
 
 
   # Use a different cache store in production.
@@ -109,5 +109,4 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-
 end

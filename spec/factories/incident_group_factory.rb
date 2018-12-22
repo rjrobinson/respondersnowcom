@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :incident_group do
-    name {"EMS"}
+    name { "EMS" }
   end
 end

@@ -21,4 +21,3 @@ class Mutations::CreateIncident < Types::BaseMutationType
     }
   end
 end
-

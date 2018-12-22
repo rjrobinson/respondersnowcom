@@ -7,4 +7,3 @@ class Types::IncidentStatusType < Types::ActiveRecordBase
   field :name, String, null: false
   field :abvr, String, null: true
 end
-
