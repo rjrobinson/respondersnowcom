@@ -12,7 +12,6 @@ const renderIncidents = ({incidents}) => {
     })
 }
 
-
 const IncidentList = ({data}) => (
 
     <Row>

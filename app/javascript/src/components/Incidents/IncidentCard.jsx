@@ -2,14 +2,18 @@ import React from 'react'
 import TimeAgo from 'react-timeago'
 import Moment from 'react-moment';
 import FeedElement from '../UIComponents/FeedElement'
+import {Button, ButtonGroup, Label} from 'react-bootstrap';
 
 const IncidentCard = ({incident}) => {
 
     const {message, location, status, createdAt, rank} = incident;
 
     return (
-        <FeedElement>
-            <small className="pull-right"><TimeAgo date={createdAt}/></small>
+        <FeedElement style={{paddingBottom: -25, display: "flex"}}>
+            <small className="pull-right"><TimeAgo date={createdAt}/>
+                <br/><br/>
+                <Label bsStyle="success" style={{marginTop: 15}}>{status.name}</Label>
+            </small>
             <small>
                 <strong>
                     {/*Seperate this out to a component. */}
@@ -24,13 +28,26 @@ const IncidentCard = ({incident}) => {
                 </strong>
             </small>
 
-            <p>{message}</p>
-            <small className="text-danger pull-right">{status.name}</small>
-            <small className="text-muted">
-                <Moment format="HH:mm D MMM YYYY" interval={60000}>
-                    {Date(createdAt).toISOString}
-                </Moment>
-            </small>
+            <h4 style={{marginTop: 10, marginBotton: 10}}>{message}</h4>
+
+            <div className="pull-left">
+                <ButtonGroup bsSize={"xsmall"} style={{marginTop: 10, marginBotton: -40}}>
+                    <Button>
+                        <Moment format="HH:mm D MMM YYYY" interval={60000}>
+                            {Date(createdAt).toISOString}
+                        </Moment>
+                    </Button>
+                    <Button>{rank} <i className="fas fa-arrow-circle-up"></i></Button>
+                    <Button style={{color: "green"}}>
+                        <i className="far fa-dot-circle"></i>
+                        <i className="far fa-dot-circle"></i>
+                        <i className="far fa-dot-circle"></i>
+                    </Button>
+                    <Button>23 <i className="far fa-images"></i></Button>
+                    <Button>2 <i className="fas fa-flag"></i></Button>
+                </ButtonGroup>
+            </div>
+
         </FeedElement>
     )
 }
