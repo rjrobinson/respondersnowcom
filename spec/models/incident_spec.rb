@@ -12,7 +12,7 @@ RSpec.describe Incident, type: :model do
     it {should have_many(:incident_reports)}
   end
 
-
+  
   let(:incident) {create(:incident)}
   let(:user) {create(:user)}
 
