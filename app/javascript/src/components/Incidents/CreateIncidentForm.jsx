@@ -20,29 +20,20 @@ const renderErrors = mutationData => {
 
 class CreateIncidentForm extends Component {
 
-    constructor(props, context) {
-        super(props, context);
-
-        this.handleChange = this.handleChange.bind(this);
-
-        this.state = {
-            value: '',
-            valid: true
-        };
-
-
-    }
+    state = {value: "", valid: true}
 
     handleAddressUpdate = (result) => this.setState({address: result});
-    handleChange = (e) => this.setState({value: e.target.value})
 
-    onSubmit = createIncident => e => {
+    handleChange = (e) => this.setState({value: e.target.value});
+
+    onCompleted = () => (this.props.handleTabChange(1))
+
+    onSubmit = (e, createIncident) => {
         e.preventDefault();
 
         const {formatted_address, street_number, route, locality, latLng, administrative_area_level_2, administrative_area_level_1} = this.state.address;
         const {lat, lng} = latLng;
 
-        console.log(formatted_address, street_number, route, locality, latLng, administrative_area_level_2, administrative_area_level_1)
         createIncident({
             variables: {
                 incidentInput: {
@@ -63,19 +54,10 @@ class CreateIncidentForm extends Component {
             this.setState({address: null, value: ""})
         })
 
-        console.log("state cleared?")
-        this.setState({
-            value: "",
-            address: null,
-            incidentGroupId: null
-        });
-        console.log(this.state)
-        // Switch this to handle the controlled tabs.
-        // this.props.handleClose();
     }
 
     render() {
-        const {queryData} = this.props;
+        const {queryData, handleTabChange} = this.props;
 
         return (
             <Mutation
@@ -84,7 +66,7 @@ class CreateIncidentForm extends Component {
                 {(createIncident, {data: mutationData}) => (
 
                     <Form
-                        onSubmit={this.onSubmit(createIncident)}>
+                        onSubmit={e => this.onSubmit(e, createIncident)}>
                         {renderErrors(mutationData)}
                         <FormGroup>
                             <ControlLabel>Incidnet Address / Location</ControlLabel>
@@ -129,7 +111,7 @@ class CreateIncidentForm extends Component {
     }
 }
 
-export const CreateIncident = () => (
+export const CreateIncident = ({handleTabChange}) => (
     <Query query={FETCH_INCIDENT_GROUPS}>
         {({loading, error, data}) => {
             if (loading) return <div>loading . . .</div>;
@@ -149,7 +131,7 @@ export const CreateIncident = () => (
                         </p>
                     </div>
                     <hr/>
-                    <CreateIncidentForm queryData={data}/>
+                    <CreateIncidentForm queryData={data} handleTabChange={handleTabChange}/>
                     <hr/>
                     <div className="panel-body">
 

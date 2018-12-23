@@ -3,31 +3,37 @@ import {Button} from "react-bootstrap";
 import {Mutation} from "react-apollo";
 import {CONFIRM_INCIDENT} from '../../queries/incident_queries'
 
-
-const renderDots = (confirms) => {
-    return confirms.map(({id}) => {
-        return (<i key={id} className="far fa-dot-circle"></i>)
-    })
+const renderColor = length => {
+    switch (length) {
+        case 1:
+            return "red"
+        case 2:
+            return "yellow"
+        case (length > 3):
+            return "green"
+        default:
+            return "orange"
+    }
 }
 
 export const ConfirmButton = ({id, confirms}) =>
     <Mutation
         mutation={CONFIRM_INCIDENT}
         onCompleted={this.onCompleted}>
-        {(confirmIncident, {data, error}) => (
+        {(confirmIncident) => (
             <Button
                 disabled={confirms.length >= 3}
-                onClick={e => {
+                onClick={() => {
                     confirmIncident({
                         variables: {id}
                     }).then(({data}) => {
-                        const {errors} = data.confirmIncident.incident
+                        const {errors} = data.confirmIncident.incident;
                         console.log(errors)
                         // todo Add an error or notification here.
                     })
                 }}
-                style={{color: "green"}}>
-                {confirms.length >= 1 ? renderDots(confirms) : <i className="far fa-dot-circle"></i>}
+                style={{color: renderColor(confirms.length)}}>
+                <i className="far fa-dot-circle"></i>
             </Button>
         )}
     </Mutation>
