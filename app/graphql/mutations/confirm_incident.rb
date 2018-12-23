@@ -17,8 +17,7 @@ class Mutations::ConfirmIncident < Types::BaseMutationType
     end
 
     {
-        incident: incident,
-        errors: incident&.errors
+        incident: incident
     }
   end
 

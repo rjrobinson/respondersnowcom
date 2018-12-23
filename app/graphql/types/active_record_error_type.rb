@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Types::ActiveRecordErrorType < Types::BaseObject
-  description "An ActiveRecord Error"
 
-  field :field_name, String, null: false
+  description "Returns An ActiveRecord Error"
 
-  field :errors, [String], null: false
+  field :field_name, String, null: true
+  field :errors, [String], null: true
+
 end

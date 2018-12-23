@@ -3,10 +3,11 @@ import TimeAgo from 'react-timeago'
 import Moment from 'react-moment';
 import FeedElement from '../UIComponents/FeedElement'
 import {Button, ButtonGroup, Label} from 'react-bootstrap';
+import {ConfirmButton} from './ConfirmButton'
 
 const IncidentCard = ({incident}) => {
 
-    const {message, location, status, createdAt, rank} = incident;
+    const {message, location, status, createdAt, confirms, id} = incident;
 
     return (
         <FeedElement style={{paddingBottom: -25, display: "flex"}}>
@@ -28,7 +29,7 @@ const IncidentCard = ({incident}) => {
                 </strong>
             </small>
 
-            <h4 style={{marginTop: 10, marginBotton: 10}}>{message}</h4>
+            <h4 style={{marginTop: 10, marginBottom: 10}}>{message}</h4>
 
             <div className="pull-left">
                 <ButtonGroup bsSize={"xsmall"} style={{marginTop: 10, marginBotton: -40}}>
@@ -37,12 +38,10 @@ const IncidentCard = ({incident}) => {
                             {Date(createdAt).toISOString}
                         </Moment>
                     </Button>
-                    <Button>{rank} <i className="fas fa-arrow-circle-up"></i></Button>
-                    <Button style={{color: "green"}}>
-                        <i className="far fa-dot-circle"></i>
-                        <i className="far fa-dot-circle"></i>
-                        <i className="far fa-dot-circle"></i>
-                    </Button>
+                    <Button><i className="fas fa-arrow-circle-up"></i></Button>
+
+                    <ConfirmButton id={id} confirms={confirms}/>
+
                     <Button>23 <i className="far fa-images"></i></Button>
                     <Button>2 <i className="fas fa-flag"></i></Button>
                 </ButtonGroup>

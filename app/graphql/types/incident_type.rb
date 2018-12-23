@@ -29,6 +29,6 @@ class Types::IncidentType < Types::ActiveRecordBase
   field :flags, [Types::FlagType], null: true
 
   def confirmed
-    object.confirmations.count > 1
+    object.confirmations.count >= 3
   end
 end

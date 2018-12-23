@@ -105,27 +105,17 @@ class Incident < ApplicationRecord
 
   # Confirmations
   def confirm(user:)
-    confirmations.find_or_create_by(user: user)
+    if confirmations.find_by(user: user)
+      errors.add(:user_already_confirmed, "This user has already confirmed")
+    else
+      confirmations.find_or_create_by(user: user)
+    end
   end
 
-  # : User.first
-  def self.new_with_location(params)
-    # {:city=>"North Brunswick Township",
-    #  :county=>"Middlesex County",
-    #  :formatted_address=>"880 Ridgewood Ave, North Brunswick Township, NJ 08902, USA",
-    #  :incident_group_id=>"e608e12a-c181-4b65-a1c0-a6a0ff63bbe5",
-    #  :incident_status_id=>"598879c9-4d1f-4e90-b128-47ae5092ba98",
-    #  :lat=>40.4642341,
-    #  :lng=>-74.47009539999999,
-    #  :message=>"Squad Call",
-    #  :state=>"NJ",
-    #  :street=>"Ridgewood Ave"
-    # :street_number => "980"}
 
-    # Find or create the location #
+  def self.new_with_location(params)
     location = Location.find_or_create_by(
         street: "#{params[:street_number] || ""} #{params[:street]}",
-        state: params[:state],
         city: params[:city],
         county: params[:county],
         state: params[:state],
@@ -133,6 +123,8 @@ class Incident < ApplicationRecord
         longitude: params[:lng])
 
     county = County.find_or_create_by(name: params[:county], state: params[:state])
+
+    location.update(county: county)
 
     incident = if location.save
                  Incident.create(
@@ -148,4 +140,5 @@ class Incident < ApplicationRecord
 
     incident
   end
+
 end

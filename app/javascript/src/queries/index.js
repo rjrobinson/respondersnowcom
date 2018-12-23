@@ -3,11 +3,12 @@ import {gql} from 'apollo-boost'
 export const GET_INCIDENTS = gql`{
     incidents {
         id
-        score
         status {
             name
         }
-        upvotes
+        confirms: confirmations {
+            id
+        }
         message
         location {
             lat: latitude
@@ -17,7 +18,7 @@ export const GET_INCIDENTS = gql`{
             city
             street
         }
-        rank
+
         createdAt
     }
 }`;
