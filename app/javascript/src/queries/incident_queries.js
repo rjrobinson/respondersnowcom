@@ -8,7 +8,7 @@ export const CONFIRM_INCIDENT = gql`
                 message
                 confirmed
                 confirms: confirmations {
-                    id 
+                    id
                 }
                 errors {
                     fieldName
@@ -17,4 +17,38 @@ export const CONFIRM_INCIDENT = gql`
             }
         }
     }
+`
+
+export const UPVOTE_INCIDENT = gql`
+    mutation UpVoteIncident($id: ID!) {
+        incidentUpVote(id: $id) {
+            incident {
+                id
+                errors {
+                    fieldName
+                    errors
+                }
+                message
+                confirmed
+
+            }
+        }
+    }
+
+`
+
+export const DOWNVOTE_INCIDENT = gql`
+    mutation DownVoteIncident($id: ID!) {
+        incidentDownVote(id: $id) {
+            incident {
+                id
+                message
+                confirmed
+                upvotes
+                downvotes
+                score
+            }
+        }
+    }
+
 `

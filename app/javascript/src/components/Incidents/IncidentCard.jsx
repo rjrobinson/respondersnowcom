@@ -5,10 +5,12 @@ import Moment from 'react-moment';
 import FeedElement from '../UIComponents/FeedElement'
 
 import {ConfirmButton} from './ConfirmButton'
+import {UpVoteButton} from './UpVoteButton'
+import {DownVoteButton} from './DownVoteButton'
 
 const IncidentCard = ({incident}) => {
 
-    const {message, location, status, createdAt, confirms, id} = incident;
+    const {message, location, status, createdAt, confirms, id, upvotes, downvotes} = incident;
 
     return (
         <FeedElement style={{paddingBottom: -25, display: "flex"}}>
@@ -38,10 +40,10 @@ const IncidentCard = ({incident}) => {
                             {Date(createdAt).toISOString}
                         </Moment>
                     </Button>
-                    <Button><i className="fas fa-arrow-circle-up"></i></Button>
 
+                    <UpVoteButton id={id} upvotes={upvotes}/>
+                    <DownVoteButton id={id} downvotes={downvotes}/>
                     <ConfirmButton id={id} confirms={confirms}/>
-
 
                     <Button>23 <i className="far fa-images"></i></Button>
                     <Button>2 <i className="fas fa-flag"></i></Button>
