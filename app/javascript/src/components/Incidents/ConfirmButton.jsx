@@ -6,7 +6,6 @@ import {CONFIRM_INCIDENT} from '../../queries/incident_queries'
 
 const renderDots = (confirms) => {
     return confirms.map(({id}) => {
-        console.log(id)
         return (<i key={id} className="far fa-dot-circle"></i>)
     })
 }
