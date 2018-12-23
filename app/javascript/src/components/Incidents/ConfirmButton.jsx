@@ -6,6 +6,7 @@ import {CONFIRM_INCIDENT} from '../../queries/incident_queries'
 
 const renderDots = (confirms) => {
     return confirms.map(({id}) => {
+        console.log(id)
         return (<i key={id} className="far fa-dot-circle"></i>)
     })
 }
@@ -16,13 +17,14 @@ export const ConfirmButton = ({id, confirms}) =>
         onCompleted={this.onCompleted}>
         {(confirmIncident, {data, error}) => (
             <Button
+                disabled={confirms.length >= 3}
                 onClick={e => {
                     confirmIncident({
                         variables: {id}
                     }).then(({data}) => {
                         const {errors} = data.confirmIncident.incident
                         console.log(errors)
-                    // todo Add an error or notification here.
+                        // todo Add an error or notification here.
                     })
                 }}
                 style={{color: "green"}}>

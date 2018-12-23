@@ -526,7 +526,7 @@ a.compose-mail {
 }
 
 .feed-element {
-  padding-bottom: 15px;
+  padding-bottom: 0px;
 }
 
 .feed-element, .feed-element .media {
@@ -1359,3 +1359,7 @@ body.body-small .vote-icon {
   margin: 5px
 }
 
+
+.dead-bottom {
+  margin-bottom: 0px;
+}

@@ -1,8 +1,9 @@
 import React from 'react'
 import TimeAgo from 'react-timeago'
+import {Button, ButtonGroup, Label} from 'react-bootstrap';
 import Moment from 'react-moment';
 import FeedElement from '../UIComponents/FeedElement'
-import {Button, ButtonGroup, Label} from 'react-bootstrap';
+
 import {ConfirmButton} from './ConfirmButton'
 
 const IncidentCard = ({incident}) => {
@@ -17,7 +18,6 @@ const IncidentCard = ({incident}) => {
             </small>
             <small>
                 <strong>
-                    {/*Seperate this out to a component. */}
                     <ol className="breadcrumb">
                         <li><i className="fas fa-fire" style={{color: 'red'}}></i></li>
                         <li><span className="text-navy">{location.state}</span></li>
@@ -32,8 +32,8 @@ const IncidentCard = ({incident}) => {
             <h4 style={{marginTop: 10, marginBottom: 10}}>{message}</h4>
 
             <div className="pull-left">
-                <ButtonGroup bsSize={"xsmall"} style={{marginTop: 10, marginBotton: -40}}>
-                    <Button>
+                <ButtonGroup bsSize={"small"} style={{marginTop: 10, marginBotton: -40}}>
+                    <Button className="dead-bottom">
                         <Moment format="HH:mm D MMM YYYY" interval={60000}>
                             {Date(createdAt).toISOString}
                         </Moment>
@@ -42,9 +42,11 @@ const IncidentCard = ({incident}) => {
 
                     <ConfirmButton id={id} confirms={confirms}/>
 
+
                     <Button>23 <i className="far fa-images"></i></Button>
                     <Button>2 <i className="fas fa-flag"></i></Button>
                 </ButtonGroup>
+
             </div>
 
         </FeedElement>

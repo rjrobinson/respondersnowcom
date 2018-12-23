@@ -124,7 +124,7 @@ class Incident < ApplicationRecord
 
     county = County.find_or_create_by(name: params[:county], state: params[:state])
 
-    location.update(county: county)
+    location.update(county: county.name)
 
     incident = if location.save
                  Incident.create(
