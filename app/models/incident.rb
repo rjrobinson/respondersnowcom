@@ -132,7 +132,7 @@ class Incident < ApplicationRecord
                      message: params[:message],
                      incident_group_id: params[:incident_group_id],
                      user: params[:current_user],
-                     incident_status_id: params[:incident_status_id] || IncidentStatus.find_or_create_by(name: "unconfirmed")
+                     incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed")
                  )
 
                end
