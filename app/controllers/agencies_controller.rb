@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class AgenciesController < ApplicationController
-  autocomplete :agency, :name
+  # autocomplete :agency, :name
 
   def index
     @agencies = Agency.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @agencies.map(&:name) }
+      format.json {render json: @agencies.map(&:name)}
     end
   end
 
@@ -16,7 +16,7 @@ class AgenciesController < ApplicationController
     @agency = Angency.select('id, name').where('name LIKE ?', "#{params[:name]}%").order(:name).limit(10)
 
     respond_to do |format|
-      format.json { render json: @agency, only: [:id, :name] }
+      format.json {render json: @agency, only: [:id, :name]}
     end
   end
 end

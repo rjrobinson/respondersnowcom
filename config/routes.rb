@@ -23,9 +23,9 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resource :agencies, only: [] do
-    get :autocomplete_agency_name, on: :collection
-  end
+  # resource :agencies, only: [] do
+  #   get :autocomplete_agency_name, on: :collection
+  # end
 
   get '/settings', to: 'users#settings'
 
