@@ -4,16 +4,13 @@ class Incident < ApplicationRecord
   belongs_to :location
   belongs_to :incident_group
   belongs_to :incident_status
-
   belongs_to :user
   belongs_to :county
 
+  has_many :incident_reports, dependent: :destroy
   has_many :votes, as: :voteable, dependent: :destroy
   has_many :confirmations, as: :confirmable, dependent: :destroy
-
   has_many :flags, as: :flaggable, dependent: :destroy
-
-  has_many :incident_reports, dependent: :destroy
 
 
   TRENDING_VOTES_COUNT = 100
@@ -132,7 +129,8 @@ class Incident < ApplicationRecord
                      message: params[:message],
                      incident_group_id: params[:incident_group_id],
                      user: params[:current_user],
-                     incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed")
+                     incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed").id,
+                     county: county
                  )
 
                end

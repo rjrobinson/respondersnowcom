@@ -3,7 +3,7 @@
 class Flag < ApplicationRecord
   INCIDENT_FLAG_TYPES = "Inappropriate"
 
-  belongs_to :flaggable, polymorphic: true
+  belongs_to :flaggable, polymorphic: true, dependent: :destroy
   belongs_to :user
 
 
