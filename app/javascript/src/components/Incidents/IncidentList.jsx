@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import IncidentCard from './IncidentCard';
-import {Row, Tab, Tabs} from 'react-bootstrap';
+import {Panel, Tab, Tabs} from 'react-bootstrap';
 import {CreateIncident} from "./CreateIncidentForm";
 import {IBoxContent} from "../UIComponents/Ibox/Ibox";
 import {ActivityFeed} from "../UIComponents/ActivityFeedComponent";
@@ -8,10 +8,8 @@ import {ActivityFeed} from "../UIComponents/ActivityFeedComponent";
 const renderIncidents = ({incidents}) => {
     return incidents.map(incident => {
         return <IncidentCard incident={incident} key={incident.id}/>;
-
     })
 }
-
 
 const fontTitle = (icon, title) => (<span><i className={icon}></i> {title}</span>)
 
@@ -25,7 +23,8 @@ class IncidentList extends Component {
         const {data} = this.props
 
         return (
-            <Row>
+
+            <Panel>
                 <Tabs
                     activeKey={this.state.key}
                     onSelect={this.handleSelect}
@@ -59,7 +58,8 @@ class IncidentList extends Component {
                     </Tab>
 
                 </Tabs>
-            </Row>
+            </Panel>
+            
         );
     }
 }

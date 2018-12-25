@@ -42,17 +42,15 @@ const IncidentMap = ({data}) => {
 
     return (
         <div>
-            <br/><br/>
-                <div style={{height: '75vh', width: '100%'}}>
-                    <GoogleMapReact
-                        bootstrapURLKeys={{key: 'AIzaSyB1ZUug1hdyRxGcoGoQoAOVJjnqkWGBQ-I'}}
-                        defaultCenter={defaultProps.center}
-                        defaultZoom={defaultProps.zoom}
-                    >
-                        {renderIncidentMarkers(data)}
-                    </GoogleMapReact>
-                </div>
-
+            <div style={{height: '75vh', width: '100%'}}>
+                <GoogleMapReact
+                    bootstrapURLKeys={{key: 'AIzaSyB1ZUug1hdyRxGcoGoQoAOVJjnqkWGBQ-I'}}
+                    defaultCenter={defaultProps.center}
+                    defaultZoom={defaultProps.zoom}
+                >
+                    {renderIncidentMarkers(data)}
+                </GoogleMapReact>
+            </div>
         </div>
     )
 }
