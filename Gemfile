@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'simple_form'
 gem 'devise'
 gem 'omniauth-facebook'
-
+gem "skylight"
 gem 'activerecord-typedstore'
 gem 'chronic'
 
