@@ -38,6 +38,8 @@ gem 'chronic'
 gem 'sidekiq'
 
 
+gem 'rails_admin', '~> 1.3'
+
 # HOSPITAL DATA SYNC
 gem 'selenium-webdriver'
 gem 'webdrivers'

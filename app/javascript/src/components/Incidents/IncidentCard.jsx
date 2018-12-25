@@ -23,6 +23,7 @@ class IncidentCard extends React.Component {
             <small className="pull-right"><TimeAgo date={createdAt}/>
                 <br/><br/>
                 <Label bsStyle="success" style={{marginTop: 15}}>{status.name}</Label>
+                {/* TODO Add distance away to this. Pull Location from browser.*/}
             </small>
             <small>
                 <strong>

@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/notadmin', as: 'rails_admin'
+
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
 
   post "api/graphql", to: "graphql#execute"
+
   authenticated :user do
     root to: 'dashboards#dashboard_2'
     # TODO change this to 'dashboards#responder' to avoid confusion in the future
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
   get 'privacy', to: 'landing#privacy'
   get 'terms_of_service', to: 'landing#terms_of_service'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
   resources :locations
 
