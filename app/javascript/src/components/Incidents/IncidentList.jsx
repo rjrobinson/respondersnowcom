@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import IncidentCard from './IncidentCard';
-import {Panel, Tab, Tabs} from 'react-bootstrap';
+import {Tab, Tabs} from 'react-bootstrap';
 import {CreateIncident} from "./CreateIncidentForm";
 import {IBoxContent} from "../UIComponents/Ibox/Ibox";
 import {ActivityFeed} from "../UIComponents/ActivityFeedComponent";
@@ -23,43 +23,41 @@ class IncidentList extends Component {
         const {data} = this.props
 
         return (
+            <Tabs
+                activeKey={this.state.key}
+                onSelect={this.handleSelect}
+                defaultActiveKey={1} id="tabs" bsStyle={"tabs"}>
 
-            <Panel>
-                <Tabs
-                    activeKey={this.state.key}
-                    onSelect={this.handleSelect}
-                    defaultActiveKey={1} id="tabs" bsStyle={"tabs"}>
+                <Tab eventKey={1} title={fontTitle("fas fa-map-marked-alt", "Regional")}>
 
-                    <Tab eventKey={1} title={fontTitle("fas fa-map-marked-alt", "Regional")}>
-                        <IBoxContent>
-                            <ActivityFeed
-                                style={{height: '75vh', overflowX: 'scroll'}}>
-                                {renderIncidents(data)}
-                            </ActivityFeed>
-                        </IBoxContent>
-                    </Tab>
-                    <Tab eventKey={2} title={fontTitle("fas fa-globe-americas", "National")}>
-                        <IBoxContent>
-                            <ActivityFeed
-                                style={{height: '75vh', overflowX: 'scroll'}}>
-                                {renderIncidents(data)}
-                            </ActivityFeed>
-                        </IBoxContent>
-                    </Tab>
-                    <Tab eventKey={3} title={fontTitle("fas fa-edit", "Send Report")}>
-                        <IBoxContent>
-                            <CreateIncident handleTabChange={this.handleSelect}/>
-                        </IBoxContent>
-                    </Tab>
-                    <Tab eventKey={4} title={fontTitle("fas fa-cogs", "Settings")}>
-                        <IBoxContent>
-                            <div>Fill me in.</div>
-                        </IBoxContent>
-                    </Tab>
+                    <ActivityFeed
+                        style={{height: '75vh', overflowX: 'scroll'}}>
 
-                </Tabs>
-            </Panel>
-            
+                        <IBoxContent>
+                            {renderIncidents(data)}
+                        </IBoxContent>
+                    </ActivityFeed>
+
+                </Tab>
+                <Tab eventKey={2} title={fontTitle("fas fa-globe-americas", "National")}>
+                    <IBoxContent>
+                        <ActivityFeed
+                            style={{height: '75vh', overflowX: 'scroll'}}>
+                            {renderIncidents(data)}
+                        </ActivityFeed>
+                    </IBoxContent>
+                </Tab>
+                <Tab eventKey={3} title={fontTitle("fas fa-edit", "Send Report")}>
+                    <IBoxContent>
+                        <CreateIncident handleTabChange={this.handleSelect}/>
+                    </IBoxContent>
+                </Tab>
+                <Tab eventKey={4} title={fontTitle("fas fa-cogs", "Settings")}>
+                    <IBoxContent>
+                        <div>Fill me in.</div>
+                    </IBoxContent>
+                </Tab>
+            </Tabs>
         );
     }
 }

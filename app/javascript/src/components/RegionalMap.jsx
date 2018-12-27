@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './../style/style.css'
+import './../style/style.css';
 
 import IncidentList from './Incidents/IncidentList';
 import IncidentMap from './Incidents/IncidentMap';
@@ -10,7 +10,6 @@ import {Query} from "react-apollo";
 import {Col, Row} from 'react-bootstrap';
 
 const pollIntervalTime = 10000;
-
 
 class RegionalMap extends Component {
 
@@ -25,7 +24,7 @@ class RegionalMap extends Component {
                         if (error) return `Error! ${error.message}`;
                         return (
                             <Row>
-                                <Col lg={5} md={5}>
+                                <Col lg={5} md={5} className="tabs-container">
                                     <IncidentList data={data}/>
                                 </Col>
                                 <Col lg={7} md={5}>
@@ -41,3 +40,7 @@ class RegionalMap extends Component {
 }
 
 export default RegionalMap;
+
+
+{/* <div class="tabs-container">
+        <ul class="nav nav-tabs"></ul> */}

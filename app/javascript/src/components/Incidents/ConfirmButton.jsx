@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from "react-bootstrap";
+import {MenuItem} from "react-bootstrap";
 import {Mutation} from "react-apollo";
 import {CONFIRM_INCIDENT} from '../../queries/incident_queries'
 
@@ -16,12 +16,13 @@ const renderColor = length => {
     }
 }
 
-export const ConfirmButton = ({id, confirms}) =>
+export const ConfirmButton = ({id, confirms, eventKey}) =>
     <Mutation
         mutation={CONFIRM_INCIDENT}
         onCompleted={this.onCompleted}>
         {(confirmIncident) => (
-            <Button
+            <MenuItem
+                eventKey={eventKey}
                 disabled={confirms.length >= 3}
                 onClick={() => {
                     confirmIncident({
@@ -33,8 +34,8 @@ export const ConfirmButton = ({id, confirms}) =>
                     })
                 }}
                 style={{color: renderColor(confirms.length)}}>
-                <i className="far fa-dot-circle"></i>
-            </Button>
+                <i className="far fa-dot-circle"></i> Confirm
+            </MenuItem>
         )}
     </Mutation>
 
