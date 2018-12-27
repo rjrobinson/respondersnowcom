@@ -46,13 +46,18 @@ class IncidentList extends Component {
                             {renderIncidents(data)}
                         </ActivityFeed>
                     </IBoxContent>
+                </Tab>                
+                <Tab eventKey={3} title={fontTitle("far fa-hospital", "Hospital Status")}>
+                    <IBoxContent>
+                        <div>You have no Hospitals Selected. Please add some in Settings -> </div>
+                    </IBoxContent>
                 </Tab>
-                <Tab eventKey={3} title={fontTitle("fas fa-edit", "Send Report")}>
+                <Tab eventKey={4} title={fontTitle("fas fa-edit", "Send Report")}>
                     <IBoxContent>
                         <CreateIncident handleTabChange={this.handleSelect}/>
                     </IBoxContent>
-                </Tab>
-                <Tab eventKey={4} title={fontTitle("fas fa-cogs", "Settings")}>
+                </Tab>        
+                <Tab eventKey={5} title={fontTitle("fas fa-cogs", "Settings")}>
                     <IBoxContent>
                         <div>Fill me in.</div>
                     </IBoxContent>
