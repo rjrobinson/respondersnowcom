@@ -22,6 +22,8 @@ class RegionalMap extends Component {
                     ({loading, error, data}) => {
                         if (loading) return <Spinner name="line-scale-pulse-out-rapid" color="coral"/>;
                         if (error) return `Error! ${error.message}`;
+                        
+                        
                         return (
                             <Row>
                                 <Col lg={5} md={5} className="tabs-container">

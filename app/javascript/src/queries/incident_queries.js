@@ -50,14 +50,13 @@ export const DOWNVOTE_INCIDENT = gql`
   }
 `;
 
-export const ADD_INCIDENT_REPORT = gql`
+export const CREATE_INCIDENT_REPORT = gql`
   mutation createIR($reportInput: ReportInputType!) {
     createIncidentReport(reportInput: $reportInput) {
       incident {
-        id
-        incidentReports {
-          id
-          message
+        errors {
+          fieldName
+          errors
         }
       }
     }

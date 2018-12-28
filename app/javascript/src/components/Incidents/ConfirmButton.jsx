@@ -6,23 +6,23 @@ import {CONFIRM_INCIDENT} from '../../queries/incident_queries'
 const renderColor = length => {
     switch (length) {
         case 1:
-            return "red"
+            return "red";
         case 2:
-            return "yellow"
+            return "yellow";
         case (length > 3):
-            return "green"
+            return "green";
         default:
-            return "orange"
+            return "orange";
     }
 }
 
-export const ConfirmButton = ({id, confirms, eventKey}) =>
+export const ConfirmButton = ({id, confirms}) =>
     <Mutation
         mutation={CONFIRM_INCIDENT}
         onCompleted={this.onCompleted}>
         {(confirmIncident) => (
             <Button
-                eventKey={eventKey}
+                
                 disabled={confirms.length >= 3}
                 onClick={() => {
                     confirmIncident({

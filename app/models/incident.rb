@@ -7,7 +7,7 @@ class Incident < ApplicationRecord
   belongs_to :user
   belongs_to :county
 
-  has_many :incident_reports, dependent: :destroy
+  has_many :incident_reports,  dependent: :destroy
   has_many :votes, as: :voteable, dependent: :destroy
   has_many :confirmations, as: :confirmable, dependent: :destroy
   has_many :flags, as: :flaggable, dependent: :destroy

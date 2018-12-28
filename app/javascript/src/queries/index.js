@@ -29,6 +29,10 @@ export const GET_INCIDENTS = gql`
         city
         street
       }
+      user {
+          id
+          displayId
+        }
       createdAt
     }
   }

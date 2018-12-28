@@ -5,7 +5,7 @@ import { ListGroupItem } from 'react-bootstrap';
 
 const IRListItem = ({ createdAt, user, message }) =>
     (<ListGroupItem bsStyle="info">
-        <strong className="muted"><Moment format="HH:mm">{createdAt}</Moment></strong>{" "}|{" "}{message}
+        <strong className="muted"><Moment format="HH:mm">{new Date(createdAt).toISOString()}</Moment></strong>{" "}|{" "}{message}
         <small className="blue pull-right">
             <i className="fas fa-user" /> {user}
         </small>
