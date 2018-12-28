@@ -40,7 +40,3 @@ class RegionalMap extends Component {
 }
 
 export default RegionalMap;
-
-
-{/* <div class="tabs-container">
-        <ul class="nav nav-tabs"></ul> */}

@@ -1,27 +1,37 @@
 import {gql} from 'apollo-boost'
 
-export const GET_INCIDENTS = gql`{    
-        incidents {
+export const GET_INCIDENTS = gql`
+  {
+    incidents {
+      id
+      status {
+        name
+      }
+      votes: score
+      confirms: confirmations {
+        id
+      }
+      message
+      incidentReports {
+        id
+				createdAt
+        message
+        user {
           id
-          status {
-            name
-          }
-          votes: score
-          confirms: confirmations {
-            id
-          }
-          message
-          location {
-            lat: latitude
-            long: longitude
-            state
-            county
-            city
-            street
-          }
-          createdAt
+          displayId
         }
       }
+      location {
+        lat: latitude
+        long: longitude
+        state
+        county
+        city
+        street
+      }
+      createdAt
+    }
+  }
 `;
 
 

@@ -8,4 +8,5 @@ class Types::IncidentReport < Types::ActiveRecordBase
 
   field :flags, Types::FlagType, null: true
   field :user, Types::UserType, null: false
+  field :created_at, String, null: false
 end
