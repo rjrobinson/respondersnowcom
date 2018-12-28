@@ -29,13 +29,29 @@ export class CreateMessageForm extends React.Component {
         })
     }
 
+
+    updateCache = (cache, {data: {createIncidentReport}}) => {
+        // const {incidents} = cache.readQuery({query: GET_INCIDENTS})
+        // const {incident} = createIncidentReport
+
+        // console.log('from cache', incidents[])
+        // console.log('from data', createIncidentReport)
+        // console.log('incident from data',incident.id)
+        
+        // cache.writeQuery({
+        //     query: GET_INCIDENTS, 
+        //     data: {incidents: [incident, ...incidents]
+        // }})
+    }
+
+
     render() {
 
         return (
             <Mutation
                 mutation={CREATE_INCIDENT_REPORT}
                 onCompleted={this.onCompleted}
-                refetchQueries={GET_INCIDENTS}
+                update={this.updateCache}
             >
                 {(createReport, { loading, error, data }) => {
 

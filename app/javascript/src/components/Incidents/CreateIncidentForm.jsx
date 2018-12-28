@@ -3,11 +3,13 @@ import Select, {Option, ReactSelectProps} from 'react-select'
 import {Alert, Button, ControlLabel, Form, FormControl, FormGroup} from "react-bootstrap";
 import LocationSearchInput from '../UIComponents/LocationSearchInput'
 import {Mutation, Query} from "react-apollo";
-import {CREATE_INCIDENT, FETCH_INCIDENT_GROUPS} from "../../queries";
+import {CREATE_INCIDENT, FETCH_INCIDENT_GROUPS, GET_INCIDENTS} from "../../queries";
+import Spinner from '../Spinner';
+
 import 'react-toastify/dist/ReactToastify.css';
 
-const renderErrors = mutationData => {
-    const errors = mutationData ? mutationData.createIncident.incident.errors : [];
+const renderErrors = data => {
+    const errors = data ? data.createIncident.incident.errors : [];
 
     return errors.map((error) => {
         return (
@@ -17,7 +19,6 @@ const renderErrors = mutationData => {
         )
     })
 }
-
 class CreateIncidentForm extends Component {
 
     state = {value: "", valid: true}
@@ -56,18 +57,36 @@ class CreateIncidentForm extends Component {
 
     }
 
+    updateCache = (cache, {data: createIncident}) => {
+        const {incidents} = cache.readQuery({query: GET_INCIDENTS})
+        const {incident} = createIncident.createIncident
+
+        cache.writeQuery({
+            query: GET_INCIDENTS, 
+            data: {incidents: [incident, ...incidents]
+        }})
+    }
+
+
+
+
     render() {
         const {queryData, handleTabChange} = this.props;
 
         return (
             <Mutation
                 mutation={CREATE_INCIDENT}
-                onCompleted={this.onCompleted}>
-                {(createIncident, {data: mutationData}) => (
+                onCompleted={this.onCompleted}
+                update={this.updateCache}
+                >
+                {(createIncident, {loading, error, data}) => {
+                    if (loading) return <Spinner name="line-scale-pulse-out-rapid" color="coral" />;
+                    if (error) return `Error! ${error.message}`;
 
+                    return (
                     <Form
                         onSubmit={e => this.onSubmit(e, createIncident)}>
-                        {renderErrors(mutationData)}
+                        {renderErrors(error)}
                         <FormGroup>
                             <ControlLabel>Incidnet Address / Location</ControlLabel>
                             <LocationSearchInput handleAddressUpdate={this.handleAddressUpdate}/>
@@ -103,9 +122,9 @@ class CreateIncidentForm extends Component {
                                 Submit
                             </Button>
                         </FormGroup>
-                    </Form>
+                    </Form>)
 
-                )}
+                }}
             </Mutation>
         );
     }
