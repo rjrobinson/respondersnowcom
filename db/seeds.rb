@@ -8,21 +8,21 @@
 #
 # require 'csv'
 #
-unless Rails.env.test?
-  CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |row|
+# unless Rails.env.test?
+#   CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |row|
 
 
-    location = Location.find_or_create_by(city: row[:city], state: "NJ")
+#     location = Location.find_or_create_by(city: row[:city], state: "NJ")
 
-    location.county = row[:county]
-    location.city = row[:city]
+#     location.county = row[:county]
+#     location.city = row[:city]
 
-    location.zipcode = "#{row[:city]}, #{row[:state]}".to_zip.first
-    puts "Saving #{location.city}"
-    location.save
-    # a.update(location_id: location.id)
-    # a.save
-  end
+#     location.zipcode = "#{row[:city]}, #{row[:state]}".to_zip.first
+#     puts "Saving #{location.city}"
+#     location.save
+#     # a.update(location_id: location.id)
+#     # a.save
+#   end
 
 
   hospitals = [
@@ -670,7 +670,7 @@ unless Rails.env.test?
 
   hospitals.each do |h|
     p "Creating #{h[:facility]}"
-    Hospital.create(name: h[:facility].titlecase)
+    Hospital.create(name: h[:facility].titlecase, county: "#{h[:county]} County")
   end
 
 
@@ -679,22 +679,22 @@ unless Rails.env.test?
   HospitalStatusJob.perform_now
 
 
-  ["Fire", "Police", "EMS"].each do |e|
-    IncidentGroup.create(name: e)
-  end
+#   ["Fire", "Police", "EMS"].each do |e|
+#     IncidentGroup.create(name: e)
+#   end
 
-  l_uuids = Location.all.pluck(:id)
-  i_uuids = IncidentGroup.all.pluck(:id)
+#   l_uuids = Location.all.pluck(:id)
+#   i_uuids = IncidentGroup.all.pluck(:id)
 
-  25.times do |n|
-    Incident.create(message: Faker::TvShows::Community.quotes,
-                    location_id: l_uuids[rand(1..Location.count)],
-                    incident_group_id: i_uuids[(1..IncidentGroup.count)],
-                    user_id: User.first.id,
-                    status: "Reported",
-                    created_at: Time.now - n.hours.ago,
-                    updated_at: Time.now - n.hours.ago
-    )
-  end
+#   25.times do |n|
+#     Incident.create(message: Faker::TvShows::Community.quotes,
+#                     location_id: l_uuids[rand(1..Location.count)],
+#                     incident_group_id: i_uuids[(1..IncidentGroup.count)],
+#                     user_id: User.first.id,
+#                     status: "Reported",
+#                     created_at: Time.now - n.hours.ago,
+#                     updated_at: Time.now - n.hours.ago
+#     )
+#   end
 
-end
+# end

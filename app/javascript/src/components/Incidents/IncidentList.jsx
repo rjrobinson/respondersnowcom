@@ -4,6 +4,7 @@ import {Tab, Tabs} from 'react-bootstrap';
 import {CreateIncident} from "./CreateIncidentForm";
 import {IBoxContent} from "../UIComponents/Ibox/Ibox";
 import {ActivityFeed} from "../UIComponents/ActivityFeedComponent";
+import HospitalFeed from '../Hospitals/HospitalFeed'
 
 const renderIncidents = ({incidents}) => {
     return incidents.map(incident => {
@@ -49,7 +50,7 @@ class IncidentList extends Component {
                 </Tab>                
                 <Tab eventKey={3} title={fontTitle("far fa-hospital", "Hospital Status")}>
                     <IBoxContent>
-                        <div>You have no Hospitals Selected. Please add some in Settings -> </div>
+                        <HospitalFeed/>
                     </IBoxContent>
                 </Tab>
                 <Tab eventKey={4} title={fontTitle("fas fa-edit", "Send Report")}>
