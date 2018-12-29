@@ -51,7 +51,7 @@ const NoHospitalDivert = () => (
             <h1 className="text-center">All Open</h1>
             <h3 className="text-center">No Hospitals that you are subscribbed to are on divert or bypass.</h3>
             <h5 className="text-center">We are not showing any alerts as per various sources right now. Please check back later. Note that this is updated every 5-10 minutes.
-            If you would like a text notification, that feature is coming soon. Thanks for your patients.  </h5>
+            If you would like a text notification, that feature is coming soon.</h5>
         </ListGroupItem>
     </ListGroup>
 )
