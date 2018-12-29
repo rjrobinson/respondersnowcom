@@ -6,6 +6,7 @@ export const GET_INCIDENTS = gql`
       id
       status {
         name
+        abvr
       }
       votes: score
       confirms: confirmations {

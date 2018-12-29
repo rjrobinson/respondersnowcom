@@ -1,9 +1,10 @@
-class ClearIncidentsJob < ApplicationJob
+class ClearIncidentJob < ApplicationJob
     queue_as :default
 
     def perform
         # Get incidents
         # obtain clear status 
+        puts "Running Incident Pruner. "
         status = IncidentStatus.find_or_create_by(name: "clear", abvr: "cl")
         user_bot = User.find_by(uid: "RNBot")
         
