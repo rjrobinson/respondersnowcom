@@ -102,7 +102,7 @@ class IncidentCard extends React.Component {
 							</ButtonGroup>
 						</ListGroupItem>
 						<ListGroupItem active>
-							12:12 | {message}
+							<Moment format="HH:mm">{createdAt}</Moment> {" "}| {" "}{message}
 							<small className="blue pull-right">
 								<i className="fas fa-user" /> {user.displayId}
                 			</small>

@@ -53,7 +53,7 @@ class User < ApplicationRecord
   end
 
   def display_id
-    "#{last_name[0]}0#{id[0..3]}".upcase
+    uid == "RNBot" ? "RN-Bot" : "#{last_name[0]}0#{id[0..3]}".upcase
   end
 
   def incidents
