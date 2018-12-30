@@ -41,7 +41,7 @@ class Incident < ApplicationRecord
   def resolve_stale(user: service_bot)
     status = IncidentStatus.find_or_create_by(name: "clear", abvr: "cl")
 
-    if or_one_minute(some_date:incident_reports&.order(:updated_at)&.last&.updated_at) > 30.minutes.ago || incident_reports.count == 0
+    if or_one_minute(some_date: incident_reports&.order(:updated_at)&.last&.updated_at) < 30.minutes.ago || incident_reports.count == 0
       incident_reports.new(message: "AUTOMATED MESSAGE >> \nThis incident has been marked inactive", user: user)
       update(incident_status: status)
     end
