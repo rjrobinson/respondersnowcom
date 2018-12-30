@@ -8,7 +8,7 @@
 #
 # require 'csv'
 #
-# unless Rails.env.test?
+unless Rails.env.test?
 #   CSV.foreach('data/cities.csv', headers: true, header_converters: :symbol) do |row|
 
 
@@ -697,4 +697,4 @@
 #     )
 #   end
 
-# end
+end

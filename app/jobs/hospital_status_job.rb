@@ -64,6 +64,6 @@ class HospitalStatusJob < ApplicationJob
 
 
   ensure
-    driver.quit
+    driver&.quit
   end
 end
