@@ -68,6 +68,7 @@ export const CREATE_INCIDENT = gql`
         id
         status {
           name
+          abvr
         }
         votes: score
         confirms: confirmations {

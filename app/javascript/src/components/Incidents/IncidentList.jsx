@@ -5,8 +5,10 @@ import {CreateIncident} from "./CreateIncidentForm";
 import {IBoxContent} from "../UIComponents/Ibox/Ibox";
 import {ActivityFeed} from "../UIComponents/ActivityFeedComponent";
 import HospitalFeed from '../Hospitals/HospitalFeed'
+import Spinner from "react-spinkit";
 
 const renderIncidents = ({incidents}) => {
+    if (!incidents) return <Spinner name="line-scale-pulse-out-rapid" color="coral"/>;
     return incidents.map(incident => {
         return <IncidentCard incident={incident} key={incident.id}/>;
     })

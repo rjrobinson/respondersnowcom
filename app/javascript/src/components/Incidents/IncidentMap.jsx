@@ -3,6 +3,7 @@ import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFire} from "@fortawesome/free-solid-svg-icons";
 import GoogleMapReact from "google-map-react";
+import Spinner from "react-spinkit";
 
 const IncidentMapMarker = ({text}) => (
     <div>
@@ -16,7 +17,8 @@ const IncidentMapMarker = ({text}) => (
 const isClear = ({name}) => name === "clear"
 
 const renderIncidentMarkers = ({incidents}) => {
-
+    
+    if (!incidents) return null;
     return incidents.map(incident => {
         if (isClear(incident.status)) return null
 
@@ -36,7 +38,7 @@ const IncidentMap = ({data}) => {
         zoom: 10
     };
 
-
+    
     return (
         <div>
             <div style={{height: '80vh', width: '100%'}}>
