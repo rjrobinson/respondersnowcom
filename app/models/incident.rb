@@ -34,6 +34,19 @@ class Incident < ApplicationRecord
     sorted
   end
 
+  def or_one_minute(some_date:)
+    some_date ? some_date : 1.minute.ago
+  end
+
+  def resolve_stale(user: service_bot)
+    status = IncidentStatus.find_or_create_by(name: "clear", abvr: "cl")
+
+    if or_one_minute(some_date:incident_reports&.order(:updated_at)&.last&.updated_at) > 30.minutes.ago || incident_reports.count == 0
+      incident_reports.new(message: "AUTOMATED MESSAGE >> \nThis incident has been marked inactive", user: user)
+      update(incident_status: status)
+    end
+
+  end
 
   def self.calculate_rank(min_rank: 1.0)
     where("rank > ?", min_rank).each(&:calculate_rank)
