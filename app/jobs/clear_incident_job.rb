@@ -12,7 +12,7 @@ class ClearIncidentJob < ApplicationJob
         
         incidents.each do |incident|
         
-            if incident.incident_reports&.order(:updated_at)&.last&.updated_at > 30.minutes.ago || incident.incident_reports.count == 0
+            if incident.incident_reports&.order(:updated_at)&.last&.updated_at&.> 30.minutes.ago || incident.incident_reports.count == 0
                 incident.incident_reports.new(message: " - AUTOMATED CLEAR MESSAGE -\nThis incident has been marked inactive", user: user)
                 incident.update(incident_status: status)
             end
