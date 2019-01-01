@@ -57,15 +57,15 @@ class CreateIncidentForm extends Component {
 
     }
 
-    updateCache = (cache, {data: createIncident}) => {
-        const {incidents} = cache.readQuery({query: GET_INCIDENTS})
-        const {incident} = createIncident.createIncident
-
-        cache.writeQuery({
-            query: GET_INCIDENTS, 
-            data: {incidents: [incident, ...incidents]
-        }})
-    }
+    // updateCache = (cache, {data: createIncident}) => {
+    //     const {incidents} = cache.readQuery({query: GET_INCIDENTS})
+    //     const {incident} = createIncident.createIncident
+    //
+    //     cache.writeQuery({
+    //         query: GET_INCIDENTS,
+    //         data: {incidents: [incident, ...incidents]
+    //     }})
+    // }
 
 
 
@@ -77,10 +77,11 @@ class CreateIncidentForm extends Component {
             <Mutation
                 mutation={CREATE_INCIDENT}
                 onCompleted={this.onCompleted}
-                update={this.updateCache}
+                refetchQueries={[{query: GET_INCIDENTS}]}
+                // update={this.updateCache}
                 >
                 {(createIncident, {loading, error, data}) => {
-                    if (loading) return <Spinner name="line-scale-pulse-out-rapid" color="coral" />;
+                    if (loading) return <Spinner name="line-scale-pulse-out-rapid" color="blue" />;
                     if (error) return `Error! ${error.message}`;
 
                     return (
