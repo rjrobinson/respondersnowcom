@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     # TODO change this to 'dashboards#responder' to avoid confusion in the future
   end
 
-  root to: 'landing#index'
+  root to: 'live#index'
 
   get '/live', to: 'live#index'
 
