@@ -11,29 +11,26 @@ Rails.application.routes.draw do
 
   authenticated :user do
     root to: 'dashboards#dashboard_2'
+    # TODO change this to 'dashboards#responder' to avoid confusion in the future
   end
-
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root to: 'live#index'
 
   get '/live', to: 'live#index'
-  get 'dashboards/dashboard_2'
-  get 'landing/index'
+
+
   get 'privacy', to: 'landing#privacy'
   get 'terms_of_service', to: 'landing#terms_of_service'
-  get '/settings', to: 'users#settings'
 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :acquired_certifications, only: [:create, :destroy, :update, :edit, :new]
-  resources :certifications, only: [:index, :create, :destroy, :update, :edit, :new]
-  resources :job_board, only: [:index]
-  resources :work_histories, only: [:create, :destroy]
   resources :locations
 
-  resource :subscription, only: [:new, :destroy, :create] do
-    get :reactivate
-  end
+  # resource :agencies, only: [] do
+  #   get :autocomplete_agency_name, on: :collection
+  # end
+
+  get '/settings', to: 'users#settings'
 
   resource :users, only: [] do
     get :auth
@@ -44,4 +41,25 @@ Rails.application.routes.draw do
     get :certifications
   end
 
+  resource :subscriptions, only: [:new, :destroy, :create] do
+    get :reactivate
+  end
+
+  resources :job_board, only: [:index]
+
+  resources :work_histories, only: [:create, :destroy]
+
+  resources :certifications, only: [:index, :create, :destroy, :update, :edit, :new]
+
+  resources :acquired_certifications, only: [:create, :destroy, :update, :edit, :new]
+
+  # All routes
+  get 'dashboards/dashboard_1'
+  get 'dashboards/dashboard_2'
+  get 'dashboards/dashboard_3'
+  get 'dashboards/dashboard_4'
+  get 'dashboards/dashboard_4_1'
+  get 'dashboards/dashboard_5'
+
+  get 'landing/index'
 end

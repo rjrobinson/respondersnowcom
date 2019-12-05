@@ -18,11 +18,10 @@ class AcquiredCertification < ApplicationRecord
   def cert_logo
     if FileTest.exist?(Rails.root.join('app', 'assets', 'images', 'patches', "#{state.downcase}-#{abbvr.downcase}.png"))
       "patches/#{state.downcase}-#{abbvr.downcase}.png"
-      #elsif logo.attached?
+      # elsif logo.attached?
       #  logo
     else
       "defaults/#{course_code.downcase}.png"
     end
-
   end
 end

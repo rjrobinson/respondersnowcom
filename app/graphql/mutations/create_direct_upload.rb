@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDirectUpload < GraphQL::Schema::Mutation
   class CreateDirectUploadInput < GraphQL::Schema::InputObject
     description "File information required to prepare a direct upload"

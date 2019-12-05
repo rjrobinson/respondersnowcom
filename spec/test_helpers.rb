@@ -1,5 +1,6 @@
-module GraphQL::TestHelpers
+# frozen_string_literal: true
 
+module GraphQL::TestHelpers
   attr_accessor :gql_response
 
   # The returned results of a GraphQL query
@@ -17,7 +18,6 @@ module GraphQL::TestHelpers
   # basic query to interact with the GraphQL API.
   # @param [query] required The query string that would be passed to the schema.
   def query(query, variables: {}, context: {})
-
     converted = variables.deep_transform_keys! { |key| key.to_s.camelize(:lower) } || {}
 
     res           = ResnowSchema.execute(query, variables: converted, context: context, operation_name: nil)

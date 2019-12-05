@@ -5,7 +5,7 @@ module Types
     field :errors, [Types::ActiveRecordErrorType], null: true
 
     def errors
-      object.errors.map {|e| {field_name: e, errors: object.errors[e]}}
+      object.errors.map { |e| { field_name: e, errors: object.errors[e] } }
     end
   end
 end
