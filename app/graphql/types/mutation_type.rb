@@ -14,5 +14,10 @@ module Types
 
     field :create_incident_report, mutation: Mutations::CreateIncidentReport
     field :update_incident_report, mutation: Mutations::UpdateIncidentReport
+
+
+    #Create Direct Upload
+    field :create_direct_upload, mutation: CreateDirectUpload
+
   end
 end
