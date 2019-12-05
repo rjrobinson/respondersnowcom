@@ -1,0 +1,51 @@
+<div id="subscription" class="tab-pane">
+  <div class="panel-body">
+    <% if current_user.stripe_id && current_user.currently_subscribed? %>
+      <button class="btn btn-success btn-outline btn-block">
+        <h3>Currently Subscribed</h3>
+        <p>Automatically renews at $5 / month</p>
+      </button>
+      <hr>
+    <% end %>
+    <% if current_user.stripe_id && !current_user.currently_subscribed? %>
+      <button class="btn btn-info btn-outline btn-block">
+        <h3>Currently Not Subscribed</h3>
+        <%= link_to reactivate_subscription_path do %>
+          <p>Click Here to Reactivate your subscription</p>
+          <p>Automatically renews at $5 / month</p>
+        <% end %>
+      </button>
+      <hr>
+    <% end %>
+    <h3>Responders NOW Premium is a subscription membership that upgrades your account with extra
+      features:</h3>
+    <ul>
+      <li>Experience RespondersNOW ads-free</li>
+      <li>Monthly Coins</li>
+      <li>Access the members-only Lounge</li>
+    </ul>
+    <% if current_user.stripe_id %>
+      <hr>
+      <div>
+        <h4>Responders NOW Premium</h4>
+        <p>Your Premium subscription will automatically renew at the beginning of your next billing cycle.
+          <br>
+          If your subscription ends, you will have Premium until March 15, 2019.
+          premium features
+        </p>
+        <hr>
+      </div>
+      <% if current_user.currently_subscribed? %>
+        <button class="text-center btn btn-danger btn-outline btn-block">
+          <h3>
+            <%= link_to subscription_path, method: :delete, class: 'danger' do %>
+              <i class=" fa fa-times-circle danger"></i> Cancel Subscription
+            <% end %>
+          </h3>
+        </button>
+      <% end %>
+    <% else %>
+      <%= render partial: "subscriptions/form" %>
+    <% end %>
+  </div>
+</div>

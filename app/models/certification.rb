@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Certification < ApplicationRecord
-  CODES = ["FIRE", "EMS", "HAZMAT", "TECHNICAL RESCUE", "FEMA"].sort.freeze
+  CODES = ["FIRE", "EMS", "HAZMAT", "TECHNICAL RESCUE", "FEMA", "EMD"].sort.freeze
 
   belongs_to :creator, polymorphic: true
 
