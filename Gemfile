@@ -2,6 +2,9 @@
 
 source 'https://rubygems.org'
 
+ruby '2.6.3'
+
+
 gem 'rails', '~> 5.2.0'
 gem 'webpacker', '~> 3.5'
 gem 'bootstrap-sass'
@@ -127,8 +130,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'simplecov', require: false, group: :test
-
-
-ruby '2.4.1'
 
 gem 'bugsnag', '~> 6.8'
