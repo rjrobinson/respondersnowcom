@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: rjrobinson/soda-ruby-2.4.1-soda:latest
+      - image: rjrobinson/resnow-ruby-2.6.3:latest
         environment:
           PGHOST: 127.0.0.1
           PGUSER: root
