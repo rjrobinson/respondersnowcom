@@ -1,15 +1,10 @@
-<!--<li class="<%#= is_active_action('dashboard_2') %>">-->
-<%#= link_to root_path do %>
-<!--    <i class="fas fa-home"></i><span class="nav-label"> Dashboard</span>-->
-<%# end %>
-<!--</li>-->
 <li class="<%= is_active_action('settings') %>">
   <%= link_to settings_path do %>
     <i class="fas fa-cogs"></i><span class="nav-label"> Settings</span>
   <% end %>
 </li>
 <li class="<%= is_active_action('certifications') %>">
-  <%= link_to user_certifications_path(current_user) do %>
+  <%= link_to certifications_path do %>
     <i class="fas fa-certificate"></i> <span class="nav-label"> Certifications</span>
   <% end %>
 </li>

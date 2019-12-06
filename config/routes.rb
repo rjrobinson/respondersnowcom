@@ -10,19 +10,24 @@ Rails.application.routes.draw do
   post "api/graphql", to: "graphql#execute"
 
   authenticated :user do
-    root to: 'dashboards#dashboard_2'
+    root to: 'users#certifications'
     # TODO change this to 'dashboards#responder' to avoid confusion in the future
   end
 
-  root to: 'live#index'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  scope :u do
+    get '/certifications', to: 'users#certifications'
+    get '/settings', to: 'users#settings'
+  end
+
+
+  root to: 'landing#index'
 
   get '/live', to: 'live#index'
 
-
   get 'privacy', to: 'landing#privacy'
   get 'terms_of_service', to: 'landing#terms_of_service'
-
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :locations
 

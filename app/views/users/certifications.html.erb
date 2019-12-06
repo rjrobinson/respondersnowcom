@@ -14,40 +14,18 @@
 <div class="wrapper wrapper-content">
   <div class="row">
     <div class="col-lg-8">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h5 class="panel-title"> Documents </h5>
-        </div>
-        <div class="panel-body">
-          <button type="button"
-                  class="btn btn-primary pull-right"
-                  data-toggle="modal"
-                  data-target="#add_primary">
-            <i class="fas fa-plus"></i> Add Certification
-          </button>
-        </div>
-        <div id="add_primary" class="modal fade" role="dialog">
-          <!--NEW-->
-          <div id="add_primary" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Add Certification</h4>
-                </div>
-                <div class="modal-body">
-                  <%= render partial: 'certifications/form', locals: { primary: true, cert: @certification } %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- OLD-->
-          <div class="modal-dialog">
 
-            <!-- Modal content-->
+      <button type="button"
+              class="btn btn-primary pull-right"
+              data-toggle="modal"
+              data-target="#add_primary">
+        <i class="fas fa-plus"></i> Add Certification
+      </button>
+
+      <div id="add_primary" class="modal fade" role="dialog">
+        <!--NEW-->
+        <div id="add_primary" class="modal fade" role="dialog">
+          <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -61,6 +39,28 @@
               </div>
             </div>
           </div>
+        </div>
+        <!-- OLD-->
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add Certification</h4>
+            </div>
+            <div class="modal-body">
+              <%= render partial: 'certifications/form', locals: { primary: true, cert: @certification } %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5 class="panel-title"> Documents </h5>
         </div>
         <% unless current_user.acquired_certifications %>
           <h1>No Documents / No Certifications</h1>
@@ -177,6 +177,26 @@
         <% end %>
       </div>
     </div>
+    <div class="col-lg-4">
+
+      <div class="text-center">
+        <div>
+          <div class="navy-line"></div>
+          <h4 class="widget-title">Follow us</h4>
+          <ul class="social-nav social-center">
+            <li>
+              <a href="https://twitter.com/respondersnow" target="_blank" title="Twitter" rel="nofollow" class="twitter"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/RespondersNow/" target="_blank" title="Facebook" rel="nofollow" class="facebook"><i class="fab fa-facebook-f"></i></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/respondersnow" target="_blank" title="Instagram" rel="nofollow" class="google"><i class="fab fa-instagram"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
 </div>
