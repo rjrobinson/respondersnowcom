@@ -6,7 +6,7 @@ ruby '2.6.3'
 
 
 gem 'rails', '~> 5.2.0'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.x'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
