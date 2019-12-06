@@ -41,7 +41,7 @@ gem 'chronic'
 gem 'sidekiq'
 
 
-gem 'rails_admin', '~> 1.3'
+gem 'rails_admin', '~> 2.0'
 
 # HOSPITAL DATA SYNC
 gem 'selenium-webdriver'
