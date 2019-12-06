@@ -1,4 +1,14 @@
-import { gql } from "apollo-boost";
+import {gql} from "apollo-boost";
+
+export const GET_CERTIFICATIONS = gql`
+{
+    certifications {
+        id
+        name
+    }
+}
+`
+
 
 export const GET_INCIDENTS = gql`
   {

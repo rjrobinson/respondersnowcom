@@ -19,67 +19,11 @@
             </div>
           </div>
         <% end %>
-        <div class="feed-element">
-          <!--          Seperate this out-->
-          <a href="#" class="pull-left">
-            <img alt="image" class='img-circle' src="<%= image_path('patches/nj-emt.png') %>">
-            <strong>NJ EMT # 586908 </strong>
-          </a>
-          <div class="media-body "></div>
-        </div>
-        <div class="feed-element">
-          <a href="#" class="pull-left">
-            <img alt="image" class='img-circle' src="<%= image_path('patches/nj-micu.png') %>">
-            <strong>NJ MICP # 101012 </strong>
-          </a>
-          <div class="media-body ">
-          </div>
-        </div>
-
-        <div class="feed-element">
-          <a href="#" class="pull-left">
-            <img alt="image" class='img-circle' src="<%= image_path('patches/nj-ff.jpg') %>">
-            <strong>NJ Fire Fighter # 54321 </strong>
-          </a>
-          <div class="media-body ">
-
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
-
   <div class="col-lg-4">
     <div id="primary-certification" class="modal fade" role="dialog">
-
-      <%= simple_form_for :new_cert,
-                          url: acquired_certifications_path,
-                          method: :post,
-                          defaults: {inner_html: 'form-control'} do |f| %>
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Add New Professional Certification / License</h4>
-            </div>
-
-            <div class="modal-body">
-              <%= f.input :certification, collection: Certification.primaries %>
-              <%= f.input :state, collection: us_states %>
-              <%= f.input :number %>
-              <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file' %>
-            </div>
-            <div class="modal-footer">
-              <%= f.submit "Save", class: 'btn btn-success' %>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-
-          </div>
-      <% end %>
-
-      </div>
     </div> <!-- END OF COL/-->
   </div>
 </div>

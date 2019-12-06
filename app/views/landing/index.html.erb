@@ -16,11 +16,6 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <!--          <li><a class="page-scroll" href="#">Sign In / Up</a></li>-->
-          <!--<li><a class="page-scroll" href="#features">Features</a></li>-->
-          <!--<li><a class="page-scroll" href="#team">Team</a></li>-->
-          <!--<li><a class="page-scroll" href="#team">Features</a></li>-->
-          <!--<li><a class="page-scroll" href="#pricing">Agency<br>Login</a></li>-->
         </ul>
       </div>
     </div>
@@ -32,10 +27,7 @@
   }
 </style>
 <div id="inSlider" class="carousel carousel-fade blur" data-ride="carousel">
-  <!--<ol class="carousel-indicators">-->
-  <!--<li data-target="#inSlider" data-slide-to="0" class="active"></li>-->
-  <!--<li data-target="#inSlider" data-slide-to="1"></li>-->
-  <!--</ol>-->
+
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <div class="container">
@@ -56,26 +48,9 @@
       <!-- Set background for slide in css -->
       <div class="header-back one"></div>
     </div>
-    <!--<div class="item">-->
-    <!--<div class="container">-->
-    <!--<div class="carousel-caption blur-it">-->
-    <!--<h1>We connect top companies<br/> with fully qualified<br> First Responders</h1>-->
-    <!--<p>Stop filling your trucks with "warm bodies"</p>-->
-    <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--&lt;!&ndash; Set background for slide in css &ndash;&gt;-->
-    <!--<div class="header-back two"></div>-->
-    <!--</div>-->
+
   </div>
-  <!--<a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">-->
-  <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-  <!--<span class="sr-only">Previous</span>-->
-  <!--</a>-->
-  <!--<a class="right carousel-control" href="#inSlider" role="button" data-slide="next">-->
-  <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-  <!--<span class="sr-only">Next</span>-->
-  <!--</a>-->
+
 </div>
 
 
@@ -805,7 +780,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <div class="copyright">© 2018, RespondersNOW, All rights reserved</div>
+        <div class="copyright">© 2020, RespondersNOW, All rights reserved</div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="design">
@@ -821,61 +796,60 @@
   <script type="text/javascript">
 
 
-      $(function () {
+    $(function () {
 
-          $('body').addClass('landing-page');
-          $('body').attr('id', 'page-top');
+      $('body').addClass('landing-page')
+      $('body').attr('id', 'page-top')
 
-          $('body').scrollspy({
-              target: '.navbar-fixed-top',
-              offset: 80
-          });
+      $('body').scrollspy({
+        target: '.navbar-fixed-top',
+        offset: 80,
+      })
 
-          // Page scrolling feature
-          $('a.page-scroll').bind('click', function (event) {
-              var link = $(this);
-              $('html, body').stop().animate({
-                  scrollTop: $(link.attr('href')).offset().top - 50
-              }, 500);
-              event.preventDefault();
-              $("#navbar").collapse('hide');
-          });
+      // Page scrolling feature
+      $('a.page-scroll').bind('click', function (event) {
+        var link = $(this)
+        $('html, body').stop().animate({
+          scrollTop: $(link.attr('href')).offset().top - 50,
+        }, 500)
+        event.preventDefault()
+        $('#navbar').collapse('hide')
+      })
 
-          var cbpAnimatedHeader = (function () {
-              var docElem = document.documentElement,
-                  header = document.querySelector('.navbar-default'),
-                  didScroll = false,
-                  changeHeaderOn = 200;
+      var cbpAnimatedHeader = (function () {
+        var docElem = document.documentElement,
+          header = document.querySelector('.navbar-default'),
+          didScroll = false,
+          changeHeaderOn = 200
 
-              function init() {
-                  window.addEventListener('scroll', function (event) {
-                      if (!didScroll) {
-                          didScroll = true;
-                          setTimeout(scrollPage, 250);
-                      }
-                  }, false);
-              }
+        function init () {
+          window.addEventListener('scroll', function (event) {
+            if (!didScroll) {
+              didScroll = true
+              setTimeout(scrollPage, 250)
+            }
+          }, false)
+        }
 
-              function scrollPage() {
-                  var sy = scrollY();
-                  if (sy >= changeHeaderOn) {
-                      $(header).addClass('navbar-scroll')
-                  } else {
-                      $(header).removeClass('navbar-scroll')
-                  }
-                  didScroll = false;
-              }
+        function scrollPage () {
+          var sy = scrollY()
+          if (sy >= changeHeaderOn) {
+            $(header).addClass('navbar-scroll')
+          } else {
+            $(header).removeClass('navbar-scroll')
+          }
+          didScroll = false
+        }
 
-              function scrollY() {
-                  return window.pageYOffset || docElem.scrollTop;
-              }
+        function scrollY () {
+          return window.pageYOffset || docElem.scrollTop
+        }
 
-              init();
+        init()
 
-          })();
+      })()
 
-
-      });
+    })
 
   </script>
 

@@ -1,53 +1,11 @@
-<li class="<%= is_active_action('dashboard_2') %>">
-  <%= link_to root_path do %>
-    <i class="fas fa-home"></i><span class="nav-label"> Dashboard</span>
-  <% end %>
-</li>
 <li class="<%= is_active_action('settings') %>">
   <%= link_to settings_path do %>
     <i class="fas fa-cogs"></i><span class="nav-label"> Settings</span>
   <% end %>
 </li>
-<li class="<%= is_active_controller('live') %>">
-  <%= link_to live_path do %>
-    <i class="fas fa-ambulance"></i> <span class="nav-label"> Live Map</span>
-  <% end %>
-</li>
 <li class="<%= is_active_action('certifications') %>">
-  <%= link_to user_certifications_path(current_user) do %>
+  <%= link_to certifications_path do %>
     <i class="fas fa-certificate"></i> <span class="nav-label"> Certifications</span>
   <% end %>
 </li>
 <li>
-  <!--  #user_work_histories_path(current_user)-->
-  <%= link_to '#' do %>
-    <i class="fas fa-briefcase"></i> <span class="nav-label"> Work Hx
-    <div class="stat-percent font-bold text-info"> coming soon</div>
-</span>
-  <% end %>
-</li>
-<!--<li class="">-->
-<!--<a href="#">-->
-<!--<i class="fas fa-user-secret"></i> <span class="nav-label"> Background Check </span>-->
-<!--</a>-->
-<!--</li>-->
-<li class="">
-  <!--  job_board_index_path-->
-  <%= link_to "#" do %>
-    <i class="fas fa-building"></i> <span class="nav-label">
-      Job Board <div class="stat-percent font-bold text-info"> coming soon</div>
-    </span>
-  <% end %>
-</li>
-<!--<li class="">-->
-<!--<a href="#">-->
-<!--<i class="fa fa-star"></i> <span class="nav-label">  </span>-->
-<!--</a>-->
-<!--</li>-->
-
-<!--<li class="">-->
-<!--<a href="#">-->
-<!--<i class="fa fa-star"></i>-->
-<!--<span class="nav-label"> Messages <span class="label label-info pull-right">14</span></span>-->
-<!--</a>-->
-<!--</li>-->

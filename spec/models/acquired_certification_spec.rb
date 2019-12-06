@@ -2,10 +2,12 @@
 
 require 'rails_helper'
 
-describe AcquiredCertification do
-  describe 'validations' do
+RSpec.describe AcquiredCertification, type: :model do
+  describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:certification) }
-    # it { should validate_uniqueness_of(:number) }
+  end
+
+  describe 'validations' do
   end
 end

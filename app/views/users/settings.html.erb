@@ -30,9 +30,9 @@
           <li class=""><a data-toggle="tab" href="#tab-4">
             <i class="far fa-bell"></i> Notifications</a>
           </li>
-          <li class=""><a data-toggle="tab" href="#subscription">
-            <i class="fab fa-superpowers"></i> Premium Subscription</a>
-          </li>
+          <!--          <li class=""><a data-toggle="tab" href="#subscription">-->
+          <!--            <i class="fab fa-superpowers"></i> Premium Subscription</a>-->
+          <!--          </li>-->
           <li class=""><a data-toggle="tab" href="#delete-account">
             <i class="fas fa-trash"></i> Delete Account</a>
           </li>
@@ -40,15 +40,15 @@
         <div class="tab-content">
           <div id="profile" class="tab-pane active">
             <div class="panel-body">
-              <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: {method: :patch}) do |f| %>
+              <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: { method: :patch }) do |f| %>
                 <%= f.error_notification %>
 
                 <div class="form-inputs">
                   <%= f.input :first_name, required: false %>
                   <%= f.input :last_name, required: false %>
                   <%= f.input :zipcode, id: 'zipcode-input responder_zipcode',
-                              input_html: {pattern: '[0-9]{4}'},
-                              placeholder: current_user.zipcode || '' %>
+                              input_html:   { pattern: '[0-9]{4}' },
+                              placeholder:  current_user.zipcode || '' %>
                 </div>
                 <div class="form-inputs">
                   <%= f.input :email, required: true, autofocus: true %>
@@ -67,7 +67,7 @@
               <% if current_user.provider %>
                 <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
               <% else %>
-                <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: {method: :put}) do |f| %>
+                <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
                   <%= f.error_notification %>
 
                   <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
@@ -99,62 +99,11 @@
                 stroke at the present moment; and yet.</p>
             </div>
           </div>
-          <div id="subscription" class="tab-pane">
-            <div class="panel-body">
-              <% if current_user.stripe_id && current_user.currently_subscribed? %>
-                <button class="btn btn-success btn-outline btn-block">
-                  <h3>Currently Subscribed</h3>
-                  <p>Automatically renews at $5 / month</p>
-                </button>
-                <hr>
-              <% end %>
-              <% if current_user.stripe_id && !current_user.currently_subscribed? %>
-                <button class="btn btn-info btn-outline btn-block">
-                  <h3>Currently Not Subscribed</h3>
-                  <%= link_to reactivate_subscription_path do %>
-                    <p>Click Here to Reactivate your subscription</p>
-                    <p>Automatically renews at $5 / month</p>
-                  <% end %>
-                </button>
-                <hr>
-              <% end %>
-              <h3>Responders NOW Premium is a subscription membership that upgrades your account with extra
-                features:</h3>
-              <ul>
-                <li>Experience RespondersNOW ads-free</li>
-                <li>Monthly Coins</li>
-                <li>Access the members-only Lounge</li>
-              </ul>
-              <% if current_user.stripe_id %>
-                <hr>
-                <div>
-                  <h4>Responders NOW Premium</h4>
-                  <p>Your Premium subscription will automatically renew at the beginning of your next billing cycle.
-                    <br>
-                    If your subscription ends, you will have Premium until March 15, 2019.
-                    premium features
-                  </p>
-                  <hr>
-                </div>
-                <% if current_user.currently_subscribed? %>
-                  <button class="text-center btn btn-danger btn-outline btn-block">
-                    <h3>
-                      <%= link_to subscription_path, method: :delete, class: 'danger' do %>
-                        <i class=" fa fa-times-circle danger"></i> Cancel Subscription
-                      <% end %>
-                    </h3>
-                  </button>
-                <% end %>
-              <% else %>
-                <%= render partial: "subscriptions/form" %>
-              <% end %>
-            </div>
-          </div>
           <div id="delete-account" class="tab-pane">
             <div class="panel-body">
               <strong>Delete Account</strong>
               <p>
-                <%= link_to "Delete my account", registration_path(current_user), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %>
+                <%= link_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
                 <br>
                 <small> this cannot be undone.</small>
               </p>

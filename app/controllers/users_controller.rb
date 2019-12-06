@@ -35,14 +35,14 @@ class UsersController < ApplicationController
   private
 
 
-    def validate_user
-      @user = User.find(params[:id] || params[:user_id])
-      unless @user == current_user
-        redirect_back(fallback_location: root_path, flash: { error: 'You are not authorized to access this page' })
-      end
-    end
+  def validate_user
+    #@user = User.find(params[:id] || params[:user_id])
+    #unless @user == current_user
+    #  redirect_back(fallback_location: root_path, flash: { error: 'You are not authorized to access this page' })
+    #end
+  end
 
-    def user_params
-      params.require(:user).permit(:zipcode)
-    end
+  def user_params
+    params.require(:user).permit(:zipcode)
+  end
 end
