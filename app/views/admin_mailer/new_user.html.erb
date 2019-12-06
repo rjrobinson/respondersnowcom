@@ -1,47 +1,128 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
-</head>
-<body>
-
-<div class="row wrapper border-bottom white-bg page-heading">
-  <div class="col-lg-10">
-    <h1>Hi <%= @user.name %></h1>
-    <p>
-      Sample mail sent using smtp.
-    </p>
-    <h2>Email Template</h2>
-    <ol class="breadcrumb">
-      <li>
-        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_2' %>">Home</a>
-      </li>
-      <li>
-        <a>Mailbox</a>
-      </li>
-      <li class="active">
-        <strong>Email Template</strong>
-      </li>
-    </ol>
-  </div>
-  <div class="col-lg-2">
-
-  </div>
-</div>
-<div class="wrapper wrapper-content  animated fadeInRight">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox ">
-        <div class="ibox-title">
-          <h5>Responsive transactional HTML email templates</h5>
-        </div>
-        <div class="ibox-content">
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+<table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+  <tr>
+    <td align="center">
+      <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+        <tr>
+          <td class="email-masthead">
+            <a href="https://example.com" class="f-fallback email-masthead_name">
+              Responders Now
+            </a>
+          </td>
+        </tr>
+        <!-- Email Body -->
+        <tr>
+          <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
+            <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+              <!-- Body content -->
+              <tr>
+                <td class="content-cell">
+                  <div class="f-fallback">
+                    <h1>Welcome, <%= @name %>!</h1>
+                    <p>Thanks for joining RespondersNow. We’re thrilled to have you on board</p>
+                    <!-- Action -->
+                    <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td align="center">
+                          <!-- Border based button
+       https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+                            <tr>
+                              <td align="center">
+                                <a href="{{action_url}}" class="f-fallback button" target="_blank">Do this Next</a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>For reference, here's your login information:</p>
+                    <table class="attributes" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td class="attributes_content">
+                          <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                            <tr>
+                              <td class="attributes_item">
+                                    <span class="f-fallback">
+              <strong>Login Page:</strong> {{login_url}}
+            </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="attributes_item">
+                                    <span class="f-fallback">
+              <strong>Username:</strong> {{username}}
+            </span>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>You've started a {{trial_length}} day trial. You can upgrade to a paying account or cancel any
+                      time.</p>
+                    <table class="attributes" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td class="attributes_content">
+                          <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                            <tr>
+                              <td class="attributes_item">
+                                    <span class="f-fallback">
+              <strong>Trial Start Date:</strong> {{trial_start_date}}
+            </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="attributes_item">
+                                    <span class="f-fallback">
+              <strong>Trial End Date:</strong> {{trial_end_date}}
+            </span>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>If you have any questions, feel free to
+                      <a href="mailto:{{support_email}}">email our customer success team</a>. (We're lightning quick at
+                      replying.) We also offer <a href="{{live_chat_url}}">live chat</a> during business hours.</p>
+                    <p>Thanks,
+                      <br>[Sender Name] and the [Product Name] Team</p>
+                    <p><strong>P.S.</strong> Need immediate help getting started? Check out our
+                      <a href="{{help_url}}">help documentation</a>. Or, just reply to this email, the [Product Name]
+                      support team is always ready to help!</p>
+                    <!-- Sub copy -->
+                    <table class="body-sub" role="presentation">
+                      <tr>
+                        <td>
+                          <p class="f-fallback sub">If you’re having trouble with the button above, copy and paste the
+                            URL below into your web browser.</p>
+                          <p class="f-fallback sub">{{action_url}}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <td class="content-cell" align="center">
+                  <p class="f-fallback sub align-center">&copy; 2019 [Product Name]. All rights reserved.</p>
+                  <p class="f-fallback sub align-center">
+                    [Company Name, LLC]
+                    <br>1234 Street Rd.
+                    <br>Suite 1234
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
