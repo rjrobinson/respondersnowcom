@@ -16,6 +16,26 @@ RSpec.describe Incident, type: :model do
   let(:incident) { create(:incident) }
   let(:user) { create(:user) }
 
+
+  describe '.trending' do
+    context 'when calculating trending' do
+
+      let!(:incident) { create(:incident) }
+      
+      subject { described_class.trending }
+
+      it 'should be a kind of an Array' do
+        expect(subject).to be_an_kind_of(Array)
+      end
+
+      it 'should return a list of incidents by trending score and id' do
+        expect(subject).to include array_including(an_instance_of(Integer), incident.id)
+      end
+
+
+    end
+  end
+
   describe '#status' do
 
     it 'is expected to return a IncidentStatus' do
@@ -23,7 +43,6 @@ RSpec.describe Incident, type: :model do
     end
 
   end
-
 
   describe "#upvote" do
     it 'should increase the vote by one.' do
