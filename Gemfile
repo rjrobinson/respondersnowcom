@@ -5,14 +5,14 @@ source 'https://rubygems.org'
 ruby '2.6.3'
 
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.2.1'
 gem 'webpacker', '~> 4.x'
-gem 'bootstrap-sass'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'font-awesome-rails'
 
 gem 'dotenv-rails'
 gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3.1'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -29,8 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'simple_form'
-gem 'devise'
+gem "simple_form", ">= 5.0.0"
+gem "devise", ">= 4.7.1"
 gem 'omniauth-facebook'
 gem "skylight"
 gem 'activerecord-typedstore'
@@ -39,7 +39,6 @@ gem 'chronic'
 
 #  Background Jobs
 gem 'sidekiq'
-
 
 gem 'rails_admin', '~> 2.0'
 
@@ -77,7 +76,7 @@ gem 'merit'
 #  Analytics
 gem 'ahoy_matey'
 gem 'groupdate'
-gem 'chartkick'
+gem "chartkick", ">= 3.3.0"
 
 
 # Monitoring Tools
