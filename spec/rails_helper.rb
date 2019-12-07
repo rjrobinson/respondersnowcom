@@ -37,7 +37,6 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
-require 'support/factory_girl'
 require 'support/sign_in_helper'
 require 'support/omniauth'
 
@@ -85,6 +84,13 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include FactoryBot::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryBot.find_definitions
+  end
+
 end
 
 
