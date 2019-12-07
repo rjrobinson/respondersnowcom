@@ -35,7 +35,7 @@ gem 'omniauth-facebook'
 gem "skylight"
 gem 'activerecord-typedstore'
 gem 'chronic'
-
+gem 'semantic'
 
 #  Background Jobs
 gem 'sidekiq'
