@@ -3,9 +3,9 @@
 # .NET, PHP, Python, Node, and Go applications with deep visibility and low
 # overhead.  For more information, visit www.newrelic.com.
 #
-# Generated November 25, 2018
+# Generated December 07, 2019
 #
-# This configuration file is custom generated for app59309575@heroku.com
+# This configuration file is custom generated for NBFARS
 #
 # For full documentation of agent configuration options, please refer to
 # https://docs.newrelic.com/docs/agents/ruby-agent/installation-configuration/ruby-agent-configuration
@@ -16,7 +16,7 @@ common: &default_settings
 
   # Your application name. Renaming here affects where data displays in New
   # Relic.  For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
-  app_name: RespondersNOW
+  app_name: My Application
 
   # To disable the agent regardless of other settings, uncomment the following:
   # agent_enabled: false
@@ -30,7 +30,7 @@ common: &default_settings
 # If your application has other named environments, configure them here.
 development:
   <<: *default_settings
-  app_name: RespondersNOW (Development)
+  app_name: My Application (Development)
 
 test:
   <<: *default_settings
@@ -39,8 +39,7 @@ test:
 
 staging:
   <<: *default_settings
-  app_name: RespondersNOW (Staging)
+  app_name: My Application (Staging)
 
 production:
   <<: *default_settings
-  app_name: RespondersNOW (Production)
