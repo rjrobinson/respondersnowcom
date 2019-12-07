@@ -89,16 +89,16 @@
                       </div>
                       <div class="modal-body">
                         <div class='content' style="float:none">
-                          <% if cert.file.attachment.present? %>
-                            <object
-                              style="width: 100%; height: 800px;"
-                              data="<%= url_for(cert.file) %>" type="application/pdf">
-                              <embed
-                                style="width: 100%; height:800px;"
-                                src="<%= url_for(cert.file) %>" type="application/pdf"/>
-                            </object>
+                          <%# if cert.file.attachment.present? %>
+                          <!--                            <object-->
+                          <!--                              style="width: 100%; height: 800px;"-->
+                          <!--                              data="<%#= url_for(cert.file) %>" type="application/pdf">-->
+                          <!--                              <embed-->
+                          <!--                                style="width: 100%; height:800px;"-->
+                          <!--                                src="<%#= url_for(cert.file) %>" type="application/pdf"/>-->
+                          <!--                            </object>-->
 
-                          <% end %>
+                          <%# end %>
                         </div>
                       </div>
                       I

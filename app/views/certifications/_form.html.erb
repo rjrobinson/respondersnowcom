@@ -31,16 +31,16 @@
                   required:        false
       %>
     </div>
-
-    <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file' %>
+    <b>DO NOT UPLOAD FILE AT THIS TIME</b>
+    <%= f.input :file, as: :file, required: false, inner_html: 'btn btn-default btn-block btn-file', disabled: true %>
     <%= f.submit "Save", class: 'btn btn-success center-btn' %>
 
   <% end %>
 </div>
 <script type="text/javascript" charset="utf-8">
-  $('.acquired_certification_expires_on').toggleClass('hidden')
+  $('.acquired_certification_expires_on').toggleClass('hidden');
 
-  $('.acquired_certification_expires').change(function () {
-    $('.acquired_certification_expires_on').toggleClass('hidden')
-  })
+  $('.acquired_certification_expires').change(function() {
+    $('.acquired_certification_expires_on').toggleClass('hidden');
+  });
 </script>
