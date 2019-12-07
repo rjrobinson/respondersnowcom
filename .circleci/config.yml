@@ -66,7 +66,7 @@ jobs:
 
 workflows:
   version: 2
-  gru_workflow:
+  resnow_pipeline:
     jobs:
       - build
 #      - deploy-staging:
