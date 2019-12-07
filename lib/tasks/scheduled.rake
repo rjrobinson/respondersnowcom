@@ -5,7 +5,7 @@ namespace :scheduled do
 
   task hospital_statuses: :environment do
     puts "Starting Status Update"
-    HospitalStatusJob.perform_now
+    #HospitalStatusJob.perform_now
     puts "Finished"
   end
 end
