@@ -37,6 +37,8 @@ class Incident < ApplicationRecord
     sorted
   end
 
+
+  #fixme this hsould be removed. what it it for?
   def or_one_minute(some_date:)
     some_date ? some_date : 1.minute.ago
   end
@@ -72,7 +74,7 @@ class Incident < ApplicationRecord
     (seconds / divisor).to_i
   end
 
-  def is_trending
+  def trending?
     votes.count > TRENDING_VOTES_COUNT
   end
 
