@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   scope :u do
     get '/certifications', to: 'users#certifications'
+    resources :certifications, only: [:create, :new]
     get '/settings', to: 'users#settings'
   end
 
@@ -54,7 +55,7 @@ Rails.application.routes.draw do
 
   resources :work_histories, only: [:create, :destroy]
 
-  resources :certifications, only: [:index, :create, :destroy, :update, :edit, :new]
+  resources :certifications, only: [:index, :destroy, :update, :edit]
 
   resources :acquired_certifications, only: [:create, :destroy, :update, :edit, :new]
 

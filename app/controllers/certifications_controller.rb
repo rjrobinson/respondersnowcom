@@ -30,13 +30,13 @@ class CertificationsController < ApplicationController
 
   private
 
-    def cert_params
-      params.require(:certification).permit(
+  def cert_params
+    params.require(:certification).permit(
         :name,
-          :course_code,
-          :primary,
-          :abbvr,
-          :logo
-      ).merge(creator: current_user)
-      end
+        :course_code,
+        :primary,
+        :abbvr,
+        :logo
+    ).merge(creator: current_user)
+  end
 end
