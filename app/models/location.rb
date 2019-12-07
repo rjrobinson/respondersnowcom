@@ -32,14 +32,10 @@ class Location < ApplicationRecord
   end
 
   def county_lookup
-    if county.nil?
-      if state.length > 2
-        update(state: StatesHelper::STATE_NAME_TO_ABBR[state])
-      end
+    return nil if county
+    update(state: StatesHelper::STATE_NAME_TO_ABBR[state]) if state.length > 2
 
-      found = Location.where(city: city, state: state).first&.county
-
-      update(county: found) if found
-    end
+    found = Location.where(city: city, state: state).pluck(:county).compact.first
+    update(county: found) if found
   end
 end

@@ -32,7 +32,7 @@ describe Location, type: :model do
       end
     end
 
-    context 'when missing' do
+    context 'when missing coords' do
       subject {
         described_class.new_by_coord(lat: nil, long: nil)
       }
@@ -43,5 +43,21 @@ describe Location, type: :model do
       end
     end
 
+  end
+
+  describe '#county_lookup' do
+    let!(:other_location) { Location.create(city: 'north brunswick', state: "NJ", county: 'middlesex') }
+    let(:location) { FactoryBot.create(:location, state: "New Jersey", county: nil) }
+
+    context 'when county is nil' do
+
+      before do
+        location.county_lookup
+      end
+
+      it 'should look up county' do
+        expect(location.county).to be_truthy
+      end
+    end
   end
 end
