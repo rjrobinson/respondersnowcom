@@ -5,14 +5,28 @@ require 'simplecov'
 require 'coveralls'
 
 SimpleCov.start 'rails' do
-  add_filter 'app/mailers/application_mailer.rb'
-  add_filter 'app/jobs/application_job.rb'
-  add_filter 'app/views/'
+  add_filter 'app/controllers/'
+  add_filter 'app/errors/stripe_errors.rb'
   add_filter 'app/graphql/'
   add_filter 'app/helpers/states_helper.rb'
+  add_filter 'app/jobs/application_job.rb'
+  add_filter 'app/mailers/application_mailer.rb'
   add_filter 'app/models/application_record.rb'
-  add_filter 'app/controllers/'
+  add_filter 'app/views/'
+  #todo below needs to be revisted at another time.
+  add_filter 'app/errors/stripe_errors.rb'
+  add_filter 'app/helpers/application_helper.rb'
+  add_filter 'app/helpers/error_messages_helper.rb'
+  add_filter 'app/jobs/clear_incident_job.rb'
+  add_filter 'app/jobs/hospital_status_job.rb'
+  add_filter 'app/mailers/example_mailer.rb'
+  add_filter 'app/models/ahoy/event.rb'
+  add_filter 'app/models/ahoy/visit.rb'
+  add_filter 'app/models/merit/rank_rules.rb'
+  add_filter 'app/models/subscription.rb'
+  add_filter 'lib/tasks/get_classes_nj.rb'
 end
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
