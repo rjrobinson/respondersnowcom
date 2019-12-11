@@ -93,26 +93,27 @@ gem 'area'
 gem 'coveralls', require: false
 
 group :development, :test do
-  gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'brakeman', require: false
   gem 'byebug', platform: :mri
-  gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_bot' # 1ab39#1ab39
+  gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
   gem 'guard'
   gem 'guard-rails'
   gem 'guard-rspec', require: false
-  gem 'terminal-notifier'
-  gem 'terminal-notifier-guard'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'factory_bot' # 1ab39#1ab39
   gem 'launchy'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.5'
   gem 'rspec_junit_formatter', '0.2.2'
-  gem 'brakeman', require: false
   gem 'rubocop'
   gem 'rubocop-rails_config'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'terminal-notifier'
+  gem 'terminal-notifier-guard'
+  gem 'terminal-notifier-guard'
 end
 
 group :development do

@@ -5,28 +5,28 @@ require 'simplecov'
 require 'coveralls'
 
 SimpleCov.start 'rails' do
-  add_filter 'app/mailers/application_mailer.rb'
-  add_filter 'app/jobs/application_job.rb'
-  add_filter 'app/views/'
   add_filter 'app/controllers/'
-  add_filter 'app/controllers/appviews_controller.rb'
-  add_filter 'app/controllers/commerce_controller.rb'
-  add_filter 'app/controllers/cssanimations_controller.rb'
-  add_filter 'app/controllers/forms_controller.rb'
-  add_filter 'app/controllers/gallery_controller.rb'
-  add_filter 'app/controllers/graphs_controller.rb'
-  add_filter 'app/controllers/gridoptions_controller.rb'
-  add_filter 'app/controllers/landing_controller.rb'
-  add_filter 'app/controllers/layoutsoptions_controller.rb'
-  add_filter 'app/controllers/mailbox_controller.rb'
-  add_filter 'app/controllers/metrics_controller.rb'
-  add_filter 'app/controllers/miscellaneous_controller.rb'
-  add_filter 'app/controllers/pages_controller.rb'
-  add_filter 'app/controllers/tables_controller.rb'
-  add_filter 'app/controllers/uielements_controller.rb'
-  add_filter 'app/controllers/widgets_controller.rb'
+  add_filter 'app/errors/stripe_errors.rb'
   add_filter 'app/graphql/'
+  add_filter 'app/helpers/states_helper.rb'
+  add_filter 'app/jobs/application_job.rb'
+  add_filter 'app/mailers/application_mailer.rb'
+  add_filter 'app/models/application_record.rb'
+  add_filter 'app/views/'
+  #todo below needs to be revisted at another time.
+  add_filter 'app/errors/stripe_errors.rb'
+  add_filter 'app/helpers/application_helper.rb'
+  add_filter 'app/helpers/error_messages_helper.rb'
+  add_filter 'app/jobs/clear_incident_job.rb'
+  add_filter 'app/jobs/hospital_status_job.rb'
+  add_filter 'app/mailers/example_mailer.rb'
+  add_filter 'app/models/ahoy/event.rb'
+  add_filter 'app/models/ahoy/visit.rb'
+  add_filter 'app/models/merit/rank_rules.rb'
+  add_filter 'app/models/subscription.rb'
+  add_filter 'lib/tasks/get_classes_nj.rb'
 end
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -37,7 +37,6 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
-require 'support/factory_girl'
 require 'support/sign_in_helper'
 require 'support/omniauth'
 
@@ -85,6 +84,13 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include FactoryBot::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryBot.find_definitions
+  end
+
 end
 
 

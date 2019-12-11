@@ -4,26 +4,29 @@ class Incident < ApplicationRecord
   belongs_to :location
   belongs_to :incident_group
   belongs_to :incident_status
+
   belongs_to :user
   belongs_to :county
 
-  has_many :incident_reports,  dependent: :destroy
+  has_many :incident_reports, dependent: :destroy
   has_many :votes, as: :voteable, dependent: :destroy
   has_many :confirmations, as: :confirmable, dependent: :destroy
   has_many :flags, as: :flaggable, dependent: :destroy
 
 
   TRENDING_VOTES_COUNT = 100
-  SYSTEM_EPOCH = 1.day.ago.to_i
-  SECOND_DIVISOR = 3600
+  SYSTEM_EPOCH         = 1.day.ago.to_i
+  SECOND_DIVISOR       = 3600
 
-
-  def status
-    incident_status
-  end
 
   scope :filter_flagged, -> { where(flagged: false) }
 
+  alias_method :status, :incident_status
+
+
+  # .trending calculates the trending score, and id of incidents
+  # == Retruns
+  #   @result, [score, incident_id]
   def self.trending
     sorted = Incident.last(100).each.map do |inc|
       pop = inc.popularity
@@ -34,6 +37,8 @@ class Incident < ApplicationRecord
     sorted
   end
 
+
+  #fixme this hsould be removed. what it it for?
   def or_one_minute(some_date:)
     some_date ? some_date : 1.minute.ago
   end
@@ -69,21 +74,7 @@ class Incident < ApplicationRecord
     (seconds / divisor).to_i
   end
 
-
-  def self.trending
-    sorted = Incident.last(100).each.map do |inc|
-      pop = inc.popularity
-      puts pop
-      rec = inc.recentness
-      puts rec
-      [pop + rec, inc.id]
-    end.sort_by(&:first)
-
-    sorted
-  end
-
-
-  def is_trending
+  def trending?
     votes.count > TRENDING_VOTES_COUNT
   end
 
@@ -124,28 +115,28 @@ class Incident < ApplicationRecord
 
   def self.new_with_location(params)
     location = Location.find_or_create_by(
-      street: "#{params[:street_number] || ""} #{params[:street]}",
-      city: params[:city],
-      county: params[:county],
-      state: params[:state],
-      latitude: params[:lat],
-      longitude: params[:lng])
+        street:    "#{params[:street_number] || ""} #{params[:street]}",
+        city:      params[:city],
+        county:    params[:county],
+        state:     params[:state],
+        latitude:  params[:lat],
+        longitude: params[:lng])
 
     county = County.find_or_create_by(name: params[:county], state: params[:state])
 
     location.update(county: county.name)
 
     incident = if location.save
-      Incident.create(
-        location: location,
-          message: params[:message],
-          incident_group_id: params[:incident_group_id],
-          user: params[:current_user],
-          incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed").id,
-          county: county
-      )
+                 Incident.create(
+                     location:           location,
+                     message:            params[:message],
+                     incident_group_id:  params[:incident_group_id],
+                     user:               params[:current_user],
+                     incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed").id,
+                     county:             county
+                 )
 
-    end
+               end
 
 
     incident

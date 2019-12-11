@@ -53,7 +53,7 @@ class User < ApplicationRecord
   end
 
   def display_id
-    uid == "RNBot" ? "RN-Bot" : "#{last_name[0]}0#{id[0..3]}".upcase
+    uid == "RNBot" ? uid : "#{last_name[0]}0#{id[0..3]}".upcase
   end
 
   def incidents
@@ -68,10 +68,8 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def full_name
-    name
-  end
-
+  alias_method :full_name, :name
+  
   def primaries
     acquired_certifications
   end

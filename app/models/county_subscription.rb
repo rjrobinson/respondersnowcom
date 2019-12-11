@@ -3,4 +3,7 @@
 class CountySubscription < ApplicationRecord
   belongs_to :user
   belongs_to :county
+
+
+# relate incidents to counties
 end
