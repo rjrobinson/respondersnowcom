@@ -2,6 +2,10 @@
 
 module Types
   class ActiveRecordBase < GraphQL::Schema::Object
+
+
+    field :created_at, String, null: false
+    field :updated_at, String, null: false
     field :errors, [Types::ActiveRecordErrorType], null: true
 
     def errors

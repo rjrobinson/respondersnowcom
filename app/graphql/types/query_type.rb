@@ -6,6 +6,15 @@ module Types
     # They will be entry points for queries on your schema.
 
 
+    field :certifications, [CertificationType], null: true do
+      description "List of certifications"
+    end
+
+    def certifications
+      Certification.all
+    end
+
+    #todo : Disabling till we revisit this in the future
     field :incidents_by_subscription, [IncidentType], null: true do
       description %|A list of Incidents from the users subscriptions.
                                  Incidents will be sent back newest first, but have the option to sort by their ranking|
@@ -16,7 +25,7 @@ module Types
     end
 
     field :locations, [LocationType], null: true,
-          description: 'List of locations'
+          description:                      'List of locations'
 
 
     field :incidents, [IncidentType], null: false do
