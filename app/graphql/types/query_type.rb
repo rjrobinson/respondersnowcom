@@ -5,6 +5,11 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
+    field :me, UserType, null: false
+
+    def me
+      context[:current_user]
+    end
 
     field :certifications, [CertificationType], null: true do
       description "List of certifications"
