@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 ruby '2.6.3'
 
-
 gem 'rails', '~> 5.2.2.1'
 gem 'webpacker', '~> 4.x'
 gem "bootstrap-sass", ">= 3.4.1"
@@ -59,16 +58,13 @@ gem 'mandrill-api'
 # Active Storage
 gem 'aws-sdk-s3', '~> 1'
 
-
 # GraphQL
 gem 'graphql'
 gem 'graphiql-rails'
 gem 'graphql-batch'
 
-
 # Google Ads
 gem 'ads-rails'
-
 
 # Merit
 gem 'merit'
@@ -77,7 +73,6 @@ gem 'merit'
 gem 'ahoy_matey'
 gem 'groupdate'
 gem "chartkick", ">= 3.3.0"
-
 
 # Monitoring Tools
 gem 'newrelic_rpm'
@@ -112,7 +107,6 @@ group :development, :test do
   gem 'rubocop-rails_config'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'terminal-notifier'
-  gem 'terminal-notifier-guard'
   gem 'terminal-notifier-guard'
 end
 

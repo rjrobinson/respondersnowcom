@@ -4,7 +4,12 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: <%= ENV['DATABASE_TIMEOUT'] %>
+  pool: <%= ENV['DATABASE_MAX_THREADS'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
 
 development:
   <<: *default

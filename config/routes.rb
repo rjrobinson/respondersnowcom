@@ -22,8 +22,7 @@ Rails.application.routes.draw do
     get '/settings', to: 'users#settings'
   end
 
-
-  root to: 'landing#index'
+  root to: 'public#landing'
 
   get '/live', to: 'live#index'
 

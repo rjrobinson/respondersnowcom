@@ -1,0 +1,38 @@
+version: '3.7'
+volumes:
+  postgres:
+  redis:
+  gem-date:
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  redis:
+    image: redis
+    volumes:
+      - redis:/data
+  app:
+    build:
+      dockerfile: ./docker/dev/Dockerfile
+      context: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./:/usr/src/app
+      - gem-date:/gem-data
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - redis
+    environment:
+      RAILS_ROOT: '/usr/src/app'
+      RAILS_ENV: 'development'
+      RACK_ENV: 'development'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: ''
+      DATABASE_HOST: 'db'
+      DATABASE_NAME: 'responders_now_dev'
+      DATABASE_MAX_THREADS: '25'
+      DATABASE_TIMEOUT: '5000'
+      REDIS_URL: 'redis://redis:6379/1'
