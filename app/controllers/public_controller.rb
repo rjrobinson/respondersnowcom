@@ -1,6 +1,6 @@
 class PublicController < ApplicationController
   layout 'public/application'
 
-  def landing
+  def index
   end
 end

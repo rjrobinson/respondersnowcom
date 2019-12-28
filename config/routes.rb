@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post "api/graphql", to: "graphql#execute"
 
   authenticated :user do
-    root to: 'users#certifications'
+    root to: 'private#index'
     # TODO change this to 'dashboards#responder' to avoid confusion in the future
   end
 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get '/settings', to: 'users#settings'
   end
 
-  root to: 'public#landing'
+  root to: 'public#index'
 
   get '/live', to: 'live#index'
 
@@ -67,4 +67,8 @@ Rails.application.routes.draw do
   get 'dashboards/dashboard_5'
 
   get 'landing/index'
+
+  # Wildcard to capture React managed routes
+  match '*path', to: 'public#index', via: :all
+  match '*path', to: 'private#index', via: :all, constraints: -> { current_user }
 end

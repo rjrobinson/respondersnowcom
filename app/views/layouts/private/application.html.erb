@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="google-site-verification" content="248uddpJf5rTHpjzsMH_C_IMj1DcVjMthvM6PnFpPsI" />
+  <title>RespondersNOW.com</title>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<%= yield %>
+<div id="public"></div>
+<%= javascript_pack_tag 'private' %>
+</body>
+</html>
