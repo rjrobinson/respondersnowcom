@@ -45,10 +45,24 @@ describe 'CreateAcquiredCertification', type: :mutation do
         expect(gql_response.errors).to be_nil
       end
 
-      it 'should return the book object' do
-        expect(gql_response.data[mutation_type].dig("acquired_certification")).to include("title" => "Testing GraphQL-Ruby Mutations With RSpec")
+      it 'should return the created acquired certification' do
+        expect(gql_response.data[mutation_type].dig("acquiredCertification")).to include({"id" => be_a_kind_of(String)})
       end
+    end
+
+    context 'when a user is missing some data' do
+
+      before do
+        mutation mutation_string,
+                 variables: {},
+                 context: {current_user: user}
+
+      end
+
+      it 'should return errors' do
+        expect(gql_response.errors).to_not be_nil
+      end
+
     end
   end
 end
-

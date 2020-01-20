@@ -90,7 +90,6 @@ gem 'mapbox-rails'
 gem 'geocoder'
 gem 'area'
 #
-gem 'coveralls', require: false
 
 group :development, :test do
   gem 'better_errors'

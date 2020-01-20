@@ -2,7 +2,7 @@
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
-require 'coveralls'
+
 
 SimpleCov.start 'rails' do
   add_filter 'app/controllers/'
@@ -44,7 +44,6 @@ if ENV['CIRCLE_ARTIFACTS']
   dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")
   SimpleCov.coverage_dir(dir)
 
-  Coveralls.wear! 'rails'
 else
   SimpleCov.coverage_dir('coverage')
 end
