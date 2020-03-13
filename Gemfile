@@ -12,7 +12,7 @@ gem 'font-awesome-rails'
 
 gem 'dotenv-rails'
 gem 'pg', '~> 0.18'
-gem 'puma', '~> 4.3.1'
+gem 'puma', '~> 4.3.3'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
