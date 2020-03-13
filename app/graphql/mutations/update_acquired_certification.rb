@@ -9,12 +9,11 @@ class Mutations::UpdateAcquiredCertification < Types::BaseMutationType
   field :acquired_certification, Types::AcquiredCertificationType, null: true
 
   def resolve(acquired_certification_input:)
-    updated_params = acquired_certification_input.delete(:id)
+    updated_params = acquired_certification_input.to_h
 
-    cert = AcquiredCertification.find(acquired_certification_input[:id]).update(updated_params.to_h)
-    #NOTE this is not the same as a renewal.
-    # need to build an edge case for that.
-    #
+    cert = AcquiredCertification.find(acquired_certification_input[:id])
+    cert.update(updated_params)
+
     {
         acquired_certification: cert
     }

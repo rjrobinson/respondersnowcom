@@ -6,7 +6,7 @@ include GraphQL::TestHelpers
 describe 'UpdateAcquiredCertification', type: :mutation do
   describe 'Acquired Certification creation for a user' do
 
-    let(:user) { create(:user) }
+    let(:user) { User.first || create(:user) }
     let(:mutation_type) { 'updateAcquiredCertification' }
     let(:acquired_certification) { create(:acquired_certification) }
 
@@ -19,7 +19,6 @@ describe 'UpdateAcquiredCertification', type: :mutation do
         }
        }
     }
-
     GQL
     }
 
@@ -29,18 +28,18 @@ describe 'UpdateAcquiredCertification', type: :mutation do
         mutation mutation_string,
                  variables: {
                      acquiredCertificationInput: {
-                         id: acquired_certification.id,
-                         acquiredOn: 99.days.ago.to_s,
+                         id:              acquired_certification.id,
+                         acquiredOn:      99.days.ago.to_s,
                          certificationId: 2,
-                         ceus: 2,
-                         expires: true,
-                         expiresOn: 100.days.from_now.to_s,
-                         number: 1234,
-                         state: "NJ"
+                         ceus:            2,
+                         expires:         true,
+                         expiresOn:       100.days.from_now.to_s,
+                         number:          1234,
+                         state:           "NJ"
 
                      }
                  },
-                 context: {current_user: user}
+                 context:   {current_user: user}
 
       end
 
@@ -58,7 +57,7 @@ describe 'UpdateAcquiredCertification', type: :mutation do
       before do
         mutation mutation_string,
                  variables: {},
-                 context: {current_user: user}
+                 context:   {current_user: user}
 
       end
 

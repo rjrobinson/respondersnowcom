@@ -66,9 +66,9 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  config.use_transactional_fixtures = true
+  config.fixture_path                         = "#{::Rails.root}/spec/fixtures"
+  config.example_status_persistence_file_path = "#{::Rails.root}/spec/"
+  config.use_transactional_fixtures           = true
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

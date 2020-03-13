@@ -5,6 +5,7 @@ class Types::AcquiredCertificationInputType < Types::BaseInputType
 
   description "Acquired Certification Input Type. To create or edit one"
 
+  argument :id, ID, required: false
   argument :acquired_on, String, required: false
   argument :certification_id, ID, required: true
   argument :ceus, Integer, required: false
