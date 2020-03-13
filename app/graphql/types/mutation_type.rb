@@ -16,6 +16,7 @@ module Types
     field :update_incident_report, mutation: Mutations::UpdateIncidentReport
 
     field :create_acquired_certification, mutation: Mutations::CreateAcquiredCertification
+    field :update_acquired_certification, mutation: Mutations::UpdateAcquiredCertification
 
   end
 end

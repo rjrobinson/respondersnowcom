@@ -83,7 +83,6 @@ RSpec.configure do |config|
       example.run
     end
   end
-
   config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do

@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :acquired_certification do
-    user { User.first || association(:user) }
-    certification
-    number { "54673" }
     acquired_on { DateTime.now }
-    state { "NJ" }
+    certification
     expires { false }
+    number { "54673" }
+    state { "NJ" }
+    user { User.first || create(:user) }
 
 
     trait :expires do
