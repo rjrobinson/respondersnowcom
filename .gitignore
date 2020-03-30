@@ -6,6 +6,7 @@ log/
 .idea/
 .env
 coverage/
+/public/**/*
 /public/packs
 /public/packs-test
 /node_modules
