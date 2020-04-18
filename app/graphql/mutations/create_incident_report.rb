@@ -19,8 +19,8 @@ class Mutations::CreateIncidentReport < Types::BaseMutationType
     end
 
     {
-        incident: incident,
-        errors: incident&.errors
+      incident: incident,
+      errors: incident&.errors,
     }
   end
 end

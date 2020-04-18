@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_merit
 
   typed_store :settings do |s|
-    s.string :theme, default: "light"
-    s.boolean :anon, default: true
-    s.boolean :peroidic_updates, default: true
+    s.string(:theme, default: "light")
+    s.boolean(:anon, default: true)
+    s.boolean(:peroidic_updates, default: true)
   end
 
   # VALIDATORS
@@ -30,7 +30,6 @@ class User < ApplicationRecord
   has_many :county_subscriptions
   has_many :counties, through: :county_subscriptions
 
-
   geocoded_by :zipcode
 
   after_validation :geocode, if: :zipcode_changed?
@@ -40,7 +39,6 @@ class User < ApplicationRecord
   def send_notification
     AdminMailer.new_user(user: self).deliver
   end
-
 
   Certification::CODES.each do |code|
     define_method :"#{code.gsub(' ', '_').downcase}_certs" do
@@ -69,7 +67,7 @@ class User < ApplicationRecord
   end
 
   alias_method :full_name, :name
-  
+
   def primaries
     acquired_certifications
   end
@@ -101,19 +99,19 @@ class User < ApplicationRecord
   def create_subscription(plan: Subscription::PLANS[:monthly])
     raise NoStripeIDError if stripe_id.nil?
     Stripe::Subscription.create(
-        customer: stripe_id,
-        items:    [
-                      {
-                          plan: plan,
-                      },
-                  ]
+      customer: stripe_id,
+      items:    [
+        {
+          plan: plan,
+        },
+      ]
     )
   end
 
   def update_stripe_data(stripe_data:)
     assign_attributes(
-        stripe_id:    stripe_data[:stripe_id],
-        stripe_token: stripe_data[:stripe_token]
+      stripe_id:    stripe_data[:stripe_id],
+      stripe_token: stripe_data[:stripe_token]
     )
 
     if card_last4?
@@ -124,21 +122,17 @@ class User < ApplicationRecord
     end
   end
 
-
   private
 
   def update_card_info
     customer = Stripe::Customer.retrieve(stripe_id)
     card     = customer.sources.create(source: "tok_amex")
-    # todo ^^ CHANGE tok_amex to actual token in Prod ^^
+    # TODO: ^^ CHANGE tok_amex to actual token in Prod ^^
     #
     update_attributes(card_last4:     card.last4,
                       card_exp_month: card.exp_month,
                       card_exp_year:  card.exp_year,
-                      card_brand:     card.brand,
-
-
-    )
+                      card_brand:     card.brand,)
   end
 
   def self.from_omniauth(auth)

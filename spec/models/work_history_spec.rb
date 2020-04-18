@@ -18,11 +18,9 @@ describe WorkHistory do
     end
 
     describe '#pretty_start' do
-
       it 'should print pretty' do
         expect(work_history.pretty_end).to be_truthy
       end
     end
   end
-
 end

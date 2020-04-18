@@ -12,8 +12,8 @@ class Mutations::IncidentUpvote < Types::BaseMutationType
     incident = Incident.find(id)
     incident.upvote(user: context[:current_user])
     {
-        incident: incident,
-        errors: incident&.errors
+      incident: incident,
+      errors: incident&.errors,
     }
   end
 end

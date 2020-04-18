@@ -5,8 +5,8 @@ require "mandrill"
 
 class ApplicationMailer < ActionMailer::Base
   default(
-      from:     "hello@respondersnow.com",
-      reply_to: "hello@example.com"
+    from:     "hello@respondersnow.com",
+    reply_to: "hello@example.com"
   )
 
   layout 'mailer'

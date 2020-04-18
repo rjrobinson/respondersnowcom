@@ -15,8 +15,8 @@ class Mutations::UpdateIncidentReport < Types::BaseMutationType
     report.update(message: report_input[:message], user: context[:current_user])
 
     {
-        incident: incident,
-        errors: incident.errors
+      incident: incident,
+      errors: incident.errors,
     }
   end
 end

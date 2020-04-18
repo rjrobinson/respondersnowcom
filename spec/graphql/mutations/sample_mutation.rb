@@ -1,8 +1,9 @@
-#require 'rails_helper'
-#require_relative '../test_helpers'
-#include GraphQL::TestHelpers
+# frozen_string_literal: true
+# require 'rails_helper'
+# require_relative '../test_helpers'
+# include GraphQL::TestHelpers
 #
-#describe 'CreateBook', type: :mutation do
+# describe 'CreateBook', type: :mutation do
 #  describe 'Creating a Book' do
 #
 #    let(:user) { build_stubbed(:user) }
@@ -63,4 +64,4 @@
 #
 #    end
 #  end
-#end
+# end

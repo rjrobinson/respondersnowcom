@@ -8,28 +8,25 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-
   before_bugsnag_notify :add_user_info_to_bugsnag
-
 
   # before_action :set_user
 
   private
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
-    end
-
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
+  end
 
   private
 
-    def add_user_info_to_bugsnag(report)
-      if current_user
-        report.user = {
-            email: current_user.email,
-            name: current_user.name,
-            id: current_user.id
-        }
-      end
+  def add_user_info_to_bugsnag(report)
+    if current_user
+      report.user = {
+        email: current_user.email,
+        name: current_user.name,
+        id: current_user.id,
+      }
     end
+  end
 end

@@ -16,7 +16,7 @@ class Mutations::CreateAcquiredCertification < Types::BaseMutationType
     end
 
     {
-        acquired_certification: cert
+      acquired_certification: cert,
     }
   end
 end

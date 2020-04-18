@@ -24,12 +24,12 @@ end
 # Create application badges (uses https://github.com/norman/ambry)
 badge_id = 0
 [{
-     id: (badge_id = badge_id + 1),
-     name: 'just-registered'
- }, {
-     id: (badge_id = badge_id + 1),
-     name: 'best-unicorn',
-     custom_fields: { category: 'fantasy' }
- }].each do |attrs|
-  Merit::Badge.create! attrs
+  id: (badge_id += 1),
+  name: 'just-registered',
+}, {
+  id: (badge_id += 1),
+  name: 'best-unicorn',
+  custom_fields: { category: 'fantasy' },
+}].each do |attrs|
+  Merit::Badge.create!(attrs)
 end

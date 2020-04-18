@@ -15,7 +15,7 @@ class Mutations::UpdateAcquiredCertification < Types::BaseMutationType
     cert.update(updated_params)
 
     {
-        acquired_certification: cert
+      acquired_certification: cert,
     }
   end
 end

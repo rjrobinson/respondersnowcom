@@ -1,8 +1,23 @@
-inherit_gem:
-  rubocop-rails_config:
-  - config/rails.yml
+inherit_from: https://shopify.github.io/ruby-style-guide/rubocop.yml
 
-Style/StringLiterals:
-  Enabled: false
 AllCops:
-  TargetRubyVersion: 2.4.1
+  Exclude:
+    - bin/**/*
+    - node_modules/**/*
+    - db/**/*
+    - Guardfile
+
+Layout/LineLength:
+  Exclude:
+    - bin/**/*
+    - spec/**/*
+    - config/initializers/devise.rb
+
+Metrics/ClassLength:
+  Exclude:
+    - spec/**/*
+
+Style/MethodCallWithArgsParentheses:
+  Exclude:
+    - Gemfile
+    - spec/**/*

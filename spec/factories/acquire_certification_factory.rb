@@ -9,7 +9,6 @@ FactoryBot.define do
     state { "NJ" }
     user { User.first || create(:user) }
 
-
     trait :expires do
       expires { false }
       expires_on { 100.days.from_now }

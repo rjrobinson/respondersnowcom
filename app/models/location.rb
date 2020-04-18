@@ -17,7 +17,6 @@ class Location < ApplicationRecord
 
   after_create :county_lookup
 
-
   def self.new_by_coord(lat:, long:)
     if !lat || !long
       loc = Location.new

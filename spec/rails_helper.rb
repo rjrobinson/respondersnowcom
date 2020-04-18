@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require_relative './shared_types'
 require 'simplecov'
-
 
 SimpleCov.start 'rails' do
   add_filter 'app/controllers/'
   add_filter 'app/errors/stripe_errors.rb'
-  add_filter 'app/graphql/'
+  add_filter 'app/graphql/resnow_schema.rb'
   add_filter 'app/helpers/states_helper.rb'
   add_filter 'app/jobs/application_job.rb'
   add_filter 'app/mailers/application_mailer.rb'
   add_filter 'app/models/application_record.rb'
   add_filter 'app/views/'
-  #todo below needs to be revisted at another time.
+  # TODO: below needs to be revisted at another time.
   add_filter 'app/errors/stripe_errors.rb'
   add_filter 'app/helpers/application_helper.rb'
   add_filter 'app/helpers/error_messages_helper.rb'
@@ -26,7 +26,6 @@ SimpleCov.start 'rails' do
   add_filter 'app/models/subscription.rb'
   add_filter 'lib/tasks/get_classes_nj.rb'
 end
-
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -48,9 +47,7 @@ else
   SimpleCov.coverage_dir('coverage')
 end
 
-
 ActiveRecord::Migration.maintain_test_schema!
-
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -66,9 +63,9 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.fixture_path                         = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.example_status_persistence_file_path = "#{::Rails.root}/spec/"
-  config.use_transactional_fixtures           = true
+  config.use_transactional_fixtures = true
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
@@ -88,10 +85,4 @@ RSpec.configure do |config|
   config.before(:suite) do
     FactoryBot.find_definitions
   end
-
-end
-
-
-def here
-  binding.pry
 end

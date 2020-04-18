@@ -12,11 +12,10 @@ RSpec.describe AcquiredCertification, type: :model do
   end
 
   context 'rendering the proper images' do
-
     let(:acquire_certification) { create(:acquired_certification) }
 
     describe '#cert_logo' do
-      #  todo File uploads are breaking at this point. 
+      #  todo File uploads are breaking at this point.
 
       context 'if the file is stored locally' do
         it 'should return the local file path' do
@@ -24,25 +23,20 @@ RSpec.describe AcquiredCertification, type: :model do
         end
       end
 
-
       context 'if the file is stored remotely' do
         it 'should return the remote file path'
       end
 
       context 'if the file not stored locally or remotely' do
-
         before do
           allow(FileTest).to receive(:exist?).and_return(nil)
         end
 
         it 'should return the default' do
-
           expect(acquire_certification.cert_logo).to eq 'defaults/ems.png'
         end
       end
-
     end
-
 
     describe '#patch_image_name' do
       context 'when looking for a patch in the folder' do

@@ -9,6 +9,5 @@ FactoryBot.define do
     status { "employed" }
     title { "EMT" }
     current { false }
-
   end
 end

@@ -4,14 +4,13 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/notadmin', as: 'rails_admin'
 
   if Rails.env.development?
-    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+    mount(GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "api/graphql")
   end
 
   post "api/graphql", to: "graphql#execute"
 
   authenticated :user do
     root to: 'users#certifications'
-    # TODO change this to 'dashboards#responder' to avoid confusion in the future
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -21,7 +20,6 @@ Rails.application.routes.draw do
     resources :certifications, only: [:create, :new]
     get '/settings', to: 'users#settings'
   end
-
 
   root to: 'landing#index'
 

@@ -6,13 +6,12 @@ class ExampleMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Sample Email')
   end
 
-
   def welcome(user_id)
     user = User.find(user_id)
     subject = "Welcome to our awesome app!"
     merge_vars = {
-        "FIRST_NAME" => user.first_name,
-        "USER_URL" => user_url(user),
+      "FIRST_NAME" => user.first_name,
+      "USER_URL" => user_url(user),
     }
     body = mandrill_template("welcome", merge_vars)
 

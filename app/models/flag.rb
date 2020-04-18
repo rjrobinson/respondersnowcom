@@ -6,7 +6,6 @@ class Flag < ApplicationRecord
   belongs_to :flaggable, polymorphic: true, dependent: :destroy
   belongs_to :user
 
-
   validates_presence_of :reason
 
   validate :user_can_only_flag_once, on: :create

@@ -2,9 +2,9 @@
 
 class SubscriptionsController < ApplicationController
   PLANS = {
-      monthly: "plan_DuKIPvnVwvCihp",
-      quarterly: "plan_DuKIdNEtQJkETt",
-      annualy: "plan_DuKJDShbBYh7wT"
+    monthly: "plan_DuKIPvnVwvCihp",
+    quarterly: "plan_DuKIdNEtQJkETt",
+    annualy: "plan_DuKJDShbBYh7wT",
   }
 
   def new
@@ -18,8 +18,8 @@ class SubscriptionsController < ApplicationController
     end
 
     current_user.update_stripe_data(stripe_data: {
-        stripe_id: customer["id"],
-        stripe_token: params["stripeToken"]
+      stripe_id: customer["id"],
+      stripe_token: params["stripeToken"],
     })
 
     current_user.create_subscription(plan: PLANS[:monthly])

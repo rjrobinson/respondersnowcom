@@ -7,7 +7,6 @@ module Types
     field :create_incident, mutation: Mutations::CreateIncident
     field :confirm_incident, mutation: Mutations::ConfirmIncident
 
-
     field :incident_down_vote, mutation: Mutations::IncidentDownvote
     field :incident_remove_vote, mutation: Mutations::IncidentRemoveVote
     field :incident_up_vote, mutation: Mutations::IncidentUpvote
@@ -17,6 +16,5 @@ module Types
 
     field :create_acquired_certification, mutation: Mutations::CreateAcquiredCertification
     field :update_acquired_certification, mutation: Mutations::UpdateAcquiredCertification
-
   end
 end

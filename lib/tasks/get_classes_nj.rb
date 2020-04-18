@@ -47,27 +47,24 @@ def get_categories
   categories
 end
 
-
 # Get courses links from each category and make sure no duplicates
 courses = []
 course_names = []
 
 categories = get_categories
 categories.each do |category|
-  begin
-    doc = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/CourseCatalog/' + category['href']).to_s)
-    current_courses = doc.xpath('//a').select { |link| link['href'] =~ /\.\.\/training\/classscheduler\/index\.cfm\?Fuseaction=Home\.CourseDetails&intCSCourseID=\d+&AddPopularity=1/i }
+  doc = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/CourseCatalog/' + category['href']).to_s)
+  current_courses = doc.xpath('//a').select { |link| link['href'] =~ %r{\.\./training/classscheduler/index\.cfm\?Fuseaction=Home\.CourseDetails&intCSCourseID=\d+&AddPopularity=1}i }
 
-    # Check if already got class URL
-    current_courses.each do |course|
-      unless course_names.include? course.text
-        course_names << course.text
-        courses << course
-      end
+  # Check if already got class URL
+  current_courses.each do |course|
+    unless course_names.include?(course.text)
+      course_names << course.text
+      courses << course
     end
-  rescue
-    puts 'error'
   end
+rescue
+  puts 'error'
 end
 
 puts "Num courses: #{courses.length}"
@@ -194,17 +191,16 @@ puts "Num courses: #{courses.length}"
 
 ###############################
 
-
 puts('Num courses: ' + courses.length.to_s)
 
 # Get classes info page and course info page for each course
 classesInfo = Array.new(courses.length)
 coursesInfo = Array.new(courses.length)
-for i in 0..(courses.length - 1)
+(0..(courses.length - 1)).each do |i|
   coursesInfo[i] = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/CourseCatalog/' + courses[i]['href']).to_s)
-  classesInfo[i] = Array.new
+  classesInfo[i] = []
   classLinks = coursesInfo[i].xpath('//a').select { |link| link.text == 'View Class Summary' }
-  for classLink in classLinks
+  classLinks.each do |classLink|
     doc = Nokogiri::HTML(RestClient.get('http://www.njoemscert.com/' + classLink['href'][22..-1]).to_s)
     classesInfo[i] << doc
   end
@@ -212,97 +208,84 @@ end
 
 # Search for course name and description
 course = Array.new(coursesInfo.length)
-for i in 0..(coursesInfo.length - 1)
+(0..(coursesInfo.length - 1)).each do |i|
   course[i] = Course.new
   course[i].name = courseNames[i].strip
   courseTrs = coursesInfo[i].xpath('//tr')
 
   # Get course description from course info page
-  for cTr in courseTrs
+  courseTrs.each do |cTr|
     c = cTr.children.select { |c| c.name != 'text' }
-    if c.length == 2
-      cC = c[0].children.select { |c| c.name != 'text' }
-      if cC.length == 1
-        if cC[0].text == 'Course Description:'
-          course[i].description = c[1].text.strip
-        end
-      end
+    next unless c.length == 2
+    cC = c[0].children.select { |c| c.name != 'text' }
+    next unless cC.length == 1
+    if cC[0].text == 'Course Description:'
+      course[i].description = c[1].text.strip
     end
   end
 
   # Search for classes details
   course[i].classes = Array.new(classesInfo[i].length)
   puts('Classes: ' + classesInfo[i].length.to_s)
-  for j in 0..(classesInfo[i].length - 1)
+  (0..(classesInfo[i].length - 1)).each do |j|
     course[i].classes[j] = Class.new
     classTrs = classesInfo[i][j].xpath('//tr')
-    for cTr in classTrs
+    classTrs.each do |cTr|
       c = cTr.children.select { |c| c.name != 'text' }
-      if c.length == 2
-        cC = c[0].children.select { |c| c.name != 'text' }
-        if cC.length == 1
-          if cC[0].text == 'Class:'
-            course[i].classes[j].name = c[1].text.strip
-          elsif cC[0].text == 'Class Code:'
-            course[i].classes[j].code = c[1].text.match(/\d+/i).to_s.strip
-          elsif cC[0].text == 'Class Dates:'
-            course[i].classes[j].dates = c[1].text.strip
-          elsif cC[0].text == 'Classroom (Location):'
-            course[i].classes[j].location = c[1].text.strip
-          end
+      next unless c.length == 2
+      cC = c[0].children.select { |c| c.name != 'text' }
+      if cC.length == 1
+        if cC[0].text == 'Class:'
+          course[i].classes[j].name = c[1].text.strip
+        elsif cC[0].text == 'Class Code:'
+          course[i].classes[j].code = c[1].text.match(/\d+/i).to_s.strip
+        elsif cC[0].text == 'Class Dates:'
+          course[i].classes[j].dates = c[1].text.strip
+        elsif cC[0].text == 'Classroom (Location):'
+          course[i].classes[j].location = c[1].text.strip
         end
       end
     end
-
 
     # Get tables containing class schedule
     course[i].classes[j].schedule = ClassDateTime.new
     courseTables = coursesInfo[i].xpath('//table').select { |c| c.name != 'text' }
-    classTables = Array.new
-    for y in 0..(courseTables.length - 1)
+    classTables = []
+    (0..(courseTables.length - 1)).each do |y|
       trs = courseTables[y].xpath('tr').select { |c| c.name != 'text' }
-      if trs.length != 0
-        tds = trs[0].xpath('td').select { |c| c.name != 'text' }
-        if tds.length != 0
-          b = tds[0].xpath('b').select { |c| c.name != 'text' }
-        end
-        if b.length != 0
-          if b[0].text == 'Class Details'
-            classTables << courseTables[y]
-          end
-        end
+      next unless !trs.empty?
+      tds = trs[0].xpath('td').select { |c| c.name != 'text' }
+      unless tds.empty?
+        b = tds[0].xpath('b').select { |c| c.name != 'text' }
+      end
+      next if b.empty?
+      if b[0].text == 'Class Details'
+        classTables << courseTables[y]
       end
     end
-
 
     # Find the correct schedule table and get the info from it
-    for tBody in classTables
+    classTables.each do |tBody|
       courseTrs = tBody.xpath('tr').select { |c| c.name != 'text' }
-      for cTr in courseTrs
+      courseTrs.each do |cTr|
         c = cTr.children.select { |c| c.name != 'text' }
-        if c.length == 2
-          cC = c[0].children.select { |c| c.name != 'text' }
-          if cC.length == 1
-            if cC[0].text == 'Class Code:'
-              if c[0].text.match(/\d+/).to_s.to_i == course[i].classes[j].code.to_s.to_i
-                scheduleTrs = tBody.xpath('tr/td/table/tr').select { |c| c.name != 'text' }
-                details = scheduleTrs[1].xpath('td').select { |c| c.name != 'text' }
-                course[i].classes[j].schedule.date = details[0].text.strip
-                course[i].classes[j].schedule.time = details[1].text.strip
-                course[i].classes[j].schedule.details = details[2].text.strip
-                course[i].classes[j].schedule.location = details[3].text.strip
-                course[i].classes[j].schedule.classroom = details[4].text.strip
-                course[i].classes[j].schedule.instructor = details[5].text.strip
-                break
-              end
-            end
-          end
-        end
+        next unless c.length == 2
+        cC = c[0].children.select { |c| c.name != 'text' }
+        next unless cC.length == 1
+        next unless cC[0].text == 'Class Code:'
+        next unless c[0].text.match(/\d+/).to_s.to_i == course[i].classes[j].code.to_s.to_i
+        scheduleTrs = tBody.xpath('tr/td/table/tr').select { |c| c.name != 'text' }
+        details = scheduleTrs[1].xpath('td').select { |c| c.name != 'text' }
+        course[i].classes[j].schedule.date = details[0].text.strip
+        course[i].classes[j].schedule.time = details[1].text.strip
+        course[i].classes[j].schedule.details = details[2].text.strip
+        course[i].classes[j].schedule.location = details[3].text.strip
+        course[i].classes[j].schedule.classroom = details[4].text.strip
+        course[i].classes[j].schedule.instructor = details[5].text.strip
+        break
       end
     end
-
   end
-
 end
 
 puts ActiveSupport::JSON.encode(course)

@@ -9,7 +9,6 @@ class Mutations::FlagIncident < Types::BaseMutationType
 
   field :incident, Types::IncidentType, null: false
 
-
   def resolve(id:, reason:)
     incident = Incident.find(id)
     flag = incident&.flags&.new(reason: reason, user: context[:current_user])
@@ -17,10 +16,9 @@ class Mutations::FlagIncident < Types::BaseMutationType
       context[:current_user]&.add_points(5, category: 'flagged incident')
     end
 
-
     {
-        incident: incident,
-        errors: incident&.errors
+      incident: incident,
+      errors: incident&.errors,
     }
   end
 end
