@@ -17,5 +17,9 @@ module Types
     field :create_acquired_certification, mutation: Mutations::CreateAcquiredCertification
     field :delete_acquired_certification, mutation: Mutations::DeleteAcquiredCertification
     field :update_acquired_certification, mutation: Mutations::UpdateAcquiredCertification
+
+    field :create_certification, mutation: Mutations::CreateCertification
+    field :update_certification, mutation: Mutations::UpdateCertification
+    # field :create_acquired_certification, mutation: Mutations::CreateAcquiredCertification
   end
 end

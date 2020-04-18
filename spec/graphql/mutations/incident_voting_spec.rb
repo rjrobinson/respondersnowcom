@@ -86,6 +86,5 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
 
       it { is_expected.to eq 0 }
     end
-
   end
 end

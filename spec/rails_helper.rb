@@ -7,7 +7,7 @@ SimpleCov.start 'rails' do
   add_filter 'app/controllers/'
   add_filter 'app/errors/stripe_errors.rb'
   add_filter 'app/errors/stripe_errors.rb'
-  #GraphQL
+  # GraphQL
   add_filter 'app/graphql/mutations/create_direct_upload.rb'
   add_filter 'app/graphql/resnow_schema.rb'
   add_filter 'app/graphql/types/query_type.rb'

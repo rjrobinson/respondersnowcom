@@ -42,4 +42,3 @@ describe Mutations::DeleteAcquiredCertification, type: :mutations do
     it { is_expected.to be true }
   end
 end
-

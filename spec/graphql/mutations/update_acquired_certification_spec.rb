@@ -54,4 +54,3 @@ describe Mutations::UpdateAcquiredCertification, type: :mutations do
     end
   end
 end
-

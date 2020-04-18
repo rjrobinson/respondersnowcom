@@ -9,7 +9,6 @@ class Mutations::DeleteAcquiredCertification < Types::BaseMutationType
   field :success, Boolean, null: false
 
   def resolve(id:)
-
     cert = context[:current_user].acquired_certifications.find(id)
 
     if cert.delete

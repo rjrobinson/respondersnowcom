@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require "selenium-webdriver"
-#require "chromedriver-helper"
+# require "selenium-webdriver"
+# require "chromedriver-helper"
 #
-#class HospitalStatusJob < ApplicationJob
+# class HospitalStatusJob < ApplicationJob
 #  queue_as :default
 #
 #  NJ_URL = "https://hippocrates.nj.gov/hospdivert/viewCurrentHospitalStatusEMSDivert.action?stateId=318&fromLogin=N"
@@ -60,4 +61,4 @@
 #  ensure
 #    driver&.quit
 #  end
-#end
+# end
