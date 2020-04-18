@@ -72,7 +72,7 @@ gem "chartkick", ">= 3.3.0"
 # Monitoring Tools
 gem 'newrelic_rpm'
 
-# Document Tools
+# Document Tools.
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'mapbox-rails'
@@ -80,6 +80,7 @@ gem 'mapbox-rails'
 gem 'geocoder'
 gem 'area'
 #
+gem 'travis'
 
 group :development, :test do
   gem 'better_errors'
