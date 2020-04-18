@@ -9,6 +9,3 @@ class Types::CertificationType < Types::ActiveRecordBase
   field :name, String, null: false
 
 end
-
-git config --global user.name "RJ Robinson"
-git config --local user.email 'RobertJ.Robinson@gmail.com'

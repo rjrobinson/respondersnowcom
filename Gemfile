@@ -41,11 +41,6 @@ gem 'sidekiq'
 
 gem 'rails_admin', '~> 2.0'
 
-# HOSPITAL DATA SYNC
-gem 'selenium-webdriver'
-gem 'webdrivers'
-gem 'chromedriver-helper'
-
 # Weather
 gem 'gull'
 
@@ -91,7 +86,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'brakeman', require: false
   gem 'byebug', platform: :mri
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_bot' # 1ab39#1ab39
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
