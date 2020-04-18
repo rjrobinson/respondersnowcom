@@ -34,6 +34,7 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
       it { is_expected.to eq 1 }
     end
   end
+
   describe "Incident Downvote" do
     subject(:incident_downvote) do
       mutation(query_string, variables: variables, context: { current_user: user })
@@ -62,5 +63,29 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
 
       it { is_expected.to eq 1 }
     end
+  end
+
+  describe "Incident Remove" do
+    subject(:incident_removevote) do
+      mutation(query_string, variables: variables, context: { current_user: user })
+      raise GraphQL::TestHelpers::GraphqlException, gql_response if gql_response.errors
+
+      gql_response.data["incidentRemoveVote"].deep_symbolize_keys.dig(:incident, :score)
+    end
+
+    let(:variables) { { id: 0 } }
+    let(:incident_keys) { "incident { id errors { fieldName errors } message confirmed score }" }
+    let(:query_string) { "mutation RemoveVoteIncident($id: ID!) { incidentRemoveVote(id: $id) {  #{incident_keys} } }" }
+
+    let(:incident) { create(:incident) }
+    let(:user) { create(:user) }
+    let(:vote) { create(:vote, incident: incident, user: user, vote_value: 1) }
+
+    context "when a user removes their vote" do
+      let(:variables) { { id: incident.id } }
+
+      it { is_expected.to eq 0 }
+    end
+
   end
 end
