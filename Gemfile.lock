@@ -72,8 +72,6 @@ GEM
       geocoder (>= 1.4.5)
       safely_block (>= 0.2.1)
     ambry (1.0.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     area (0.10.0)
       fastercsv (~> 1.5)
     arel (9.0.0)
@@ -112,19 +110,7 @@ GEM
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
     byebug (11.1.2)
-    capybara (3.32.1)
-      addressable
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      regexp_parser (~> 1.5)
-      xpath (~> 3.2)
     chartkick (3.3.1)
-    childprocess (3.0.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     chronic (0.10.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -204,7 +190,6 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    io-like (0.3.1)
     jaro_winkler (1.5.4)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
@@ -350,7 +335,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (3.3.5)
-    regexp_parser (1.7.0)
     remotipart (1.4.4)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -402,7 +386,6 @@ GEM
       rubocop-performance (~> 1.3)
       rubocop-rails (~> 2.0)
     ruby-progressbar (1.10.1)
-    rubyzip (2.3.0)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
     sass (3.7.4)
@@ -424,9 +407,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.142.7)
-      childprocess (>= 0.5, < 4.0)
-      rubyzip (>= 1.2.2)
     semantic (1.6.1)
     shellany (0.0.1)
     shoulda-matchers (3.1.3)
@@ -478,10 +458,6 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webdrivers (4.3.0)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (>= 3.0, < 4.0)
     webpacker (4.2.2)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -489,8 +465,6 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
-    xpath (3.2.0)
-      nokogiri (~> 1.8)
 
 PLATFORMS
   ruby
@@ -508,9 +482,7 @@ DEPENDENCIES
   brakeman
   bugsnag (~> 6.8)
   byebug
-  capybara
   chartkick (>= 3.3.0)
-  chromedriver-helper
   chronic
   coffee-rails (~> 4.2)
   database_cleaner
@@ -551,7 +523,6 @@ DEPENDENCIES
   rubocop
   rubocop-rails_config
   sass-rails (~> 5.0)
-  selenium-webdriver
   semantic
   shoulda-matchers (~> 3.1)
   sidekiq
@@ -568,7 +539,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console
-  webdrivers
   webpacker (~> 4.x)
 
 RUBY VERSION
