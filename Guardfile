@@ -26,7 +26,7 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: 'bundle exec rspec' do
+guard :rspec, cmd: 'spring rspec' do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -49,9 +49,9 @@ guard :rspec, cmd: 'bundle exec rspec' do
 
   watch(rails.controllers) do |m|
     [
-        rspec.spec.call("routing/#{m[1]}_routing"),
-        rspec.spec.call("controllers/#{m[1]}_controller"),
-        rspec.spec.call("acceptance/#{m[1]}")
+      rspec.spec.call("routing/#{m[1]}_routing"),
+      rspec.spec.call("controllers/#{m[1]}_controller"),
+      rspec.spec.call("acceptance/#{m[1]}")
     ]
   end
 

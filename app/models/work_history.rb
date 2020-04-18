@@ -4,7 +4,6 @@ class WorkHistory < ApplicationRecord
   belongs_to :agency
   belongs_to :user
 
-
   def pretty_start
     "#{Date::MONTHNAMES[start_date.month]}-#{start_date.year}"
   end

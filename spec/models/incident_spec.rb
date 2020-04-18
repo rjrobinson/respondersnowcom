@@ -12,11 +12,9 @@ RSpec.describe Incident, type: :model do
     it { should have_many(:incident_reports) }
   end
 
-
   let(:incident) { create(:incident) }
   let(:user) { create(:user) }
   let(:user2) { create(:user, email: "some other email", name: 'some other name') }
-
 
   describe '#confirm' do
     context 'when a user confirms an incident' do
@@ -40,7 +38,6 @@ RSpec.describe Incident, type: :model do
 
   describe 'rank calculation' do
     describe '.calculate_rank' do
-
       before do
         Incident.calculate_rank
       end
@@ -51,7 +48,6 @@ RSpec.describe Incident, type: :model do
     end
 
     describe '#calculate_rank' do
-
       before do
         incident.calculate_rank
       end
@@ -76,18 +72,16 @@ RSpec.describe Incident, type: :model do
 
   describe "#resolve_stale" do
     context 'when an incident has been declared of a stale status' do
-
       it 'is expected to update the incident status to clear' do
         incident.resolve_stale
 
         cleared_status = IncidentStatus.find_by(name: 'clear')
         expect(incident.status).to eq cleared_status
-
       end
     end
   end
 
-  #todo this should be pulled out.
+  # TODO: this should be pulled out.
   describe '#or_one_minute' do
     it 'should return one minute ago if no date passed' do
       expect(incident.or_one_minute(some_date: Time.now)).to be_truthy
@@ -96,7 +90,6 @@ RSpec.describe Incident, type: :model do
 
   describe '.trending' do
     context 'when calculating trending' do
-
       let!(:incident) { create(:incident) }
 
       subject { described_class.trending }
@@ -108,17 +101,13 @@ RSpec.describe Incident, type: :model do
       it 'should return a list of incidents by trending score and id' do
         expect(subject).to include array_including(an_instance_of(Integer), incident.id)
       end
-
-
     end
   end
 
   describe '#status' do
-
     it 'is expected to return a IncidentStatus' do
       expect(incident.status.class).to eq IncidentStatus
     end
-
   end
 
   describe "#upvote" do
@@ -130,13 +119,11 @@ RSpec.describe Incident, type: :model do
 
       incident.remove_vote(user: user)
     end
-
   end
 
   describe "#downvote" do
     it 'should decrease the vote by one.' do
       incident.downvote(user: user)
-
 
       expect(incident.votes.count).to eq 1
       expect(incident.score).to eq -1
@@ -154,14 +141,13 @@ RSpec.describe Incident, type: :model do
       location = create(:location)
       user     = create(:user)
       params   = {
-          street:     location.street,
-          city:       location.city,
-          state:      location.state,
-          status:     "Just started, unconfirmed",
-          scene_type: "EMS",
-          message:    "CrazyTown"
+        street: location.street,
+        city: location.city,
+        state: location.state,
+        status: "Just started, unconfirmed",
+        scene_type: "EMS",
+        message: "CrazyTown",
       }
-
 
       incident = Incident.new_with_location(params.merge(user: user))
 

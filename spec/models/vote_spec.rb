@@ -10,7 +10,6 @@ RSpec.describe Vote, type: :model do
 
     it { should validate_presence_of :vote_value }
 
-
     it 'should validate that the user can only vote once' do
       incident = create(:incident)
       user = create(:user)

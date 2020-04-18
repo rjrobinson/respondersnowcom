@@ -18,8 +18,8 @@ class Mutations::FlagReport < Types::BaseMutationType
     end
 
     {
-        incident: report.incident,
-        errors: report&.errors
+      incident: report.incident,
+      errors: report&.errors,
     }
   end
 end

@@ -2,14 +2,14 @@
 
 def set_omniauth(opts = {})
   default = {
-      provider: :facebook,
-      uuid: '1234',
-      facebook: {
-          email: 'foobar@example.com',
-          gender: 'Male',
-          first_name: 'foo',
-          last_name: 'bar'
-      }
+    provider: :facebook,
+    uuid: '1234',
+    facebook: {
+      email: 'foobar@example.com',
+      gender: 'Male',
+      first_name: 'foo',
+      last_name: 'bar',
+    },
   }
 
   credentials = default.merge(opts)
@@ -22,26 +22,25 @@ def set_omniauth(opts = {})
     'provider' => provider,
     'uid' => credentials[:uuid],
     'extra' => {
-        'user_hash' => {
-            'email' => user_hash[:email],
-            'first_name' => user_hash[:first_name],
-            'last_name' => user_hash[:last_name],
-            'gender' => user_hash[:gender]
-        }
+      'user_hash' => {
+        'email' => user_hash[:email],
+        'first_name' => user_hash[:first_name],
+        'last_name' => user_hash[:last_name],
+        'gender' => user_hash[:gender],
+      },
     },
     'info' => { 'email' => user_hash[:email],
-               'first_name' => user_hash[:first_name],
-               'last_name' => user_hash[:last_name],
-               'gender' => user_hash[:gender],
-               'name' => "#{user_hash[:first_name]} #{user_hash[:last_name]}"
-    }
+                'first_name' => user_hash[:first_name],
+                'last_name' => user_hash[:last_name],
+                'gender' => user_hash[:gender],
+                'name' => "#{user_hash[:first_name]} #{user_hash[:last_name]}" }
   )
 end
 
 def set_invalid_omniauth(opts = {})
   credentials = {
-      provider: :facebook,
-      invalid: :invalid_crendentials
+    provider: :facebook,
+    invalid: :invalid_crendentials,
   }.merge(opts)
 
   OmniAuth.config.test_mode = true

@@ -6,11 +6,18 @@ module GraphQL::TestHelpers
   # The returned results of a GraphQL query
   # @return [data] this is the bulk of the return to test.
   # @return [error] any time a query, mutation, subscription throws and error
+  #
+  class GraphqlException < StandardError
+    def initialize(gql_response)
+      super(gql_response.errors)
+    end
+  end
+
   class GQLResponse
     attr_reader :data, :errors
 
     def initialize(args)
-      @data   = args['data'] || nil
+      @data = args['data'] || nil
       @errors = args['errors'] || nil
     end
   end
@@ -20,7 +27,7 @@ module GraphQL::TestHelpers
   def query(query, variables: {}, context: {})
     converted = variables.deep_transform_keys! { |key| key.to_s.camelize(:lower) } || {}
 
-    res           = ResnowSchema.execute(query, variables: converted, context: context, operation_name: nil)
+    res = ResnowSchema.execute(query, variables: converted, context: context, operation_name: nil)
     @gql_response = GQLResponse.new(res.to_h)
   end
 

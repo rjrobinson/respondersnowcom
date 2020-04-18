@@ -9,7 +9,6 @@ class Vote < ApplicationRecord
   validate :user_only_has_one_vote, on: :create
   # validates :user, uniqueness: {scope: :voteable}
 
-
   def user_only_has_one_vote
     if Vote.where(user_id: user_id, voteable_id: voteable_id).present?
       errors.add(:user_already_has_vote, "This user has already voted.")

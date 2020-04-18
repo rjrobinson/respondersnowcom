@@ -32,7 +32,7 @@ class CertificationsController < ApplicationController
 
   def cert_params
     params.require(:certification).permit(
-        :name,
+      :name,
         :course_code,
         :primary,
         :abbvr,

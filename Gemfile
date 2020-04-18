@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 ruby '2.6.3'
 
-
 gem 'rails', '~> 5.2.2.1'
 gem 'webpacker', '~> 4.x'
 gem "bootstrap-sass", ">= 3.4.1"
@@ -42,11 +41,6 @@ gem 'sidekiq'
 
 gem 'rails_admin', '~> 2.0'
 
-# HOSPITAL DATA SYNC
-gem 'selenium-webdriver'
-gem 'webdrivers'
-gem 'chromedriver-helper'
-
 # Weather
 gem 'gull'
 
@@ -59,16 +53,13 @@ gem 'mandrill-api'
 # Active Storage
 gem 'aws-sdk-s3', '~> 1'
 
-
 # GraphQL
 gem 'graphql'
 gem 'graphiql-rails'
 gem 'graphql-batch'
 
-
 # Google Ads
 gem 'ads-rails'
-
 
 # Merit
 gem 'merit'
@@ -78,11 +69,10 @@ gem 'ahoy_matey'
 gem 'groupdate'
 gem "chartkick", ">= 3.3.0"
 
-
 # Monitoring Tools
 gem 'newrelic_rpm'
 
-# Document Tools
+# Document Tools.
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'mapbox-rails'
@@ -90,14 +80,13 @@ gem 'mapbox-rails'
 gem 'geocoder'
 gem 'area'
 #
-gem 'coveralls', require: false
+gem 'travis'
 
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman', require: false
   gem 'byebug', platform: :mri
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_bot' # 1ab39#1ab39
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
@@ -113,11 +102,13 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'terminal-notifier'
   gem 'terminal-notifier-guard'
-  gem 'terminal-notifier-guard'
+  gem 'rspec-graphql_matchers'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'spring-commands-rspec'
+  gem 'terminal-notifier-guard'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

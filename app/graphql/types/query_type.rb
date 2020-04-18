@@ -5,7 +5,21 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
+    field :me, UserType, null: false
 
+    def me
+      context[:current_user]
+    end
+
+    field :certifications, [CertificationType], null: true do
+      description "List of certifications"
+    end
+
+    def certifications
+      Certification.all
+    end
+
+    # TODO: Disabling till we revisit this in the future
     field :incidents_by_subscription, [IncidentType], null: true do
       description %|A list of Incidents from the users subscriptions.
                                  Incidents will be sent back newest first, but have the option to sort by their ranking|
@@ -16,8 +30,7 @@ module Types
     end
 
     field :locations, [LocationType], null: true,
-          description: 'List of locations'
-
+          description:                      'List of locations'
 
     field :incidents, [IncidentType], null: false do
       description "this will return all incidents that have not been flagged more than 3 times."
@@ -28,13 +41,11 @@ module Types
       Incident.filter_flagged.order(created_at: :desc).limit(15)
     end
 
-
     field :trending, [IncidentType], null: false
 
     def trending
       Incident.filter_flagged
     end
-
 
     field :incident, IncidentType, null: false do
       description "returns one incident"

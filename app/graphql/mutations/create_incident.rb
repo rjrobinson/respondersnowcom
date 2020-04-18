@@ -16,8 +16,8 @@ class Mutations::CreateIncident < Types::BaseMutationType
     end
 
     {
-        incident: incident,
-        errors: incident&.errors.map { |e| { field_name: e, errors: membership&.errors[e] } }
+      incident: incident,
+      errors: incident&.errors.map { |e| { field_name: e, errors: membership&.errors[e] } },
     }
   end
 end

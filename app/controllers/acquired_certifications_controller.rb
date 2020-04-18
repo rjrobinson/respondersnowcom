@@ -29,35 +29,34 @@ class AcquiredCertificationsController < ApplicationController
   def edit
   end
 
-
   private
 
-    def cert_params
-      new = params.require(:acquired_certification).permit!
-      new = new.merge(
-        acquired_on: DateTime.new(
-          params[:acquired_certification]['acquired_on(1i)'].to_i,
-            params[:acquired_certification]['acquired_on(2i)'].to_i,
-        ),
-        user_id: current_user.id,
-      )
+  def cert_params
+    new = params.require(:acquired_certification).permit!
+    new = new.merge(
+      acquired_on: DateTime.new(
+        params[:acquired_certification]['acquired_on(1i)'].to_i,
+          params[:acquired_certification]['acquired_on(2i)'].to_i,
+      ),
+      user_id: current_user.id,
+    )
 
-      if params[:acquired_certification][:expires]
-        new = new.merge(expires_on: DateTime.new(
-          params[:acquired_certification]['expires_on(1i)'].to_i,
-            params[:acquired_certification]['expires_on(2i)'].to_i,
-        ))
-      end
-      new = new.merge(user: current_user)
-
-      new
+    if params[:acquired_certification][:expires]
+      new = new.merge(expires_on: DateTime.new(
+        params[:acquired_certification]['expires_on(1i)'].to_i,
+          params[:acquired_certification]['expires_on(2i)'].to_i,
+      ))
     end
+    new = new.merge(user: current_user)
 
-    def only_user_can_modify
-      cert = AcquiredCertification.find(params[:id])
-      unless cert.user == current_user
-        flash[:error] = 'You dont have permission for that'
-        redirect_back(fallback_location: root_path)
-      end
+    new
+  end
+
+  def only_user_can_modify
+    cert = AcquiredCertification.find(params[:id])
+    unless cert.user == current_user
+      flash[:error] = 'You dont have permission for that'
+      redirect_back(fallback_location: root_path)
     end
+  end
 end

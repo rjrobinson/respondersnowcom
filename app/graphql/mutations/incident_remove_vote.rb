@@ -12,8 +12,8 @@ class Mutations::IncidentRemoveVote < Types::BaseMutationType
     incident.remove_vote(user: context[:current_user])
 
     {
-        incident: incident,
-        errors: incident&.errors
+      incident: incident,
+      errors: incident&.errors,
     }
   end
 end

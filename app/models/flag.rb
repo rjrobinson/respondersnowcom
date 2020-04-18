@@ -6,10 +6,11 @@ class Flag < ApplicationRecord
   belongs_to :flaggable, polymorphic: true, dependent: :destroy
   belongs_to :user
 
-
   validates_presence_of :reason
 
   validate :user_can_only_flag_once, on: :create
+
+  alias_attribute :message, :reason
 
   def user_can_only_flag_once
     if Flag.where(user_id: user_id, flaggable_id: flaggable_id).present?
