@@ -7,5 +7,4 @@ class Types::CertificationType < Types::ActiveRecordBase
   field :active, Boolean, null: false
   field :course_code, String, null: false
   field :name, String, null: false
-
 end

@@ -123,14 +123,14 @@ class Incident < ApplicationRecord
     location.update(county: county.name)
 
     incident = if location.save
-                 Incident.create(
-                   location: location,
-                   message: params[:message],
-                   incident_group_id: params[:incident_group_id],
-                   user: params[:current_user],
-                   incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed").id,
-                   county: county
-                 )
+      Incident.create(
+        location: location,
+        message: params[:message],
+        incident_group_id: params[:incident_group_id],
+        user: params[:current_user],
+        incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed").id,
+        county: county
+      )
 
                end
 

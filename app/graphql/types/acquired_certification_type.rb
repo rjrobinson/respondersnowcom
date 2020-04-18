@@ -11,6 +11,5 @@ module Types
     field :expires_on, String, null: true
     field :number, String, null: true
     field :state, String, null: false
-
   end
 end

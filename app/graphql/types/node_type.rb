@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Types
   module NodeType
     include Types::BaseInterface
@@ -12,6 +13,5 @@ module Types
     def errors
       object.errors.map { |e| { field_name: e, errors: object.errors[e] } }
     end
-
   end
 end

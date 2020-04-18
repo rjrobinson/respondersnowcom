@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require "rails_helper"
+# require "rails_helper"
 #
-#RSpec.describe Types::QueryType do
+# RSpec.describe Types::QueryType do
 #  subject(:query_type) { described_class }
 #
 #  it { is_expected.to have_field(:client_locations).of_type("ClientLocationConnection!") }
@@ -22,4 +23,4 @@
 #
 #    it { is_expected.to accept_argument(:id).of_type("ID!") }
 #  end
-#end
+# end

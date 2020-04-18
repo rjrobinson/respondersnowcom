@@ -13,5 +13,4 @@ RSpec.describe Types::AcquiredCertificationType do
   it { is_expected.to have_field(:expires_on).of_type("String") }
   it { is_expected.to have_field(:number).of_type("String") }
   it { is_expected.to have_field(:state).of_type("String!") }
-
 end

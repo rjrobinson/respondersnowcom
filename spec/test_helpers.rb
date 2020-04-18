@@ -6,13 +6,13 @@ module GraphQL::TestHelpers
   # The returned results of a GraphQL query
   # @return [data] this is the bulk of the return to test.
   # @return [error] any time a query, mutation, subscription throws and error
-  # 
+  #
   class GraphqlException < StandardError
     def initialize(gql_response)
       super(gql_response.errors)
     end
   end
-  
+
   class GQLResponse
     attr_reader :data, :errors
 

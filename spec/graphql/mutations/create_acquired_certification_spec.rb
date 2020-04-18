@@ -4,7 +4,6 @@
 require 'rails_helper'
 require_relative '../../test_helpers'
 
-
 describe Mutations::CreateAcquiredCertification, type: :mutations do
   include GraphQL::TestHelpers
 
@@ -33,12 +32,10 @@ describe Mutations::CreateAcquiredCertification, type: :mutations do
     GQL
   end
 
-
   let(:user) { create(:user) }
   let(:certification) { create(:certification) }
 
   context "a user adds an acquired certification" do
-
     let(:variables) do
       { acquiredCertificationInput: {
         acquiredOn: 100.days.ago.to_s,
@@ -47,8 +44,8 @@ describe Mutations::CreateAcquiredCertification, type: :mutations do
         expires: true,
         expiresOn: 100.days.from_now.to_s,
         number: 1234,
-        state: "NJ" }
-      }
+        state: "NJ",
+      } }
     end
 
     it { is_expected.to include(acquiredCertification: { acquiredOn: be_a_kind_of(String), id: be_a_kind_of(String) }) }

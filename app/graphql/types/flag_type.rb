@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 class Types::FlagType < Types::ActiveRecordBase
-  field :id, ID, null: false
+  implements Types::NodeType
+
   field :message, String, null: false
-
-  def message
-    object.reason
-  end
-
+  field :reason, String, null: false
   field :user, Types::UserType, null: false
 end

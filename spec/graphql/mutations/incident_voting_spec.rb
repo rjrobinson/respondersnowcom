@@ -6,14 +6,12 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
   include GraphQL::TestHelpers
 
   describe "Incident Upvote" do
-
     subject(:incident_upvote) do
-      mutation(query_string, variables: variables, context: { current_user: user, })
+      mutation(query_string, variables: variables, context: { current_user: user })
       raise GraphQL::TestHelpers::GraphqlException, gql_response if gql_response.errors
 
       gql_response.data["incidentUpVote"].deep_symbolize_keys.dig(:incident, :upvotes)
     end
-
 
     let(:variables) { { id: 0 } }
     let(:incident_keys) { "incident { id upvotes errors { fieldName errors } message confirmed }" }
@@ -35,18 +33,14 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
 
       it { is_expected.to eq 1 }
     end
-
-
   end
   describe "Incident Downvote" do
-
     subject(:incident_downvote) do
-      mutation(query_string, variables: variables, context: { current_user: user, })
+      mutation(query_string, variables: variables, context: { current_user: user })
       raise GraphQL::TestHelpers::GraphqlException, gql_response if gql_response.errors
 
       gql_response.data["incidentDownVote"].deep_symbolize_keys.dig(:incident, :downvotes)
     end
-
 
     let(:variables) { { id: 0 } }
     let(:incident_keys) { "incident { id downvotes errors { fieldName errors } message confirmed }" }
@@ -68,8 +62,5 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
 
       it { is_expected.to eq 1 }
     end
-
-
   end
-
 end
