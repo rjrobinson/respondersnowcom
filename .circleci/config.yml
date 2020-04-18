@@ -6,9 +6,6 @@ jobs:
     docker:
       - image: rjrobinson/resnow-ruby-2.6.3:latest
         environment:
-          PGHOST: 127.0.0.1
-          PGUSER: root
-          DB_HOST: 127.0.0.1
           DB_USER: root
           RAILS_ENV: test
           RACK_ENV: test
