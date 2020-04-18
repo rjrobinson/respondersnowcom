@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :acquired_certification do
-    acquired_on { DateTime.now }
+    acquired_on { DateTime.now.iso8601 }
     certification
     expires { false }
     number { "54673" }
@@ -11,7 +11,7 @@ FactoryBot.define do
 
     trait :expires do
       expires { false }
-      expires_on { 100.days.from_now }
+      expires_on { 100.days.from_now.iso8601 }
     end
   end
 end

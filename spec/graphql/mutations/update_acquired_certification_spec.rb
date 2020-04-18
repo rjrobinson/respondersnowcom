@@ -1,66 +1,57 @@
+## frozen_string_literal: true
+##
 # frozen_string_literal: true
 require 'rails_helper'
 require_relative '../../test_helpers'
 
-include GraphQL::TestHelpers
+describe Mutations::UpdateAcquiredCertification, type: :mutations do
+  include GraphQL::TestHelpers
 
-describe 'UpdateAcquiredCertification', type: :mutation do
-  describe 'Acquired Certification creation for a user' do
-    let(:user) { User.first || create(:user) }
-    let(:mutation_type) { 'updateAcquiredCertification' }
-    let(:acquired_certification) { create(:acquired_certification) }
+  # Boiler Plate
+  # set mutation_type
+  # set input_type if_any
+  # set mutation keys ( the ones that get returned)
+  # set variables *default
+  # set user
 
-    let(:mutation_string) do
-      <<-GQL
-    mutation updateAcquiredCertification($acquiredCertificationInput: AcquiredCertificationInputType!) {
-      updateAcquiredCertification(acquiredCertificationInput: $acquiredCertificationInput) {
-        acquiredCertification {
-          id
-          acquiredOn
-        }
-       }
-    }
+  let(:mutation_type) { "updateAcquiredCertification" }
+
+  subject(:update_acquired_certification) do
+    mutation(mutation_string, variables: variables, context: { current_user: user })
+    raise GraphQL::TestHelpers::GraphqlException, gql_response if gql_response.errors
+    gql_response.data[mutation_type].deep_symbolize_keys
+  end
+
+  let(:variables) { { acquiredCertificationInput: {} } }
+  let(:mutation_keys) { "acquiredCertification { id acquiredOn expires expiresOn }" }
+  let(:mutation_string) do
+    <<-GQL
+          mutation #{mutation_type}($acquiredCertificationInput: AcquiredCertificationInputType!) {
+                   #{mutation_type}(acquiredCertificationInput: $acquiredCertificationInput) {
+                   #{mutation_keys}}}
     GQL
+  end
+
+  let!(:acquired_certification) { create(:acquired_certification) }
+  let(:user) { acquired_certification.user }
+  let(:new_expire_dt) { 100.days.from_now.to_s }
+
+  context "a user updates an acquired certification" do
+    let(:variables) do
+      { acquiredCertificationInput: {
+        id: acquired_certification.id,
+        expires: true,
+        expires_on: new_expire_dt,
+        ceus: 2,
+      } }
     end
 
-    context 'when a user has all the required permissions and parameters' do
-      before do
-        mutation mutation_string,
-                 variables: {
-                   acquiredCertificationInput: {
-                     id: acquired_certification.id,
-                     acquiredOn: 99.days.ago.to_s,
-                     certificationId: 2,
-                     ceus: 2,
-                     expires: true,
-                     expiresOn: 100.days.from_now.to_s,
-                     number: 1234,
-                     state: "NJ",
-
-                   },
-                 },
-                 context:   { current_user: user }
-      end
-
-      it 'should return no errors' do
-        expect(gql_response.errors).to be_nil
-      end
-
-      it 'should return the created acquired certification' do
-        expect(gql_response.data[mutation_type].dig("acquiredCertification")).to include({ "id" => be_a_kind_of(String) })
-      end
-    end
-
-    context 'when a user is missing some data' do
-      before do
-        mutation mutation_string,
-                 variables: {},
-                 context:   { current_user: user }
-      end
-
-      it 'should return errors' do
-        expect(gql_response.errors).to_not be_nil
-      end
+    it do
+      is_expected.to include(acquiredCertification: { id: acquired_certification.id,
+                                                      acquiredOn: be_a_kind_of(String),
+                                                      expires: true,
+                                                      expiresOn: be_a_kind_of(String) })
     end
   end
 end
+
