@@ -21,7 +21,6 @@ before_install:
     fi
 before_script:
   - bundle exec rails db:create
-  - apt install spring ruby-spring
 
 script:
   - bundle exec rails db:schema:load
