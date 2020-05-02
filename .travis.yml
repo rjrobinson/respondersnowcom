@@ -25,6 +25,6 @@ before_script:
 script:
   - bundle exec rails db:schema:load
   - bundle exec rails db:test:prepare
-  - spring rspec
+  - bundle exec rspec
 #  - bundle exec rubocop
 #  - bundle exec brakeman --safe-methods ap
