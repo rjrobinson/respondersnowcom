@@ -1,19 +1,13 @@
 language: ruby
-
 rvm:
   - 2.6.3
-
-dist: trusty
-
 services:
   - postgresql
 
 cache: bundler
-
 before_install:
   - gem install bundler
-
 script:
   — bundle install
   — bundle exec rails db:test:prepare
-  - bundle exec rspec spec 
+  - bundle exec rspec spec
