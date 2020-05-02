@@ -32,6 +32,8 @@
 #      array_hospitals << hash_hospital
 #    end
 #
+#
+# 
 #    array_hospitals.each do |data|
 #      h = Hospital.find_by(name: data["facility"])
 #
