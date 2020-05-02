@@ -26,7 +26,7 @@ SimpleCov.start 'rails' do
   add_filter 'app/models/user.rb'
   add_filter 'lib/tasks/get_classes_nj.rb'
 end
-Rails.application.eager_load!
+# Rails.application.eager_load!
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
