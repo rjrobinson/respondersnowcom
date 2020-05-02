@@ -9,6 +9,6 @@ services:
 cache: bundler
 
 script:
-  — bundle install — jobs=3 — retry=3
+  — bundle install
   — bundle exec rake db:create db:setup
-  — bundle exec rspec
+  — spring rspec
