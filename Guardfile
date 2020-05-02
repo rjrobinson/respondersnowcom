@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
 ## Uncomment and set this to only include directories you want to watch
 # directories %w(app lib config test spec features) \
-#  .select{|d| Dir.exists?(d) ? d : UI.warning("Directory #{d} does not exist")}
+#  .select{|d| Dir.exist?(d) ? d : UI.warning("Directory #{d} does not exist")}
 
 ## Note: if you are using the `directories` clause above and you are not
 ## watching the project directory ('.'), then you will want to move
@@ -26,7 +24,7 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: 'spring rspec' do
+guard :rspec, cmd: "spring rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -69,6 +67,5 @@ guard :rspec, cmd: 'spring rspec' do
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
   end
-
-  notification :terminal_notifier
 end
+

@@ -1,12 +1,12 @@
 GIT
   remote: https://github.com/stripe/stripe-ruby
-  revision: 0508aa92ee94e9d79f1829498a882b6896b08938
+  revision: 4c5b67bce0c7d094cd1d88e41cc0d6136f5ccf43
   specs:
-    stripe (5.17.0)
+    stripe (5.21.0)
 
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: 6c3a7c55a9d7e48791db4b575dd9ce03f6e92098
+  revision: 70349612f4ee3de595f36f71015ad95f39583b71
   branch: master
   specs:
     faker (2.11.0)
@@ -79,7 +79,7 @@ GEM
     autoprefixer-rails (9.7.6)
       execjs
     aws-eventstream (1.1.0)
-    aws-partitions (1.298.0)
+    aws-partitions (1.308.0)
     aws-sdk-core (3.94.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -88,15 +88,15 @@ GEM
     aws-sdk-kms (1.30.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.61.2)
+    aws-sdk-s3 (1.63.0)
       aws-sdk-core (~> 3, >= 3.83.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.1.2)
+    aws-sigv4 (1.1.3)
       aws-eventstream (~> 1.0, >= 1.0.2)
     backports (3.17.1)
     bcrypt (3.1.13)
-    better_errors (2.6.0)
+    better_errors (2.7.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -110,7 +110,7 @@ GEM
     bugsnag (6.13.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
-    byebug (11.1.2)
+    byebug (11.1.3)
     chartkick (3.3.1)
     chronic (0.10.2)
     coderay (1.1.2)
@@ -145,7 +145,7 @@ GEM
       ffi (>= 1.3.0)
     excon (0.73.0)
     execjs (2.7.0)
-    factory_bot (5.1.2)
+    factory_bot (5.2.0)
       activesupport (>= 4.2.0)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
@@ -156,7 +156,7 @@ GEM
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     formatador (0.2.5)
-    geocoder (1.6.2)
+    geocoder (1.6.3)
     gh (0.16.0)
       activesupport (~> 5.0)
       addressable (~> 2.4)
@@ -170,7 +170,7 @@ GEM
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
-    graphql (1.10.7)
+    graphql (1.10.8)
     graphql-batch (0.4.2)
       graphql (>= 1.3, < 2)
       promise.rb (~> 0.7.2)
@@ -285,7 +285,7 @@ GEM
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
     parallel (1.19.1)
-    parser (2.7.1.1)
+    parser (2.7.1.2)
       ast (~> 2.4.0)
     pg (0.21.0)
     promise.rb (0.7.4)
@@ -350,7 +350,7 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (13.0.1)
-    rb-fsevent (0.10.3)
+    rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (3.3.5)
@@ -399,7 +399,7 @@ GEM
       activesupport
       rack (>= 1.1)
       rubocop (>= 0.72.0)
-    rubocop-rails_config (0.12.0)
+    rubocop-rails_config (0.12.1)
       railties (>= 5.0)
       rubocop (~> 0.82)
       rubocop-performance (~> 1.3)

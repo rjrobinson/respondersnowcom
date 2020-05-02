@@ -93,6 +93,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rails'
   gem 'guard-rspec', require: false
+  # gem 'guard-spring'
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
@@ -108,7 +109,6 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'spring-commands-rspec'
-  gem 'terminal-notifier-guard'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
