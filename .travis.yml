@@ -13,5 +13,5 @@ before_install:
 
 script:
   — bundle install
-  — bundle exec rake db:create db:setup
+  — bundle exec rails db:create db:setup
   — spring rspec
