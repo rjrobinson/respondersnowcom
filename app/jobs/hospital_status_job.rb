@@ -33,7 +33,7 @@
 #    end
 #
 #
-# 
+#
 #    array_hospitals.each do |data|
 #      h = Hospital.find_by(name: data["facility"])
 #

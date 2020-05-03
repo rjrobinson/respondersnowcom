@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-def set_omniauth(opts = {})
+def omniauth(opts = {})
   default = {
     provider: :facebook,
     uuid: '1234',
