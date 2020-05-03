@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module User
+class User
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def facebook
       # You need to implement the method below in your model (e.g. app/models/user.rb)
