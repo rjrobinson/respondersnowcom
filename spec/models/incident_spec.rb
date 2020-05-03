@@ -126,7 +126,7 @@ RSpec.describe Incident, type: :model do
       incident.downvote(user: user)
 
       expect(incident.votes.count).to eq 1
-      expect(incident.score).to eq -1
+      expect(incident.score).to eq(-1)
       expect(incident.downvotes).to eq 1
 
       incident.remove_vote(user: user)
@@ -139,8 +139,8 @@ RSpec.describe Incident, type: :model do
   describe "#new_with_location" do
     it 'should create a new incident' do
       location = create(:location)
-      user     = create(:user)
-      params   = {
+      user = create(:user)
+      params = {
         street: location.street,
         city: location.city,
         state: location.state,

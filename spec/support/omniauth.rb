@@ -37,7 +37,7 @@ def omniauth(opts = {})
   )
 end
 
-def set_invalid_omniauth(opts = {})
+def invalid_omniauth(opts = {})
   credentials = {
     provider: :facebook,
     invalid: :invalid_crendentials,
