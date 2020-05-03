@@ -6,9 +6,10 @@ class Location < ApplicationRecord
   before_validation :geocode
 
   reverse_geocoded_by :latitude, :longitude do |obj, results|
-    if geo = results.first
-      obj.city    ||= geo.city
-      obj.state   ||= StatesHelper::STATE_NAME_TO_ABBR[geo.state] || StatesHelper::STATE_ABBR_TO_NAMER[geo.state]
+    geo = results.first
+    if geo
+      obj.city ||= geo.city
+      obj.state ||= StatesHelper::STATE_NAME_TO_ABBR[geo.state] || StatesHelper::STATE_ABBR_TO_NAMER[geo.state]
       obj.zipcode ||= geo.postal_code
     end
   end
@@ -32,7 +33,7 @@ class Location < ApplicationRecord
 
   def county_lookup
     return nil if county
-    if state && state&.length > 2
+    if state&.length && state.length > 2
       update(state: StatesHelper::STATE_NAME_TO_ABBR[state])
     end
 
