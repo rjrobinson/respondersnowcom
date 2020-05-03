@@ -11,7 +11,7 @@ end
 
 def user_log_in_with_omniauth
   background do
-    set_omniauth
+    omniauth
 
     visit root_path
 

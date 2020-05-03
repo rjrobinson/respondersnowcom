@@ -2,20 +2,30 @@ inherit_from: https://shopify.github.io/ruby-style-guide/rubocop.yml
 
 AllCops:
   Exclude:
-    - bin/**/*
-    - node_modules/**/*
-    - db/**/*
     - Guardfile
+    - bin/**/*
+    - config/application.rb
+    - config/initializers/merit.rb
+    - db/**/*
+    - lib/tasks/get_classes_nj.rb
+    - node_modules/**/*
+    - app/models/ahoy/**/*
 
 Layout/LineLength:
-  Exclude:
-    - bin/**/*
-    - spec/**/*
-    - config/initializers/devise.rb
+  Enabled: false
 
 Metrics/ClassLength:
   Exclude:
     - spec/**/*
+
+Style/Encoding:
+  Enabled: false
+
+Layout/EndAlignment:
+  Enabled: false
+
+Layout/IndentationWidth:
+  Enabled: false
 
 Style/MethodCallWithArgsParentheses:
   Exclude:

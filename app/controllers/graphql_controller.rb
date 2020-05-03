@@ -61,8 +61,6 @@ class GraphqlController < ApplicationController
     render(json: { error: { message: e.message, backtrace: e.backtrace }, data: {} }, status: 500)
   end
 
-  private
-
   def set_test_user
     @current_user ||= User.first
   end

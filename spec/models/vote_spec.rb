@@ -42,7 +42,7 @@ RSpec.describe Vote, type: :model do
       vote = Vote.create(voteable: incident, user: user)
       vote.downvote
 
-      expect(vote.vote_value).to be -1
+      expect(vote.vote_value).to be(-1)
     end
   end
 

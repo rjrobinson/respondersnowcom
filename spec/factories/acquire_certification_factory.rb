@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :acquired_certification do
-    acquired_on { DateTime.now.iso8601 }
+    acquired_on { Time.now.iso8601 }
     certification
     expires { false }
     number { "54673" }

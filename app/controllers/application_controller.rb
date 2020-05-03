@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :name])
   end
 
-  private
-
   def add_user_info_to_bugsnag(report)
     if current_user
       report.user = {

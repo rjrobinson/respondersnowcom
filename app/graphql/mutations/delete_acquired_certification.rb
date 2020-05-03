@@ -1,22 +1,23 @@
 # frozen_string_literal: true
+module Mutations
+  class DeleteAcquiredCertification < Types::BaseMutationType
+    null true
+    description "will delete the acquired certification for the current user"
 
-class Mutations::DeleteAcquiredCertification < Types::BaseMutationType
-  null true
-  description "will delete the acquired certification for the current user"
+    argument :id, ID, required: true
 
-  argument :id, ID, required: true
+    field :success, Boolean, null: false
 
-  field :success, Boolean, null: false
+    def resolve(id:)
+      cert = context[:current_user].acquired_certifications.find(id)
 
-  def resolve(id:)
-    cert = context[:current_user].acquired_certifications.find(id)
+      if cert.delete
+        context[:current_user]&.subtract_points(5, category: "added_certification")
+      end
 
-    if cert.delete
-      context[:current_user]&.subtract_points(5, category: "added_certification")
+      {
+        success: cert.present?,
+      }
     end
-
-    {
-      success: cert.present?,
-    }
   end
 end

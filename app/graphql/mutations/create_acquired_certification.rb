@@ -1,22 +1,23 @@
 # frozen_string_literal: true
+module Mutations
+  class CreateAcquiredCertification < Types::BaseMutationType
+    null true
+    description "will create a acquired certification for the current user"
 
-class Mutations::CreateAcquiredCertification < Types::BaseMutationType
-  null true
-  description "will create a acquired certification for the current user"
+    argument :acquired_certification_input, Types::AcquiredCertificationInputType, required: true
 
-  argument :acquired_certification_input, Types::AcquiredCertificationInputType, required: true
+    field :acquired_certification, Types::AcquiredCertificationType, null: true
 
-  field :acquired_certification, Types::AcquiredCertificationType, null: true
+    def resolve(acquired_certification_input:)
+      cert = AcquiredCertification.new(acquired_certification_input.to_h.merge(user: context[:current_user]))
 
-  def resolve(acquired_certification_input:)
-    cert = AcquiredCertification.new(acquired_certification_input.to_h.merge(user: context[:current_user]))
+      if cert.save
+        context[:current_user]&.add_points(5, category: "added_certification")
+      end
 
-    if cert.save
-      context[:current_user]&.add_points(5, category: "added_certification")
+      {
+        acquired_certification: cert,
+      }
     end
-
-    {
-      acquired_certification: cert,
-    }
   end
 end
