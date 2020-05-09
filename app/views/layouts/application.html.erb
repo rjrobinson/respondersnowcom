@@ -2,44 +2,51 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="google-site-verification" content="248uddpJf5rTHpjzsMH_C_IMj1DcVjMthvM6PnFpPsI"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RespondersNOW.com</title>
-  <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <!--FONT AWESOME 5-->
   <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
   <%= csrf_meta_tags %>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCya6eVkasAwZfvsIovC63YcAc3QcGHZqI&libraries=places"></script>
-  <!-- Facebook Pixel Code -->
-  <script type="text/javascript" charset="utf-8">
-    !function(f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function() {
-        n.callMethod ?
-            n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    }(window, document, 'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '321900381877398');
-    fbq('track', 'PageView');
+
+  <!-- application scss -->
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <!--  google ads -->
+  <script async
+          src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+
+  <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCya6eVkasAwZfvsIovC63YcAc3QcGHZqI&libraries=places">
 
   </script>
 
+  <!-- Facebook Pixel Code -->
+  <script type="text/javascript" charset="utf-8">
+      !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+              n.callMethod ?
+                  n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+      }(window, document, 'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '321900381877398');
+      fbq('track', 'PageView');
+  </script>
   <noscript>
     <img height="1" width="1" style="display:none"
          src="https://www.facebook.com/tr?id=321900381877398&ev=PageView&noscript=1"/>
@@ -54,14 +61,11 @@
   <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
     <%= render 'layouts/topnavbar' %>
     <%= flash_messages %>
+    <div>
+      <h1>Responders Now</h1>
+    </div>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </div>
-  <%= render 'layouts/rightsidebar' %>
-</div>
-<%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
-<%= yield :javascript %>
-<%= javascript_include_tag 'app' %>
-
 </body>
 </html>
