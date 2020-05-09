@@ -1,8 +1,9 @@
 import React from 'react';
 
-const CertApplication = () =>
-    (<div>
+const CertApplication = () => (
+    <div>
         <h1>Hello World</h1>
-    </div>);
+    </div>
+);
 
 export default CertApplication;

@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.6'
 
-gem 'rails', '~> 5.2.2.1'
+gem 'rails', '~> 6.0.0'
 gem 'webpacker', '~> 4.x'
 gem "bootstrap-sass", ">= 3.4.1"
 gem 'font-awesome-rails'
@@ -58,8 +58,8 @@ gem 'graphql'
 gem 'graphiql-rails'
 gem 'graphql-batch'
 
-# Google Ads
-gem 'ads-rails'
+# # Google Ads
+# gem 'ads-rails'
 
 # Merit
 gem 'merit'
