@@ -1,17 +1,25 @@
-<li class="<%= active_action?('settings') %>">
-  <%= link_to settings_path do %>
-    <i class="fas fa-cogs"></i><span class="nav-label"> Settings</span>
-  <% end %>
-</li>
-<li class="<%= active_action?('certifications') %>">
-  <%= link_to certifications_path do %>
-    <i class="fas fa-certificate"></i> <span class="nav-label"> Certifications</span>
-  <% end %>
-</li>
-
-<li>
-  <a class="disabled" href="#">
-    <i class="fas fa-flag-usa"></i> <span class="nav-label"> v <%= APP_VERSION.to_s %></span>
+<li class="nav-item">
+  <a class="nav-link dropdown-indicator" href="#pages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="pages">
+    <div class="d-flex align-items-center">
+      <span class="nav-link-icon"><span class="fas fa-copy"></span></span><span class="nav-link-text">User Options</span>
+    </div>
   </a>
-</li>
+  <ul class="nav collapse show" id="pages" data-parent="#navbarVerticalCollapse">
+    <li class="nav-item">
+      <%= link_to settings_path, class: "nav-link" do %>
+        <i class="fas fa-cogs"></i><span class="nav-label"> Settings</span>
+      <% end %>
+    </li>
+    <li class="nav-item <%= active_action?('certifications') %>">
+      <%= link_to certifications_path, class: "nav-link" do %>
+        <i class="fas fa-certificate"></i> <span class="nav-label"> Certifications</span>
+      <% end %>
+    </li>
 
+    <li class="nav-item">
+      <a class="disabled nav-link" href="#">
+        <i class="fas fa-flag-usa"></i> <span class="nav-label"> v <%= APP_VERSION.to_s %></span>
+      </a>
+    </li>
+  </ul>
+</li>

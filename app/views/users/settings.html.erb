@@ -1,117 +1,113 @@
-<div class="row wrapper border-bottom white-bg page-heading">
-  <div class="col-lg-10">
-    <h2>User Settings</h2>
-    <ol class="breadcrumb">
-      <li>
-        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+<div class="card">
+  <div class="card-body overflow-hidden p-lg-6">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-lg-6"><img class="img-fluid" src="../assets/img/illustrations/4.png" alt=""></div>
+      <div class="col-lg-6 pl-lg-4 my-5 text-center text-lg-left">
+        <h2>User Settings</h2>
+        <ol class="breadcrumb">
+          <li>
+            <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+          </li>
+          <li>
+            <a>User</a>
+          </li>
+          <li class="active">
+            <strong>Settings</strong>
+          </li>
+        </ol>
+      </div>
+      <div class="col-lg-2">
+      </div>
+    </div>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#profile">
+        <i class="far fa-user"></i> Profile</a>
       </li>
-      <li>
-        <a>User</a>
+      <li class=""><a data-toggle="tab" href="#feed-settings">
+        <i class="fas fa-cog"></i> Feed Settings</a>
       </li>
-      <li class="active">
-        <strong>Settings</strong>
+      <li class=""><a data-toggle="tab" href="#tab-4">
+        <i class="far fa-bell"></i> Notifications</a>
       </li>
-    </ol>
-  </div>
-  <div class="col-lg-2">
-  </div>
-</div>
-<div class="wrapper wrapper-content">
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="tabs-container">
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#profile">
-            <i class="far fa-user"></i> Profile</a>
-          </li>
-          <li class=""><a data-toggle="tab" href="#feed-settings">
-            <i class="fas fa-cog"></i> Feed Settings</a>
-          </li>
-          <li class=""><a data-toggle="tab" href="#tab-4">
-            <i class="far fa-bell"></i> Notifications</a>
-          </li>
-          <!--          <li class=""><a data-toggle="tab" href="#subscription">-->
-          <!--            <i class="fab fa-superpowers"></i> Premium Subscription</a>-->
-          <!--          </li>-->
-          <li class=""><a data-toggle="tab" href="#delete-account">
-            <i class="fas fa-trash"></i> Delete Account</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div id="profile" class="tab-pane active">
-            <div class="panel-body">
-              <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: { method: :patch }) do |f| %>
-                <%= f.error_notification %>
+      <li class=""><a data-toggle="tab" href="#delete-account">
+        <i class="fas fa-trash"></i> Delete Account</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="profile" class="tab-pane active">
+        <div class="panel-body">
+          <%= simple_form_for(current_user, as: current_user, url: user_path(current_user), html: { method: :patch }) do |f| %>
+            <%= f.error_notification %>
 
-                <div class="form-inputs">
-                  <%= f.input :first_name, required: false %>
-                  <%= f.input :last_name, required: false %>
-                  <%= f.input :zipcode, id: 'zipcode-input responder_zipcode',
-                              input_html:   { pattern: '[0-9]{4}' },
-                              placeholder:  current_user.zipcode || '' %>
-                </div>
-                <div class="form-inputs">
-                  <%= f.input :email, required: true, autofocus: true %>
+            <div class="form-inputs">
+              <%= f.input :first_name, required: false %>
+              <%= f.input :last_name, required: false %>
+              <%= f.input :zipcode, id: 'zipcode-input responder_zipcode',
+                          input_html: { pattern: '[0-9]{4}' },
+                          placeholder: current_user.zipcode || '' %>
+            </div>
+            <div class="form-inputs">
+              <%= f.input :email, required: true, autofocus: true %>
 
-                  <% if current_user.pending_reconfirmation? %>
-                    <p>Currently waiting confirmation for: <%= current_user.unconfirmed_email %></p>
-                  <% end %>
-                  <div class="form-actions">
-                    <%= f.button :submit, "Update", class: "btn btn-info" %>
-                  </div>
+              <% if current_user.pending_reconfirmation? %>
+                <p>Currently waiting confirmation for: <%= current_user.unconfirmed_email %></p>
               <% end %>
+              <div class="form-actions">
+                <%= f.button :submit, "Update", class: "btn btn-info" %>
               </div>
-            </div>
-
-            <div class="panel-body">
-              <% if current_user.provider %>
-                <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
-              <% else %>
-                <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
-                  <%= f.error_notification %>
-
-                  <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-
-                  <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-                  <%= f.input :password_confirmation, required: false %>
-
-
-                  <div class="form-actions">
-                    <%= f.button :submit, "Update Password", class: "btn btn-info" %>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
+          <% end %>
           </div>
-          <div id="feed-settings" class="tab-pane">
-            <div class="panel-body">
-              <strong>Donec quam felis</strong>
+        </div>
 
-              <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks,
-                and grow familiar with the countless indescribable forms of the insects
-                and flies, then I feel the presence of the Almighty, who formed us in his own image, and the
-                breath </p>
+        <div class="panel-body">
+          <% if current_user.provider %>
+            <h5>Your password is managed by your <%= current_user.provider.titleize %> account</h5>
+          <% else %>
+            <%= simple_form_for(current_user, as: current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+              <%= f.error_notification %>
 
-              <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls
-                like
-                mine. I am so happy, my dear friend, so absorbed in the exquisite
-                sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single
-                stroke at the present moment; and yet.</p>
-            </div>
-          </div>
-          <div id="delete-account" class="tab-pane">
-            <div class="panel-body">
-              <strong>Delete Account</strong>
-              <p>
-                <%= link_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
-                <br>
-                <small> this cannot be undone.</small>
-              </p>
-            </div>
-          </div>
+              <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+
+              <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+              <%= f.input :password_confirmation, required: false %>
+
+
+              <div class="form-actions">
+                <%= f.button :submit, "Update Password", class: "btn btn-info" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="feed-settings" class="tab-pane">
+        <div class="panel-body">
+          <strong>Donec quam felis</strong>
+
+          <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks,
+            and grow familiar with the countless indescribable forms of the insects
+            and flies, then I feel the presence of the Almighty, who formed us in his own image, and the
+            breath </p>
+
+          <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls
+            like
+            mine. I am so happy, my dear friend, so absorbed in the exquisite
+            sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single
+            stroke at the present moment; and yet.</p>
+        </div>
+      </div>
+      <div id="delete-account" class="tab-pane">
+        <div class="panel-body">
+          <strong>Delete Account</strong>
+          <p>
+            <%= link_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+            <br>
+            <small> this cannot be undone.</small>
+          </p>
         </div>
       </div>
     </div>
-    <div class="col-lg-4"></div>
   </div>
+</div>
+</div>
+</div>
 </div>
