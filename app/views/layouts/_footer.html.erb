@@ -1,21 +1,13 @@
-<footer>
-  <div class="row no-gutters justify-content-between fs--1 mt-4 mb-3">
-    <div class="col-12 col-sm-auto text-center">
-      <p class="mb-0 text-600">Thank you for creating with Falcon
-        <span class="d-none d-sm-inline-block">| </span><br class="d-sm-none"/> 2019 &copy;
-        <a href="https://themewagon.com">Themewagon</a></p>
-    </div>
-    <ul style="list-style-type: none;">
-      <li class="navbar-text"><%= link_to "Terms of Service", terms_of_service_path, class: 'pull-left' %></li>
-      <li class="navbar-text"><%= link_to "Terms of Use & Privacy Policy", privacy_path %></li>
-      <li class="navbar-text"><a href="#">RespondersNOW.com &copy; 2020</a></li>
-      <li class="navbar-text"><a href="#">Made in America</a></li>
-    </ul>
-    <div class="col-12 col-sm-auto text-center">
-      <p class="mb-0 text-600">v2.4.1</p>
-    </div>
-  </div>
-</footer>
+<div class="footer pull-right">
+  <ul style="list-style-type: none;">
+    <li class="navbar-text"><%= link_to "Terms of Service", terms_of_service_path, class: 'pull-left' %></li>
+    <li class="navbar-text"><%= link_to "Terms of Use & Privacy Policy", privacy_path %></li>
+    <li class="navbar-text"><a href="#">RespondersNOW.com &copy; 2020</a></li>
+    <li class="navbar-text"><a href="#">Made in America</a></li>
+  </ul>
+  <span class="flag-icon flag-icon-us"></span>
+</div>
+
 <style>
   @media screen and (max-width: 320px) {
     .footer {
@@ -47,4 +39,3 @@
     }
   }
 </style>
-

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-unless Rails.env.test?
+unless Rails.env.test? || Rails.env.development?
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.mandrillapp.com',
     authentication: 'login',
