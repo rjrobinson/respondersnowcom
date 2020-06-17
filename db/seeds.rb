@@ -674,9 +674,9 @@ unless Rails.env.test?
   end
 
 
-  puts "Syncing with Hospital Divert System"
-
-  HospitalStatusJob.perform_now
+  # puts "Syncing with Hospital Divert System"
+  #
+  # HospitalStatusJob.perform_now
 
 
 #   ["Fire", "Police", "EMS"].each do |e|
