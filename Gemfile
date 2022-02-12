@@ -10,35 +10,38 @@ gem "webpacker", "~> 4.x"
 gem "font-awesome-rails"
 
 gem "dotenv-rails"
-gem "pg", "~> 0.18"
-gem "puma", "~> 4.3.3"
+gem "pg", ">= 0.18", "< 2.0"
+gem "puma", "~> 5.6"
 
-gem "coffee-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
+gem "bootsnap", ">= 1.4.2"
 
-gem "bootstrap", "~> 4.4.1"
-gem "jquery-rails", "~> 4.3.1"
-gem "sprockets-rails", "~> 3.2.1"
+gem "coffee-rails"
+gem "uglifier"
 
-gem "jbuilder", "~> 2.5"
+gem "bootstrap"
+gem "jquery-rails"
+gem "sprockets-rails"
+
+gem "jbuilder"
 gem "jquery-ui-rails"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 3.0"
+gem "redis"
+
 # Use ActiveModel has_secure_password
 gem "activerecord-typedstore"
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt"
 gem "chronic"
-gem "devise", ">= 4.7.1"
+gem "devise"
 gem "omniauth-facebook"
 gem "semantic"
-gem "simple_form", ">= 5.0.0"
+gem "simple_form"
 gem "skylight"
 
 #  Background Jobs
 gem "sidekiq"
 
-gem "rails_admin", "~> 2.0"
+gem "rails_admin"
 
 # Weather
 gem "gull"
@@ -50,7 +53,7 @@ gem "stripe", git: "https://github.com/stripe/stripe-ruby"
 gem "mandrill-api"
 
 # Active Storage
-gem "aws-sdk-s3", "~> 1"
+gem "aws-sdk-s3"
 
 # GraphQL
 gem "graphiql-rails"
@@ -79,6 +82,8 @@ gem "mapbox-rails"
 gem "area"
 gem "geocoder"
 gem "travis"
+
+gem "sqreen", "~> 1.20"
 
 group :development, :test do
   gem "better_errors"
@@ -123,6 +128,6 @@ end
 gem "simplecov", require: false, group: :test
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "bugsnag", "~> 6.8"
 
-gem "sqreen", "~> 1.20"
+
+
