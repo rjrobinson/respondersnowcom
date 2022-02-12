@@ -5,7 +5,7 @@ source "https://rubygems.org"
 ruby "2.7.5"
 
 gem "rails", "~> 6.1.4"
-gem "webpacker", "~> 4.x"
+gem "webpacker", "~> 6.rc"
 
 
 gem "font-awesome-rails"
