@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Dothings < ActiveRecord::Migration[5.2]
   def change
     create_table :hospital_statuses, id: :uuid do |t|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class AcquiredCertificationInputType < Types::BaseInputType
     graphql_name "AcquiredCertificationInputType"

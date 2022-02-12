@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class IncidentReportType < Types::ActiveRecordBase
     description "A list of reports, who updated them, and when."

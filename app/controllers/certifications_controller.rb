@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# CertificationsController allows users to access certs
 class CertificationsController < ApplicationController
   def index
     @certifications = Certification.all.order(:name)
@@ -15,14 +16,11 @@ class CertificationsController < ApplicationController
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
-  def update
-  end
+  def update; end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @certification = Certification.new
@@ -33,10 +31,10 @@ class CertificationsController < ApplicationController
   def cert_params
     params.require(:certification).permit(
       :name,
-        :course_code,
-        :primary,
-        :abbvr,
-        :logo
+      :course_code,
+      :primary,
+      :abbvr,
+      :logo
     ).merge(creator: current_user)
   end
 end

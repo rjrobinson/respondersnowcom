@@ -1,8 +1,9 @@
 ## frozen_string_literal: true
 ##
 # frozen_string_literal: true
-require 'rails_helper'
-require_relative '../../test_helpers'
+
+require "rails_helper"
+require_relative "../../test_helpers"
 
 describe Mutations::DeleteAcquiredCertification, type: :mutations do
   include GraphQL::TestHelpers
@@ -14,14 +15,14 @@ describe Mutations::DeleteAcquiredCertification, type: :mutations do
   # set variables *default
   # set user
 
-  let(:mutation_type) { "deleteAcquiredCertification" }
-
   subject(:Delete_acquired_certification) do
     mutation(mutation_string, variables: variables, context: { current_user: user })
     raise GraphQL::TestHelpers::GraphqlException, gql_response if gql_response.errors
-    gql_response.data[mutation_type].deep_symbolize_keys.dig(:success)
+
+    gql_response.data[mutation_type].deep_symbolize_keys[:success]
   end
 
+  let(:mutation_type) { "deleteAcquiredCertification" }
   let(:variables) { { id: 0 } }
   let(:mutation_keys) { "success" }
   let(:mutation_string) do
@@ -31,7 +32,6 @@ describe Mutations::DeleteAcquiredCertification, type: :mutations do
                    #{mutation_keys}}}
     GQL
   end
-
   let(:user) { create(:user) }
   let(:certification) { create(:certification) }
   let(:acquired_certification) { create(:acquired_certification, user: user, certification: certification) }

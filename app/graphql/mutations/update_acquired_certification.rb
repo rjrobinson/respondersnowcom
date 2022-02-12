@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class UpdateAcquiredCertification < Types::BaseMutationType
     null true
@@ -15,7 +16,7 @@ module Mutations
       cert.update(updated_params)
 
       {
-        acquired_certification: cert,
+        acquired_certification: cert
       }
     end
   end

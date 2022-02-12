@@ -14,7 +14,9 @@ class Incident < ApplicationRecord
   has_many :flags, as: :flaggable, dependent: :destroy
 
   TRENDING_VOTES_COUNT = 100
-  SYSTEM_EPOCH = 1.day.ago.to_i
+  def self.system_epoch
+    1.day.ago.to_i
+  end
   SECOND_DIVISOR = 3600
 
   scope :filter_flagged, -> { where(flagged: false) }
@@ -25,35 +27,33 @@ class Incident < ApplicationRecord
   # == Retruns
   #   @result, [score, incident_id]
   def self.trending
-    sorted = Incident.last(100).each.map do |inc|
+    Incident.last(100).each.map do |inc|
       pop = inc.popularity
       rec = inc.recentness
       [pop + rec, inc.id]
     end.sort_by(&:first)
-
-    sorted
   end
 
   # FIXME: this hsould be removed. what it it for?
   def or_one_minute(some_date:)
-    some_date ? some_date : 1.minute.ago
+    some_date || 1.minute.ago
   end
 
   def resolve_stale(user: service_bot)
     status = IncidentStatus.find_or_create_by(name: "clear", abvr: "cl")
 
-    if or_one_minute(some_date: incident_reports&.order(:updated_at)&.last&.updated_at) < 30.minutes.ago || incident_reports.count == 0
+    if or_one_minute(some_date: incident_reports&.order(:updated_at)&.last&.updated_at) < 30.minutes.ago || incident_reports.count.zero?
       incident_reports.new(message: "AUTOMATED MESSAGE >> \nThis incident has been marked inactive", user: user)
       update(incident_status: status)
     end
   end
 
   def self.calculate_rank(min_rank: 1.0)
-    where("rank > ?", min_rank).each(&:calculate_rank)
+    where("rank > ?", min_rank).find_each(&:calculate_rank)
   end
 
   def calculate_rank
-    update(rank: popularity + recentness, ranked_at: Time.now)
+    update(rank: popularity + recentness, ranked_at: Time.zone.now)
   end
 
   def current_rank
@@ -122,17 +122,15 @@ class Incident < ApplicationRecord
 
     location.update(county: county.name)
 
-    incident = if location.save
-                 Incident.create(
-                   location: location,
-                   message: params[:message],
-                   incident_group_id: params[:incident_group_id],
-                   user: params[:current_user],
-                   incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed").id,
-                   county: county
-                 )
-               end
-
-    incident
+    if location.save
+      Incident.create(
+        location: location,
+        message: params[:message],
+        incident_group_id: params[:incident_group_id],
+        user: params[:current_user],
+        incident_status_id: IncidentStatus.find_or_create_by(name: "unconfirmed").id,
+        county: county
+      )
+    end
   end
 end

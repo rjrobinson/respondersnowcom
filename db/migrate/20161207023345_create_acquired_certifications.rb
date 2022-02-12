@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class CreateAcquiredCertifications < ActiveRecord::Migration[5.0]
   def change
     create_table :acquired_certifications, id: :uuid do |t|
-
       t.references :user, type: :uuid
 
       t.references :certification, type: :uuid

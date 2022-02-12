@@ -1,33 +1,574 @@
-inherit_from: https://shopify.github.io/ruby-style-guide/rubocop.yml
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+
+# Cops set as per Rails Project
 
 AllCops:
+  TargetRubyVersion: 2.7
+  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
+  # to ignore them, so only the ones explicitly set in this file are enabled.
+  DisabledByDefault: false
+  # We have chosen to enable everything and specifically set whether or not
+  # they are enabled.
+  NewCops: enable
+
+  SuggestExtensions:
+    # Turn off suggestion to install rubocop-sequel
+    # It assumes that ActiveRecord is not being used, which causes many false positives
+    rubocop-sequel: false
+
   Exclude:
-    - Guardfile
-    - bin/**/*
-    - config/application.rb
-    - config/initializers/merit.rb
-    - db/**/*
-    - lib/tasks/get_classes_nj.rb
-    - node_modules/**/*
-    - app/models/ahoy/**/*
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - 'actionpack/lib/action_dispatch/journey/parser.rb'
+    - 'railties/test/fixtures/tmp/**/*'
+    - 'actionmailbox/test/dummy/**/*'
+    - 'actiontext/test/dummy/**/*'
+    - '**/node_modules/**/*'
+    - 'db/data_schema.rb'
+    - 'db/schema.rb'
+    - 'docs/**/*'
+    - 'app/controllers/graphql_controller.rb'
+    - 'db/seeds/taxonomy_seed_builder.rb'
+    - 'doc/docs/testing/model_template_spec.rb'
+    - 'doc/docs/testing/validator_template_spec.rb'
+    - 'lib/tasks/zeitwerk.rake'
+
+Layout/BeginEndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: begin
+
+# Align `end` with the matching keyword or starting expression except for
+# assignments, where it should be aligned with the LHS.
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+  AutoCorrect: true
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+# Method definitions after `private` or `protected` isolated calls need one
+# extra level of indentation.
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
 
 Layout/LineLength:
   Enabled: false
 
-Metrics/ClassLength:
+# Use `foo { bar }` not `foo {bar}`.
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyleForEmptyBraces: space
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+
+Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/EmptyConditionalBody:
+  Enabled: true
+
+Lint/FloatComparison:
+  Enabled: true
+
+Lint/IdentityComparison:
+  Enabled: true
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+
+Lint/SelfAssignment:
+  Enabled: true
+
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+
+Lint/UnreachableLoop:
+  Enabled: true
+
+Lint/UselessTimes:
+  Enabled: true
+  
+Style/Alias:
+  Enabled: false
+
+Style/ExplicitBlockArgument:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/OpenStructUse:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
+  Enabled: true
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/SingleArgumentDig:
+  Enabled: true
+
+Style/StringConcatenation:
+  Enabled: true
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
+
+# Check quotes usage according to lint rule below.
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Metrics:
+  Enabled: false
+
+Performance:
   Exclude:
-    - spec/**/*
+    - '**/test/**/*'
+  Enabled: true
 
-Style/Encoding:
+Performance/StringReplacement:
+  Enabled: true
+
+Performance/AncestorsInclude:
+  Enabled: true
+
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+
+Performance/MethodObjectAsBlock:
   Enabled: false
 
-Layout/EndAlignment:
+Performance/RedundantSortBlock:
+  Enabled: true
+
+Performance/RedundantStringChars:
+  Enabled: true
+
+Performance/ReverseFirst:
+  Enabled: true
+
+Performance/SortReverse:
+  Enabled: true
+
+Performance/Squeeze:
+  Enabled: true
+
+Performance/StringInclude:
+  Enabled: true
+
+Performance/Sum:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
   Enabled: false
 
-Layout/IndentationWidth:
+Rails:
+  Enabled: true
+
+# Not Applicable to Rspec
+Rails/AssertNot:
   Enabled: false
 
-Style/MethodCallWithArgsParentheses:
+Rails/BulkChangeTable:
+  Enabled: true
   Exclude:
-    - Gemfile
-    - spec/**/*
+    - 'db/migrate/2019*'
+    - 'db/migrate/2020*'
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - production
+    - staging
+    - dev
+    - demo
+    - test
+
+# Follow Rails guidance for join tables which specify behavior vs.
+# simply allow relationships between the data.
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/client.rb'
+    - 'app/models/questionnaire.rb'
+    - 'app/models/service.rb'
+    - 'app/models/taxonomy.rb'
+
+Rails/NotNullColumn:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - 'lib/selfscreener_etl/**/*'
+    - 'db/**/*'
+
+Rails/OutputSafety:
+  Exclude:
+    - 'app/views/admin/locations/**/*'
+    - 'app/views/admin/services/**/*'
+    - 'app/views/admin/shared/**/*'
+
+Rails/Present:
+  Exclude:
+    - 'bin/**/*'
+
+# Not Applicable to Rspec
+Rails/RefuteMethods:
+  Enabled: false
+
+Rails/ReversibleMigration:
+  Exclude:
+    - 'db/migrate/20191105172515_drop_name_from_clients.rb'
+    - 'db/migrate/20191105200636_drop_steps.rb'
+    - 'db/migrate/20191105200741_drop_questions.rb'
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+RSpec:
+  Exclude:
+    - 'docs/testing/**/*'
+    - 'spec/spec_spec.rb'
+
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/tasks/algolia_generate_seed_location_index_spec.rb'
+    - 'spec/support/shared_contexts/location_attributes_context.rb'
+
+RSpec/BeforeAfterAll:
+  Exclude:
+    - 'spec/single_stop_questionnaire_spec.rb'
+    - 'spec/support/shared_contexts/earned_income_tax_credit_context.rb'
+
+RSpec/DescribedClass:
+  EnforcedStyle: described_class
+
+RSpec/DescribeClass:
+  IgnoredMetadata:
+    type:
+      - channel
+      - controller
+      - helper
+      - job
+      - mailer
+      - model
+      - request
+      - routing
+      - view
+      - feature
+      - task
+      - system
+      - mailbox
+      - aruba
+      - graphql
+
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'docs/testing/**/*'
+
+RSpec/ExampleLength:
+  Max: 5
+  CountAsOne:
+    - hash
+    - array
+    - heredoc
+
+RSpec/ExpectChange:
+  Exclude:
+    - 'spec/db/data/add_pennsylvania_wic_program_and_service_seeds_spec.rb'
+    - 'spec/db/data/add_pennsylvania_snap_service_seed_spec.rb'
+
+RSpec/FilePath:
+  Exclude:
+    - 'spec/domains/calculator/nchb/medicaid_adults_under_65_and_children_plan_spec.rb'
+    - 'spec/domains/calculator/nchb/adults_under_65_and_children_plan/infant_section_spec.rb'
+    - 'spec/domains/calculator/nchb/adults_under_65_and_children_plan/pregnant_section_spec.rb'
+    - 'spec/domains/calculator/nchb/adults_under_65_and_children_plan/children_section_spec.rb'
+    - 'spec/domains/calculator/nchb/adults_under_65_and_children_plan/adults_section_spec.rb'
+
+RSpec/LetBeforeExamples:
+  Enabled: true
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/HookArgument:
+  EnforcedStyle: each
+
+RSpec/LeakyConstantDeclaration:
+  Exclude:
+    - 'spec/domains/screening_result_spec.rb'
+    - 'spec/spec_spec.rb'
+    - 'spec/models/program_spec.rb'
+    - 'spec/domains/calculator/nchb/medicaid_aged_blind_disabled_plan_spec.rb'
+    - 'spec/domains/calculator/nchb/medicaid_adults_under_65_and_children_plan_spec.rb'
+    - 'spec/selfscreener_etl/transforms/housing_situation_transform_spec.rb'
+    - 'spec/support/shared_contexts/health_benefits_context.rb'
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/selfscreener_etl_spec.rb'
+
+RSpec/NestedGroups:
+  Max: 8
+  Exclude:
+    - 'spec/domains/screening_result_spec.rb'
+    - 'spec/domains/calculator/lifetime_learning_credit_spec.rb'
+    - 'spec/domains/snap/person_spec.rb'
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/RepeatedDescription:
+  Exclude:
+    - 'spec/selfscreener_etl/households_spec.rb'
+
+RSpec/RepeatedExampleGroupBody:
+  Exclude:
+    - 'spec/domains/snap/person_spec.rb'
+
+# Eval is used for the Rules code.
+Security/Eval:
+  Exclude:
+    - 'app/domains/program_evaluator/eligibility_determiner/determination/classifier.rb'
+    - 'app/domains/program_evaluator/eligibility_determiner/nodes/decision_node.rb'
+
+Style/AccessModifierDeclarations:
+  Exclude:
+    - 'app/domains/result/person.rb'
+
+Style/ArrayJoin:
+  Enabled: false
+
+# Don't prevent ASCII comments.
+Style/AsciiComments:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/jobs/application_job.rb'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/models/application_record.rb'
+    - 'config/application.rb'
+    - 'db/migrate/**/*'
+    - 'db/seeds/**/*'
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/GuardClause:
+  MinBodyLength: 4
+
+Style/Lambda:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Exclude:
+    - 'spec/domains/result/person_spec.rb'
+    - 'spec/domains/screening_result_spec.rb'
+
+Style/NegatedIf:
+  EnforcedStyle: postfix
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
+Style/RedundantRegexpEscape:
+  Enabled: false
+
+Style/RedundantReturn:
+  AllowMultipleReturnValues: true
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_english_names
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/SymbolProc:
+  Exclude:
+    - 'app/admin/locations.rb'
+    - 'app/admin/papertrail.rb'
+    - 'db/migrate/20200129023559_create_households.rb'
+
+Style/WordArray:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Naming/PredicateName:
+  Exclude:
+    - 'app/services/screener/normalization_service.rb'
+    - 'spec/db/data/drop_default_on_currently_working_spec.rb'
+    - 'spec/services/screener/complete_service_spec.rb'
+
+Naming/VariableNumber:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/AccessorGrouping:
+   Enabled: true
+
+Style/ArrayCoercion:
+   Enabled: true
+
+Style/BisectedAttrAccessor:
+   Enabled: true
+
+Style/CaseLikeIf:
+   Enabled: true
+
+Style/HashAsLastArrayItem:
+   Enabled: true
+
+Style/HashLikeCase:
+   Enabled: true
+
+Style/RedundantAssignment:
+   Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+   Enabled: true
+      
+Rails/ActiveRecordCallbacksOrder:
+   Enabled: true
+   
+Rails/FindById:
+    Enabled: true
+
+Rails/Inquiry:
+    Enabled: true
+
+Rails/MailerName:
+    Enabled: true
+
+Rails/MatchRoute:
+    Enabled: true
+
+Rails/NegateInclude:
+    Enabled: true
+
+Rails/Pluck:
+    Enabled: true
+
+# This causes too many false positives when plucking on collections that don't contain ActiveRecord objects
+Rails/PluckId:
+    Enabled: false
+
+Rails/PluckInWhere:
+    Enabled: true
+
+Rails/RenderInline:
+    Enabled: true
+
+Rails/RenderPlainText:
+    Enabled: true
+
+Rails/ShortI18n:
+    Enabled: true
+
+Rails/WhereExists:
+    Enabled: true
+
+Lint/DuplicateRequire:
+  Enabled: true
+
+Lint/EmptyFile:
+  Enabled: true
+
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'app/graphql/mutations/custom_field_responses/save_custom_field_responses.rb'
+    - 'app/graphql/mutations/clients/set_client_preferences.rb'
+    - 'app/graphql/resolvers/active_service_cases_chart.rb'
+    - 'app/graphql/resolvers/household_screening_chart_data.rb'
+    
+Lint/UselessMethodDefinition:
+  Enabled: true
+
+Style/CombinableLoops:
+  Enabled: true
+
+Style/KeywordParametersOrder:
+  Enabled: true
+
+Style/RedundantSelfAssignment:
+  Enabled: true
+
+Style/SoleNestedConditional:
+  Enabled: true
+
+Rails/AfterCommitOverride: # (new in 2.8)
+  Enabled: true
+
+Rails/SquishedSQLHeredocs: # (new in 2.8)
+  Enabled: true
+
+Rails/WhereNot: # (new in 2.8)
+  Enabled: true
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+  

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateIncidentConfirmeds < ActiveRecord::Migration[5.2]
   def change
     # Changed this to act as polymorphic
@@ -9,7 +11,5 @@ class CreateIncidentConfirmeds < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-
-
   end
 end

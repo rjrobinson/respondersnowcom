@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSubExpiresDateToUsers < ActiveRecord::Migration[5.2]
   def change
     add_column :users, :sub_current, :boolean, default: false

@@ -3,9 +3,9 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.mailer_sender = 'Responders Now Support <no-reply@respondersnow.com>'
+  config.mailer_sender = "Responders Now Support <no-reply@respondersnow.com>"
 
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   config.allow_unconfirmed_access_for = 365.days
 
@@ -234,6 +234,6 @@ Devise.setup do |config|
   if Rails.env.production?
     config.omniauth(:facebook, Rails.application.credentials.facebook[:app_id], Rails.application.credentials.facebook[:secret])
   else
-    config.omniauth(:facebook, ENV['FACEBOOK_DEV_ID'], ENV['FACEBOOK_DEV_SECRET'])
+    config.omniauth(:facebook, ENV["FACEBOOK_DEV_ID"], ENV["FACEBOOK_DEV_SECRET"])
   end
 end

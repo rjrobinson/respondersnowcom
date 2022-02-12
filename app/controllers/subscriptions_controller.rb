@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
+# SubscriptionsController allows access into the subscriptions table
 class SubscriptionsController < ApplicationController
   PLANS = {
     monthly: "plan_DuKIPvnVwvCihp",
     quarterly: "plan_DuKIdNEtQJkETt",
-    annualy: "plan_DuKJDShbBYh7wT",
-  }
+    annualy: "plan_DuKJDShbBYh7wT"
+  }.freeze
 
-  def new
-  end
+  def new; end
 
   def create
     customer = if current_user.stripe_id?
@@ -18,24 +18,24 @@ class SubscriptionsController < ApplicationController
     end
 
     current_user.update_stripe_data(stripe_data: {
-      stripe_id: customer["id"],
-      stripe_token: params["stripeToken"],
-    })
+                                      stripe_id: customer["id"],
+                                      stripe_token: params["stripeToken"]
+                                    })
 
     current_user.create_subscription(plan: PLANS[:monthly])
 
-    redirect_back(fallback_location: settings_path(current_user), flash: { notice: 'Welcome!' })
+    redirect_back(fallback_location: settings_path(current_user), flash: { notice: "Welcome!" })
   end
 
   def reactivate
     current_user.create_subscription(plan: PLANS[:monthly])
 
-    redirect_back(fallback_location: settings_path(current_user), flash: { notice: 'Subscription has been activated' })
+    redirect_back(fallback_location: settings_path(current_user), flash: { notice: "Subscription has been activated" })
   end
 
   def destroy
     current_user.cancel_subscription
 
-    redirect_back(fallback_location: settings_path(current_user), flash: { notice: 'Subscription has been canceled' })
+    redirect_back(fallback_location: settings_path(current_user), flash: { notice: "Subscription has been canceled" })
   end
 end

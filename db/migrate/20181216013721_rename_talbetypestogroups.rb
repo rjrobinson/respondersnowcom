@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameTalbetypestogroups < ActiveRecord::Migration[5.2]
   def up
     rename_table :incident_types, :incident_groups

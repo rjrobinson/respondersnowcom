@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# rubocop:disable Metrics/ClassLength
 
 class User < ApplicationRecord
   devise :database_authenticatable, :confirmable, :registerable, :trackable, :recoverable,
@@ -42,8 +41,8 @@ class User < ApplicationRecord
   end
 
   Certification::CODES.each do |code|
-    define_method :"#{code.gsub(' ', '_').downcase}_certs" do
-      acquired_certifications.where(certification_id: Certification.where(course_code: code).pluck(:id))
+    define_method :"#{code.tr(" ", "_").downcase}_certs" do
+      acquired_certifications.where(certification_id: Certification.where(course_code: code).select(:id))
     end
   end
 
@@ -60,7 +59,7 @@ class User < ApplicationRecord
   end
 
   def certs_sorted_by_name
-    acquired_certifications.joins(:certification).order('certifications.name')
+    acquired_certifications.joins(:certification).order("certifications.name")
   end
 
   def name
@@ -81,9 +80,7 @@ class User < ApplicationRecord
     Stripe::Customer.retrieve(stripe_id)
   end
 
-  def subscriptions
-    stripe_customer.subscriptions
-  end
+  delegate :subscriptions, to: :stripe_customer
 
   def subscription
     subscriptions.first
@@ -99,12 +96,13 @@ class User < ApplicationRecord
 
   def create_subscription(plan: Subscription::PLANS[:monthly])
     raise NoStripeIDError if stripe_id.nil?
+
     Stripe::Subscription.create(
       customer: stripe_id,
       items: [
         {
-          plan: plan,
-        },
+          plan: plan
+        }
       ]
     )
   end
@@ -130,10 +128,10 @@ class User < ApplicationRecord
     card = customer.sources.create(source: "tok_amex")
     # TODO: ^^ CHANGE tok_amex to actual token in Prod ^^
     #
-    update_attributes(card_last4: card.last4,
-                      card_exp_month: card.exp_month,
-                      card_exp_year: card.exp_year,
-                      card_brand: card.brand,)
+    update(card_last4: card.last4,
+           card_exp_month: card.exp_month,
+           card_exp_year: card.exp_year,
+           card_brand: card.brand)
   end
 
   class << self
@@ -141,7 +139,7 @@ class User < ApplicationRecord
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.email = auth.info.email
         user.password = Devise.friendly_token[0, 20]
-        name = auth.info.name.split(' ')
+        name = auth.info.name.split
         user.first_name = name[0] # assuming the user model has a name
         user.last_name = name[1]
         # user.avatar = auth.info.image # assuming the user model has an image

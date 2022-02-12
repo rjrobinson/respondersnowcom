@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module GraphQL
   module TestHelpers
     attr_accessor :gql_response
@@ -17,8 +18,8 @@ module GraphQL
       attr_reader :data, :errors
 
       def initialize(args)
-        @data = args['data'] || nil
-        @errors = args['errors'] || nil
+        @data = args["data"] || nil
+        @errors = args["errors"] || nil
       end
     end
 

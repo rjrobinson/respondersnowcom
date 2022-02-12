@@ -2,44 +2,50 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="google-site-verification" content="248uddpJf5rTHpjzsMH_C_IMj1DcVjMthvM6PnFpPsI"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RespondersNOW.com</title>
-  <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <!--FONT AWESOME 5-->
   <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
   <%= csrf_meta_tags %>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCya6eVkasAwZfvsIovC63YcAc3QcGHZqI&libraries=places"></script>
-  <!-- Facebook Pixel Code -->
-  <script type="text/javascript" charset="utf-8">
-    !function(f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function() {
-        n.callMethod ?
-            n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    }(window, document, 'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '321900381877398');
-    fbq('track', 'PageView');
 
+  <!-- application scss -->
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <!--  google ads -->
+  <script async
+          src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
   </script>
 
+  <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCya6eVkasAwZfvsIovC63YcAc3QcGHZqI&libraries=places">
+  </script>
+
+  <!-- Facebook Pixel Code -->
+  <script type="text/javascript" charset="utf-8">
+      !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+              n.callMethod ?
+                  n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+      }(window, document, 'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '321900381877398');
+      fbq('track', 'PageView');
+  </script>
   <noscript>
     <img height="1" width="1" style="display:none"
          src="https://www.facebook.com/tr?id=321900381877398&ev=PageView&noscript=1"/>
@@ -48,20 +54,122 @@
 
 </head>
 <body>
-<%= render 'layouts/skinconfig' %>
-<div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
-  <%= render 'layouts/navigation' %>
-  <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
-    <%= render 'layouts/topnavbar' %>
-    <%= flash_messages %>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
-  </div>
-  <%= render 'layouts/rightsidebar' %>
-</div>
-<%= javascript_include_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.js") %>
-<%= yield :javascript %>
-<%= javascript_include_tag 'app' %>
 
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+    <div class="content">
+
+      <%= flash_messages %>
+      <%= render 'layouts/navigation' %>
+      <%#= yield %>
+      <%= render 'layouts/footer' %>
+
+    </div>
+    <div class="modal fade modal-fixed-right modal-theme overflow-hidden" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="settings-modal-label" aria-hidden="true" data-options='{"autoShow":true,"autoShowDelay":3000,"showOnce":true}'>
+      <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content border-0 vh-100 scrollbar perfect-scrollbar">
+          <div class="modal-header modal-header-settings">
+            <div class="z-index-1 py-1 flex-grow-1">
+              <h5 class="text-white" id="settings-modal-label"><span class="fas fa-palette mr-2 fs-0"></span>Settings
+              </h5>
+              <p class="mb-0 fs--1 text-white opacity-75"> Set your own customized style</p>
+            </div>
+            <button class="close z-index-1" type="button" data-dismiss="modal" aria-label="Close">
+              <span class="font-weight-light" aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body px-card">
+            <h5 class="fs-0">Color Scheme</h5>
+            <p class="fs--1">Choose the perfect color mode for your app. </p>
+            <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
+              <div class="btn btn-theme-default custom-control custom-radio custom-radio-success active">
+                <label class="cursor-pointer hover-overlay" for="theme-mode-default"><img class="w-100" src="../assets/img/generic/falcon-mode-default.jpg" alt=""/></label>
+                <label class="cursor-pointer mb-0 d-flex justify-content-center pl-3" for="theme-mode-default">
+                  <input class="custom-control-input" id="theme-mode-default" type="radio" name="colorScheme" checked="checked" value="theme-mode-default" data-page-url="../index.html"/><span class="custom-control-label">Light</span>
+                </label>
+              </div>
+              <div class="btn btn-theme-dark custom-control custom-radio custom-radio-success">
+                <label class="cursor-pointer hover-overlay" for="theme-mode-dark"><img class="w-100" src="../assets/img/generic/falcon-mode-dark.jpg" alt=""/></label>
+                <label class="cursor-pointer mb-0 d-flex justify-content-center pl-3" for="theme-mode-dark">
+                  <input class="custom-control-input" id="theme-mode-dark" type="radio" name="colorScheme" value="theme-mode-dark" data-page-url="../documentation/dark-mode.html"/><span class="custom-control-label">Dark</span>
+                </label>
+              </div>
+            </div>
+            <hr/>
+            <div class="d-flex justify-content-between">
+              <div class="media flex-grow-1">
+                <img class="mr-2" src="../assets/img/icons/left-arrow-from-left.svg" width="20" alt=""/>
+                <div class="media-body">
+                  <h5 class="fs-0">RTL Mode</h5>
+                  <p class="fs--1 mb-0">Switch your language direction </p>
+                </div>
+              </div>
+              <div class="custom-control custom-switch">
+                <input class="custom-control-input" id="mode-rtl" type="checkbox" data-url="../documentation/RTL.html"/>
+                <label class="custom-control-label" for="mode-rtl"> </label>
+              </div>
+            </div>
+            <hr/>
+            <div class="d-flex justify-content-between">
+              <div class="media flex-grow-1">
+                <img class="mr-2" src="../assets/img/icons/arrows-h.svg" width="20" alt=""/>
+                <div class="media-body">
+                  <h5 class="fs-0">Fluid Layout</h5>
+                  <p class="fs--1 mb-0">Toggle container layout system </p>
+                </div>
+              </div>
+              <div class="custom-control custom-switch">
+                <input class="custom-control-input" id="mode-fluid" type="checkbox" data-url="../documentation/fluid-layout.html"/>
+                <label class="custom-control-label" for="mode-fluid"> </label>
+              </div>
+            </div>
+            <hr/>
+            <div class="media"><img class="mr-2" src="../assets/img/icons/paragraph.svg" width="20" alt=""/>
+              <div class="media-body">
+                <h5 class="fs-0 d-flex align-items-center">Navigation Layout
+                  <span class="badge badge-pill badge-soft-success fs--2 ml-2">New</span></h5>
+                <p class="fs--1 mb-2">Select a suitable navigation system for your web application </p>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input class="custom-control-input" id="option-navbar-vertical" type="radio" name="navbar" checked="checked" data-page-url="../components/navbar-vertical.html"/>
+                  <label class="custom-control-label" for="option-navbar-vertical">Vertical Nav</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input class="custom-control-input" id="option-navbar-top" type="radio" name="navbar" data-page-url="../components/navbar-top.html"/>
+                  <label class="custom-control-label" for="option-navbar-top">Top Nav</label>
+                </div>
+              </div>
+            </div>
+            <hr/>
+            <div class="text-center mt-5">
+              <img class="mb-4" src="../assets/img/illustrations/settings.png" alt="" width="120"/>
+              <h5>Like What You See?</h5>
+              <p class="fs--1">Get Falcon now and create beautiful dashboards with hundreds of widgets.</p>
+              <a class="btn btn-primary" href="https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/">Purchase</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="authentication-modal" tabindex="-1" role="dialog" aria-labelledby="authentication-modal-label" aria-hidden="true">
+      <div class="modal-dialog mt-6" role="document">
+        <div class="modal-content border-0">
+          <div class="modal-header px-5 text-white position-relative modal-shape-header">
+            <div class="position-relative z-index-1">
+              <div>
+                <h4 class="mb-0 text-white" id="authentication-modal-label">Register</h4>
+                <p class="fs--1 mb-0">Please create your free Falcon account</p>
+              </div>
+            </div>
+            <button class="close text-white position-absolute t-0 r-0 mt-1 mr-1" data-dismiss="modal" aria-label="Close">
+              <span class="font-weight-light" aria-hidden="true">&times;</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
 </body>
 </html>

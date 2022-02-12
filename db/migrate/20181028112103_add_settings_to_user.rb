@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 class AddSettingsToUser < ActiveRecord::Migration[5.2]
   def change
-
-    add_column :users, :settings, :jsonb, null: false, default: '{}'
-
+    add_column :users, :settings, :jsonb, null: false, default: "{}"
   end
 end

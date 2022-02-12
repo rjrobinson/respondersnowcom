@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class CertificationInputType < Types::BaseInputType
     description "Certification Input Type. To create or edit one"

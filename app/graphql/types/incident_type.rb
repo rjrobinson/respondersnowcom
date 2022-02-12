@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class IncidentType < Types::ActiveRecordBase
     implements Types::NodeType

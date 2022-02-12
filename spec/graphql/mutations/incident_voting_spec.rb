@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-require 'rails_helper'
-require_relative '../../test_helpers'
+
+require "rails_helper"
+require_relative "../../test_helpers"
 
 RSpec.describe Mutations::IncidentUpvote, type: :mutation do
   include GraphQL::TestHelpers
@@ -14,19 +15,20 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
     end
 
     let(:variables) { { id: 0 } }
+    let(:incident) { create(:incident) }
     let(:incident_keys) { "incident { id upvotes errors { fieldName errors } message confirmed }" }
     let(:query_string) { "mutation UpVoteIncident($id: ID!) { incidentUpVote(id: $id) {  #{incident_keys} } }" }
 
     let(:incident) { create(:incident) }
     let(:user) { create(:user) }
 
+    let(:incident) { create(:incident) }
+
     context "when a user upvotes" do
       let(:variables) { { id: incident.id } }
 
       it { is_expected.to eq 1 }
     end
-
-    let(:incident) { create(:incident) }
 
     context "when a user upvotes has already upvoted" do
       let(:variables) { { id: incident.id } }
@@ -44,19 +46,20 @@ RSpec.describe Mutations::IncidentUpvote, type: :mutation do
     end
 
     let(:variables) { { id: 0 } }
+    let(:incident) { create(:incident) }
     let(:incident_keys) { "incident { id downvotes errors { fieldName errors } message confirmed }" }
     let(:query_string) { "mutation DownVoteIncident($id: ID!) { incidentDownVote(id: $id) {  #{incident_keys} } }" }
 
     let(:incident) { create(:incident) }
     let(:user) { create(:user) }
 
+    let(:incident) { create(:incident) }
+
     context "when a user downvotes" do
       let(:variables) { { id: incident.id } }
 
       it { is_expected.to eq 1 }
     end
-
-    let(:incident) { create(:incident) }
 
     context "when a user dopwnvotes has already upvoted" do
       let(:variables) { { id: incident.id } }

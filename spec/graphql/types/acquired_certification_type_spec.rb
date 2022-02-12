@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Types::AcquiredCertificationType do
   subject { described_class }
 
-  it_behaves_like(:a_node_type)
+  it_behaves_like("a node type")
   it { is_expected.to have_field(:acquired_on).of_type("ISO8601DateTime!") }
   it { is_expected.to have_field(:certification).of_type("Certification!") }
   it { is_expected.to have_field(:ceus).of_type("Int") }

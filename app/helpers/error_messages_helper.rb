@@ -22,4 +22,4 @@ module ErrorMessagesHelper
   end
 end
 
-ActionView::Helpers::FormBuilder.send(:include, ErrorMessagesHelper::FormBuilderAdditions)
+ActionView::Helpers::FormBuilder.include ErrorMessagesHelper::FormBuilderAdditions

@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+# Users Controller is the base area for users to manage their account.
 class UsersController < ApplicationController
-  before_action :validate_user, only: [:edit, :update, :work_histories, :certifications]
+  # before_action :validate_user, only: [:edit, :update, :work_histories, :certifications]
 
   def auth
-    render(layout: 'empty')
+    render(layout: "empty")
   end
 
   def work_histories
@@ -19,14 +20,13 @@ class UsersController < ApplicationController
     # will use the current_user as the data set. user/settings.
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if User.find(params[:id]).update_attributes(user_params)
-      redirect_back(fallback_location: root_path, flash: { notice: 'Setting Updated' })
+    if User.find(params[:id]).update(user_params)
+      redirect_back(fallback_location: root_path, flash: { notice: "Setting Updated" })
     else
-      redirect_back(fallback_location: root_path, flash: { notice: 'Nothing updated' })
+      redirect_back(fallback_location: root_path, flash: { notice: "Nothing updated" })
     end
   end
 

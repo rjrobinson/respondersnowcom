@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateBadgesSashes < ActiveRecord::Migration[5.2]
   def self.up
     create_table :badges_sashes do |t|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class IncidentRemoveVote < Types::BaseMutationType
     null true
@@ -13,7 +14,7 @@ module Mutations
 
       {
         incident: incident,
-        errors: incident&.errors,
+        errors: incident&.errors
       }
     end
   end

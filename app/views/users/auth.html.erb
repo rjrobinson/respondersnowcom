@@ -1,278 +1,337 @@
-<style>
-  body {
-    background: url(<%= image_path 'ff-background.jpeg' %>) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
-</style>
+<body class="bg-white">
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
 
 
-
-<!--<div class="middle-box text-center loginscreen  animated fadeInDown">-->
-<!--<div>-->
-<!--<div>-->
-<!--<h1>Responders Now</h1>-->
-<!--</div>-->
-<!--<p>-->
-<!--Click Here to login-->
-<!--</p>-->
-<!--<%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-success btn-facebook' do %>-->
-  <!--<i class="fa fa-facebook"> </i> Sign in with Facebook-->
-  <!--
-<% end %>-->
-<!--<p class="m-t">-->
-<!--<small>Responders Now is built by First Responders for First Responders. RespondersTechnologies LLC &copy;2018-->
-<!--<br>-->
-<!--Made In America-->
-<!--</small>-->
-<!--</p>-->
-<!--</div>-->
-<!--</div>-->
-<style>
-  * {
-    margin: 0px;
-    padding: 0px;
-  }
-
-  #loginform {
-    width: 550px;
-    height: auto;
-    position: relative;
-    margin: 0 auto;
-  }
-
-  input {
-    display: block;
-    margin: 0px auto 15px;
-    border-radius: 5px;
-    background: #333333;
-    width: 85%;
-    padding: 12px 20px 12px 10px;
-    border: none;
-    color: #929999;
-    box-shadow: inset 0px 1px 5px #272727;
-    font-size: 0.8em;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  input:focus {
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-    box-shadow: 0px 0px 5px 1px #161718;
-  }
-
-  button {
-    background: #ff5f32;
-    border-radius: 50%;
-    border: 10px solid #222526;
-    font-size: 0.9em;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    width: 85px;
-    height: 85px;
-    position: absolute;
-    right: -42px;
-    top: 54px;
-    text-align: center;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  button:hover {
-    background: #222526;
-    border-color: #ff5f32;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  button i {
-    font-size: 20px;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  button:hover i {
-    color: #ff5f32;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  *:focus {
-    outline: none;
-  }
-
-  ::-webkit-input-placeholder {
-    color: #929999;
-  }
-
-  :-moz-placeholder { /* Firefox 18- */
-    color: #929999;
-  }
-
-  ::-moz-placeholder { /* Firefox 19+ */
-    color: #929999;
-  }
-
-  :-ms-input-placeholder {
-    color: #929999;
-  }
-
-  h1 {
-    text-align: center;
-    color: #fff;
-    font-size: 13px;
-    padding: 12px 0px;
-  }
-
-  #note {
-    color: #88887a;
-    font-size: 0.8em;
-    text-align: left;
-    padding-left: 5px;
-  }
-
-  #facebook {
-    text-align: center;
-    float: left;
-    background: #365195;
-    padding: 35px 10px 20px 10px;
-    width: 170px;
-    height: 228px;
-    border-radius: 3px;
-    cursor: pointer;
-    box-shadow: 0px 0px 10px 2px #161718;
-    margin-right: 10px;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  #facebook:hover {
-    box-shadow: 0px 0px 0px 0px #161718;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  .fa-facebook {
-    color: #fff;
-    font-size: 7em;
-    display: block;
-  }
-
-  .fa-facebook-f:before, .fa-facebook:before {
-    font-size: 70px;
-  }
-
-  a {
-    color: #88887a;
-    text-decoration: none;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  a:hover {
-    color: #fff;
-    margin-left: 5px;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-  }
-
-  #mainlogin {
-    float: left;
-    width: 250px;
-    height: 228px;
-    padding: 10px 15px;
-    position: relative;
-    background: #555555;
-    border-radius: 3px;
-  }
-
-  #connect {
-    font-weight: bold;
-    color: #fff;
-    font-size: 13px;
-    text-align: left;
-    font-family: verdana;
-    padding-top: 10px;
-  }
-
-  #or {
-    position: absolute;
-    left: -25px;
-    top: 10px;
-    background: #222222;
-    text-shadow: 0 2px 0px #121212;
-    color: #999999;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    border-radius: 50%;
-    font-weight: bold;
-    line-height: 38px;
-    font-size: 13px;
-  }
-
-</style>
-
-
-<div class="container">
-  <div class="row">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div id="loginform">
-      <%= link_to user_facebook_omniauth_authorize_path do %>
-        <div id="facebook"><i class="fa fa-facebook"></i>
-          <div id="connect">Login with Facebook</div>
+  <div class="container-fluid">
+    <div class="row min-vh-100 bg-100">
+      <div class="col-6 d-none d-lg-block">
+        <div class="bg-holder" style="background-image:url(../../assets/img/generic/14.jpg);background-position: 50% 20%;">
         </div>
-      <% end %>
-      <!--<div id="mainlogin">-->
-      <!--<div id="or">or</div>-->
-      <!--<h1>Or try the old fashioned way!</h1>-->
-      <!--<form action="#">-->
-      <!--<input type="text" placeholder="username or email" value="" required>-->
-      <!--<input type="password" placeholder="password" value="" required>-->
-      <!--<button type="submit"><i class="fa fa-arrow-right"></i></button>-->
-      <!--</form>-->
-      <!--<div id="note"><a href="#">Forgot your password?</a></div>-->
-      <!--</div>-->
+        <!--/.bg-holder-->
+
+      </div>
+      <div class="col-sm-10 col-md-6 px-sm-0 align-self-center mx-auto py-5">
+        <div class="row justify-content-center no-gutters">
+          <div class="col-lg-9 col-xl-8 col-xxl-6">
+            <div class="card">
+              <div class="card-header bg-circle-shape text-center p-2">
+                <a class="text-white text-sans-serif font-weight-extra-bold fs-4 z-index-1 position-relative" href="../../index.html">respondersnow.com</a>
+              </div>
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <h3>Login</h3>
+                  <p class="mb-0 fs--1">
+                    <span class="font-weight-semi-bold">New User? </span><a href="../../authentication/split/register.html">Create
+                    account</a></p>
+                </div>
+                <form>
+                  <div class="form-group">
+                    <label for="split-login-email">Email address</label>
+                    <input class="form-control" id="split-login-email" type="email"/>
+                  </div>
+                  <div class="form-group">
+                    <div class="d-flex justify-content-between">
+                      <label for="split-login-password">Password</label><a class="fs--1" href="../../authentication/split/forgot-password.html">Forgot
+                      Password?</a>
+                    </div>
+                    <input class="form-control" id="split-login-password" type="password"/>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" id="split-checkbox"/>
+                    <label class="custom-control-label" for="split-checkbox">Remember me</label>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Log in</button>
+                  </div>
+                </form>
+                <div class="w-100 position-relative mt-4">
+                  <hr class="text-300"/>
+                  <div class="position-absolute absolute-centered t-0 px-3 bg-white text-sans-serif fs--1 text-500 text-nowrap">or
+                    log in with
+                  </div>
+                </div>
+                <div class="form-group mb-0">
+                  <div class="row no-gutters">
+                    <div class="col-sm-6 pr-sm-1">
+                      <a class="btn btn-outline-google-plus btn-sm btn-block mt-2" href="#"><span class="fab fa-google-plus-g mr-2" data-fa-transform="grow-8"></span>
+                        google</a></div>
+                    <div class="col-sm-6 pl-sm-1">
+                      <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-outline-facebook btn-sm btn-block mt-2' do %>
+                      <span class="fab fa-facebook-square mr-2" data-fa-transform="grow-8">
+                        </span> facebook</a></div>
+                      <% end %>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/js/popper.min.js"></script>
+<script src="../../assets/js/bootstrap.min.js"></script>
+<script src="../../assets/lib/@fortawesome/all.min.js"></script>
+<script src="../../assets/lib/stickyfilljs/stickyfill.min.js"></script>
+<script src="../../assets/lib/sticky-kit/sticky-kit.min.js"></script>
+<script src="../../assets/lib/is_js/is.min.js"></script>
+<script src="../../assets/lib/lodash/lodash.min.js"></script>
+<script src="../../assets/lib/perfect-scrollbar/perfect-scrollbar.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:100,200,300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+
+
+<!--    <p class="m-t">-->
+<!--      <small>Responders Now is built by First Responders for First Responders. RespondersTechnologies LLC &copy;2018-->
+<!--        <br>-->
+<!--        Made In America-->
+<!--      </small>-->
+<!--    </p>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<style>-->
+<!--  * {-->
+<!--    margin: 0px;-->
+<!--    padding: 0px;-->
+<!--  }-->
+
+<!--  #loginform {-->
+<!--    width: 550px;-->
+<!--    height: auto;-->
+<!--    position: relative;-->
+<!--    margin: 0 auto;-->
+<!--  }-->
+
+<!--  input {-->
+<!--    display: block;-->
+<!--    margin: 0px auto 15px;-->
+<!--    border-radius: 5px;-->
+<!--    background: #333333;-->
+<!--    width: 85%;-->
+<!--    padding: 12px 20px 12px 10px;-->
+<!--    border: none;-->
+<!--    color: #929999;-->
+<!--    box-shadow: inset 0px 1px 5px #272727;-->
+<!--    font-size: 0.8em;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  input:focus {-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--    box-shadow: 0px 0px 5px 1px #161718;-->
+<!--  }-->
+
+<!--  button {-->
+<!--    background: #ff5f32;-->
+<!--    border-radius: 50%;-->
+<!--    border: 10px solid #222526;-->
+<!--    font-size: 0.9em;-->
+<!--    color: #fff;-->
+<!--    font-weight: bold;-->
+<!--    cursor: pointer;-->
+<!--    width: 85px;-->
+<!--    height: 85px;-->
+<!--    position: absolute;-->
+<!--    right: -42px;-->
+<!--    top: 54px;-->
+<!--    text-align: center;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  button:hover {-->
+<!--    background: #222526;-->
+<!--    border-color: #ff5f32;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  button i {-->
+<!--    font-size: 20px;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  button:hover i {-->
+<!--    color: #ff5f32;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  *:focus {-->
+<!--    outline: none;-->
+<!--  }-->
+
+<!--  ::-webkit-input-placeholder {-->
+<!--    color: #929999;-->
+<!--  }-->
+
+<!--  :-moz-placeholder { /* Firefox 18- */-->
+<!--    color: #929999;-->
+<!--  }-->
+
+<!--  ::-moz-placeholder { /* Firefox 19+ */-->
+<!--    color: #929999;-->
+<!--  }-->
+
+<!--  :-ms-input-placeholder {-->
+<!--    color: #929999;-->
+<!--  }-->
+
+<!--  h1 {-->
+<!--    text-align: center;-->
+<!--    color: #fff;-->
+<!--    font-size: 13px;-->
+<!--    padding: 12px 0px;-->
+<!--  }-->
+
+<!--  #note {-->
+<!--    color: #88887a;-->
+<!--    font-size: 0.8em;-->
+<!--    text-align: left;-->
+<!--    padding-left: 5px;-->
+<!--  }-->
+
+<!--  #facebook {-->
+<!--    text-align: center;-->
+<!--    float: left;-->
+<!--    background: #365195;-->
+<!--    padding: 35px 10px 20px 10px;-->
+<!--    width: 170px;-->
+<!--    height: 228px;-->
+<!--    border-radius: 3px;-->
+<!--    cursor: pointer;-->
+<!--    box-shadow: 0px 0px 10px 2px #161718;-->
+<!--    margin-right: 10px;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  #facebook:hover {-->
+<!--    box-shadow: 0px 0px 0px 0px #161718;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  .fa-facebook {-->
+<!--    color: #fff;-->
+<!--    font-size: 7em;-->
+<!--    display: block;-->
+<!--  }-->
+
+<!--  .fa-facebook-f:before, .fa-facebook:before {-->
+<!--    font-size: 70px;-->
+<!--  }-->
+
+<!--  a {-->
+<!--    color: #88887a;-->
+<!--    text-decoration: none;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  a:hover {-->
+<!--    color: #fff;-->
+<!--    margin-left: 5px;-->
+<!--    -webkit-transition: 0.5s ease;-->
+<!--    -moz-transition: 0.5s ease;-->
+<!--    -o-transition: 0.5s ease;-->
+<!--    -ms-transition: 0.5s ease;-->
+<!--    transition: 0.5s ease;-->
+<!--  }-->
+
+<!--  #mainlogin {-->
+<!--    float: left;-->
+<!--    width: 250px;-->
+<!--    height: 228px;-->
+<!--    padding: 10px 15px;-->
+<!--    position: relative;-->
+<!--    background: #555555;-->
+<!--    border-radius: 3px;-->
+<!--  }-->
+
+<!--  #connect {-->
+<!--    font-weight: bold;-->
+<!--    color: #fff;-->
+<!--    font-size: 13px;-->
+<!--    text-align: left;-->
+<!--    font-family: verdana;-->
+<!--    padding-top: 10px;-->
+<!--  }-->
+
+<!--  #or {-->
+<!--    position: absolute;-->
+<!--    left: -25px;-->
+<!--    top: 10px;-->
+<!--    background: #222222;-->
+<!--    text-shadow: 0 2px 0px #121212;-->
+<!--    color: #999999;-->
+<!--    width: 40px;-->
+<!--    height: 40px;-->
+<!--    text-align: center;-->
+<!--    border-radius: 50%;-->
+<!--    font-weight: bold;-->
+<!--    line-height: 38px;-->
+<!--    font-size: 13px;-->
+<!--  }-->
+
+<!--</style>-->
+
+
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div id="loginform">-->
+<%#= link_to user_facebook_omniauth_authorize_path do %>
+<!--        <div id="facebook"><i class="fa fa-facebook"></i>-->
+<!--          <div id="connect">Login with Facebook</div>-->
+<!--        </div>-->
+<%# end %>
+<!--    </div>-->
+<!--  </div>-->
+

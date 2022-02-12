@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class IncidentUpvote < Types::BaseMutationType
     null true
@@ -13,7 +14,7 @@ module Mutations
       incident.upvote(user: context[:current_user])
       {
         incident: incident,
-        errors: incident&.errors,
+        errors: incident&.errors
       }
     end
   end

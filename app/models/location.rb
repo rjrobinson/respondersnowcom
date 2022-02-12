@@ -28,14 +28,13 @@ class Location < ApplicationRecord
   end
 
   def address
-    [street, city, state, country].compact.join(', ')
+    [street, city, state, country].compact.join(", ")
   end
 
   def county_lookup
     return nil if county
-    if state&.length && state.length > 2
-      update(state: StatesHelper::STATE_NAME_TO_ABBR[state])
-    end
+
+    update(state: StatesHelper::STATE_NAME_TO_ABBR[state]) if state&.length && state.length > 2
 
     found = Location.where(city: city, state: state).pluck(:county).compact.first
     update(county: found) if found
