@@ -40,8 +40,9 @@ gem "simple_form"
 gem "skylight"
 
 #  Background Jobs
-gem "sidekiq", ">= 6.4.0"
 gem "redis", ">= 4.2.0"
+gem "sidekiq", ">= 6.4.0"
+
 
 
 gem "rails_admin"
