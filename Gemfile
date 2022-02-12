@@ -27,7 +27,7 @@ gem "jbuilder"
 gem "jquery-ui-rails"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis"
+gem "overcommit"
 
 # Use ActiveModel has_secure_password
 gem "activerecord-typedstore"
@@ -40,7 +40,9 @@ gem "simple_form"
 gem "skylight"
 
 #  Background Jobs
-gem "sidekiq"
+gem "sidekiq", ">= 6.4.0"
+gem "redis", ">= 4.2.0"
+
 
 gem "rails_admin"
 
