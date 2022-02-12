@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class HospitalStatusType < Types::ActiveRecordBase
     field :id, ID, null: false

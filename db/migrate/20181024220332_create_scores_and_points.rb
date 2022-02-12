@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CreateScoresAndPoints < ActiveRecord::Migration[5.2]
   def change
     create_table :merit_scores do |t|
       t.references :sash
-      t.string :category, default: 'default'
+      t.string :category, default: "default"
     end
 
     create_table :merit_score_points do |t|

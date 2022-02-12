@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class ActiveRecordErrorType < Types::BaseObject
     description "Returns An ActiveRecord Error"

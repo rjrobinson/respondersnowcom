@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
+# PagesController is a template default for the theme
 class PagesController < ApplicationController
-  def search_results
-  end
+  def search_results; end
 
   def lockscreen
     render(layout: "empty")
   end
 
-  def invoice
-  end
+  def invoice; end
 
   def invoice_print
     render(layout: "empty")
@@ -35,8 +34,7 @@ class PagesController < ApplicationController
     render(layout: "empty")
   end
 
-  def empty_page
-  end
+  def empty_page; end
 
   def not_found_error
     render(layout: "empty")

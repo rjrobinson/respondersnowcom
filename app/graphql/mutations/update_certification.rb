@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class UpdateCertification < Types::BaseMutationType
     null true
@@ -14,7 +15,7 @@ module Mutations
       cert&.update(certification_input.to_h.except(:id))
 
       {
-        certification: cert,
+        certification: cert
       }
     end
   end

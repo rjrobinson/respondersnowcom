@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class ConfirmIncident < Types::BaseMutationType
     null true
@@ -12,12 +13,10 @@ module Mutations
       incident = Incident.find(id)
       incident.confirm(user: context[:current_user])
 
-      if incident.errors.nil? # add points
-        context[:current_user]&.add_points(2, category: "Voted")
-      end
+      context[:current_user]&.add_points(2, category: "Voted") if incident.errors.nil? # add points
 
       {
-        incident: incident,
+        incident: incident
       }
     end
 

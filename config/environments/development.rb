@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.assets.precompile += ['appviews.css', 'cssanimations.css', 'dashboards.css', 'forms.css', 'gallery.css', 'graphs.css', 'mailbox.css', 'miscellaneous.css', 'pages.css', 'tables.css', 'uielements.css', 'widgets.css', 'commerce.css']
-  config.assets.precompile += ['appviews.js', 'cssanimations.js', 'dashboards.js', 'forms.js', 'gallery.js', 'graphs.js', 'mailbox.js', 'miscellaneous.js', 'pages.js', 'tables.js', 'uielements.js', 'widgets.js', 'commerce.js', 'metrics.js']
+  config.assets.precompile += ["appviews.css", "cssanimations.css", "dashboards.css", "forms.css", "gallery.css", "graphs.css", "mailbox.css", "miscellaneous.css", "pages.css", "tables.css", "uielements.css", "widgets.css", "commerce.css"]
+  config.assets.precompile += ["appviews.js", "cssanimations.js", "dashboards.js", "forms.js", "gallery.js", "graphs.js", "mailbox.js", "miscellaneous.js", "pages.js", "tables.js", "uielements.js", "widgets.js", "commerce.js", "metrics.js"]
 
   config.action_dispatch.show_exceptions = false # this is the default setting in production
   config.filter_parameters << :password
 
   config.active_job.queue_adapter = :sidekiq
 
-  config.time_zone = 'Eastern Time (US & Canada)'
+  config.time_zone = "Eastern Time (US & Canada)"
 
   config.generators do |g|
     g.orm(:active_record, primary_key_type: :uuid)
@@ -28,13 +30,13 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false

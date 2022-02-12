@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class DeviseCreateAgencies < ActiveRecord::Migration[5.0]
   def change
     create_table :agencies, id: :uuid do |t|
-
       t.string :email, null: false, default: ""
 
       t.string :name

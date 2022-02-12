@@ -1,8 +1,9 @@
 ## frozen_string_literal: true
 ##
 # frozen_string_literal: true
-require 'rails_helper'
-require_relative '../../test_helpers'
+
+require "rails_helper"
+require_relative "../../test_helpers"
 
 describe Mutations::CreateCertification, type: :mutations do
   include GraphQL::TestHelpers
@@ -13,14 +14,14 @@ describe Mutations::CreateCertification, type: :mutations do
   # set mutation keys ( the ones that get returned)
   # set variables *default
   # set user
-  let(:mutation_type) { "updateCertification" }
-
   subject(:update_certification) do
     mutation(mutation_string, variables: variables, context: { current_user: user })
     raise GraphQL::TestHelpers::GraphqlException, gql_response if gql_response.errors
+
     gql_response.data[mutation_type].deep_symbolize_keys
   end
 
+  let(:mutation_type) { "updateCertification" }
   let(:variables) { { CertificationInput: {} } }
   let(:mutation_keys) { "certification { id name }" }
   let(:mutation_string) do
@@ -30,7 +31,6 @@ describe Mutations::CreateCertification, type: :mutations do
                    #{mutation_keys}}}
     GQL
   end
-
   let(:user) { create(:user) }
   let(:certification) { create(:certification) }
 
@@ -41,7 +41,7 @@ describe Mutations::CreateCertification, type: :mutations do
         abbvr: "example",
         active: false,
         course_code: "EX",
-        name: "exmaple of updated certification",
+        name: "exmaple of updated certification"
 
       } }
     end

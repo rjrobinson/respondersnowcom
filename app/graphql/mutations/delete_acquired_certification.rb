@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class DeleteAcquiredCertification < Types::BaseMutationType
     null true
@@ -11,12 +12,10 @@ module Mutations
     def resolve(id:)
       cert = context[:current_user].acquired_certifications.find(id)
 
-      if cert.delete
-        context[:current_user]&.subtract_points(5, category: "added_certification")
-      end
+      context[:current_user]&.subtract_points(5, category: "added_certification") if cert.delete
 
       {
-        success: cert.present?,
+        success: cert.present?
       }
     end
   end

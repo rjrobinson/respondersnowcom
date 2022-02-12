@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.shared_examples :a_node_type do
+RSpec.shared_examples "a node type" do
   subject { described_class }
 
   it { is_expected.to have_field(:id).of_type("ID!") }

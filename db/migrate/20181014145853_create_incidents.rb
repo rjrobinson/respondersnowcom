@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class CreateIncidents < ActiveRecord::Migration[5.2]
   def change
     create_table :incidents, id: :uuid do |t|
-
       t.string :message
 
       t.references :location, type: :uuid, foreign_key: true

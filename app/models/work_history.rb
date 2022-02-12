@@ -9,6 +9,6 @@ class WorkHistory < ApplicationRecord
   end
 
   def pretty_end
-    current ? 'Current' : "#{Date::MONTHNAMES[end_date.month]}-#{end_date.year}"
+    current ? "Current" : "#{Date::MONTHNAMES[end_date.month]}-#{end_date.year}"
   end
 end

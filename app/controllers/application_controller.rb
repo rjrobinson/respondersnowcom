@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ApplicationController is the base controller for all controllers in the application.
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
       report.user = {
         email: current_user.email,
         name: current_user.name,
-        id: current_user.id,
+        id: current_user.id
       }
     end
   end

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :hospital do
-    name { 'Some Random Hospital' }
+    name { "Some Random Hospital" }
     county { "middlesex" }
     abilities { "cool. abilities." }
 

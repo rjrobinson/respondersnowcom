@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class IncidentStatusType < Types::ActiveRecordBase
     description "A status"

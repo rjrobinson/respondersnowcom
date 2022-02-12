@@ -3,13 +3,13 @@
 def omniauth(opts = {})
   default = {
     provider: :facebook,
-    uuid: '1234',
+    uuid: "1234",
     facebook: {
-      email: 'foobar@example.com',
-      gender: 'Male',
-      first_name: 'foo',
-      last_name: 'bar',
-    },
+      email: "foobar@example.com",
+      gender: "Male",
+      first_name: "foo",
+      last_name: "bar"
+    }
   }
 
   credentials = default.merge(opts)
@@ -19,28 +19,28 @@ def omniauth(opts = {})
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.mock_auth[provider] = OmniAuth::AuthHash.new(
-    'provider' => provider,
-    'uid' => credentials[:uuid],
-    'extra' => {
-      'user_hash' => {
-        'email' => user_hash[:email],
-        'first_name' => user_hash[:first_name],
-        'last_name' => user_hash[:last_name],
-        'gender' => user_hash[:gender],
-      },
+    "provider" => provider,
+    "uid" => credentials[:uuid],
+    "extra" => {
+      "user_hash" => {
+        "email" => user_hash[:email],
+        "first_name" => user_hash[:first_name],
+        "last_name" => user_hash[:last_name],
+        "gender" => user_hash[:gender]
+      }
     },
-    'info' => { 'email' => user_hash[:email],
-                'first_name' => user_hash[:first_name],
-                'last_name' => user_hash[:last_name],
-                'gender' => user_hash[:gender],
-                'name' => "#{user_hash[:first_name]} #{user_hash[:last_name]}" }
+    "info" => { "email" => user_hash[:email],
+                "first_name" => user_hash[:first_name],
+                "last_name" => user_hash[:last_name],
+                "gender" => user_hash[:gender],
+                "name" => "#{user_hash[:first_name]} #{user_hash[:last_name]}" }
   )
 end
 
 def invalid_omniauth(opts = {})
   credentials = {
     provider: :facebook,
-    invalid: :invalid_crendentials,
+    invalid: :invalid_crendentials
   }.merge(opts)
 
   OmniAuth.config.test_mode = true

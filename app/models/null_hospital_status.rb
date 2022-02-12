@@ -10,7 +10,7 @@ class NullHospitalStatus
     @start_time = nil
     @status = "Open"
     @reason = "No Reported Issues"
-    @created_at = Time.now
-    @updated_at = Time.now
+    @created_at = Time.zone.now
+    @updated_at = Time.zone.now
   end
 end

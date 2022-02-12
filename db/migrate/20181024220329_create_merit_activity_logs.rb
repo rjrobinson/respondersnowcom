@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMeritActivityLogs < ActiveRecord::Migration[5.2]
   def change
     create_table :merit_activity_logs do |t|

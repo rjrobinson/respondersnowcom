@@ -21,8 +21,8 @@ module Types
 
     # TODO: Disabling till we revisit this in the future
     field :incidents_by_subscription, [IncidentType], null: true do
-      description %|A list of Incidents from the users subscriptions.
-                                 Incidents will be sent back newest first, but have the option to sort by their ranking|
+      description %(A list of Incidents from the users subscriptions.
+                                 Incidents will be sent back newest first, but have the option to sort by their ranking)
     end
 
     def incidents_by_subscription
@@ -30,7 +30,7 @@ module Types
     end
 
     field :locations, [LocationType], null: true,
-          description:                      'List of locations'
+                                      description: "List of locations"
 
     field :incidents, [IncidentType], null: false do
       description "this will return all incidents that have not been flagged more than 3 times."

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Types
   class ReportInputType < Types::BaseInputType
     graphql_name "ReportInputType"

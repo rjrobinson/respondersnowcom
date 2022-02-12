@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeviseCreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users, id: :uuid do |t|
@@ -34,7 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       # OMNI AUTH
       t.string :uid
       t.string :provider
-
 
       # RESPONDER INFORMATION << Note Profile will come later
 

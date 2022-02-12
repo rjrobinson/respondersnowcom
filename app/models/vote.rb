@@ -4,15 +4,13 @@ class Vote < ApplicationRecord
   belongs_to :voteable, polymorphic: true
   belongs_to :user
 
-  validates_presence_of :vote_value
+  validates :vote_value, presence: true
 
   validate :user_only_has_one_vote, on: :create
   # validates :user, uniqueness: {scope: :voteable}
 
   def user_only_has_one_vote
-    if Vote.where(user_id: user_id, voteable_id: voteable_id).present?
-      errors.add(:user_already_has_vote, "This user has already voted.")
-    end
+    errors.add(:user_already_has_vote, "This user has already voted.") if Vote.where(user_id: user_id, voteable_id: voteable_id).present?
   end
 
   def upvote

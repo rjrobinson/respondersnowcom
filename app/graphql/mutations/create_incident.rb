@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class CreateIncident < Types::BaseMutationType
     null true
@@ -11,13 +12,11 @@ module Mutations
     def resolve(incident_input:)
       incident = Incident.new_with_location(incident_input.to_h.merge(current_user: context[:current_user]))
 
-      if incident.save
-        context[:current_user]&.add_points(5, category: "created incident")
-      end
+      context[:current_user]&.add_points(5, category: "created incident") if incident.save
 
       {
         incident: incident,
-        errors: incident.errors.map { |e| { field_name: e, errors: membership.errors[e] } },
+        errors: incident.errors.map { |e| { field_name: e, errors: membership.errors[e] } }
       }
     end
   end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class CreateAcquiredCertification < Types::BaseMutationType
     null true
@@ -11,12 +12,10 @@ module Mutations
     def resolve(acquired_certification_input:)
       cert = AcquiredCertification.new(acquired_certification_input.to_h.merge(user: context[:current_user]))
 
-      if cert.save
-        context[:current_user]&.add_points(5, category: "added_certification")
-      end
+      context[:current_user]&.add_points(5, category: "added_certification") if cert.save
 
       {
-        acquired_certification: cert,
+        acquired_certification: cert
       }
     end
   end

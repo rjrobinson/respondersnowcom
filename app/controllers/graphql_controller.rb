@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# allows GraphQL Conrtoller to be used in Rails
 class GraphqlController < ApplicationController
   skip_before_action :verify_authenticity_token, :authenticate_user!
 

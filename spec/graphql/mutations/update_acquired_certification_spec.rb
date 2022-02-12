@@ -1,8 +1,9 @@
 ## frozen_string_literal: true
 ##
 # frozen_string_literal: true
-require 'rails_helper'
-require_relative '../../test_helpers'
+
+require "rails_helper"
+require_relative "../../test_helpers"
 
 describe Mutations::UpdateAcquiredCertification, type: :mutations do
   include GraphQL::TestHelpers
@@ -14,14 +15,14 @@ describe Mutations::UpdateAcquiredCertification, type: :mutations do
   # set variables *default
   # set user
 
-  let(:mutation_type) { "updateAcquiredCertification" }
-
   subject(:update_acquired_certification) do
     mutation(mutation_string, variables: variables, context: { current_user: user })
     raise GraphQL::TestHelpers::GraphqlException, gql_response if gql_response.errors
+
     gql_response.data[mutation_type].deep_symbolize_keys
   end
 
+  let(:mutation_type) { "updateAcquiredCertification" }
   let(:variables) { { acquiredCertificationInput: {} } }
   let(:mutation_keys) { "acquiredCertification { id acquiredOn expires expiresOn }" }
   let(:mutation_string) do
@@ -31,7 +32,6 @@ describe Mutations::UpdateAcquiredCertification, type: :mutations do
                    #{mutation_keys}}}
     GQL
   end
-
   let!(:acquired_certification) { create(:acquired_certification) }
   let(:user) { acquired_certification.user }
   let(:new_expire_dt) { 100.days.from_now.to_s }
@@ -42,15 +42,15 @@ describe Mutations::UpdateAcquiredCertification, type: :mutations do
         id: acquired_certification.id,
         expires: true,
         expires_on: new_expire_dt,
-        ceus: 2,
+        ceus: 2
       } }
     end
 
     it do
-      is_expected.to include(acquiredCertification: { id: acquired_certification.id,
-                                                      acquiredOn: be_a_kind_of(String),
-                                                      expires: true,
-                                                      expiresOn: be_a_kind_of(String) })
+      expect(subject).to include(acquiredCertification: { id: acquired_certification.id,
+                                                          acquiredOn: be_a_kind_of(String),
+                                                          expires: true,
+                                                          expiresOn: be_a_kind_of(String) })
     end
   end
 end

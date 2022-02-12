@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class FlagReport < Types::BaseMutationType
     null true
@@ -13,13 +14,11 @@ module Mutations
       report = IncidentReport.find(id)
       flag = report&.flags&.new(reason: reason, user: context[:current_user])
 
-      if flag&.save # add user points
-        context[:current_user]&.add_points(5, category: 'flagged incident')
-      end
+      context[:current_user]&.add_points(5, category: "flagged incident") if flag&.save # add user points
 
       {
         incident: report.incident,
-        errors: report&.errors,
+        errors: report&.errors
       }
     end
   end

@@ -9,9 +9,7 @@ class Hospital < ApplicationRecord
   def self.on_divert
     divert = []
     Hospital.find_each do |hospital|
-      if hospital&.hospital_statuses&.count && hospital.hospital_statuses.count >= 1
-        divert << hospital unless hospital&.last_status_expired?
-      end
+      divert << hospital if hospital&.hospital_statuses&.count && hospital.hospital_statuses.count >= 1 && !hospital&.last_status_expired?
     end
     divert
   end

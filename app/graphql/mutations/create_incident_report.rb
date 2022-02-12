@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Mutations
   class CreateIncidentReport < Types::BaseMutationType
     null true
@@ -14,13 +15,11 @@ module Mutations
 
       report = incident.incident_reports.new(message: report_input[:message], user: context[:current_user])
 
-      if report.save # add user points
-        context[:current_user]&.add_points(5, category: 'incident report')
-      end
+      context[:current_user]&.add_points(5, category: "incident report") if report.save # add user points
 
       {
         incident: incident,
-        errors: incident&.errors,
+        errors: incident&.errors
       }
     end
   end
