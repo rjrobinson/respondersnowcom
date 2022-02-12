@@ -7,6 +7,7 @@ ruby "2.7.5"
 gem "rails", "~> 6.1.4"
 gem "webpacker", "~> 4.x"
 
+
 gem "font-awesome-rails"
 
 gem "dotenv-rails"
