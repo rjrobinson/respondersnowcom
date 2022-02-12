@@ -105,7 +105,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-graphql_matchers"
   gem "rspec_junit_formatter", "0.2.2"
-  gem "rspec-rails", "~> 3.5"
+  gem "rspec-rails", "~> 5.1"
   gem "rubocop"
   gem "rubocop-graphql"
   gem "rubocop-rails_config"
