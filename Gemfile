@@ -111,7 +111,7 @@ group :development, :test do
   gem "rubocop-rails_config"
   gem "rubocop-rake"
   gem "rubocop-rspec"
-  gem "shoulda-matchers", "~> 3.1"
+  gem "shoulda-matchers", "~> 5.1"
   gem "terminal-notifier"
   gem "terminal-notifier-guard"
 end
