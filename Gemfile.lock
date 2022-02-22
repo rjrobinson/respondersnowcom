@@ -502,7 +502,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqreen (1.25.0)
+    sqreen (1.25.1)
       libsqreen (~> 1.0)
       mini_racer (>= 0.4.0)
       sqreen-backport (~> 0.1.0)
@@ -618,7 +618,7 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   sprockets-rails
-  sqreen (~> 1.20)
+  sqreen (~> 1.25)
   stripe!
   terminal-notifier
   terminal-notifier-guard

@@ -87,7 +87,7 @@ gem "area"
 gem "geocoder"
 gem "travis"
 
-gem "sqreen", "~> 1.20"
+gem "sqreen", "~> 1.25"
 
 group :development, :test do
   gem "better_errors"
