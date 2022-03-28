@@ -267,7 +267,7 @@ GEM
       json (>= 1.7.7, < 2.0)
     mapbox-rails (2.3.0)
     marcel (1.0.2)
-    merit (4.0.2)
+    merit (4.0.3)
       ambry (~> 1.0.0)
       zeitwerk
     meta_request (0.7.3)
