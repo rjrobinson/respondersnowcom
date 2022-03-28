@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "2.7.5"
 
-gem "rails", "~> 6.1.4"
+gem "rails", "~> 6.1.5"
 gem "webpacker", "~> 6.rc"
 
 
