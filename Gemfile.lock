@@ -177,7 +177,7 @@ GEM
     font-awesome-rails (4.7.0.8)
       railties (>= 3.2, < 8.0)
     formatador (1.1.0)
-    geocoder (1.7.3)
+    geocoder (1.7.5)
     gh (0.14.0)
       addressable
       backports
