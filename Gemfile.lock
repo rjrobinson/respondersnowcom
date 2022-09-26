@@ -6,10 +6,10 @@ GIT
 
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: cb606b81c9c8048a3b9b044a4619252d16b576ab
+  revision: a7746b9576f9f035202defbf74ed437f86269121
   branch: master
   specs:
-    faker (2.19.0)
+    faker (2.23.0)
       i18n (>= 1.8.11, < 2)
 
 GEM
@@ -137,7 +137,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.1.10)
     connection_pool (2.2.5)
     crass (1.0.6)
     database_cleaner (2.0.1)
@@ -222,7 +222,7 @@ GEM
     hashie (5.0.0)
     highline (1.7.10)
     httpclient (2.8.3)
-    i18n (1.9.1)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     iniparse (1.5.0)
     jbuilder (2.11.5)
