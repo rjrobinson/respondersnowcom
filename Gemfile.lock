@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/stripe/stripe-ruby
-  revision: faeb0cae4e7377d1d2af7f341dc67eb03323ce09
+  revision: b87cfbec980f4b83f4e431686d11fe7e2efcdd4e
   specs:
-    stripe (5.43.0)
+    stripe (8.0.0)
 
 GIT
   remote: https://github.com/stympy/faker.git
